@@ -60,17 +60,17 @@ function initHearts(){
   });
 }
 
-// === Умная шапка: скрытие при скролле вниз ===
+// Фиксированная шапка, скрытие при скролле
 let lastScroll = 0;
 const header = document.querySelector('.site-header');
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  if (currentScroll > lastScroll && currentScroll > 100) {
-    header.style.transform = 'translateY(-120%)';
-  } else {
-    header.style.transform = 'translateY(0)';
+window.addEventListener('scroll', ()=>{
+  const current = window.scrollY;
+  if(current > lastScroll && current > 100){
+    header.style.transform='translateY(-120px)';
+  }else{
+    header.style.transform='translateY(0)';
   }
-  lastScroll = currentScroll;
+  lastScroll=current;
 });
 
 window.scrollToSection=scrollToSection;
