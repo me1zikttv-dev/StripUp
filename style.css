@@ -20,7 +20,6 @@ body {
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f0c6d5' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 .container {
@@ -116,7 +115,7 @@ nav a:hover:after {
     width: 100%;
 }
 
-/* Hero Section - ТОЛЬКО ТЕКСТ СЛЕВА */
+/* Hero Section - УВЕЛИЧЕННЫЙ ЗАГОЛОВОК И ВСЕ СЛЕВА */
 .hero {
     padding: 150px 0 100px;
     position: relative;
@@ -140,7 +139,7 @@ nav a:hover:after {
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
+    font-size: 58px; /* УВЕЛИЧЕННЫЙ РАЗМЕР */
     color: var(--burgundy);
     margin-bottom: 25px;
     opacity: 0;
@@ -183,7 +182,7 @@ nav a:hover:after {
     box-shadow: 0 10px 25px rgba(176, 49, 94, 0.4);
 }
 
-/* About Section - ТЕКСТ И ФОТО НА ОДНОМ УРОВНЕ */
+/* About Section - ТЕКСТ И ФОТО НА ОДНОМ УРОВНЕ, НО СМЕЩЕНЫ ВЛЕВО */
 .about {
     padding: 80px 0;
 }
@@ -197,7 +196,7 @@ nav a:hover:after {
 .about-content {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start; /* СМЕЩЕНИЕ ВЛЕВО */
     gap: 60px;
     margin-top: 40px;
 }
@@ -210,6 +209,7 @@ nav a:hover:after {
     border-radius: 20px;
     padding: 40px;
     box-shadow: var(--box-shadow);
+    max-width: 600px; /* ОГРАНИЧЕНИЕ ШИРИНЫ */
 }
 
 .about-text p {
@@ -227,15 +227,15 @@ nav a:hover:after {
 .about-image {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* СМЕЩЕНИЕ ВЛЕВО */
     align-items: flex-start;
     opacity: 0;
     animation: fadeInRight 1s ease 0.9s forwards;
+    max-width: 400px; /* ОГРАНИЧЕНИЕ ШИРИНЫ */
 }
 
 .about-selfy-img {
     width: 100%;
-    max-width: 400px;
     height: auto;
     border-radius: 20px;
     box-shadow: var(--box-shadow);
@@ -250,10 +250,11 @@ section {
 .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 36px;
-    text-align: center;
+    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
     margin-bottom: 60px;
     color: var(--burgundy);
     position: relative;
+    margin-left: 0; /* СБРОС ОТСТУПА */
 }
 
 .section-title:after {
@@ -263,15 +264,16 @@ section {
     height: 3px;
     background: var(--burgundy);
     bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    transform: none; /* СБРОС ТРАНСФОРМАЦИИ */
 }
 
-/* Features Section */
+/* Features Section - СМЕЩЕНИЕ ВЛЕВО */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    justify-content: start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
 }
 
 .feature-card {
@@ -286,7 +288,7 @@ section {
     border-radius: 15px;
     padding: 30px;
     box-shadow: var(--box-shadow);
-    text-align: center;
+    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
     height: 100%;
     transition: all 0.3s ease;
 }
@@ -308,10 +310,10 @@ section {
     color: var(--burgundy);
 }
 
-/* Pricing Section */
+/* Pricing Section - СМЕЩЕНИЕ ВЛЕВО */
 .pricing-cards {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
     gap: 30px;
     flex-wrap: wrap;
 }
@@ -330,7 +332,7 @@ section {
     border-radius: 15px;
     padding: 40px 30px;
     box-shadow: var(--box-shadow);
-    text-align: center;
+    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
     height: 100%;
     transition: all 0.3s ease;
 }
@@ -396,10 +398,10 @@ section {
     font-weight: bold;
 }
 
-/* FAQ Section */
+/* FAQ Section - СМЕЩЕНИЕ ВЛЕВО */
 .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 100%; /* УБИРАЕМ ОГРАНИЧЕНИЕ */
+    margin: 0; /* СБРОС ОТСТУПА */
 }
 
 .faq-item {
@@ -444,17 +446,18 @@ section {
     max-height: 500px;
 }
 
-/* Reviews Section */
+/* Reviews Section - СМЕЩЕНИЕ ВЛЕВО */
 .reviews-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
     gap: 50px;
+    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
 }
 
 .phone-mockup {
-    flex: 1;
+    flex: 0 0 auto; /* ФИКСИРОВАННАЯ ШИРИНА */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
     position: relative;
 }
 
@@ -590,11 +593,12 @@ section {
     text-align: right;
 }
 
-/* Contact Section */
+/* Contact Section - СМЕЩЕНИЕ ВЛЕВО */
 .contact-container {
     display: flex;
     gap: 50px;
     align-items: flex-start;
+    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
 }
 
 .contact-info {
@@ -607,7 +611,7 @@ section {
     border-radius: 15px;
     padding: 30px;
     box-shadow: var(--box-shadow);
-    text-align: center;
+    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
 }
 
 .contact-button {
@@ -889,7 +893,7 @@ footer {
     }
     
     .hero h1 {
-        font-size: 36px;
+        font-size: 42px; /* АДАПТИВНЫЙ РАЗМЕР */
     }
     
     .hero p {

@@ -90,15 +90,6 @@ function initHeaderScroll() {
     });
 }
 
-// Initialize all functions when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    createHearts();
-    initFAQ();
-    initForm();
-    initSmoothScroll();
-    initHeaderScroll();
-});
-
 // Add loading animation for elements
 function animateOnScroll() {
     const elements = document.querySelectorAll('.feature-box, .pricing-box, .review-box');
@@ -119,6 +110,15 @@ function animateOnScroll() {
         observer.observe(element);
     });
 }
+
+// Initialize all functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    createHearts();
+    initFAQ();
+    initForm();
+    initSmoothScroll();
+    initHeaderScroll();
+});
 
 // Initialize scroll animations
 window.addEventListener('load', animateOnScroll);
