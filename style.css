@@ -10,23 +10,34 @@
 
 /* Base */
 *{box-sizing:border-box;}
-body{font-family:"Inter", sans-serif;margin:0;color:var(--text);background:#fff;line-height:1.45;overflow-x:hidden}
+body{
+  font-family:"Inter", sans-serif;
+  margin:0;
+  color:var(--text);
+  background:#fff;
+  line-height:1.45;
+  overflow-x:hidden;
+}
 
 /* Header */
-.logo {
-  height:120px;    /* ещё больше */
-  width:auto;
-  object-fit:contain;
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 24px;
+  position:sticky;
+  top:0;
+  background:#fff;
+  z-index:99;
+  box-shadow:0 2px 10px rgba(0,0,0,0.03);
 }
-
-/* Адаптив для мобильных */
-@media (max-width:520px){
-  .logo{
-    height:80px;  /* немного уменьшаем на маленьких экранах */
-  }
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:24px;
 }
 .logo{
-  height:80px;       /* увеличенный логотип */
+  height:160px;       /* крупный логотип */
   width:auto;
   object-fit:contain;
 }
@@ -90,7 +101,7 @@ body{font-family:"Inter", sans-serif;margin:0;color:var(--text);background:#fff;
 /* Mascot */
 .hero-right{position:relative;}
 .mascot-img{
-  max-width:280px;   /* пропорциональный размер маскота */
+  max-width:280px;   /* пропорциональный маскот */
   width:100%;
   height:auto;
   display:block;
@@ -226,10 +237,12 @@ input:focus,textarea:focus{
   background:#fff;
 }
 
-/* Media */
-@media (max-width:900px){.hero{grid-template-columns:1fr;}}
+/* Media Queries */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;}
+}
 @media (max-width:520px){
-  .headline{font-size:28px}
-  .logo{height:60px;}
+  .headline{font-size:28px;}
+  .logo{height:120px;}  /* уменьшение для мобильных */
   .mascot-img{max-width:200px;}
 }

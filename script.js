@@ -9,6 +9,14 @@ function scrollToSection(id){
   const el = document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
+function goSignup(){
+  const env = document.getElementById('envelope');
+  if(env){
+    env.scrollIntoView({behavior:'smooth', block:'center'});
+    env.classList.add('open');
+    setTimeout(()=>env.classList.remove('open'),2200);
+  }
+}
 function calc(t){
   const hoursEl = document.getElementById('hours'+t);
   const resEl = document.getElementById('earn'+t);
@@ -52,6 +60,7 @@ function initHearts(){
   });
 }
 window.scrollToSection=scrollToSection;
+window.goSignup=goSignup;
 window.calc=calc;
 window.toggleFAQ=toggleFAQ;
 window.openTelegram=openTelegram;
