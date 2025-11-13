@@ -1,13 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-  initHearts();
   initFAQ();
   calc(1); calc(2); calc(3);
 });
 
-function scrollToSection(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'})}
-function goSignup(){const env=document.getElementById('envelope');if(env){env.scrollIntoView({behavior:'smooth', block:'center'});env.classList.add('open');setTimeout(()=>env.classList.remove('open'),2200)}}
-function calc(t){const h=document.getElementById('hours'+t).value||0;const r={1:800,2:1800,3:3600};document.getElementById('earn'+t).innerText=(r[t]*h).toLocaleString('ru-RU')+' ₽/мес'}
-function initFAQ(){document.querySelectorAll('.faq .q').forEach(q=>q.addEventListener('click',()=>{const a=q.nextElementSibling;a&&(a.style.display=a.style.display!=='none'?'none':'block')}))}
-function initHearts(){document.querySelectorAll('.hearts .heart').forEach((h,i)=>{h.style.left=(12+i*44)+'px';h.style.top=(18+i*28)+'px';h.style.animationDelay=(i*0.6)+'s'})}
-function openTelegram(e){e.preventDefault();alert('Откроется Telegram — замените ссылку')}
-function submitForm(){alert('Спасибо! Заявка принята: '+(document.getElementById('name').value||'(без имени)'));['name','contactinfo','message'].forEach(id=>document.getElementById(id).value='')}
+function calc(t){
+  const hoursEl = document.getElementById('hours'+t);
+  const resEl = document.getElementById('earn'+t);
+  if(!hoursEl || !resEl) return;
+  const h = Number(hoursEl.value)||0;
+  const rates={1:800,2:1800,3:3600};
+  resEl.innerText = Math.round(rates[t]*h).toLocaleString('ru-RU')+' ₽/мес';
+}
+function initFAQ(){
+  document.querySelectorAll('.faq .q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const a=q.nextElementSibling;
+      a.style.display=(a.style.display==='block')?'none':'block';
+    });
+  });
+}
+function openTelegram(e){if(e)e.preventDefault(); alert('Откроется Telegram — замените ссылку');}
+function submitForm(){
+  const n=document.getElementById('name').value.trim();
+  const c=document.getElementById('contactinfo').value.trim();
+  alert('Спасибо! '+(n||'')+' Заявка принята');
+}
