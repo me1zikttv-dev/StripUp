@@ -24,97 +24,101 @@
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero-left">
-      <h1 class="headline">Добро пожаловать в StripUp</h1>
-      <p class="lead">Твой успех начинается здесь и сейчас! Преврати свое обаяние в стабильный доход.</p>
-      <div class="cta-row">
-        <button class="btn primary" onclick="goSignup()">Стать моделью</button>
-        <button class="btn ghost" onclick="scrollToSection('about')">Подробнее</button>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img src="images/mascot.png" alt="Mascot" class="mascot-img">
-      <div class="hearts">
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-        <div class="heart">❤</div>
-      </div>
-    </div>
-  </section>
+  <!-- Main Content Wrapper -->
+  <main class="main-content">
 
-  <!-- About -->
-  <section class="section-frame" id="about">
-    <h2>О нас</h2>
-    <p>StripUp — это современная студия, где каждая деталь продумана для вашего комфорта и красоты.</p>
-  </section>
-
-  <!-- Why Us -->
-  <section class="section-frame" id="why-us">
-    <h2>Почему мы</h2>
-    <div class="advantages">
-      <div class="adv-card">💰 Честные выплаты</div>
-      <div class="adv-card">🎥 Обучение с нуля</div>
-      <div class="adv-card">💞 Поддержка 24/7</div>
-      <div class="adv-card">🕵️ Анонимность</div>
-    </div>
-  </section>
-
-  <!-- Tariffs -->
-  <section class="section-frame" id="tariffs">
-    <h2>Тарифы</h2>
-    <div class="tariffs-grid">
-      <div class="tariff">
-        <h3>Базовый</h3>
-        <div class="calc">
-          <input type="number" id="hours1" value="1" onchange="calc(1)"> часов
-          <div id="earn1">— ₽/мес</div>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-left">
+        <h1 class="headline">Добро пожаловать в StripUp</h1>
+        <p class="lead">Твой успех начинается здесь и сейчас! Преврати свое обаяние в стабильный доход.</p>
+        <div class="cta-row">
+          <button class="btn primary" onclick="goSignup()">Стать моделью</button>
+          <button class="btn ghost" onclick="scrollToSection('about')">Подробнее</button>
         </div>
       </div>
-      <div class="tariff">
-        <h3>Стандарт</h3>
-        <div class="calc">
-          <input type="number" id="hours2" value="1" onchange="calc(2)"> часов
-          <div id="earn2">— ₽/мес</div>
+      <div class="hero-right">
+        <img src="images/mascot.png" alt="Mascot" class="mascot-img">
+        <div class="hearts">
+          <div class="heart">❤</div>
+          <div class="heart">❤</div>
+          <div class="heart">❤</div>
         </div>
       </div>
-      <div class="tariff">
-        <h3>Премиум</h3>
-        <div class="calc">
-          <input type="number" id="hours3" value="1" onchange="calc(3)"> часов
-          <div id="earn3">— ₽/мес</div>
+    </section>
+
+    <!-- About -->
+    <section class="section-frame" id="about">
+      <h2>О нас</h2>
+      <p>StripUp — это современная студия, где каждая деталь продумана для вашего комфорта и красоты.</p>
+    </section>
+
+    <!-- Why Us -->
+    <section class="section-frame" id="why-us">
+      <h2>Почему мы</h2>
+      <div class="advantages">
+        <div class="adv-card">💰 Честные выплаты</div>
+        <div class="adv-card">🎥 Обучение с нуля</div>
+        <div class="adv-card">💞 Поддержка 24/7</div>
+        <div class="adv-card">🕵️ Анонимность</div>
+      </div>
+    </section>
+
+    <!-- Tariffs -->
+    <section class="section-frame" id="tariffs">
+      <h2>Тарифы</h2>
+      <div class="tariffs-grid">
+        <div class="tariff">
+          <h3>Базовый</h3>
+          <div class="calc">
+            <input type="number" id="hours1" value="20" onchange="calc(1)"> часов
+            <div id="earn1">16 000 ₽/мес</div>
+          </div>
+        </div>
+        <div class="tariff">
+          <h3>Стандарт</h3>
+          <div class="calc">
+            <input type="number" id="hours2" value="6" onchange="calc(2)"> часов
+            <div id="earn2">10 800 ₽/мес</div>
+          </div>
+        </div>
+        <div class="tariff">
+          <h3>Премиум</h3>
+          <div class="calc">
+            <input type="number" id="hours3" value="28" onchange="calc(3)"> часов
+            <div id="earn3">100 800 ₽/мес</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section class="section-frame faq" id="faq">
-    <h2>FAQ</h2>
-    <div class="q">Как записаться?</div>
-    <div class="a">Нажмите на кнопку «Стать моделью» вверху страницы и заполните форму.</div>
-    <div class="q">Какие услуги доступны?</div>
-    <div class="a">Базовые, стандартные и премиум пакеты услуг.</div>
-  </section>
+    <!-- FAQ -->
+    <section class="section-frame faq" id="faq">
+      <h2>FAQ</h2>
+      <div class="q">Как записаться?</div>
+      <div class="a">Нажмите на кнопку «Стать моделью» вверху страницы и заполните форму.</div>
+      <div class="q">Какие услуги доступны?</div>
+      <div class="a">Базовые, стандартные и премиум пакеты услуг.</div>
+    </section>
 
-  <!-- Contacts -->
-  <section class="section-frame" id="contacts">
-    <h2>Контакты</h2>
-    <div class="contact-row">
-      <a href="#" class="telegram" onclick="openTelegram(event)">Telegram</a>
-      <div id="envelope" class="envelope">
-        <div class="flap"></div>
-        <form class="form" onsubmit="submitForm(); return false;">
-          <input type="text" id="name" placeholder="Имя">
-          <input type="text" id="contactinfo" placeholder="Telegram или почта">
-          <textarea id="message" placeholder="Сообщение"></textarea>
-          <button class="btn primary" type="submit">Отправить</button>
-        </form>
+    <!-- Contacts -->
+    <section class="section-frame" id="contacts">
+      <h2>Контакты</h2>
+      <div class="contact-row">
+        <a href="#" class="telegram" onclick="openTelegram(event)">Telegram</a>
+        <div id="envelope" class="envelope">
+          <div class="flap"></div>
+          <form class="form" onsubmit="submitForm(); return false;">
+            <input type="text" id="name" placeholder="Имя">
+            <input type="text" id="contactinfo" placeholder="Telegram или почта">
+            <textarea id="message" placeholder="Сообщение"></textarea>
+            <button class="btn primary" type="submit">Отправить</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+  </main>
 </div>
 
 <footer class="site-footer">
