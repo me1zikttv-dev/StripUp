@@ -59,6 +59,20 @@ function initHearts(){
     h.style.animationDelay=(i*0.6)+'s';
   });
 }
+
+// === Умная шапка: скрытие при скролле вниз ===
+let lastScroll = 0;
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    header.style.transform = 'translateY(-120%)';
+  } else {
+    header.style.transform = 'translateY(0)';
+  }
+  lastScroll = currentScroll;
+});
+
 window.scrollToSection=scrollToSection;
 window.goSignup=goSignup;
 window.calc=calc;
