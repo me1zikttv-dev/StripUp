@@ -5,11 +5,12 @@
   --text:#3b2b2f;
   --muted:#7a5860;
   --radius:14px;
-  --shadow: 0 8px 30px rgba(176,40,86,0.08);
+  --shadow:0 8px 30px rgba(176,40,86,0.08);
 }
 
+/* Base */
 body{
-  font-family:"Inter", sans-serif;
+  font-family:"Inter",sans-serif;
   margin:0;
   background:var(--cream);
   color:var(--text);
@@ -17,7 +18,7 @@ body{
 
 .wrap{
   max-width:1200px;
-  margin:0 auto;
+  margin:0;
   padding:0 20px;
 }
 
@@ -26,16 +27,16 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 0;
+  padding:20px 40px;
   position:fixed;
+  width:100%;
   top:0;
   left:0;
-  right:0;
-  background:transparent;
   z-index:100;
+  background:var(--cream);
 }
 .logo-img{
-  width:180px;
+  width:200px;
   height:auto;
 }
 .main-nav a{
@@ -43,7 +44,7 @@ body{
   text-decoration:none;
   color:var(--maroon);
   font-weight:700;
-  font-size:16px;
+  font-size:18px;
 }
 
 /* Hero */
@@ -53,9 +54,7 @@ body{
 }
 .hero-left{
   flex:1;
-}
-.hero-right{
-  flex:1;
+  max-width:600px;
 }
 .hero-left h1{
   font-size:50px;
@@ -65,6 +64,9 @@ body{
   font-size:20px;
   margin:20px 0;
 }
+.hero-right{
+  flex:1;
+}
 .mascot-img{
   width:100%;
   max-width:400px;
@@ -73,6 +75,11 @@ body{
 /* Sections */
 .section-frame{
   margin-top:60px;
+  padding:20px;
+  background:rgba(255,255,255,0.8);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  position:relative;
 }
 .section-frame h2{
   font-family:'Cinzel Decorative', serif;
