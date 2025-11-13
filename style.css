@@ -25,6 +25,16 @@ header.hero {
   animation: fadeInUp 1.5s ease;
 }
 
+.logo {
+  width: 120px; /* уменьшенный логотип */
+}
+
+.hero-image img {
+  width: 250px; /* уменьшенное фото selfy */
+  border-radius: 20px;
+  animation: float 6s ease-in-out infinite;
+}
+
 .hero-content .cta {
   background-color: #b0315e;
   color: #fff7f9;
@@ -39,12 +49,6 @@ header.hero {
 .hero-content .cta:hover {
   background-color: #d3487a;
   transform: scale(1.05);
-}
-
-.hero-image img {
-  width: 420px;
-  border-radius: 20px;
-  animation: float 6s ease-in-out infinite;
 }
 
 section {
@@ -72,12 +76,19 @@ section {
   transform: translateY(-5px);
 }
 
+.tariff-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .tariff-card {
   background: #fff;
   border: 2px solid #f7dce5;
   border-radius: 20px;
   padding: 20px;
-  margin: 15px 0;
+  flex: 1;
+  min-width: 200px;
 }
 
 .phone img {
