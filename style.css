@@ -34,9 +34,10 @@ body{
   left:0;
   z-index:100;
   background:var(--cream);
+  transition: top 0.3s ease;
 }
 .logo-img{
-  width:200px;
+  width:250px;
   height:auto;
 }
 .main-nav a{

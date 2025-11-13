@@ -3,6 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
   calc(1); calc(2); calc(3);
 });
 
+// Скролл хедера
+let lastScroll = 0;
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  if(currentScroll > lastScroll && currentScroll > 100){
+    header.style.top = '-120px';
+  } else {
+    header.style.top = '0';
+  }
+  lastScroll = currentScroll;
+});
+
 function calc(t){
   const hoursEl=document.getElementById('hours'+t);
   const resEl=document.getElementById('earn'+t);
