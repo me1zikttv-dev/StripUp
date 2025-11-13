@@ -1,101 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StripUp Studio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Кредитная карта — MVP</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Hero / Главная -->
-  <header class="hero">
-    <div class="hero-content">
-      <img src="images/logo.jpg" alt="StripUp Logo" class="logo" />
-      <h1 class="tagline">Твой успех начинается здесь и сейчас!</h1>
-      <p class="subtitle">
-        Преврати свое обаяние в стабильный доход. Мы обеспечим тебя самой современной платформой и поддержкой 24/7.
-      </p>
-      <button class="cta">Присоединиться</button>
-    </div>
-    <div class="hero-image">
-      <img src="images/selfy.png" alt="Маскот StripUp" />
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">Кредитка X</div>
+      <nav aria-label="Гига навигация по сайту">
+        <ul class="nav-links">
+          <li><a href="#benefits">Преимущества</a></li>
+          <li><a href="#rates">Условия</a></li>
+          <li><a href="#calculator">Калькулятор</a></li>
+          <li><a href="#application">Заявка</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <!-- About / О студии -->
-  <section class="about">
-    <h2>О студии</h2>
-    <p>Мы создаем атмосферу поддержки, уверенности и развития. У нас ты получаешь не просто работу — а возможность реализовать себя.</p>
-  </section>
-
-  <!-- Why Us / Преимущества -->
-  <section class="benefits">
-    <h2>Почему мы</h2>
-    <div class="cards">
-      <div class="card">💰 Честные выплаты</div>
-      <div class="card">🎥 Обучение с нуля</div>
-      <div class="card">💞 Поддержка 24/7</div>
-      <div class="card">🕊 Анонимность</div>
-    </div>
-  </section>
-
-  <!-- Tariffs / Тарифы -->
-  <section class="tariffs">
-    <h2>Тарифы</h2>
-    <div class="tariff-cards">
-      <div class="tariff-card">
-        <h3>Старт</h3>
-        <p>Обучение, поддержка, первые клиенты.</p>
+  <main class="container">
+    <!-- Герой -->
+    <section class="hero" aria-label="Герой">
+      <h1>Кредитная карта X — выгодные условия онлайн</h1>
+      <p>Легко получить кредитный лимит, прозрачные ставки и простая онлайн-анкета.</p>
+      <div class="cta-row">
+        <a href="#application" class="btn btn-primary">Оформить онлайн</a>
+        <a href="#calculator" class="btn btn-secondary">Расчитать лимит</a>
       </div>
-      <div class="tariff-card">
-        <h3>Pro+</h3>
-        <p>Продвинутый тариф с персональным ментором и аналитикой дохода.</p>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="benefits" class="benefits" aria-label="Преимущества">
+      <h2>Преимущества карты</h2>
+      <div class="grid benefits-grid">
+        <div class="card">Кэшбек до 5% на выбранные категории</div>
+        <div class="card">0% на покупки в первый год</div>
+        <div class="card">Без скрытых платежей и комиссия</div>
+        <div class="card">Моментальная онлайн-одобрение</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ / Вопросы и ответы -->
-  <section class="faq">
-    <h2>Вопросы и ответы</h2>
-    <div class="faq-item">
-      <h4>Как проходит обучение?</h4>
-      <p>Онлайн, в формате личных созвонов с тренером. Мы разбираем технику, безопасность и стратегии роста.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Нужен ли опыт?</h4>
-      <p>Нет. Мы обучаем с нуля и поддерживаем тебя на каждом этапе.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Как устроена система оплаты?</h4>
-      <p>Выплаты еженедельно в первый месяц, далее — дважды в месяц по стабильному графику.</p>
-    </div>
-  </section>
+    <!-- Условия и ставки -->
+    <section id="rates" class="rates" aria-label="Условия и ставки">
+      <h2>Условия и ставки</h2>
+      <div class="table-responsive">
+        <table class="rates-table" aria-label="Таблица условий">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Срок действия</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Годовая ставка</td><td>от 12.9%</td><td>В зависимости от оценки</td></tr>
+            <tr><td>Льготный период</td><td>до 50 дней</td><td>Без начисления процентов при погашении</td></tr>
+            <tr><td>Комиссии</td><td>0%/год в рамках условий</td><td>Без скрытых сборов за обслуживание</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <!-- Reviews / Отзывы -->
-  <section class="reviews">
-    <h2>Отзывы моделей</h2>
-    <div class="phone">
-      <img src="images/phone-reviews.png" alt="Отзывы в телефоне" />
-    </div>
-  </section>
-
-  <!-- Contact / Контакты -->
-  <section class="contact">
-    <h2>Контакты</h2>
-    <div class="envelope">
-      <button class="cta">Присоединиться</button>
-      <form>
-        <input type="text" placeholder="Твоё имя" required>
-        <input type="email" placeholder="Email или Telegram" required>
-        <textarea placeholder="Сообщение"></textarea>
-        <button type="submit">Отправить 💌</button>
+    <!-- Калькулятор лимита -->
+    <section id="calculator" class="calculator" aria-label="Калькулятор лимита">
+      <h2>Расчёт примерного лимита</h2>
+      <form id="calcForm" onsubmit="return false;">
+        <div class="form-row">
+          <label for="income">Ежемесячный доход (руб.)</label>
+          <input type="number" id="income" min="0" step="100" required />
+        </div>
+        <div class="form-row">
+          <label for="age">Возраст (лет)</label>
+          <input type="number" id="age" min="18" max="100" required />
+        </div>
+        <button type="button" class="btn btn-primary" onclick="calculateLimit()">Рассчитать</button>
       </form>
-    </div>
-  </section>
+      <div id="calcResult" class="calc-result" aria-live="polite"></div>
+    </section>
 
-  <footer>
-    <p>© StripUp Studio 2025</p>
+    <!-- Онлайн заявка -->
+    <section id="application" class="application" aria-label="Онлайн заявка">
+      <h2>Онлайн заявка</h2>
+      <form id="appForm" onsubmit="return false;">
+        <div class="form-row">
+          <label for="fullName">Фамилия и имя</label>
+          <input type="text" id="fullName" required placeholder="Иванов Иван" />
+        </div>
+        <div class="form-row">
+          <label for="dob">Дата рождения</label>
+          <input type="date" id="dob" required />
+        </div>
+        <div class="form-row">
+          <label for="email">Электронная почта</label>
+          <input type="email" id="email" required placeholder="you@example.com" />
+        </div>
+        <div class="form-row">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__" />
+        </div>
+        <div class="form-row">
+          <label for="income2">Ежемесячный доход</label>
+          <input type="number" id="income2" required />
+        </div>
+        <div class="form-row terms">
+          <label><input type="checkbox" id="consent" required /> Я даю согласие на обработку персональных данных</label>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="submitApplication()">Отправить заявку</button>
+      </form>
+      <div id="appStatus" class="application-status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Подвал">
+    <div class="container">
+      <p>© 2025 Карточка X. Все права защищены.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
