@@ -1,125 +1,302 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Кредитная карта — MVP</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StripUp - Твой успех начинается здесь и сейчас!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">Кредитка X</div>
-      <nav aria-label="Гига навигация по сайту">
-        <ul class="nav-links">
-          <li><a href="#benefits">Преимущества</a></li>
-          <li><a href="#rates">Условия</a></li>
-          <li><a href="#calculator">Калькулятор</a></li>
-          <li><a href="#application">Заявка</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="StripUp" class="logo-img">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#about">О студии</a></li>
+                    <li><a href="#features">Преимущества</a></li>
+                    <li><a href="#pricing">Тарифы</a></li>
+                    <li><a href="#faq">Вопросы</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <main class="container">
-    <!-- Герой -->
-    <section class="hero" aria-label="Герой">
-      <h1>Кредитная карта X — выгодные условия онлайн</h1>
-      <p>Легко получить кредитный лимит, прозрачные ставки и простая онлайн-анкета.</p>
-      <div class="cta-row">
-        <a href="#application" class="btn btn-primary">Оформить онлайн</a>
-        <a href="#calculator" class="btn btn-secondary">Расчитать лимит</a>
-      </div>
+    <!-- Hero Section - ТОЛЬКО ТЕКСТ -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Твой успех начинается здесь и сейчас!</h1>
+                <p>Преврати свое обаяние в стабильный доход. Мы обеспечим тебя самой современной платформой и надежной поддержкой 24/7.</p>
+                <a href="#contact" class="cta-button">Стать моделью</a>
+            </div>
+        </div>
     </section>
 
-    <!-- Преимущества -->
-    <section id="benefits" class="benefits" aria-label="Преимущества">
-      <h2>Преимущества карты</h2>
-      <div class="grid benefits-grid">
-        <div class="card">Кэшбек до 5% на выбранные категории</div>
-        <div class="card">0% на покупки в первый год</div>
-        <div class="card">Без скрытых платежей и комиссия</div>
-        <div class="card">Моментальная онлайн-одобрение</div>
-      </div>
+    <!-- About Section - ТЕКСТ И ФОТО НА ОДНОМ УРОВНЕ -->
+    <section id="about" class="about">
+        <div class="container about-container">
+            <h2 class="section-title">О студии</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста. Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
+                    <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
+                    <p>Мы верим в индивидуальный подход и создаем комфортные условия для работы, где ты можешь чувствовать себя уверенно и безопасно.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img">
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Условия и ставки -->
-    <section id="rates" class="rates" aria-label="Условия и ставки">
-      <h2>Условия и ставки</h2>
-      <div class="table-responsive">
-        <table class="rates-table" aria-label="Таблица условий">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Срок действия</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Годовая ставка</td><td>от 12.9%</td><td>В зависимости от оценки</td></tr>
-            <tr><td>Льготный период</td><td>до 50 дней</td><td>Без начисления процентов при погашении</td></tr>
-            <tr><td>Комиссии</td><td>0%/год в рамках условий</td><td>Без скрытых сборов за обслуживание</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Почему мы</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-box">
+                        <div class="feature-icon">🕶️</div>
+                        <h3>Анонимность</h3>
+                        <p>Мы гарантируем полную конфиденциальность и защиту ваших личных данных</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-box">
+                        <div class="feature-icon">💰</div>
+                        <h3>Честные выплаты</h3>
+                        <p>Прозрачная система расчетов и своевременные выплаты без задержек</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-box">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Обучение с нуля</h3>
+                        <p>Комплексное обучение для новичков и постоянное развитие для опытных моделей</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-box">
+                        <div class="feature-icon">💞</div>
+                        <h3>Поддержка 24/7</h3>
+                        <p>Наша команда всегда на связи, чтобы помочь в любое время суток</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Калькулятор лимита -->
-    <section id="calculator" class="calculator" aria-label="Калькулятор лимита">
-      <h2>Расчёт примерного лимита</h2>
-      <form id="calcForm" onsubmit="return false;">
-        <div class="form-row">
-          <label for="income">Ежемесячный доход (руб.)</label>
-          <input type="number" id="income" min="0" step="100" required />
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Тарифы</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-box">
+                        <h3>Старт</h3>
+                        <div class="price">0% <span>/ первые 2 недели</span></div>
+                        <ul class="pricing-features">
+                            <li>Базовое обучение</li>
+                            <li>Доступ к платформе</li>
+                            <li>Поддержка менеджера</li>
+                            <li>Еженедельные выплаты</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Выбрать</a>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Популярный</div>
+                    <div class="pricing-box">
+                        <h3>Профи</h3>
+                        <div class="price">15% <span>/ от дохода</span></div>
+                        <ul class="pricing-features">
+                            <li>Расширенное обучение</li>
+                            <li>Приоритетная поддержка</li>
+                            <li>Персональный менеджер</li>
+                            <li>Продвижение профиля</li>
+                            <li>Выплаты 2 раза в месяц</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Выбрать</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-box">
+                        <h3>Премиум</h3>
+                        <div class="price">10% <span>/ от дохода</span></div>
+                        <ul class="pricing-features">
+                            <li>Индивидуальное обучение</li>
+                            <li>Эксклюзивная поддержка</li>
+                            <li>Премиум-продвижение</li>
+                            <li>Аналитика и консультации</li>
+                            <li>Гибкий график выплат</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Выбрать</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-row">
-          <label for="age">Возраст (лет)</label>
-          <input type="number" id="age" min="18" max="100" required />
-        </div>
-        <button type="button" class="btn btn-primary" onclick="calculateLimit()">Рассчитать</button>
-      </form>
-      <div id="calcResult" class="calc-result" aria-live="polite"></div>
     </section>
 
-    <!-- Онлайн заявка -->
-    <section id="application" class="application" aria-label="Онлайн заявка">
-      <h2>Онлайн заявка</h2>
-      <form id="appForm" onsubmit="return false;">
-        <div class="form-row">
-          <label for="fullName">Фамилия и имя</label>
-          <input type="text" id="fullName" required placeholder="Иванов Иван" />
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Вопросы и ответы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-box">
+                        <div class="faq-question">
+                            <span>Как проходит обучение?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Обучение проходит онлайн, в виде личных созвонов, где вместе разбираем технику, правила безопасности, поведенческие рекомендации и стратегии роста. Каждое занятие проходит в неформальной, поддерживающей атмосфере: ты можешь задавать любые вопросы и сразу получать понятные ответы. Это не сухая теория, всё направлено на твоё развитие, уверенность и реальные результаты. Обучение помогает раскрыться, действовать смело и осознанно, чувствовать себя уверенно и двигаться к своим целям с вдохновением.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-box">
+                        <div class="faq-question">
+                            <span>Как устроена система оплаты?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Выплаты: в первый месяц еженедельно, чтобы тебе было комфортно начинать. Далее два раза в месяц по стабильному графику. Мы ведём полностью прозрачную статистику, чтобы ты всегда видела свой результат и могла отслеживать рост дохода.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-box">
+                        <div class="faq-question">
+                            <span>Нужен ли опыт?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Опыт не требуется. Мы обучаем с нуля, сопровождаем и поддерживаем на каждом этапе, помогая уверенно развиваться и расти в профессии.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-box">
+                        <div class="faq-question">
+                            <span>Какое оборудование нужно?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом. Мы поможем с настройкой, объясним все технические моменты и сделаем так, чтобы всё работало без перебоев.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-row">
-          <label for="dob">Дата рождения</label>
-          <input type="date" id="dob" required />
-        </div>
-        <div class="form-row">
-          <label for="email">Электронная почта</label>
-          <input type="email" id="email" required placeholder="you@example.com" />
-        </div>
-        <div class="form-row">
-          <label for="phone">Телефон</label>
-          <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__" />
-        </div>
-        <div class="form-row">
-          <label for="income2">Ежемесячный доход</label>
-          <input type="number" id="income2" required />
-        </div>
-        <div class="form-row terms">
-          <label><input type="checkbox" id="consent" required /> Я даю согласие на обработку персональных данных</label>
-        </div>
-        <button type="submit" class="btn btn-primary" onclick="submitApplication()">Отправить заявку</button>
-      </form>
-      <div id="appStatus" class="application-status" aria-live="polite"></div>
     </section>
-  </main>
 
-  <footer class="site-footer" aria-label="Подвал">
-    <div class="container">
-      <p>© 2025 Карточка X. Все права защищены.</p>
-    </div>
-  </footer>
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы моделей</h2>
+            <div class="reviews-container">
+                <div class="phone-mockup">
+                    <div class="phone-box">
+                        <div class="phone">
+                            <div class="cat-ears"></div>
+                            <div class="phone-content">
+                                <div class="review-phone">
+                                    <p>"StripUp изменил мою жизнь! Теперь я финансово независима"</p>
+                                    <span>- Анастасия</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reviews">
+                    <div class="review-box">
+                        <div class="review">
+                            <p>Пришла в студию без опыта, очень переживала. Но команда поддержала, обучила всему с нуля. Сейчас имею стабильный доход и уверенность в завтрашнем дне. Спасибо StripUp!</p>
+                            <div class="review-author">- Алиса, 23 года</div>
+                        </div>
+                    </div>
+                    <div class="review-box">
+                        <div class="review">
+                            <p>Работаю уже полгода, всё прозрачно и честно. Выплаты вовремя, поддержка всегда на связи. Рекомендую всем девушкам, которые ищут возможность зарабатывать онлайн.</p>
+                            <div class="review-author">- София, 26 лет</div>
+                        </div>
+                    </div>
+                    <div class="review-box">
+                        <div class="review">
+                            <p>Обучение прошла легко и интересно. Менеджеры отвечают на все вопросы, помогают в сложных ситуациях. Атмосфера в коллективе очень дружелюбная. Рада, что выбрала именно эту студию!</p>
+                            <div class="review-author">- Мария, 21 год</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-box">
+                        <a href="https://t.me/stripup_official" class="contact-button">Присоединиться в Telegram</a>
+                        <p>Свяжись с нами для консультации и начала работы. Мы ответим на все твои вопросы и поможем сделать первые шаги к успешной карьере модели.</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div class="form-box">
+                        <div class="envelope"></div>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Имя</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Сообщение</label>
+                                <textarea id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-box">
+                    <div class="footer-logo">StripUp</div>
+                    <div class="social-links">
+                        <a href="#" class="social-link">TG</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">WA</a>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2023 StripUp. Все права защищены.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
