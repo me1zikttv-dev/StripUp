@@ -24,15 +24,12 @@ body{font-family:"Inter", sans-serif;margin:0;color:var(--text);background:var(-
 }
 
 .logo-wrap{display:flex;align-items:center;gap:14px}
-
-/* Скрываем текстовый логотип */
-.logo-svg{display:none;}
+.logo-svg{display:none;} /* скрываем старый текстовый логотип */
 
 /* Логотип как изображение */
 .logo {
-  width: 180px;         /* ширина логотипа */
-  height: auto;         
-  max-height: 60px;     /* ограничение по высоте */
+  height: 60px;       /* фиксированная высота */
+  width: auto;        /* ширина подстраивается автоматически */
   display: block;
   animation: logoFloat 6s ease-in-out infinite;
 }
@@ -47,7 +44,7 @@ body{font-family:"Inter", sans-serif;margin:0;color:var(--text);background:var(-
 /* Плавная анимация движения логотипа */
 @keyframes logoFloat {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); } /* меньше смещения */
+  50% { transform: translateY(-4px); }
   100% { transform: translateY(0); }
 }
 
