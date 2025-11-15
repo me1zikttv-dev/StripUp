@@ -21,7 +21,6 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="#about">О студии</a></li>
                     <li><a href="#features">Преимущества</a></li>
                     <li><a href="#pricing">Тарифы</a></li>
                     <li><a href="#faq">Вопросы</a></li>
@@ -32,29 +31,33 @@
         </div>
     </header>
 
-    <!-- Hero Section - ТОЛЬКО ТЕКСТ СЛЕВА -->
-    <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1>Твой успех начинается здесь и сейчас!</h1>
-                <p>Преврати свое обаяние в стабильный доход. Мы обеспечим тебя самой современной платформой и надежной поддержкой 24/7.</p>
-                <a href="#contact" class="cta-button">Стать моделью</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section - ТЕКСТ И ФОТО НА ОДНОМ УРОВНЕ -->
-    <section id="about" class="about">
-        <div class="container about-container">
-            <h2 class="section-title">О студии</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста. Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
-                    <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
-                    <p>Мы верим в индивидуальный подход и создаем комфортные условия для работы, где ты можешь чувствовать себя уверенно и безопасно.</p>
+    <!-- Объединенная Hero + About Section -->
+    <section class="main-hero-section">
+        <div class="container main-hero-container">
+            <!-- Hero контент слева -->
+            <div class="hero-content-wrapper">
+                <div class="hero-content">
+                    <h1>Твой успех начинается здесь и сейчас!</h1>
+                    <p>Преврати свое обаяние в стабильный доход. Мы обеспечим тебя самой современной платформой и надежной поддержкой 24/7.</p>
+                    <a href="#contact" class="cta-button">Стать моделью</a>
                 </div>
-                <div class="about-image">
-                    <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img">
+            </div>
+            
+            <!-- Объединенный блок About + Photo -->
+            <div class="about-combined-wrapper">
+                <div class="about-combined-box">
+                    <h2 class="section-title">О студии</h2>
+                    <div class="about-combined-content">
+                        <div class="about-text-combined">
+                            <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста.</p>
+                            <p>Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
+                            <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
+                            <p>Мы верим в индивидуальный подход и создаем комфортные условия для работы, где ты можешь чувствовать себя уверенно и безопасно.</p>
+                        </div>
+                        <div class="about-image-combined">
+                            <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img-combined">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,12 +104,12 @@
     <section id="pricing" class="pricing">
         <div class="container">
             <h2 class="section-title">Тарифы</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="pricing-box">
+            <div class="pricing-cards-horizontal">
+                <div class="pricing-card-horizontal">
+                    <div class="pricing-box-horizontal">
                         <h3>Старт</h3>
-                        <div class="price">0% <span>/ первые 2 недели</span></div>
-                        <ul class="pricing-features">
+                        <div class="price-horizontal">0% <span>/ первые 2 недели</span></div>
+                        <ul class="pricing-features-horizontal">
                             <li>Базовое обучение</li>
                             <li>Доступ к платформе</li>
                             <li>Поддержка менеджера</li>
@@ -115,12 +118,12 @@
                         <a href="#contact" class="cta-button">Выбрать</a>
                     </div>
                 </div>
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Популярный</div>
-                    <div class="pricing-box">
+                <div class="pricing-card-horizontal popular-horizontal">
+                    <div class="popular-badge-horizontal">Популярный</div>
+                    <div class="pricing-box-horizontal">
                         <h3>Профи</h3>
-                        <div class="price">15% <span>/ от дохода</span></div>
-                        <ul class="pricing-features">
+                        <div class="price-horizontal">15% <span>/ от дохода</span></div>
+                        <ul class="pricing-features-horizontal">
                             <li>Расширенное обучение</li>
                             <li>Приоритетная поддержка</li>
                             <li>Персональный менеджер</li>
@@ -130,11 +133,11 @@
                         <a href="#contact" class="cta-button">Выбрать</a>
                     </div>
                 </div>
-                <div class="pricing-card">
-                    <div class="pricing-box">
+                <div class="pricing-card-horizontal">
+                    <div class="pricing-box-horizontal">
                         <h3>Премиум</h3>
-                        <div class="price">10% <span>/ от дохода</span></div>
-                        <ul class="pricing-features">
+                        <div class="price-horizontal">10% <span>/ от дохода</span></div>
+                        <ul class="pricing-features-horizontal">
                             <li>Индивидуальное обучение</li>
                             <li>Эксклюзивная поддержка</li>
                             <li>Премиум-продвижение</li>
@@ -193,7 +196,7 @@
                             <span>+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом. Мы поможем с настройкой, объясним все технические моменты и сделаем так, чтобы всё работало без перебоев.</p>
+                            <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом. Мы поможем с настройкаой, объясним все технические моменты и сделаем так, чтобы всё работало без перебоев.</p>
                         </div>
                     </div>
                 </div>

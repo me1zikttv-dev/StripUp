@@ -24,13 +24,14 @@ body {
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
     padding: 0 20px;
+    margin-left: 20px;
 }
 
-/* Header */
+/* Header - ЛОГОТИП ОПУЩЕН ВНИЗ И ВЛЕВО, НАВИГАЦИЯ ПО ЦЕНТРУ */
 header {
-    padding: 10px 0;
+    padding: 15px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -38,27 +39,30 @@ header {
     background: rgba(255, 247, 249, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 15px rgba(176, 49, 94, 0.1);
-    height: 70px;
+    height: 80px;
     display: flex;
     align-items: center;
 }
 
 .header-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between; /* РАВНОМЕРНОЕ РАСПРЕДЕЛЕНИЕ */
     align-items: center;
     height: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
 }
 
 .logo {
-    margin-right: auto;
     display: flex;
     align-items: center;
     height: 100%;
+    transform: translateY(8px) translateX(-10px);
 }
 
 .logo-img {
-    height: 150px;
+    height: 120px;
     width: auto;
     display: block;
     border: none !important;
@@ -68,14 +72,14 @@ header {
 }
 
 .logo-img:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(8px) translateX(-10px);
 }
 
 nav {
-    margin-left: auto;
     display: flex;
     align-items: center;
     height: 100%;
+    margin: 0 auto; /* ЦЕНТРИРОВАНИЕ НАВИГАЦИИ */
 }
 
 nav ul {
@@ -83,10 +87,11 @@ nav ul {
     list-style: none;
     align-items: center;
     height: 100%;
+    gap: 30px; /* БОЛЬШЕ РАССТОЯНИЕ МЕЖДУ ПУНКТАМИ */
 }
 
 nav li {
-    margin-left: 20px;
+    margin-left: 0; /* УДАЛЕНО */
 }
 
 nav a {
@@ -95,9 +100,9 @@ nav a {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-    padding: 8px 12px;
+    padding: 8px 16px; /* БОЛЬШЕ ПАДДИНГ */
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 16px; /* БОЛЬШЕ РАЗМЕР ШРИФТА */
 }
 
 nav a:after {
@@ -115,19 +120,34 @@ nav a:hover:after {
     width: 100%;
 }
 
-/* Hero Section - УВЕЛИЧЕННЫЙ ЗАГОЛОВОК И ВСЕ СЛЕВА */
-.hero {
-    padding: 150px 0 100px;
+/* Новая объединенная секция Hero + About */
+.main-hero-section {
+    padding: 0;
     position: relative;
     overflow: hidden;
-    margin-top: 70px;
+    margin-top: 80px;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-container {
+.main-hero-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    min-height: 400px;
+    gap: 60px;
+    min-height: 600px;
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Левая часть - Hero */
+.hero-content-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .hero-content {
@@ -135,21 +155,23 @@ nav a:hover:after {
     text-align: left;
     margin-left: 0;
     padding-left: 0;
+    width: 100%;
 }
 
-.hero h1 {
+.hero-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 58px; /* УВЕЛИЧЕННЫЙ РАЗМЕР */
+    font-size: 64px;
     color: var(--burgundy);
     margin-bottom: 25px;
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
     line-height: 1.2;
     text-align: left;
+    font-weight: 700;
 }
 
-.hero p {
-    font-size: 20px;
+.hero-content p {
+    font-size: 24px;
     margin-bottom: 35px;
     color: #555;
     opacity: 0;
@@ -158,88 +180,131 @@ nav a:hover:after {
     text-align: left;
 }
 
+/* Объединенный блок About + Photo - ОЧЕНЬ ШИРОКИЙ И СДВИНУТ ПРАВЕЕ */
+.about-combined-wrapper {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+    margin-left: auto;
+    margin-right: 300px;
+}
+
+.about-combined-box {
+
+    border: var(--box-border);
+    border-radius: 25px;
+    box-shadow: var(--box-shadow);
+    overflow: visible;
+    transition: transform 0.3s ease;
+    min-height: auto; /* ВЫСОТА ПОД СОДЕРЖИМОЕ */
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.about-combined-box:hover {
+    transform: translateY(-8px);
+}
+
+.about-combined-box .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+    margin: 35px 0 30px 0;
+    color: var(--burgundy);
+    position: relative;
+    font-weight: 100;
+    padding: 0 40px;
+}
+
+.about-combined-box .section-title:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: var(--burgundy);
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Большие отступы и промежутки */
+.about-combined-content {
+    display: flex;
+    gap: 20px; /* УМЕНЬШЕНО РАССТОЯНИЕ МЕЖДУ ТЕКСТОМ И ФОТО */
+    align-items: flex-start;
+    padding: 0 50px 50px 50px; /* БОЛЬШИЕ ОТСТУПЫ */
+    flex: 1;
+    height: auto;
+}
+
+/* Текст занимает меньше места */
+.about-text-combined {
+    flex: 0 0 auto; /* ТЕКСТ НЕ РАСТЯГИВАЕТСЯ */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 400px;
+}
+
+.about-text-combined p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    text-align: left;
+}
+
+.about-text-combined p:last-child {
+    margin-bottom: 0;
+}
+
+/* Фото занимает БОЛЬШЕ места */
+.about-image-combined {
+    flex: 1.5; /* ФОТО ЗАНИМАЕТ БОЛЬШЕ МЕСТА В ШИРИНУ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px; /* ШИРИНА КВАДРАТА */
+    height: 700px; /* ВЫСОТА УВЕЛИЧЕНА */
+}
+
+/* ФОТО ПОЛНОЕ БЕЗ ОБРЕЗАНИЯ */
+.about-selfy-img-combined {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ЗАПОЛНЯЕТ ПРОСТРАНСТВО, СОХРАНЯЯ ПРОПОРЦИИ */
+    border-radius: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.about-image-combined:hover .about-selfy-img-combined {
+    transform: scale(1.05);
+}
+
 .cta-button {
     display: inline-block;
     background: var(--burgundy);
     color: white;
-    padding: 16px 40px;
+    padding: 20px 50px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     transition: all 0.3s ease;
     box-shadow: var(--box-shadow);
     opacity: 0;
     animation: fadeInUp 1s ease 0.6s forwards;
     border: 2px solid var(--burgundy);
-    text-align: left;
-    margin-left: 0;
+    text-align: center;
 }
 
 .cta-button:hover {
     background: #9c2a52;
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(176, 49, 94, 0.4);
-}
-
-/* About Section - ТЕКСТ И ФОТО НА ОДНОМ УРОВНЕ, НО СМЕЩЕНЫ ВЛЕВО */
-.about {
-    padding: 80px 0;
-}
-
-.about-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.about-content {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start; /* СМЕЩЕНИЕ ВЛЕВО */
-    gap: 60px;
-    margin-top: 40px;
-}
-
-.about-text {
-    flex: 1;
-    text-align: left;
-    background: white;
-    border: var(--box-border);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: var(--box-shadow);
-    max-width: 600px; /* ОГРАНИЧЕНИЕ ШИРИНЫ */
-}
-
-.about-text p {
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.7;
-    color: #555;
-    text-align: left;
-}
-
-.about-text p:last-child {
-    margin-bottom: 0;
-}
-
-.about-image {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start; /* СМЕЩЕНИЕ ВЛЕВО */
-    align-items: flex-start;
-    opacity: 0;
-    animation: fadeInRight 1s ease 0.9s forwards;
-    max-width: 400px; /* ОГРАНИЧЕНИЕ ШИРИНЫ */
-}
-
-.about-selfy-img {
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: var(--box-shadow);
-    border: 3px solid white;
 }
 
 /* Section Styles */
@@ -250,30 +315,48 @@ section {
 .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 36px;
-    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    text-align: left;
     margin-bottom: 60px;
     color: var(--burgundy);
     position: relative;
-    margin-left: 0; /* СБРОС ОТСТУПА */
+    margin-left: 0;
 }
 
 .section-title:after {
     content: '';
     position: absolute;
-    width: 80px;
+    /* Ширина и положение теперь управляются CSS-переменными для каждой секции */
+    width: var(--section-underline-width, 150px);
     height: 3px;
     background: var(--burgundy);
     bottom: -15px;
-    left: 0; /* ВЫРАВНИВАНИЕ ВЛЕВО */
-    transform: none; /* СБРОС ТРАНСФОРМАЦИИ */
+    left: var(--section-underline-left, 0);
+    transform: var(--section-underline-transform, none);
 }
 
-/* Features Section - СМЕЩЕНИЕ ВЛЕВО */
+/* Примеры: можно задать индивидуальные значения для каждой секции */
+/* Секция "Почему мы" (id="features") */
+#features {
+    --section-underline-width: 150px;
+    --section-underline-left: 0; /* по умолчанию слева */
+}
+
+/* Секция "Тарифы" (id="pricing") */
+#pricing {
+    --section-underline-width: 120px;
+    --section-underline-left: 0;
+}
+
+/* Примечание: можно также использовать inline-style в HTML, например:
+   <section id="pricing" style="--section-underline-width:120px; --section-underline-left:50%; --section-underline-transform:translateX(-50%);"> */
+
+/* Features Section */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    justify-content: start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    justify-content: start;
+    margin-left: 0;
 }
 
 .feature-card {
@@ -288,7 +371,7 @@ section {
     border-radius: 15px;
     padding: 30px;
     box-shadow: var(--box-shadow);
-    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    text-align: left;
     height: 100%;
     transition: all 0.3s ease;
 }
@@ -310,98 +393,117 @@ section {
     color: var(--burgundy);
 }
 
-/* Pricing Section - СМЕЩЕНИЕ ВЛЕВО */
-.pricing-cards {
+/* Pricing Section - ГОРИЗОНТАЛЬНЫЕ КАРТОЧКИ */
+.pricing-cards-horizontal {
     display: flex;
-    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
-    gap: 30px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 25px;
+    align-items: stretch;
+    margin-left: 0;
 }
 
-.pricing-card {
+.pricing-card-horizontal {
+    flex: 1;
     background: transparent;
-    border-radius: 15px;
-    width: 300px;
+    border-radius: 20px;
     position: relative;
     transition: transform 0.3s ease;
+    min-width: 0;
 }
 
-.pricing-box {
+.pricing-box-horizontal {
     background: white;
     border: var(--box-border);
-    border-radius: 15px;
-    padding: 40px 30px;
+    border-radius: 20px;
+    padding: 30px 25px;
     box-shadow: var(--box-shadow);
-    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    text-align: center;
     height: 100%;
     transition: all 0.3s ease;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
 }
 
-.pricing-card:hover .pricing-box {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(176, 49, 94, 0.25);
+.pricing-card-horizontal:hover .pricing-box-horizontal {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(176, 49, 94, 0.2);
 }
 
-.pricing-card.popular {
+.pricing-card-horizontal.popular-horizontal {
     transform: scale(1.05);
 }
 
-.pricing-card.popular:hover {
-    transform: scale(1.05) translateY(-10px);
+.pricing-card-horizontal.popular-horizontal:hover {
+    transform: scale(1.05) translateY(-5px);
 }
 
-.popular-badge {
+.popular-badge-horizontal {
     position: absolute;
-    top: -15px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--burgundy);
     color: white;
     padding: 8px 20px;
-    border-radius: 20px;
+    border-radius: 15px;
     font-size: 14px;
     font-weight: 600;
     z-index: 2;
     border: 2px solid white;
 }
 
-.price {
-    font-size: 48px;
+.pricing-box-horizontal h3 {
+    font-size: 22px;
+    color: var(--burgundy);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.price-horizontal {
+    font-size: 36px;
     color: var(--burgundy);
     margin: 20px 0;
     font-weight: 700;
 }
 
-.price span {
-    font-size: 16px;
+.price-horizontal span {
+    font-size: 14px;
     color: #777;
-    font-weight: 400;
+    font-weight: 500;
+    display: block;
+    margin-top: 5px;
 }
 
-.pricing-features {
+.pricing-features-horizontal {
     list-style: none;
-    margin: 30px 0;
+    margin: 25px 0;
     text-align: left;
+    flex: 1;
+    padding: 0 10px;
 }
 
-.pricing-features li {
+.pricing-features-horizontal li {
     margin-bottom: 10px;
-    padding-left: 25px;
+    padding-left: 20px;
     position: relative;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
-.pricing-features li:before {
+.pricing-features-horizontal li:before {
     content: '✓';
     position: absolute;
     left: 0;
     color: var(--burgundy);
     font-weight: bold;
+    font-size: 14px;
 }
 
-/* FAQ Section - СМЕЩЕНИЕ ВЛЕВО */
+/* FAQ Section */
 .faq-container {
-    max-width: 100%; /* УБИРАЕМ ОГРАНИЧЕНИЕ */
-    margin: 0; /* СБРОС ОТСТУПА */
+    max-width: 100%;
+    margin: 0;
 }
 
 .faq-item {
@@ -446,18 +548,19 @@ section {
     max-height: 500px;
 }
 
-/* Reviews Section - СМЕЩЕНИЕ ВЛЕВО */
+/* Reviews Section */
 .reviews-container {
     display: flex;
-    align-items: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    align-items: flex-start;
     gap: 50px;
-    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    justify-content: flex-start;
+    margin-left: 0;
 }
 
 .phone-mockup {
-    flex: 0 0 auto; /* ФИКСИРОВАННАЯ ШИРИНА */
+    flex: 0 0 auto;
     display: flex;
-    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    justify-content: flex-start;
     position: relative;
 }
 
@@ -593,12 +696,13 @@ section {
     text-align: right;
 }
 
-/* Contact Section - СМЕЩЕНИЕ ВЛЕВО */
+/* Contact Section */
 .contact-container {
     display: flex;
     gap: 50px;
     align-items: flex-start;
-    justify-content: flex-start; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    justify-content: flex-start;
+    margin-left: 0;
 }
 
 .contact-info {
@@ -611,7 +715,7 @@ section {
     border-radius: 15px;
     padding: 30px;
     box-shadow: var(--box-shadow);
-    text-align: left; /* ВЫРАВНИВАНИЕ ВЛЕВО */
+    text-align: left;
 }
 
 .contact-button {
@@ -824,35 +928,94 @@ footer {
     }
 }
 
-/* Responsive */
+/* АДАПТИВНЫЕ СТИЛИ */
+@media (max-width: 1200px) {
+    .about-combined-wrapper {
+        max-width: 900px;
+        margin-left: 50px;
+    }
+    
+    .about-combined-box {
+        min-height: 850px;
+    }
+    
+    .about-image-combined {
+        min-height: 550px;
+    }
+}
+
 @media (max-width: 992px) {
-    .hero-container {
-        justify-content: center;
-        text-align: center;
+    .container {
+        margin-left: 10px;
     }
     
-    .hero-content {
-        text-align: center;
-        max-width: 100%;
+    nav ul {
+        gap: 20px;
     }
     
-    .hero h1,
-    .hero p,
-    .cta-button {
-        text-align: center;
+    nav a {
+        padding: 8px 12px;
+        font-size: 14px;
     }
     
-    .about-content {
+    .main-hero-container {
         flex-direction: column;
         gap: 40px;
     }
     
-    .about-text {
+    .hero-content-wrapper {
+        flex: 1;
+    }
+    
+    .hero-content {
+        max-width: 100%;
         text-align: center;
     }
     
-    .about-text p {
+    .hero-content h1 {
+        font-size: 42px; /* МЕНЬШЕ НА МОБИЛЬНЫХ */
         text-align: center;
+    }
+    
+    .hero-content p {
+        font-size: 18px; /* МЕНЬШЕ НА МОБИЛЬНЫХ */
+        text-align: center;
+    }
+    
+    .about-combined-wrapper {
+        flex: 1;
+        margin-left: 0;
+        max-width: 100%;
+    }
+    
+    .about-combined-content {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 35px 35px 35px;
+    }
+    
+    .about-image-combined {
+        flex: 1;
+        min-height: 450px;
+    }
+    
+    .about-text-combined {
+        flex: 1;
+    }
+    
+    .about-combined-box {
+        min-height: 800px;
+    }
+    
+    .pricing-cards-horizontal {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .pricing-card-horizontal {
+        flex: 0 0 calc(50% - 20px);
+        min-width: 280px;
+        margin-bottom: 20px;
     }
     
     .reviews-container,
@@ -863,40 +1026,71 @@ footer {
     .phone-mockup {
         margin-bottom: 40px;
     }
-    
-    .pricing-card.popular {
-        transform: none;
-    }
-    
-    .pricing-card.popular:hover {
-        transform: translateY(-10px);
-    }
 }
 
 @media (max-width: 768px) {
+    .container {
+        margin-left: 5px;
+        padding: 0 15px;
+    }
+    
+    .header-container {
+        justify-content: space-between;
+    }
+    
+    nav ul {
+        gap: 15px;
+    }
+    
+    nav a {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .cta-button {
+        padding: 16px 40px;
+        font-size: 18px;
+    }
+    
     header {
-        height: 60px;
-        padding: 8px 0;
+        height: 70px;
+        padding: 10px 0;
+    }
+    
+    .logo {
+        transform: translateY(5px) translateX(-5px);
     }
     
     .logo-img {
-        height: 40px;
+        height: 100px;
+    }
+    
+    .logo-img:hover {
+        transform: scale(1.05) translateY(5px) translateX(-5px);
     }
     
     nav ul {
         display: none;
     }
     
-    .hero {
-        margin-top: 60px;
+    .main-hero-section {
+        margin-top: 70px;
         padding: 120px 0 80px;
     }
     
-    .hero h1 {
-        font-size: 42px; /* АДАПТИВНЫЙ РАЗМЕР */
+    .hero-content h1 {
+        font-size: 36px;
     }
     
-    .hero p {
+    .hero-content p {
         font-size: 18px;
     }
     
@@ -904,16 +1098,87 @@ footer {
         font-size: 30px;
     }
     
-    .about-selfy-img {
-        max-width: 350px;
+    .about-combined-box .section-title {
+        font-size: 32px;
+        margin: 30px 0 25px 0;
+        padding: 0 30px;
     }
     
-    .about-text {
-        padding: 30px 20px;
+    .about-combined-content {
+        padding: 0 30px 30px 30px;
+        gap: 35px;
+    }
+    
+    .about-text-combined p {
+        font-size: 16px;
+    }
+    
+    .about-image-combined {
+        min-height: 400px;
+    }
+    
+    .about-combined-box {
+        min-height: 750px;
+    }
+    
+    .pricing-cards-horizontal {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pricing-card-horizontal {
+        flex: 0 0 100%;
+        max-width: 350px;
+        min-width: auto;
     }
     
     .phone {
         width: 250px;
         height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        gap: 10px;
+    }
+    
+    nav a {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+    
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    
+    .hero-content p {
+        font-size: 15px;
+    }
+    
+    .cta-button {
+        padding: 14px 35px;
+        font-size: 16px;
+    }
+    
+    .about-combined-box .section-title {
+        font-size: 28px;
+    }
+    
+    .about-text-combined p {
+        font-size: 15px;
+    }
+    
+    .about-image-combined {
+        min-height: 350px;
+    }
+    
+    .about-combined-box {
+        min-height: 700px;
+    }
+    
+    .about-combined-content {
+        padding: 0 25px 25px 25px;
+        gap: 30px;
     }
 }

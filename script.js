@@ -1,15 +1,15 @@
 // Floating hearts animation
 function createHearts() {
     const container = document.getElementById('hearts-container');
-    const heartsCount = 15;
+    const heartsCount = 20;
     
     for (let i = 0; i < heartsCount; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart');
         heart.innerHTML = '💗';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        heart.style.animationDelay = Math.random() * 8 + 's';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
         container.appendChild(heart);
     }
 }
@@ -42,22 +42,25 @@ function initFAQ() {
 
 // Form submission
 function initForm() {
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        
-        // Simple validation
-        if (name && email && message) {
-            alert('Спасибо, ' + name + '! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-            this.reset();
-        } else {
-            alert('Пожалуйста, заполните все поля формы.');
-        }
-    });
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (name && email && message) {
+                alert('Спасибо, ' + name + '! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+                this.reset();
+            } else {
+                alert('Пожалуйста, заполните все обязательные поля формы.');
+            }
+        });
+    }
 }
 
 // Smooth scrolling for navigation links
@@ -65,7 +68,8 @@ function initSmoothScroll() {
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -78,21 +82,23 @@ function initSmoothScroll() {
 
 // Add scroll effect for header
 function initHeaderScroll() {
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 247, 249, 0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(176, 49, 94, 0.15)';
-        } else {
-            header.style.background = 'rgba(255, 247, 249, 0.95)';
-            header.style.boxShadow = '0 2px 15px rgba(176, 49, 94, 0.1)';
-        }
-    });
+    const header = document.querySelector('header');
+    if (header) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 247, 249, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(176, 49, 94, 0.2)';
+            } else {
+                header.style.background = 'rgba(255, 247, 249, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(176, 49, 94, 0.15)';
+            }
+        });
+    }
 }
 
 // Add loading animation for elements
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.feature-box, .pricing-box, .review-box');
+    const elements = document.querySelectorAll('.feature-box, .pricing-box-horizontal, .review-box, .about-combined-box');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -105,8 +111,8 @@ function animateOnScroll() {
     
     elements.forEach(element => {
         element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        element.style.transform = 'translateY(50px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(element);
     });
 }
@@ -120,5 +126,67 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
 });
 
-// Initialize scroll animations
-window.addEventListener('load', animateOnScroll);
+// Initialize scroll animations when page is fully loaded
+window.addEventListener('load', function() {
+    animateOnScroll();
+});
+
+// Handle responsive menu for mobile
+function initMobileMenu() {
+    const nav = document.querySelector('nav ul');
+    const menuToggle = document.createElement('button');
+    menuToggle.innerHTML = '☰';
+    menuToggle.className = 'mobile-menu-toggle';
+    menuToggle.style.display = 'none';
+    
+    // Add styles for mobile menu
+    const style = document.createElement('style');
+    style.textContent = `
+        .mobile-menu-toggle {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 15px 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+    
+    document.querySelector('nav').appendChild(menuToggle);
+}
+
+// Initialize mobile menu
+document.addEventListener('DOMContentLoaded', initMobileMenu);
