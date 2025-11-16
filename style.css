@@ -28,7 +28,6 @@ body {
 .section-title,
 .about-combined-box .section-title,
 .pricing-box-horizontal h3,
-.feature-box h3,
 .faq-question,
 .contact-box .cta-button,
 .submit-button,
@@ -41,7 +40,6 @@ body {
 body,
 .hero-content p,
 .about-text-combined p,
-.feature-box p,
 .pricing-features-horizontal li,
 .faq-answer p,
 .contact-box p,
@@ -364,11 +362,12 @@ section {
 
 .section-title {
     font-size: 36px;
-    text-align: left;
+    text-align: center;
     margin-bottom: 60px;
     color: var(--burgundy);
     position: relative;
-    display: inline-block;
+    display: block;
+    width: 100%;
 }
 
 .section-title:after {
@@ -401,73 +400,18 @@ section {
     width: 130px;
 }
 
-/* Features Section */
-#features .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-#features .section-title {
-    text-align: center;
-    margin-left: 0;
-    width: 100%;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    justify-content: center;
-    margin-left: 0;
+/* Features Section с картинкой */
+.features-image-container {
     width: 100%;
     max-width: 1200px;
-}
-
-.feature-card {
+    margin: 0 auto;
     background: transparent;
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-    display: flex;
-    justify-content: center;
 }
 
-.feature-box {
-    background: white;
-    border: var(--box-border);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: var(--box-shadow);
-    text-align: center;
-    height: 100%;
-    transition: all 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-}
-
-.feature-card:hover .feature-box {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(176, 49, 94, 0.2);
-}
-
-.feature-icon {
-    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
-    font-size: 50px;
-    margin-bottom: 20px;
-    color: var(--burgundy);
+.features-image {
     display: block;
-}
-
-.feature-box h3 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: var(--burgundy);
-}
-
-.feature-box p {
-    text-align: center;
-    margin: 0;
+    width: 100%;
+    height: auto;
 }
 
 /* Pricing Section */
@@ -475,10 +419,6 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#pricing .section-title {
-    text-align: center;
 }
 
 .pricing-cards-horizontal {
@@ -598,10 +538,6 @@ section {
     align-items: center;
 }
 
-#faq .section-title {
-    text-align: center;
-}
-
 .faq-container {
     max-width: 800px;
     width: 100%;
@@ -656,10 +592,6 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#reviews .section-title {
-    text-align: center;
 }
 
 .reviews-container {
@@ -820,10 +752,6 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#contact .section-title {
-    text-align: center;
 }
 
 .contact-container {
@@ -1069,6 +997,10 @@ footer {
     .about-image-combined {
         min-height: 550px;
     }
+    
+    .features-image-container {
+        max-width: 1000px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1140,6 +1072,10 @@ footer {
     
     .phone-mockup {
         margin-bottom: 40px;
+    }
+    
+    .features-image-container {
+        max-width: 800px;
     }
 }
 
@@ -1260,11 +1196,6 @@ footer {
         height: 500px;
     }
     
-    .features-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-    }
-    
     .contact-container {
         flex-direction: column;
         align-items: center;
@@ -1275,9 +1206,13 @@ footer {
         width: 100%;
         max-width: 400px;
     }
+    
+    .features-image-container {
+        max-width: 600px;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .hero-content h1 {
         font-size: 32px;
     }
@@ -1312,11 +1247,7 @@ footer {
         gap: 30px;
     }
     
-    .features-grid {
-        gap: 20px;
-    }
-    
-    .feature-box {
-        padding: 20px;
+    .features-image-container {
+        max-width: 100%;
     }
 }

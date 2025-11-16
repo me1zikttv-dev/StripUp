@@ -98,7 +98,7 @@ function initHeaderScroll() {
 
 // Add loading animation for elements
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.feature-box, .pricing-box-horizontal, .review-box, .about-combined-box');
+    const elements = document.querySelectorAll('.pricing-box-horizontal, .review-box, .about-combined-box');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
