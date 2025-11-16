@@ -6,7 +6,7 @@
     <title>StripUp - Твой успех начинается здесь и сейчас!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&family=Prata&family=Lora:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,6 +27,7 @@
                     <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
+                <button class="mobile-menu-toggle">☰</button>
             </nav>
         </div>
     </header>
@@ -52,7 +53,7 @@
                             <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста.</p>
                             <p>Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
                             <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
-                            <p>Мы верим в индивидуальный подход и создаем комфортные условия для работы, где ты можешь чувствовать себя уверенно и безопасно.</p>
+                            <p class="signature">С любовью, <span>команда StripUp</span></p>
                         </div>
                         <div class="about-image-combined">
                             <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img-combined">
@@ -216,7 +217,7 @@
                             <div class="phone-content">
                                 <div class="review-phone">
                                     <p>"StripUp изменил мою жизнь! Теперь я финансово независима"</p>
-                                    <span>- Анастасия</span>
+                                    <span class="review-signature">- Анастасия</span>
                                 </div>
                             </div>
                         </div>
@@ -253,8 +254,9 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-box">
-                        <a href="https://t.me/stripup_official" class="contact-button">Присоединиться в Telegram</a>
+                        <a href="https://t.me/stripup_official" class="cta-button">Присоединиться в Telegram</a>
                         <p>Свяжись с нами для консультации и начала работы. Мы ответим на все твои вопросы и поможем сделать первые шаги к успешной карьере модели.</p>
+                        <p class="signature-contact">Ждём тебя! <span>❤️</span></p>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -273,7 +275,7 @@
                                 <label for="message">Сообщение</label>
                                 <textarea id="message" rows="5" required></textarea>
                             </div>
-                            <button type="submit" class="submit-button">Отправить</button>
+                            <button type="submit" class="submit-button">Отправить заявку</button>
                         </form>
                     </div>
                 </div>

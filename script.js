@@ -117,6 +117,25 @@ function animateOnScroll() {
     });
 }
 
+// Mobile menu functionality
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+}
+
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createHearts();
@@ -124,69 +143,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initForm();
     initSmoothScroll();
     initHeaderScroll();
+    initMobileMenu();
 });
 
 // Initialize scroll animations when page is fully loaded
 window.addEventListener('load', function() {
     animateOnScroll();
 });
-
-// Handle responsive menu for mobile
-function initMobileMenu() {
-    const nav = document.querySelector('nav ul');
-    const menuToggle = document.createElement('button');
-    menuToggle.innerHTML = '☰';
-    menuToggle.className = 'mobile-menu-toggle';
-    menuToggle.style.display = 'none';
-    
-    // Add styles for mobile menu
-    const style = document.createElement('style');
-    style.textContent = `
-        .mobile-menu-toggle {
-            background: var(--burgundy);
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            margin-left: 25px;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block !important;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 30px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav li {
-                margin: 15px 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-    });
-    
-    document.querySelector('nav').appendChild(menuToggle);
-}
-
-// Initialize mobile menu
-document.addEventListener('DOMContentLoaded', initMobileMenu);

@@ -14,22 +14,68 @@
     box-sizing: border-box;
 }
 
+/* ШРИФТЫ */
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Inter', 'Raleway', 'Lora', 'Arial', sans-serif;
     background: linear-gradient(135deg, var(--cream-white) 0%, var(--powder-pink) 100%);
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0;
-    padding: 0 20px;
-    margin-left: 20px;
+/* Винтажно-романтичные шрифты для заголовков */
+.hero-content h1,
+.section-title,
+.about-combined-box .section-title,
+.pricing-box-horizontal h3,
+.feature-box h3,
+.faq-question,
+.contact-box .cta-button,
+.submit-button,
+.footer-logo {
+    font-family: 'Playfair Display', 'Cinzel Decorative', 'Prata', 'Georgia', serif;
+    font-weight: 600;
 }
 
-/* Header - ЛОГОТИП ОПУЩЕН ВНИЗ И ВЛЕВО, НАВИГАЦИЯ ПО ЦЕНТРУ */
+/* Современные легкие шрифты для основного текста */
+body,
+.hero-content p,
+.about-text-combined p,
+.feature-box p,
+.pricing-features-horizontal li,
+.faq-answer p,
+.contact-box p,
+.review p,
+.copyright,
+.form-group label,
+.form-group input,
+.form-group textarea {
+    font-family: 'Raleway', 'Inter', 'Lora', 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+/* Рукописные вставки */
+.signature,
+.review-signature,
+.signature-contact {
+    font-family: 'Dancing Script', 'cursive', 'Apple Chancery', 'Script MT';
+    font-weight: 500;
+    font-size: 1.3em;
+}
+
+.signature span,
+.signature-contact span {
+    font-family: inherit;
+    color: var(--burgundy);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header - СДВИНУТ ВЛЕВО */
 header {
     padding: 15px 0;
     position: fixed;
@@ -46,40 +92,35 @@ header {
 
 .header-container {
     display: flex;
-    justify-content: space-between; /* РАВНОМЕРНОЕ РАСПРЕДЕЛЕНИЕ */
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
-    margin-left: 0;
-    padding-left: 0;
     width: 100%;
+    gap: 60px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     height: 100%;
-    transform: translateY(8px) translateX(-10px);
+    margin-left: 20px;
 }
 
 .logo-img {
     height: 120px;
     width: auto;
     display: block;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
     transition: transform 0.3s ease;
 }
 
 .logo-img:hover {
-    transform: scale(1.05) translateY(8px) translateX(-10px);
+    transform: scale(1.05);
 }
 
 nav {
     display: flex;
     align-items: center;
     height: 100%;
-    margin: 0 auto; /* ЦЕНТРИРОВАНИЕ НАВИГАЦИИ */
 }
 
 nav ul {
@@ -87,22 +128,22 @@ nav ul {
     list-style: none;
     align-items: center;
     height: 100%;
-    gap: 30px; /* БОЛЬШЕ РАССТОЯНИЕ МЕЖДУ ПУНКТАМИ */
-}
-
-nav li {
-    margin-left: 0; /* УДАЛЕНО */
+    gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 nav a {
     text-decoration: none;
     color: var(--burgundy);
     font-weight: 500;
+    font-family: 'Raleway', 'Inter', sans-serif;
     transition: all 0.3s ease;
     position: relative;
-    padding: 8px 16px; /* БОЛЬШЕ ПАДДИНГ */
+    padding: 8px 16px;
     border-radius: 8px;
-    font-size: 16px; /* БОЛЬШЕ РАЗМЕР ШРИФТА */
+    font-size: 16px;
+    white-space: nowrap;
 }
 
 nav a:after {
@@ -120,7 +161,20 @@ nav a:hover:after {
     width: 100%;
 }
 
-/* Новая объединенная секция Hero + About */
+.mobile-menu-toggle {
+    display: none;
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/* Hero Section */
 .main-hero-section {
     padding: 0;
     position: relative;
@@ -138,11 +192,9 @@ nav a:hover:after {
     justify-content: flex-start;
     gap: 60px;
     min-height: 600px;
-    margin-left: 0;
     width: 100%;
 }
 
-/* Левая часть - Hero */
 .hero-content-wrapper {
     flex: 1;
     display: flex;
@@ -153,13 +205,10 @@ nav a:hover:after {
 .hero-content {
     max-width: 700px;
     text-align: left;
-    margin-left: 0;
-    padding-left: 0;
     width: 100%;
 }
 
 .hero-content h1 {
-    font-family: 'Playfair Display', serif;
     font-size: 64px;
     color: var(--burgundy);
     margin-bottom: 25px;
@@ -180,27 +229,24 @@ nav a:hover:after {
     text-align: left;
 }
 
-/* Объединенный блок About + Photo - ОЧЕНЬ ШИРОКИЙ И СДВИНУТ ПРАВЕЕ */
+/* About Section */
 .about-combined-wrapper {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     max-width: none;
     margin-left: auto;
-    margin-right: 300px;
 }
 
 .about-combined-box {
-
     border: var(--box-border);
     border-radius: 25px;
     box-shadow: var(--box-shadow);
     overflow: visible;
     transition: transform 0.3s ease;
-    min-height: auto; /* ВЫСОТА ПОД СОДЕРЖИМОЕ */
+    min-height: auto;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
 }
 
 .about-combined-box:hover {
@@ -208,14 +254,14 @@ nav a:hover:after {
 }
 
 .about-combined-box .section-title {
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     text-align: center;
     margin: 35px 0 30px 0;
     color: var(--burgundy);
     position: relative;
-    font-weight: 100;
+    font-weight: 600;
     padding: 0 40px;
+    display: inline-block;
 }
 
 .about-combined-box .section-title:after {
@@ -229,19 +275,17 @@ nav a:hover:after {
     transform: translateX(-50%);
 }
 
-/* Большие отступы и промежутки */
 .about-combined-content {
     display: flex;
-    gap: 20px; /* УМЕНЬШЕНО РАССТОЯНИЕ МЕЖДУ ТЕКСТОМ И ФОТО */
+    gap: 20px;
     align-items: flex-start;
-    padding: 0 50px 50px 50px; /* БОЛЬШИЕ ОТСТУПЫ */
+    padding: 0 50px 50px 50px;
     flex: 1;
     height: auto;
 }
 
-/* Текст занимает меньше места */
 .about-text-combined {
-    flex: 0 0 auto; /* ТЕКСТ НЕ РАСТЯГИВАЕТСЯ */
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -260,21 +304,26 @@ nav a:hover:after {
     margin-bottom: 0;
 }
 
-/* Фото занимает БОЛЬШЕ места */
+.signature {
+    margin-top: 25px;
+    text-align: right;
+    font-size: 22px;
+    color: var(--burgundy);
+}
+
 .about-image-combined {
-    flex: 1.5; /* ФОТО ЗАНИМАЕТ БОЛЬШЕ МЕСТА В ШИРИНУ */
+    flex: 1.5;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px; /* ШИРИНА КВАДРАТА */
-    height: 700px; /* ВЫСОТА УВЕЛИЧЕНА */
+    width: 400px;
+    height: 700px;
 }
 
-/* ФОТО ПОЛНОЕ БЕЗ ОБРЕЗАНИЯ */
 .about-selfy-img-combined {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ЗАПОЛНЯЕТ ПРОСТРАНСТВО, СОХРАНЯЯ ПРОПОРЦИИ */
+    object-fit: cover;
     border-radius: 40px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
@@ -291,7 +340,7 @@ nav a:hover:after {
     padding: 20px 50px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     transition: all 0.3s ease;
     box-shadow: var(--box-shadow);
@@ -299,6 +348,7 @@ nav a:hover:after {
     animation: fadeInUp 1s ease 0.6s forwards;
     border: 2px solid var(--burgundy);
     text-align: center;
+    font-family: 'Playfair Display', 'Cinzel Decorative', serif;
 }
 
 .cta-button:hover {
@@ -313,56 +363,74 @@ section {
 }
 
 .section-title {
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     text-align: left;
     margin-bottom: 60px;
     color: var(--burgundy);
     position: relative;
-    margin-left: 0;
+    display: inline-block;
 }
 
 .section-title:after {
     content: '';
     position: absolute;
-    /* Ширина и положение теперь управляются CSS-переменными для каждой секции */
-    width: var(--section-underline-width, 150px);
     height: 3px;
     background: var(--burgundy);
     bottom: -15px;
-    left: var(--section-underline-left, 0);
-    transform: var(--section-underline-transform, none);
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Примеры: можно задать индивидуальные значения для каждой секции */
-/* Секция "Почему мы" (id="features") */
-#features {
-    --section-underline-width: 150px;
-    --section-underline-left: 0; /* по умолчанию слева */
+#features .section-title:after {
+    width: 150px;
 }
 
-/* Секция "Тарифы" (id="pricing") */
-#pricing {
-    --section-underline-width: 120px;
-    --section-underline-left: 0;
+#pricing .section-title:after {
+    width: 120px;
 }
 
-/* Примечание: можно также использовать inline-style в HTML, например:
-   <section id="pricing" style="--section-underline-width:120px; --section-underline-left:50%; --section-underline-transform:translateX(-50%);"> */
+#faq .section-title:after {
+    width: 200px;
+}
+
+#reviews .section-title:after {
+    width: 180px;
+}
+
+#contact .section-title:after {
+    width: 130px;
+}
 
 /* Features Section */
+#features .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#features .section-title {
+    text-align: center;
+    margin-left: 0;
+    width: 100%;
+}
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    justify-content: start;
+    justify-content: center;
     margin-left: 0;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .feature-card {
     background: transparent;
     border-radius: 15px;
     transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
 }
 
 .feature-box {
@@ -371,9 +439,11 @@ section {
     border-radius: 15px;
     padding: 30px;
     box-shadow: var(--box-shadow);
-    text-align: left;
+    text-align: center;
     height: 100%;
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
 }
 
 .feature-card:hover .feature-box {
@@ -382,9 +452,11 @@ section {
 }
 
 .feature-icon {
-    font-size: 40px;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 50px;
     margin-bottom: 20px;
     color: var(--burgundy);
+    display: block;
 }
 
 .feature-box h3 {
@@ -393,13 +465,29 @@ section {
     color: var(--burgundy);
 }
 
-/* Pricing Section - ГОРИЗОНТАЛЬНЫЕ КАРТОЧКИ */
+.feature-box p {
+    text-align: center;
+    margin: 0;
+}
+
+/* Pricing Section */
+#pricing .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pricing .section-title {
+    text-align: center;
+}
+
 .pricing-cards-horizontal {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 25px;
     align-items: stretch;
-    margin-left: 0;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .pricing-card-horizontal {
@@ -451,6 +539,7 @@ section {
     font-weight: 600;
     z-index: 2;
     border: 2px solid white;
+    font-family: 'Raleway', sans-serif;
 }
 
 .pricing-box-horizontal h3 {
@@ -465,6 +554,7 @@ section {
     color: var(--burgundy);
     margin: 20px 0;
     font-weight: 700;
+    font-family: 'Playfair Display', serif;
 }
 
 .price-horizontal span {
@@ -473,6 +563,7 @@ section {
     font-weight: 500;
     display: block;
     margin-top: 5px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .pricing-features-horizontal {
@@ -501,9 +592,20 @@ section {
 }
 
 /* FAQ Section */
+#faq .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#faq .section-title {
+    text-align: center;
+}
+
 .faq-container {
-    max-width: 100%;
-    margin: 0;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .faq-item {
@@ -527,8 +629,9 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: 500;
+    font-weight: 600;
     transition: background 0.3s ease;
+    font-family: 'Playfair Display', serif;
 }
 
 .faq-question:hover {
@@ -549,19 +652,29 @@ section {
 }
 
 /* Reviews Section */
+#reviews .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#reviews .section-title {
+    text-align: center;
+}
+
 .reviews-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 50px;
-    justify-content: flex-start;
-    margin-left: 0;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .phone-mockup {
     flex: 0 0 auto;
     display: flex;
-    justify-content: flex-start;
-    position: relative;
+    justify-content: center;
 }
 
 .phone-box {
@@ -651,6 +764,11 @@ section {
     font-size: 16px;
 }
 
+.review-signature {
+    font-size: 18px;
+    color: var(--dark-pink);
+}
+
 .reviews {
     flex: 1;
 }
@@ -694,15 +812,27 @@ section {
     font-weight: 500;
     color: var(--burgundy);
     text-align: right;
+    font-family: 'Raleway', sans-serif;
 }
 
 /* Contact Section */
+#contact .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact .section-title {
+    text-align: center;
+}
+
 .contact-container {
     display: flex;
     gap: 50px;
     align-items: flex-start;
-    justify-content: flex-start;
-    margin-left: 0;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .contact-info {
@@ -718,23 +848,31 @@ section {
     text-align: left;
 }
 
-.contact-button {
+.contact-box .cta-button {
     display: inline-block;
     background: var(--burgundy);
     color: white;
     padding: 15px 30px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 20px;
     transition: all 0.3s ease;
     box-shadow: var(--box-shadow);
     border: 2px solid var(--burgundy);
+    font-size: 18px;
 }
 
-.contact-button:hover {
+.contact-box .cta-button:hover {
     background: #9c2a52;
     transform: translateY(-3px);
+}
+
+.signature-contact {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: var(--burgundy);
 }
 
 .contact-form {
@@ -793,11 +931,12 @@ section {
     border: 2px solid var(--burgundy);
     padding: 12px 30px;
     border-radius: 30px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
+    font-size: 18px;
 }
 
 .submit-button:hover {
@@ -829,7 +968,6 @@ footer {
 }
 
 .footer-logo {
-    font-family: 'Cinzel Decorative', cursive;
     font-size: 28px;
     margin-bottom: 15px;
 }
@@ -855,6 +993,7 @@ footer {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    font-family: 'Raleway', sans-serif;
 }
 
 .social-link:hover {
@@ -879,17 +1018,6 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
     }
 }
 
@@ -932,7 +1060,6 @@ footer {
 @media (max-width: 1200px) {
     .about-combined-wrapper {
         max-width: 900px;
-        margin-left: 50px;
     }
     
     .about-combined-box {
@@ -945,19 +1072,6 @@ footer {
 }
 
 @media (max-width: 992px) {
-    .container {
-        margin-left: 10px;
-    }
-    
-    nav ul {
-        gap: 20px;
-    }
-    
-    nav a {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-    
     .main-hero-container {
         flex-direction: column;
         gap: 40px;
@@ -973,12 +1087,12 @@ footer {
     }
     
     .hero-content h1 {
-        font-size: 42px; /* МЕНЬШЕ НА МОБИЛЬНЫХ */
+        font-size: 42px;
         text-align: center;
     }
     
     .hero-content p {
-        font-size: 18px; /* МЕНЬШЕ НА МОБИЛЬНЫХ */
+        font-size: 18px;
         text-align: center;
     }
     
@@ -1021,6 +1135,7 @@ footer {
     .reviews-container,
     .contact-container {
         flex-direction: column;
+        align-items: center;
     }
     
     .phone-mockup {
@@ -1030,21 +1145,49 @@ footer {
 
 @media (max-width: 768px) {
     .container {
-        margin-left: 5px;
         padding: 0 15px;
     }
     
     .header-container {
+        gap: 20px;
         justify-content: space-between;
     }
     
+    .logo {
+        margin-left: 15px;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        margin-left: 0;
+    }
+    
     nav ul {
-        gap: 15px;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        gap: 20px;
+    }
+    
+    nav ul.active {
+        display: flex;
+    }
+    
+    nav li {
+        margin: 10px 0;
     }
     
     nav a {
-        padding: 6px 10px;
-        font-size: 13px;
+        padding: 12px;
+        font-size: 16px;
+        display: block;
+        text-align: center;
     }
     
     .hero-content h1 {
@@ -1065,33 +1208,13 @@ footer {
         padding: 10px 0;
     }
     
-    .logo {
-        transform: translateY(5px) translateX(-5px);
-    }
-    
     .logo-img {
         height: 100px;
-    }
-    
-    .logo-img:hover {
-        transform: scale(1.05) translateY(5px) translateX(-5px);
-    }
-    
-    nav ul {
-        display: none;
     }
     
     .main-hero-section {
         margin-top: 70px;
         padding: 120px 0 80px;
-    }
-    
-    .hero-content h1 {
-        font-size: 36px;
-    }
-    
-    .hero-content p {
-        font-size: 18px;
     }
     
     .section-title {
@@ -1136,18 +1259,25 @@ footer {
         width: 250px;
         height: 500px;
     }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 @media (max-width: 480px) {
-    nav ul {
-        gap: 10px;
-    }
-    
-    nav a {
-        padding: 5px 8px;
-        font-size: 12px;
-    }
-    
     .hero-content h1 {
         font-size: 32px;
     }
@@ -1180,5 +1310,13 @@ footer {
     .about-combined-content {
         padding: 0 25px 25px 25px;
         gap: 30px;
+    }
+    
+    .features-grid {
+        gap: 20px;
+    }
+    
+    .feature-box {
+        padding: 20px;
     }
 }
