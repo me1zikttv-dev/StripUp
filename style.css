@@ -14,7 +14,6 @@
     box-sizing: border-box;
 }
 
-/* ШРИФТЫ */
 body {
     font-family: 'Inter', 'Raleway', 'Lora', 'Arial', sans-serif;
     background: linear-gradient(135deg, var(--cream-white) 0%, var(--powder-pink) 100%);
@@ -23,7 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Винтажно-романтичные шрифты для заголовков */
 .hero-content h1,
 .section-title,
 .about-combined-box .section-title,
@@ -36,7 +34,6 @@ body {
     font-weight: 600;
 }
 
-/* Современные легкие шрифты для основного текста */
 body,
 .hero-content p,
 .about-text-combined p,
@@ -52,7 +49,6 @@ body,
     font-weight: 400;
 }
 
-/* Рукописные вставки */
 .signature,
 .review-signature,
 .signature-contact {
@@ -73,7 +69,7 @@ body,
     padding: 0 20px;
 }
 
-/* Header - СДВИНУТ ВЛЕВО */
+/* Header */
 header {
     padding: 15px 0;
     position: fixed;
@@ -396,11 +392,15 @@ section {
     width: 180px;
 }
 
+#interview .section-title:after {
+    width: 250px;
+}
+
 #contact .section-title:after {
     width: 130px;
 }
 
-/* Features Section с картинкой */
+/* Features Section */
 .features-image-container {
     width: 100%;
     max-width: 1200px;
@@ -587,26 +587,126 @@ section {
     max-height: 500px;
 }
 
-/* Reviews Section */
-#reviews .container {
+/* Reviews and Interview Container */
+.reviews-interview-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 40px;
+    padding: 80px 0;
+    background: transparent !important;
 }
 
+.reviews-section,
+.interview {
+    flex: 1;
+    padding: 0;
+}
+
+.reviews-section .container,
+.interview .container {
+    height: 100%;
+}
+
+/* Interview Section */
+.interview {
+    padding: 80px 0;
+    background: transparent;
+}
+
+.interview-content {
+    max-width: 100%;
+    margin: 0 auto;
+    transform: translateY(-60px);
+    padding-top: 40px;
+}
+
+.interview-columns {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.interview-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.interview-item {
+    background: white;
+    border: var(--box-border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.interview-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(176, 49, 94, 0.2);
+}
+
+.interview-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, var(--burgundy), var(--dark-pink));
+}
+
+.interview-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.interview-item h3 {
+    color: var(--burgundy);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.interview-item p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 16px;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.interview-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.interview-button {
+    opacity: 1 !important;
+    animation: none !important;
+}
+
+/* Reviews Section */
 .reviews-container {
     display: flex;
-    align-items: center;
-    gap: 50px;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
-    max-width: 1200px;
+    height: 100%;
 }
 
 .phone-mockup {
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .phone-box {
@@ -615,28 +715,31 @@ section {
     border-radius: 25px;
     padding: 20px;
     box-shadow: var(--box-shadow);
+    transform: translateY(-120px);
+    margin-top: -60px;
 }
 
 .phone {
-    width: 280px;
-    height: 560px;
+    width: 320px;
+    height: 640px;
     background: var(--powder-pink);
-    border-radius: 30px;
+    border-radius: 40px;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 10px solid #333;
+    border: 12px solid #ff9ec0;
     overflow: hidden;
+    margin: 0 auto;
 }
 
 .phone:before {
     content: '';
     position: absolute;
-    top: -15px;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 120px;
     height: 30px;
-    background: #333;
+    background: #ff9ec0;
     border-radius: 0 0 15px 15px;
     z-index: 2;
 }
@@ -644,23 +747,23 @@ section {
 .phone:after {
     content: '';
     position: absolute;
-    bottom: -15px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 120px;
     height: 30px;
-    background: #333;
+    background: #ff9ec0;
     border-radius: 15px 15px 0 0;
     z-index: 2;
 }
 
 .cat-ears {
     position: absolute;
-    top: -25px;
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 50px;
     background: var(--powder-pink);
     border-radius: 50% 50% 0 0;
     z-index: 1;
@@ -669,82 +772,116 @@ section {
 .cat-ears:before, .cat-ears:after {
     content: '';
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background: var(--powder-pink);
     border-radius: 50%;
-    top: -15px;
+    top: -20px;
+    border: 12px solid #ff9ec0;
 }
 
 .cat-ears:before {
-    left: 10px;
+    left: 5px;
 }
 
 .cat-ears:after {
-    right: 10px;
+    right: 5px;
 }
 
 .phone-content {
-    padding: 40px 20px;
-    text-align: center;
-    color: var(--burgundy);
+    padding: 60px 25px 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.review-phone p {
+.phone-reviews-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-review {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.phone-review.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.phone-review p {
     font-style: italic;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 16px;
+    line-height: 1.5;
+    color: var(--burgundy);
+    padding: 0 10px;
 }
 
 .review-signature {
     font-size: 18px;
     color: var(--dark-pink);
-}
-
-.reviews {
-    flex: 1;
-}
-
-.review-box {
-    background: white;
-    border: var(--box-border);
-    border-radius: 15px;
-    padding: 0;
-    margin-bottom: 20px;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
-}
-
-.review-box:hover {
-    transform: translateY(-5px);
-}
-
-.review {
-    padding: 25px;
-    position: relative;
-}
-
-.review:before {
-    content: '"';
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    font-size: 60px;
-    color: var(--light-pink);
-    font-family: serif;
-    line-height: 1;
-}
-
-.review p {
-    margin-bottom: 15px;
-    padding-left: 20px;
-}
-
-.review-author {
     font-weight: 500;
-    color: var(--burgundy);
-    text-align: right;
-    font-family: 'Raleway', sans-serif;
+}
+
+.phone-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0 0;
+}
+
+.phone-nav-btn {
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.phone-nav-btn:hover {
+    background: #9c2a52;
+    transform: scale(1.1);
+}
+
+.phone-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.phone-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.phone-dot.active {
+    background: var(--burgundy);
+    transform: scale(1.2);
 }
 
 /* Contact Section */
@@ -763,113 +900,185 @@ section {
     max-width: 1200px;
 }
 
-.contact-info {
+.envelope-container {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 450px;
+    margin-top: -30px;
 }
 
-.contact-box {
-    background: white;
-    border: var(--box-border);
+.envelope-wrapper {
+    position: relative;
+    width: 400px;
+    height: 320px;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Анимация крышки конверта */
+.envelope-flap {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(135deg, #ff7ba8, #ff5a94);
+    border-radius: 15px 15px 0 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    position: relative;
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+/* При наведении крышка поднимается */
+.envelope:hover .envelope-flap {
+    transform: rotateX(-60deg);
+}
+
+/* Передняя часть — остаётся */
+.envelope-front {
+    background: linear-gradient(135deg, #ff9ec0, #ff7ba8);
     border-radius: 15px;
-    padding: 30px;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     box-shadow: var(--box-shadow);
-    text-align: left;
 }
 
-.contact-box .cta-button {
-    display: inline-block;
-    background: var(--burgundy);
-    color: white;
-    padding: 15px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    box-shadow: var(--box-shadow);
-    border: 2px solid var(--burgundy);
-    font-size: 18px;
-}
-
-.contact-box .cta-button:hover {
-    background: #9c2a52;
-    transform: translateY(-3px);
-}
-
-.signature-contact {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 24px;
-    color: var(--burgundy);
-}
-
-.contact-form {
+.envelope-body {
     flex: 1;
-}
-
-.form-box {
-    background: white;
-    border: var(--box-border);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: var(--box-shadow);
+    background: linear-gradient(135deg, #ff9ec0, #ff7ba8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 15px 15px;
     position: relative;
     overflow: hidden;
 }
 
-.envelope {
+.envelope-body::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 10px;
-    background: var(--burgundy);
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%);
+    background-size: 20px 20px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--burgundy);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Raleway', sans-serif;
-    transition: border 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--burgundy);
-    outline: none;
-}
-
-.submit-button {
-    background: var(--burgundy);
+.envelope-content {
+    text-align: center;
     color: white;
-    border: 2px solid var(--burgundy);
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    font-size: 18px;
+    padding: 50px 30px;
+    position: relative;
+    z-index: 2;
 }
 
-.submit-button:hover {
-    background: #9c2a52;
+.envelope-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.envelope-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.envelope-content p {
+    font-size: 18px;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Скрытый блок Telegram */
+.envelope-back {
+    background: transparent; /* полностью убрать фон */
+    border: none; /* никакой рамки */
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 100%; /* полностью под конвертом */
+    left: 0;
+    transform: translateY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+}
+
+/* при наведении выезжает вверх */
+.envelope:hover .envelope-back {
+    top: calc(100% - 120px); /* регулируй высоту выезда */
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Сам синий блок Telegram */
+.telegram-message {
+    background: #0088cc;
+    width: 260px;
+    padding: 25px 20px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Текст "Telegram" — простой, без лишних элементов */
+.telegram-message h3 {
+    margin: 0;
+    font-size: 22px;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+.telegram-message p {
+    margin: 10px 0 15px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.9);
+    font-family: 'Raleway', sans-serif;
+}
+
+.telegram-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #0088cc;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.telegram-button:hover {
+    background: #e6e6e6;
     transform: translateY(-2px);
+}
+
+.telegram-button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 /* Footer */
@@ -898,36 +1107,6 @@ footer {
 .footer-logo {
     font-size: 28px;
     margin-bottom: 15px;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.social-link {
-    display: inline-block;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-family: 'Raleway', sans-serif;
-}
-
-.social-link:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .copyright {
@@ -984,7 +1163,7 @@ footer {
     }
 }
 
-/* АДАПТИВНЫЕ СТИЛИ */
+/* Адаптивные стили */
 @media (max-width: 1200px) {
     .about-combined-wrapper {
         max-width: 900px;
@@ -1064,14 +1243,50 @@ footer {
         margin-bottom: 20px;
     }
     
-    .reviews-container,
+    .reviews-interview-container {
+        flex-direction: column;
+        gap: 60px;
+    }
+    
+    .interview-columns {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .interview-column {
+        gap: 25px;
+    }
+    
+    .interview-item {
+        padding: 25px;
+    }
+    
+    .interview-item h3 {
+        font-size: 20px;
+    }
+    
+    .interview-item p {
+        font-size: 15px;
+    }
+    
+    .phone-box {
+        transform: translateY(0);
+        margin-top: 0;
+    }
+    
+    .interview-content {
+        transform: translateY(0);
+        padding-top: 0;
+    }
+    
     .contact-container {
         flex-direction: column;
         align-items: center;
+        gap: 40px;
     }
     
-    .phone-mockup {
-        margin-bottom: 40px;
+    .envelope-container {
+        margin-top: 0;
     }
     
     .features-image-container {
@@ -1109,6 +1324,7 @@ footer {
         padding: 30px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         gap: 20px;
+        z-index: 1000;
     }
     
     nav ul.active {
@@ -1192,19 +1408,39 @@ footer {
     }
     
     .phone {
-        width: 250px;
-        height: 500px;
+        width: 280px;
+        height: 560px;
     }
     
-    .contact-container {
-        flex-direction: column;
-        align-items: center;
+    .interview {
+        padding: 0;
     }
     
-    .contact-info,
-    .contact-form {
-        width: 100%;
-        max-width: 400px;
+    .interview-columns {
+        gap: 20px;
+    }
+    
+    .interview-item {
+        padding: 20px;
+    }
+    
+    .interview-item h3 {
+        font-size: 18px;
+    }
+    
+    .interview-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .envelope-wrapper {
+        width: 350px;
+        height: 280px;
+    }
+    
+    .telegram-message {
+        width: 240px;
+        padding: 20px 15px;
     }
     
     .features-image-container {
@@ -1245,6 +1481,46 @@ footer {
     .about-combined-content {
         padding: 0 25px 25px 25px;
         gap: 30px;
+    }
+    
+    .phone {
+        width: 250px;
+        height: 500px;
+    }
+    
+    .interview {
+        padding: 0;
+    }
+    
+    .interview-item {
+        padding: 18px;
+    }
+    
+    .interview-item h3 {
+        font-size: 17px;
+    }
+    
+    .interview-item p {
+        font-size: 14px;
+    }
+    
+    .interview-icon {
+        font-size: 26px;
+    }
+    
+    .envelope-wrapper {
+        width: 300px;
+        height: 240px;
+    }
+    
+    .telegram-message {
+        width: 220px;
+        padding: 18px 12px;
+    }
+    
+    .telegram-button {
+        padding: 10px 14px;
+        font-size: 14px;
     }
     
     .features-image-container {

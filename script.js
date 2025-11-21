@@ -14,6 +14,74 @@ function createHearts() {
     }
 }
 
+// Phone reviews carousel
+function initPhoneReviews() {
+    const reviews = document.querySelectorAll('.phone-review');
+    const dots = document.querySelectorAll('.phone-dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentReview = 0;
+
+    function showReview(index) {
+        reviews.forEach(review => review.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        reviews[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentReview = index;
+    }
+
+    function nextReview() {
+        let nextIndex = currentReview + 1;
+        if (nextIndex >= reviews.length) {
+            nextIndex = 0;
+        }
+        showReview(nextIndex);
+    }
+
+    function prevReview() {
+        let prevIndex = currentReview - 1;
+        if (prevIndex < 0) {
+            prevIndex = reviews.length - 1;
+        }
+        showReview(prevIndex);
+    }
+
+    // Auto-rotate reviews
+    let autoRotate = setInterval(nextReview, 5000);
+
+    // Event listeners
+    nextBtn.addEventListener('click', () => {
+        clearInterval(autoRotate);
+        nextReview();
+        autoRotate = setInterval(nextReview, 5000);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        clearInterval(autoRotate);
+        prevReview();
+        autoRotate = setInterval(nextReview, 5000);
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(autoRotate);
+            showReview(index);
+            autoRotate = setInterval(nextReview, 5000);
+        });
+    });
+
+    // Pause auto-rotate on hover
+    const phoneContent = document.querySelector('.phone-content');
+    phoneContent.addEventListener('mouseenter', () => {
+        clearInterval(autoRotate);
+    });
+
+    phoneContent.addEventListener('mouseleave', () => {
+        autoRotate = setInterval(nextReview, 5000);
+    });
+}
+
 // FAQ accordion
 function initFAQ() {
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -26,7 +94,7 @@ function initFAQ() {
                 if (otherItem !== item) {
                     otherItem.classList.remove('active');
                     const otherIcon = otherItem.querySelector('.faq-question span:last-child');
-                    otherIcon.textContent = '+';
+                    if (otherIcon) otherIcon.textContent = '+';
                 }
             });
             
@@ -35,32 +103,11 @@ function initFAQ() {
             
             // Change icon
             const icon = question.querySelector('span:last-child');
-            icon.textContent = item.classList.contains('active') ? '−' : '+';
-        });
-    });
-}
-
-// Form submission
-function initForm() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Simple validation
-            if (name && email && message) {
-                alert('Спасибо, ' + name + '! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-                this.reset();
-            } else {
-                alert('Пожалуйста, заполните все обязательные поля формы.');
+            if (icon) {
+                icon.textContent = item.classList.contains('active') ? '−' : '+';
             }
         });
-    }
+    });
 }
 
 // Smooth scrolling for navigation links
@@ -98,7 +145,7 @@ function initHeaderScroll() {
 
 // Add loading animation for elements
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.pricing-box-horizontal, .review-box, .about-combined-box');
+    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .phone-box, .envelope-wrapper, .interview-item');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -133,14 +180,21 @@ function initMobileMenu() {
                 navMenu.classList.remove('active');
             });
         });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
     }
 }
 
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createHearts();
+    initPhoneReviews();
     initFAQ();
-    initForm();
     initSmoothScroll();
     initHeaderScroll();
     initMobileMenu();
