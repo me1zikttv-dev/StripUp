@@ -23,6 +23,7 @@
                 <ul>
                     <li><a href="#features">Преимущества</a></li>
                     <li><a href="#pricing">Тарифы</a></li>
+                    <li><a href="#calculator">Калькулятор</a></li>
                     <li><a href="#faq">Вопросы</a></li>
                     <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#interview">Собеседование</a></li>
@@ -120,6 +121,93 @@
                             <li>Гибкий график выплат</li>
                         </ul>
                         <a href="#contact" class="cta-button">Выбрать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <h2 class="section-title">Калькулятор дохода</h2>
+            <div class="calculator-container">
+                <div class="calculator-box">
+                    <div class="calculator-content">
+                        <div class="calculator-controls">
+                            <div class="calculator-group">
+                                <label for="income">Средний доход в день ($)</label>
+                                <div class="slider-container">
+                                    <input type="range" id="income" min="50" max="500" value="200" step="10" class="slider">
+                                    <div class="slider-value">
+                                        <span id="income-value">200</span> $
+                                    </div>
+                                </div>
+                                <div class="slider-ticks">
+                                    <span>50</span>
+                                    <span>150</span>
+                                    <span>250</span>
+                                    <span>350</span>
+                                    <span>500</span>
+                                </div>
+                            </div>
+
+                            <div class="calculator-group">
+                                <label for="days">Рабочих дней в месяц</label>
+                                <div class="slider-container">
+                                    <input type="range" id="days" min="10" max="30" value="20" step="1" class="slider">
+                                    <div class="slider-value">
+                                        <span id="days-value">20</span> дней
+                                    </div>
+                                </div>
+                                <div class="slider-ticks">
+                                    <span>10</span>
+                                    <span>15</span>
+                                    <span>20</span>
+                                    <span>25</span>
+                                    <span>30</span>
+                                </div>
+                            </div>
+
+                            <div class="calculator-group">
+                                <label for="plan">Выберите тариф</label>
+                                <div class="plan-selector">
+                                    <button class="plan-btn active" data-plan="start">Старт (0%)</button>
+                                    <button class="plan-btn" data-plan="pro">Профи (15%)</button>
+                                    <button class="plan-btn" data-plan="premium">Премиум (10%)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-results">
+                            <div class="result-card">
+                                <div class="result-icon">💵</div>
+                                <div class="result-content">
+                                    <div class="result-label">Ваш доход в месяц</div>
+                                    <div class="result-value" id="gross-income">4,000 $</div>
+                                </div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-icon">📊</div>
+                                <div class="result-content">
+                                    <div class="result-label">Комиссия студии</div>
+                                    <div class="result-value" id="commission">0 $</div>
+                                </div>
+                            </div>
+
+                            <div class="result-card total">
+                                <div class="result-icon">💰</div>
+                                <div class="result-content">
+                                    <div class="result-label">Ваша чистая прибыль</div>
+                                    <div class="result-value" id="net-income">4,000 $</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-note">
+                            <p>💡 <strong>Совет:</strong> Начните со тарифа "Старт" на 2 недели, чтобы оценить потенциал без комиссии!</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,11 +363,9 @@
                 <div class="envelope-container">
                     <div class="envelope-wrapper">
                         <div class="envelope">
-
                             <!-- Передняя часть конверта -->
                             <div class="envelope-front">
                                 <div class="envelope-flap"></div>
-
                                 <div class="envelope-body">
                                     <div class="envelope-content">
                                         <div class="envelope-icon">💌</div>
@@ -305,7 +391,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

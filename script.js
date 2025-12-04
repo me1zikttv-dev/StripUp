@@ -145,7 +145,7 @@ function initHeaderScroll() {
 
 // Add loading animation for elements
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .phone-box, .envelope-wrapper, .interview-item');
+    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .phone-box, .envelope-wrapper, .interview-item, .calculator-box, .result-card');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -189,6 +189,113 @@ function initMobileMenu() {
         });
     }
 }
+
+// Calculator functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM elements
+    const incomeSlider = document.getElementById('income');
+    const incomeValue = document.getElementById('income-value');
+    const daysSlider = document.getElementById('days');
+    const daysValue = document.getElementById('days-value');
+    const planButtons = document.querySelectorAll('.plan-btn');
+    const grossIncomeEl = document.getElementById('gross-income');
+    const commissionEl = document.getElementById('commission');
+    const netIncomeEl = document.getElementById('net-income');
+
+    if (!incomeSlider || !daysSlider) return;
+
+    const commissionRates = {
+        start: 0,
+        pro: 15,
+        premium: 10
+    };
+
+    let currentPlan = 'start';
+
+    // Анимация значения при изменении
+    function animateValue(valueElement) {
+        if (valueElement && valueElement.parentElement.style) {
+            const element = valueElement.parentElement;
+            element.style.animation = 'none';
+            setTimeout(() => {
+                element.style.animation = 'valuePulse 0.3s ease';
+            }, 10);
+        }
+    }
+
+    function updateSliderValue(slider, valueEl) {
+        valueEl.textContent = slider.value;
+        animateValue(valueEl);
+    }
+
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(amount) + ' $';
+    }
+
+    // Calculate income
+    function calculateIncome() {
+        const dailyIncome = +incomeSlider.value;
+        const workDays = +daysSlider.value;
+        const commissionRate = commissionRates[currentPlan];
+
+        const grossIncome = dailyIncome * workDays;
+
+        let commission = 0;
+        if (currentPlan === 'start') {
+            const freeDays = Math.min(workDays, 10);
+            const paidDays = Math.max(0, workDays - 10);
+            commission = dailyIncome * paidDays * commissionRate / 100;
+        } else {
+            commission = grossIncome * commissionRate / 100;
+        }
+
+        const netIncome = grossIncome - commission;
+
+        grossIncomeEl.textContent = formatCurrency(grossIncome);
+        commissionEl.textContent = formatCurrency(commission);
+        netIncomeEl.textContent = formatCurrency(netIncome);
+        
+        // Анимация для итогового значения
+        netIncomeEl.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            netIncomeEl.style.transform = 'scale(1)';
+        }, 300);
+    }
+
+    // EVENTS
+    incomeSlider.addEventListener('input', () => {
+        updateSliderValue(incomeSlider, incomeValue);
+        calculateIncome();
+    });
+
+    daysSlider.addEventListener('input', () => {
+        updateSliderValue(daysSlider, daysValue);
+        calculateIncome();
+    });
+
+    planButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            planButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentPlan = btn.dataset.plan;
+            calculateIncome();
+            
+            // Анимация для кнопок
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+
+    // Инициализация
+    updateSliderValue(incomeSlider, incomeValue);
+    updateSliderValue(daysSlider, daysValue);
+    calculateIncome();
+});
 
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
