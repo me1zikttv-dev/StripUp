@@ -134,19 +134,19 @@
                     <div class="calculator-content">
                         <div class="calculator-controls">
                             <div class="calculator-group">
-                                <label for="income">Средний доход в день ($)</label>
+                                <label for="income">Средний доход в день (₽)</label>
                                 <div class="slider-container">
-                                    <input type="range" id="income" min="50" max="500" value="200" step="10" class="slider">
+                                    <input type="range" id="income" min="5000" max="50000" value="20000" step="1000" class="slider">
                                     <div class="slider-value">
-                                        <span id="income-value">200</span> $
+                                        <span id="income-value">20 000</span> ₽
                                     </div>
                                 </div>
                                 <div class="slider-ticks">
-                                    <span>50</span>
-                                    <span>150</span>
-                                    <span>250</span>
-                                    <span>350</span>
-                                    <span>500</span>
+                                    <span>5 000</span>
+                                    <span>15 000</span>
+                                    <span>25 000</span>
+                                    <span>35 000</span>
+                                    <span>50 000</span>
                                 </div>
                             </div>
 
@@ -182,7 +182,7 @@
                                 <div class="result-icon">💵</div>
                                 <div class="result-content">
                                     <div class="result-label">Ваш доход в месяц</div>
-                                    <div class="result-value" id="gross-income">4,000 $</div>
+                                    <div class="result-value" id="gross-income">400 000 ₽</div>
                                 </div>
                             </div>
 
@@ -190,7 +190,7 @@
                                 <div class="result-icon">📊</div>
                                 <div class="result-content">
                                     <div class="result-label">Комиссия студии</div>
-                                    <div class="result-value" id="commission">0 $</div>
+                                    <div class="result-value" id="commission">0 ₽</div>
                                 </div>
                             </div>
 
@@ -198,7 +198,7 @@
                                 <div class="result-icon">💰</div>
                                 <div class="result-content">
                                     <div class="result-label">Ваша чистая прибыль</div>
-                                    <div class="result-value" id="net-income">4,000 $</div>
+                                    <div class="result-value" id="net-income">400 000 ₽</div>
                                 </div>
                             </div>
                         </div>
@@ -298,9 +298,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="interview-button-container">
-                        <a href="#contact" class="cta-button interview-button">Заполнить анкету</a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -352,45 +349,32 @@
         </section>
     </div>
 
-    <!-- Contact Section -->
+    <!-- Contact Section с конвертом в цветах сайта -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Контакты</h2>
-            <div class="contact-container">
-                <!-- Конверт с Telegram -->
-                <div class="envelope-container">
-                    <div class="envelope-wrapper">
-                        <div class="envelope">
-                            <!-- Передняя часть конверта -->
-                            <div class="envelope-front">
-                                <div class="envelope-flap"></div>
-                                <div class="envelope-body">
-                                    <div class="envelope-content">
-                                        <div class="envelope-icon">💌</div>
-                                        <h3>Написать в Telegram</h3>
-                                        <p>Наведи чтобы открыть</p>
-                                    </div>
-                                </div>
-                            </div>
+            
+            <div class="letter-envelope-container">
+                <div class="letter-envelope-wrapper">
+                    
+                    <!-- Конверт -->
+                    <div class="letter-envelope">
+                        <!-- Верхний клапан -->
+                        <div class="envelope-flap">
+                            <div class="seal-heart">💗</div>
+                        </div>
 
-                            <!-- Внутреннее содержимое (вылезает при открытии) -->
-                            <div class="envelope-back">
-                                <div class="telegram-message">
-                                    <div class="telegram-content">
-                                        <div class="telegram-icon">📱</div>
-                                        <h3>Telegram</h3>
-                                        <p>Напиши нам для быстрой связи!</p>
-                                        <a href="https://t.me/StripUpStudio" target="_blank" class="telegram-button">
-                                            <svg class="telegram-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.140.140-.260.260-.534.260l.213-3.05 5.56-5.022c.240-.213-.054-.334-.373-.120l-6.87 4.326-2.96-.924c-.640-.203-.658-.640.136-.954l11.57-4.46c.538-.196 1.006.128.832.941z"/>
-                                            </svg>
-                                            Перейти в Telegram
-                                        </a>
-                                    </div>
-                                </div>
+                        <!-- Нижняя часть конверта -->
+                        <div class="envelope-front">
+                            <div class="envelope-body">
+                                <!-- Текст "Присоединиться" на конверте -->
+                                <a href="https://t.me/StripUpStudio" target="_blank" class="envelope-join-text">
+                                    Присоединиться
+                                </a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

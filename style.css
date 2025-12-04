@@ -682,7 +682,7 @@ section {
     font-weight: 600;
     font-family: 'Raleway', sans-serif;
     box-shadow: 0 4px 12px rgba(176, 49, 94, 0.3);
-    min-width: 80px;
+    min-width: 100px;
     text-align: center;
     z-index: 10;
     white-space: nowrap;
@@ -1008,16 +1008,6 @@ section {
     flex-grow: 1;
 }
 
-.interview-button-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.interview-button {
-    opacity: 1 !important;
-    animation: none !important;
-}
-
 /* Reviews Section */
 .reviews-container {
     display: flex;
@@ -1209,201 +1199,132 @@ section {
     transform: scale(1.2);
 }
 
-/* Contact Section */
+/* Contact Section с конвертом в цветах сайта */
 #contact .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.contact-container {
+/* Контейнер конверта */
+.letter-envelope-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 60px;
+}
+
+.letter-envelope-wrapper {
+    position: relative;
     display: flex;
-    gap: 50px;
-    align-items: flex-start;
     justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.envelope-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 450px;
-    margin-top: -30px;
-}
-
-.envelope-wrapper {
-    position: relative;
-    width: 400px;
-    height: 320px;
-}
-
-.envelope {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-/* Анимация крышки конверта */
-.envelope-flap {
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(135deg, #ff7ba8, #ff5a94);
-    border-radius: 15px 15px 0 0;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    position: relative;
-    z-index: 3;
-    transform-origin: top;
-    transition: transform 0.5s ease;
-}
-
-/* При наведении крышка поднимается */
-.envelope:hover .envelope-flap {
-    transform: rotateX(-60deg);
-}
-
-/* Передняя часть — остаётся */
-.envelope-front {
-    background: linear-gradient(135deg, #ff9ec0, #ff7ba8);
-    border-radius: 15px;
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-}
-
-.envelope-body {
-    flex: 1;
-    background: linear-gradient(135deg, #ff9ec0, #ff7ba8);
-    display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 0 0 15px 15px;
-    position: relative;
-    overflow: hidden;
 }
 
-.envelope-body::before {
-    content: '';
+/* Конверт */
+.letter-envelope {
+    position: relative;
+    width: 500px;   /* уменьшенный конверт */
+    height: 300px;
+    cursor: pointer;
+    perspective: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+/* Верхний клапан */
+.envelope-flap {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%);
-    background-size: 20px 20px;
-}
-
-.envelope-content {
-    text-align: center;
-    color: white;
-    padding: 50px 30px;
-    position: relative;
-    z-index: 2;
-}
-
-.envelope-icon {
-    font-size: 60px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-}
-
-.envelope-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.envelope-content p {
-    font-size: 18px;
-    opacity: 0.9;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-/* Скрытый блок Telegram */
-.envelope-back {
-    background: transparent;
-    border: none;
-    position: absolute;
     width: 100%;
-    height: auto;
-    top: 100%;
-    left: 0;
-    transform: translateY(0);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s ease;
+    height: 50%;
+    background: linear-gradient(135deg, #ff7ba8, #ff5a94);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+    z-index: 10;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* при наведении выезжает вверх */
-.envelope:hover .envelope-back {
-    top: calc(100% - 120px);
-    opacity: 1;
-    pointer-events: all;
+.seal-heart {
+    font-size: 36px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
-/* Сам синий блок Telegram */
-.telegram-message {
-    background: #0088cc;
-    width: 260px;
-    padding: 25px 20px;
-    border-radius: 20px;
-    color: white;
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
-/* Текст "Telegram" — простой, без лишних элементов */
-.telegram-message h3 {
-    margin: 0;
-    font-size: 22px;
-    color: white;
-    font-family: 'Playfair Display', serif;
-}
-
-.telegram-message p {
-    margin: 10px 0 15px;
-    font-size: 15px;
-    color: rgba(255,255,255,0.9);
-    font-family: 'Raleway', sans-serif;
-}
-
-.telegram-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    color: #0088cc;
-    text-decoration: none;
-    border-radius: 12px;
-    padding: 12px 18px;
-    font-weight: 600;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s ease;
-    border: none;
+/* Нижняя часть конверта */
+.envelope-front {
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    height: 50%;
+    background: linear-gradient(135deg, var(--powder-pink), var(--light-pink));
+    border: 2px solid var(--burgundy);
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    z-index: 5;
+    box-shadow: 0 3px 10px rgba(176, 49, 94, 0.15);
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-.telegram-button:hover {
-    background: #e6e6e6;
-    transform: translateY(-2px);
+/* Текст "Присоединиться" на конверте */
+.envelope-join-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--burgundy);
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 249, 0.95));
+    border-radius: 50px;
+    border: 2px solid var(--burgundy);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    box-shadow: 0 4px 15px rgba(176, 49, 94, 0.2);
 }
 
-.telegram-button svg {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
+/* Hover эффекты для конверта */
+.letter-envelope:hover .envelope-flap {
+    transform: rotateX(-25deg);
+}
+
+.letter-envelope:hover .envelope-join-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.letter-envelope:hover {
+    transform: translateY(-5px);
+}
+
+.envelope-join-text:hover {
+    background: linear-gradient(135deg, var(--burgundy), var(--dark-pink));
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(176, 49, 94, 0.3);
+    border-color: var(--burgundy);
 }
 
 /* Footer */
@@ -1488,7 +1409,81 @@ footer {
     }
 }
 
-/* Адаптивные стили */
+/* Адаптивные стили для упрощенного конверта */
+@media (max-width: 768px) {
+    .contact {
+        padding: 60px 0;
+    }
+    
+    #contact .section-title {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .letter-envelope {
+        width: 400px;
+        height: 240px;
+    }
+    
+    .envelope-flap {
+        padding-top: 30px;
+    }
+    
+    .seal-heart {
+        font-size: 30px;
+    }
+    
+    .envelope-join-text {
+        font-size: 22px;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    #contact .section-title {
+        font-size: 26px;
+    }
+    
+    .letter-envelope {
+        width: 320px;
+        height: 192px;
+    }
+    
+    .envelope-flap {
+        padding-top: 25px;
+    }
+    
+    .seal-heart {
+        font-size: 26px;
+    }
+    
+    .envelope-join-text {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .letter-envelope {
+        width: 280px;
+        height: 168px;
+    }
+    
+    .envelope-flap {
+        padding-top: 20px;
+    }
+    
+    .seal-heart {
+        font-size: 22px;
+    }
+    
+    .envelope-join-text {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Общие адаптивные стили */
 @media (max-width: 1200px) {
     .about-combined-wrapper {
         max-width: 900px;
@@ -1610,16 +1605,6 @@ footer {
     .interview-content {
         transform: translateY(0);
         padding-top: 0;
-    }
-    
-    .contact-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-    }
-    
-    .envelope-container {
-        margin-top: 0;
     }
     
     .features-image-container {
@@ -1761,6 +1746,7 @@ footer {
         font-size: 13px;
         padding: 3px 8px;
         top: -35px;
+        min-width: 90px;
     }
     
     .result-value {
@@ -1791,20 +1777,6 @@ footer {
     .interview-icon {
         font-size: 28px;
         margin-bottom: 12px;
-    }
-    
-    .envelope-wrapper {
-        width: 350px;
-        height: 280px;
-    }
-    
-    .telegram-message {
-        width: 240px;
-        padding: 20px 15px;
-    }
-    
-    .features-image-container {
-        max-width: 600px;
     }
 }
 
@@ -1895,21 +1867,6 @@ footer {
         font-size: 26px;
     }
     
-    .envelope-wrapper {
-        width: 300px;
-        height: 240px;
-    }
-    
-    .telegram-message {
-        width: 220px;
-        padding: 18px 12px;
-    }
-    
-    .telegram-button {
-        padding: 10px 14px;
-        font-size: 14px;
-    }
-    
     .features-image-container {
         max-width: 100%;
     }
@@ -1932,6 +1889,6 @@ footer {
         font-size: 12px;
         padding: 2px 6px;
         top: -30px;
-        min-width: 60px;
+        min-width: 80px;
     }
 }
