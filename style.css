@@ -689,8 +689,6 @@ section {
     transition: all 0.3s ease;
 }
 
-/* Убрано сердечко под цифрой */
-
 /* Анимация для значения при изменении */
 @keyframes valuePulse {
     0% { transform: translateX(-50%) scale(1); }
