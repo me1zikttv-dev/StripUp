@@ -266,6 +266,19 @@ function initCalculator() {
         }, 300);
     }
 
+    // Инициализируем значения при загрузке
+    function initializeValues() {
+        updateSliderValue(incomeSlider, incomeValue);
+        updateSliderValue(daysSlider, daysValue);
+        
+        // Устанавливаем начальные значения
+        const initialDailyIncome = 20000;
+        const initialWorkDays = 20;
+        grossIncomeEl.textContent = formatCurrency(initialDailyIncome * initialWorkDays);
+        commissionEl.textContent = formatCurrency(0);
+        netIncomeEl.textContent = formatCurrency(initialDailyIncome * initialWorkDays);
+    }
+
     // EVENTS
     incomeSlider.addEventListener('input', () => {
         updateSliderValue(incomeSlider, incomeValue);
@@ -293,13 +306,12 @@ function initCalculator() {
     });
 
     // Инициализация
-    updateSliderValue(incomeSlider, incomeValue);
-    updateSliderValue(daysSlider, daysValue);
+    initializeValues();
     calculateIncome();
 }
 
-// Инициализация конверта в цветах сайта
-function initWebsiteEnvelope() {
+// Инициализация конверта в стиле телефона
+function initPhoneStyleEnvelope() {
     const envelope = document.querySelector('.letter-envelope');
     const sealHeart = document.querySelector('.seal-heart');
     const joinText = document.querySelector('.envelope-join-text');
@@ -322,7 +334,10 @@ function initWebsiteEnvelope() {
     }
     
     // 2. Клик по конверту
-    envelope.addEventListener('click', function() {
+    envelope.addEventListener('click', function(e) {
+        // Не открываем если кликнули по ссылке
+        if (e.target.closest('.envelope-join-text')) return;
+        
         // Легкая анимация при клике
         this.style.transform = 'scale(0.98)';
         setTimeout(() => {
@@ -338,8 +353,44 @@ function initWebsiteEnvelope() {
             setTimeout(() => {
                 this.style.transform = 'scale(1.05)';
             }, 150);
+            
+            // Анимация конверта
+            const envelope = this.closest('.letter-envelope');
+            if (envelope) {
+                envelope.style.transform = 'translateY(-5px)';
+                setTimeout(() => {
+                    envelope.style.transform = 'translateY(0)';
+                }, 300);
+            }
         });
     }
+    
+    // 4. Автоматическое открытие клапана при наведении
+    envelope.addEventListener('mouseenter', function() {
+        const flap = this.querySelector('.envelope-flap');
+        if (flap) {
+            flap.style.transform = 'rotateX(-25deg)';
+        }
+        
+        const joinText = this.querySelector('.envelope-join-text');
+        if (joinText) {
+            joinText.style.opacity = '1';
+            joinText.style.transform = 'translateY(0)';
+        }
+    });
+    
+    envelope.addEventListener('mouseleave', function() {
+        const flap = this.querySelector('.envelope-flap');
+        if (flap) {
+            flap.style.transform = 'rotateX(0deg)';
+        }
+        
+        const joinText = this.querySelector('.envelope-join-text');
+        if (joinText) {
+            joinText.style.opacity = '0';
+            joinText.style.transform = 'translateY(20px)';
+        }
+    });
 }
 
 // Инициализация при загрузке страницы
@@ -350,20 +401,20 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initHeaderScroll();
     initMobileMenu();
-    initCalculator(); // Калькулятор в рублях
-    initWebsiteEnvelope();
+    initCalculator();
+    initPhoneStyleEnvelope();
     
     // Анимация появления конверта
-    const envelope = document.querySelector('.letter-envelope');
+    const envelopeWrapper = document.querySelector('.letter-envelope-wrapper');
     
-    if (envelope) {
-        envelope.style.opacity = '0';
-        envelope.style.transform = 'translateY(30px) scale(0.9)';
-        envelope.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    if (envelopeWrapper) {
+        envelopeWrapper.style.opacity = '0';
+        envelopeWrapper.style.transform = 'translateY(30px) scale(0.9)';
+        envelopeWrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         
         setTimeout(() => {
-            envelope.style.opacity = '1';
-            envelope.style.transform = 'translateY(0) scale(1)';
+            envelopeWrapper.style.opacity = '1';
+            envelopeWrapper.style.transform = 'translateY(0) scale(1)';
         }, 400);
     }
 });
