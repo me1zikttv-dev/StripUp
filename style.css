@@ -1796,4 +1796,9 @@ img, video, canvas {
     .floating-hearts {
         display: none;
     }
+}/* Фикс фона для телефонов */
+@media (max-width: 768px) {
+    body {
+        background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
+    }
 }
