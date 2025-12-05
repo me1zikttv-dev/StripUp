@@ -1807,3 +1807,18 @@ html, body {
         background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%);
     }
 }
+/* ✅ ФИКС ЧЁРНОГО ФОНА ПРИ СКРОЛЛЕ */
+html {
+    background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
+    overscroll-behavior: none;
+}
+
+body {
+    background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
+    min-height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+}
+
+header {
+    background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
+}
