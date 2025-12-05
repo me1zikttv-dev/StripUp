@@ -1822,3 +1822,17 @@ body {
 header {
     background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
 }
+/* Светлая тема по умолчанию */
+body {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Принудительно сохраняем розовые рамки в dark mode */
+@media (prefers-color-scheme: dark) {
+    .tariff-box {
+        border-color: #b0315e !important;
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+}
