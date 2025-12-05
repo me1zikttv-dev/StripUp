@@ -1314,11 +1314,6 @@ footer {
 /* МОБИЛЬНАЯ ВЕРСИЯ */
 /* ==================== */
 @media (max-width: 768px) {
-    /* Исправить фон сайта для мобильных */
-    body {
-        background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
-    }
-    
     /* Мобильный header */
     header {
         padding: 8px 0;
@@ -1329,8 +1324,8 @@ footer {
         padding: 0 10px;
     }
     
-    .logo-text {
-        font-size: 24px;
+    .logo-img {
+        height: 45px;
     }
     
     nav ul {
@@ -1359,31 +1354,22 @@ footer {
         display: block;
         text-align: center;
         width: 100%;
-        border-radius: 8px;
-    }
-    
-    nav a:hover {
-        background: var(--light-pink);
     }
     
     .mobile-menu-toggle {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         align-items: center;
+        justify-content: center;
         background: var(--burgundy);
         color: white;
         border: none;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 8px;
+        font-size: 20px;
         cursor: pointer;
         width: 44px;
         height: 44px;
-        z-index: 1001;
     }
-    
-    /* ... остальной код мобильной версии без изменений ... */
-}
     
     /* Мобильная Hero секция */
     .main-hero-section {
@@ -1710,7 +1696,7 @@ footer {
         width: 100%;
         max-width: 300px;
     }
-
+}
 
 @media (max-width: 480px) {
     .hero-content h1 {
@@ -1809,5 +1795,15 @@ img, video, canvas {
 @media (max-width: 768px) {
     .floating-hearts {
         display: none;
+    }
+}/* ✅ ЕДИНЫЙ ФОН КАК НА ПК — ДЛЯ МОБИЛЬНЫХ */
+html, body {
+    background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
+}
+
+/* ✅ ФОН HEADER КАК НА ПК */
+@media (max-width: 768px) {
+    header {
+        background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%);
     }
 }
