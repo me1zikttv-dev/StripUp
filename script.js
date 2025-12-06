@@ -1,16 +1,25 @@
-// ФИКС: Предотвратить скролл при загрузке на мобильных
+// ФИКС: Предотвратить скролл при загрузке на мобильных (ТОЛЬКО ПРИ ЗАГРУЗКЕ)
+let mobileScrollFixed = false;
+
 function fixMobileInitialScroll() {
     // Проверяем, мобильное ли устройство
     const isMobile = window.innerWidth <= 768;
     
-    if (isMobile) {
-        console.log('Мобильное устройство обнаружено, фиксируем скролл...');
-        
-        // Сразу прокручиваем наверх
-        window.scrollTo(0, 0);
+    if (isMobile && !mobileScrollFixed) {
+        console.log('Мобильное устройство обнаружено, фиксируем начальный скролл...');
+        mobileScrollFixed = true;
         
         // Отключаем плавный скролл на время загрузки
         document.documentElement.classList.add('no-smooth-scroll');
+        
+        // ТОЛЬКО ОДИН РАЗ при загрузке - скроллим наверх
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'auto'
+            });
+        }, 50);
         
         // Убираем якорь из URL если он есть (без перезагрузки)
         if (window.location.hash) {
@@ -18,29 +27,12 @@ function fixMobileInitialScroll() {
             history.replaceState(null, null, ' ');
         }
         
-        // Гарантированный скролл наверх через несколько миллисекунд
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'auto'
-            });
-        }, 10);
-        
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'auto'
-            });
-        }, 100);
-        
-        // Включаем обратно после загрузки
+        // Включаем плавный скролл обратно
         setTimeout(() => {
             document.documentElement.classList.remove('no-smooth-scroll');
             document.documentElement.classList.add('smooth-scroll-ready');
             console.log('Плавный скролл активирован');
-        }, 1000);
+        }, 500);
     }
 }
 
@@ -82,19 +74,6 @@ function fixMobileAnchorScroll() {
             });
         });
     }
-}
-
-// ФИКС: Сброс позиции скролла при resize
-let resizeTimeout;
-function handleResize() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        if (window.innerWidth <= 768 && window.pageYOffset > 100) {
-            console.log('Переключились на мобильный вид, проверяем скролл...');
-            // Если на мобильном и скролл не наверху
-            fixMobileInitialScroll();
-        }
-    }, 250);
 }
 
 // Floating hearts animation
@@ -512,7 +491,7 @@ function animateOnScroll() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM загружен, инициализируем...');
     
-    // Сначала фиксируем скролл на мобильных
+    // Сначала фиксируем скролл на мобильных (ТОЛЬКО ОДИН РАЗ)
     fixMobileInitialScroll();
     fixMobileAnchorScroll();
     
@@ -540,35 +519,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 400);
     }
     
-    // Добавляем обработчик resize
-    window.addEventListener('resize', handleResize);
-    
     // Включаем плавный скролл после полной загрузки
     window.addEventListener('load', function() {
         console.log('Страница полностью загружена');
         animateOnScroll();
         
-        // Дополнительная проверка для мобильных
-        if (window.innerWidth <= 768) {
-            setTimeout(() => {
-                if (window.pageYOffset > 100) {
-                    console.log('Скролл не наверху, фиксируем...');
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-                // Включаем плавный скролл
-                document.documentElement.classList.add('smooth-scroll-ready');
-            }, 500);
+        // Дополнительная проверка для мобильных (ТОЛЬКО ОДИН РАЗ)
+        if (window.innerWidth <= 768 && window.pageYOffset > 100) {
+            console.log('Скролл не наверху, фиксируем...');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
+        
+        // Включаем плавный скролл
+        document.documentElement.classList.add('smooth-scroll-ready');
     });
 });
 
-// Вызываем также при изменении ориентации
+// Вызываем также при изменении ориентации (БЕЗ СКРОЛЛА НАВЕРХ)
 window.addEventListener('orientationchange', function() {
     console.log('Ориентация изменена');
-    setTimeout(fixMobileInitialScroll, 100);
+    // Только обновляем фикс для якорных ссылок
+    fixMobileAnchorScroll();
 });
 
 // Эффект параллакса при скролле
@@ -636,14 +610,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Гарантированный фикс для мобильных
-setTimeout(() => {
-    if (window.innerWidth <= 768 && window.pageYOffset > 50) {
-        console.log('Гарантированный фикс: скролл наверх');
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'auto'
-        });
-    }
-}, 2000);
+// УДАЛЕНЫ ВСЕ ЛИШНИЕ ТАЙМЕРЫ КОТОРЫЕ СКРОЛЛИЛИ НАВЕРХ!
+// НЕТ больше window.scrollTo в таймерах через 2 секунды и т.д.
