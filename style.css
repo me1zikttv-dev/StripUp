@@ -276,8 +276,6 @@ nav a:hover:after {
     margin: 0 auto;
 }
 
-
-
 /* CTA Button */
 .cta-button {
     display: inline-block;
@@ -840,7 +838,7 @@ section {
 .interview-content {
     max-width: 100%;
     margin: 0 auto;
-    transform: translateY(-30px);
+    transform: translateY(50px); /* ИЗМЕНЕНО: было -30px вверх, стало +50px вниз (опустили на ~4.5 см) */
     padding-top: 30px;
 }
 
@@ -926,8 +924,8 @@ section {
     border-radius: 20px;
     padding: 25px;
     box-shadow: var(--box-shadow);
-    transform: translateY(-50px);
-    margin-top: 50px;
+    transform: translateY(-180px);
+    margin-top: 0;
 }
 
 .phone {
@@ -1616,7 +1614,7 @@ footer {
     }
     
     .interview-content {
-        transform: translateY(0);
+        transform: translateY(0); /* На мобильных оставляем без смещения */
         padding-top: 0;
     }
     
@@ -1651,7 +1649,7 @@ footer {
     
     .phone-box {
         padding: 15px;
-        transform: translateY(0);
+        transform: translateY(0); /* На мобильных оставляем без смещения */
         margin-top: 0;
     }
     
