@@ -1,6 +1,107 @@
+// ФИКС: Предотвратить скролл при загрузке на мобильных
+function fixMobileInitialScroll() {
+    // Проверяем, мобильное ли устройство
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        console.log('Мобильное устройство обнаружено, фиксируем скролл...');
+        
+        // Сразу прокручиваем наверх
+        window.scrollTo(0, 0);
+        
+        // Отключаем плавный скролл на время загрузки
+        document.documentElement.classList.add('no-smooth-scroll');
+        
+        // Убираем якорь из URL если он есть (без перезагрузки)
+        if (window.location.hash) {
+            console.log('Убираем якорь из URL:', window.location.hash);
+            history.replaceState(null, null, ' ');
+        }
+        
+        // Гарантированный скролл наверх через несколько миллисекунд
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'auto'
+            });
+        }, 10);
+        
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'auto'
+            });
+        }, 100);
+        
+        // Включаем обратно после загрузки
+        setTimeout(() => {
+            document.documentElement.classList.remove('no-smooth-scroll');
+            document.documentElement.classList.add('smooth-scroll-ready');
+            console.log('Плавный скролл активирован');
+        }, 1000);
+    }
+}
+
+// ФИКС: Исправить скролл к якорям на мобильных
+function fixMobileAnchorScroll() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        console.log('Настраиваем якорные ссылки для мобильных...');
+        
+        // Переопределяем плавный скролл для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    
+                    // Рассчитываем позицию с учетом высоты header
+                    const headerHeight = 60; // Высота мобильного header
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerHeight;
+                    
+                    // Прокручиваем с небольшим замедлением
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрываем мобильное меню если открыто
+                    const navMenu = document.querySelector('nav ul');
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+    }
+}
+
+// ФИКС: Сброс позиции скролла при resize
+let resizeTimeout;
+function handleResize() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (window.innerWidth <= 768 && window.pageYOffset > 100) {
+            console.log('Переключились на мобильный вид, проверяем скролл...');
+            // Если на мобильном и скролл не наверху
+            fixMobileInitialScroll();
+        }
+    }, 250);
+}
+
 // Floating hearts animation
 function createHearts() {
     const container = document.getElementById('hearts-container');
+    if (!container) return;
+    
     const heartsCount = 20;
     
     for (let i = 0; i < heartsCount; i++) {
@@ -20,6 +121,9 @@ function initPhoneReviews() {
     const dots = document.querySelectorAll('.phone-dot');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
+    
+    if (!reviews.length || !dots.length) return;
+    
     let currentReview = 0;
 
     function showReview(index) {
@@ -51,17 +155,21 @@ function initPhoneReviews() {
     let autoRotate = setInterval(nextReview, 5000);
 
     // Event listeners
-    nextBtn.addEventListener('click', () => {
-        clearInterval(autoRotate);
-        nextReview();
-        autoRotate = setInterval(nextReview, 5000);
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            clearInterval(autoRotate);
+            nextReview();
+            autoRotate = setInterval(nextReview, 5000);
+        });
+    }
 
-    prevBtn.addEventListener('click', () => {
-        clearInterval(autoRotate);
-        prevReview();
-        autoRotate = setInterval(nextReview, 5000);
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            clearInterval(autoRotate);
+            prevReview();
+            autoRotate = setInterval(nextReview, 5000);
+        });
+    }
 
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -73,13 +181,15 @@ function initPhoneReviews() {
 
     // Pause auto-rotate on hover
     const phoneContent = document.querySelector('.phone-content');
-    phoneContent.addEventListener('mouseenter', () => {
-        clearInterval(autoRotate);
-    });
+    if (phoneContent) {
+        phoneContent.addEventListener('mouseenter', () => {
+            clearInterval(autoRotate);
+        });
 
-    phoneContent.addEventListener('mouseleave', () => {
-        autoRotate = setInterval(nextReview, 5000);
-    });
+        phoneContent.addEventListener('mouseleave', () => {
+            autoRotate = setInterval(nextReview, 5000);
+        });
+    }
 }
 
 // FAQ accordion
@@ -114,13 +224,20 @@ function initFAQ() {
 function initSmoothScroll() {
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            // Для мобильных обрабатывается в fixMobileAnchorScroll
+            if (window.innerWidth <= 768) return;
+            
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const headerHeight = 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - headerHeight;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
@@ -143,34 +260,14 @@ function initHeaderScroll() {
     }
 }
 
-// Add loading animation for elements
-function animateOnScroll() {
-    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .phone-box, .letter-envelope-wrapper, .interview-item, .calculator-box, .result-card');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    elements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(50px)';
-        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(element);
-    });
-}
-
 // Mobile menu functionality
 function initMobileMenu() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('nav ul');
     
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
         });
         
@@ -183,7 +280,16 @@ function initMobileMenu() {
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+        
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
             }
         });
@@ -212,21 +318,9 @@ function initCalculator() {
 
     let currentPlan = 'start';
 
-    // Анимация значения при изменении
-    function animateValue(valueElement) {
-        if (valueElement && valueElement.parentElement.style) {
-            const element = valueElement.parentElement;
-            element.style.animation = 'none';
-            setTimeout(() => {
-                element.style.animation = 'valuePulse 0.3s ease';
-            }, 10);
-        }
-    }
-
     function updateSliderValue(slider, valueEl) {
         const value = parseInt(slider.value);
         valueEl.textContent = value.toLocaleString('ru-RU');
-        animateValue(valueEl);
     }
 
     function formatCurrency(amount) {
@@ -393,8 +487,36 @@ function initPhoneStyleEnvelope() {
     });
 }
 
+// Add loading animation for elements
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .phone-box, .letter-envelope-wrapper, .interview-item, .calculator-box, .result-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    elements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(50px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(element);
+    });
+}
+
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM загружен, инициализируем...');
+    
+    // Сначала фиксируем скролл на мобильных
+    fixMobileInitialScroll();
+    fixMobileAnchorScroll();
+    
+    // Потом остальные функции
     createHearts();
     initPhoneReviews();
     initFAQ();
@@ -417,6 +539,36 @@ document.addEventListener('DOMContentLoaded', function() {
             envelopeWrapper.style.transform = 'translateY(0) scale(1)';
         }, 400);
     }
+    
+    // Добавляем обработчик resize
+    window.addEventListener('resize', handleResize);
+    
+    // Включаем плавный скролл после полной загрузки
+    window.addEventListener('load', function() {
+        console.log('Страница полностью загружена');
+        animateOnScroll();
+        
+        // Дополнительная проверка для мобильных
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                if (window.pageYOffset > 100) {
+                    console.log('Скролл не наверху, фиксируем...');
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                // Включаем плавный скролл
+                document.documentElement.classList.add('smooth-scroll-ready');
+            }, 500);
+        }
+    });
+});
+
+// Вызываем также при изменении ориентации
+window.addEventListener('orientationchange', function() {
+    console.log('Ориентация изменена');
+    setTimeout(fixMobileInitialScroll, 100);
 });
 
 // Эффект параллакса при скролле
@@ -453,11 +605,6 @@ function handleMobileAdjustments() {
 window.addEventListener('resize', handleMobileAdjustments);
 handleMobileAdjustments();
 
-// Initialize scroll animations when page is fully loaded
-window.addEventListener('load', function() {
-    animateOnScroll();
-});
-
 // Поддержка тач-устройств
 document.addEventListener('touchstart', function() {
     const envelope = document.querySelector('.letter-envelope');
@@ -488,3 +635,15 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(contactSection);
     }
 });
+
+// Гарантированный фикс для мобильных
+setTimeout(() => {
+    if (window.innerWidth <= 768 && window.pageYOffset > 50) {
+        console.log('Гарантированный фикс: скролл наверх');
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'auto'
+        });
+    }
+}, 2000);
