@@ -1,79 +1,57 @@
-// ФИКС: Предотвратить скролл при загрузке на мобильных (ТОЛЬКО ПРИ ЗАГРУЗКЕ)
+// ФИКС: Предотвратить скролл при загрузке на мобильных (ТОЛЬКО ОДИН РАЗ)
 let mobileScrollFixed = false;
 
 function fixMobileInitialScroll() {
-    // Проверяем, мобильное ли устройство
     const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile && !mobileScrollFixed) {
-        console.log('Мобильное устройство обнаружено, фиксируем начальный скролл...');
-        mobileScrollFixed = true;
-        
-        // Отключаем плавный скролл на время загрузки
-        document.documentElement.classList.add('no-smooth-scroll');
-        
-        // ТОЛЬКО ОДИН РАЗ при загрузке - скроллим наверх
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'auto'
-            });
-        }, 50);
-        
-        // Убираем якорь из URL если он есть (без перезагрузки)
-        if (window.location.hash) {
-            console.log('Убираем якорь из URL:', window.location.hash);
-            history.replaceState(null, null, ' ');
-        }
-        
-        // Включаем плавный скролл обратно
-        setTimeout(() => {
-            document.documentElement.classList.remove('no-smooth-scroll');
-            document.documentElement.classList.add('smooth-scroll-ready');
-            console.log('Плавный скролл активирован');
-        }, 500);
+    if (!isMobile || mobileScrollFixed) return;
+
+    mobileScrollFixed = true;
+
+    document.documentElement.classList.add('no-smooth-scroll');
+
+    // ОДИН РАЗ при загрузке - без таймеров
+    requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+    });
+
+    // Убираем якорь из URL если он есть
+    if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname);
     }
+
+    setTimeout(() => {
+        document.documentElement.classList.remove('no-smooth-scroll');
+        document.documentElement.classList.add('smooth-scroll-ready');
+    }, 300);
 }
 
-// ФИКС: Исправить скролл к якорям на мобильных
+// ФИКС: Исправить скролл к якорям на мобильных (БЕЗ smooth-scroll)
 function fixMobileAnchorScroll() {
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-        console.log('Настраиваем якорные ссылки для мобильных...');
-        
-        // Переопределяем плавный скролл для якорей
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                
-                if (targetId === '#') return;
-                
-                const target = document.querySelector(targetId);
-                if (target) {
-                    e.preventDefault();
-                    
-                    // Рассчитываем позицию с учетом высоты header
-                    const headerHeight = 60; // Высота мобильного header
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = targetPosition - headerHeight;
-                    
-                    // Прокручиваем с небольшим замедлением
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Закрываем мобильное меню если открыто
-                    const navMenu = document.querySelector('nav ul');
-                    if (navMenu && navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                    }
-                }
+    if (window.innerWidth > 768) return;
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const id = this.getAttribute('href');
+            if (!id || id === '#') return;
+
+            const target = document.querySelector(id);
+            if (!target) return;
+
+            e.preventDefault();
+
+            const headerOffset = 60;
+            const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: y,
+                behavior: 'auto' // БЕЗ smooth на мобильных
             });
+
+            // Закрываем мобильное меню
+            const navMenu = document.querySelector('nav ul');
+            if (navMenu) navMenu.classList.remove('active');
         });
-    }
+    });
 }
 
 // Floating hearts animation
@@ -158,9 +136,9 @@ function initPhoneReviews() {
         });
     });
 
-    // Pause auto-rotate on hover
+    // Pause auto-rotate on hover (только на десктопе)
     const phoneContent = document.querySelector('.phone-content');
-    if (phoneContent) {
+    if (phoneContent && window.innerWidth > 768) {
         phoneContent.addEventListener('mouseenter', () => {
             clearInterval(autoRotate);
         });
@@ -199,13 +177,13 @@ function initFAQ() {
     });
 }
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links (ТОЛЬКО ДЛЯ ДЕСКТОПА)
 function initSmoothScroll() {
+    // На мобильных используем fixMobileAnchorScroll
+    if (window.innerWidth <= 768) return;
+    
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            // Для мобильных обрабатывается в fixMobileAnchorScroll
-            if (window.innerWidth <= 768) return;
-            
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
@@ -331,12 +309,6 @@ function initCalculator() {
         grossIncomeEl.textContent = formatCurrency(grossIncome);
         commissionEl.textContent = formatCurrency(commission);
         netIncomeEl.textContent = formatCurrency(netIncome);
-        
-        // Анимация для итогового значения
-        netIncomeEl.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            netIncomeEl.style.transform = 'scale(1)';
-        }, 300);
     }
 
     // Инициализируем значения при загрузке
@@ -369,12 +341,6 @@ function initCalculator() {
             btn.classList.add('active');
             currentPlan = btn.dataset.plan;
             calculateIncome();
-            
-            // Анимация для кнопок
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                btn.style.transform = 'scale(1)';
-            }, 150);
         });
     });
 
@@ -438,32 +404,34 @@ function initPhoneStyleEnvelope() {
         });
     }
     
-    // 4. Автоматическое открытие клапана при наведении
-    envelope.addEventListener('mouseenter', function() {
-        const flap = this.querySelector('.envelope-flap');
-        if (flap) {
-            flap.style.transform = 'rotateX(-25deg)';
-        }
+    // 4. Автоматическое открытие клапана при наведении (только на десктопе)
+    if (window.innerWidth > 768) {
+        envelope.addEventListener('mouseenter', function() {
+            const flap = this.querySelector('.envelope-flap');
+            if (flap) {
+                flap.style.transform = 'rotateX(-25deg)';
+            }
+            
+            const joinText = this.querySelector('.envelope-join-text');
+            if (joinText) {
+                joinText.style.opacity = '1';
+                joinText.style.transform = 'translateY(0)';
+            }
+        });
         
-        const joinText = this.querySelector('.envelope-join-text');
-        if (joinText) {
-            joinText.style.opacity = '1';
-            joinText.style.transform = 'translateY(0)';
-        }
-    });
-    
-    envelope.addEventListener('mouseleave', function() {
-        const flap = this.querySelector('.envelope-flap');
-        if (flap) {
-            flap.style.transform = 'rotateX(0deg)';
-        }
-        
-        const joinText = this.querySelector('.envelope-join-text');
-        if (joinText) {
-            joinText.style.opacity = '0';
-            joinText.style.transform = 'translateY(20px)';
-        }
-    });
+        envelope.addEventListener('mouseleave', function() {
+            const flap = this.querySelector('.envelope-flap');
+            if (flap) {
+                flap.style.transform = 'rotateX(0deg)';
+            }
+            
+            const joinText = this.querySelector('.envelope-join-text');
+            if (joinText) {
+                joinText.style.opacity = '0';
+                joinText.style.transform = 'translateY(20px)';
+            }
+        });
+    }
 }
 
 // Add loading animation for elements
@@ -487,23 +455,47 @@ function animateOnScroll() {
     });
 }
 
+// Эффект параллакса при скролле (ТОЛЬКО ДЛЯ ДЕСКТОПА)
+function initParallaxEffect() {
+    if (window.innerWidth > 768) {
+        window.addEventListener('scroll', function() {
+            const envelope = document.querySelector('.letter-envelope');
+            const contactSection = document.getElementById('contact');
+            
+            if (envelope && contactSection) {
+                const scrolled = window.pageYOffset;
+                const sectionTop = contactSection.offsetTop;
+                const sectionHeight = contactSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                // Параллакс эффект для конверта
+                if (scrolled > sectionTop - windowHeight && scrolled < sectionTop + sectionHeight) {
+                    const rate = (scrolled - sectionTop) * 0.05;
+                    envelope.style.transform = `translateY(${rate}px)`;
+                }
+            }
+        });
+    }
+}
+
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM загружен, инициализируем...');
     
-    // Сначала фиксируем скролл на мобильных (ТОЛЬКО ОДИН РАЗ)
+    // 1. Сначала фиксируем скролл на мобильных (ТОЛЬКО ОДИН РАЗ при загрузке)
     fixMobileInitialScroll();
     fixMobileAnchorScroll();
     
-    // Потом остальные функции
+    // 2. Основные функции
     createHearts();
     initPhoneReviews();
     initFAQ();
-    initSmoothScroll();
+    initSmoothScroll(); // Только для десктопа
     initHeaderScroll();
     initMobileMenu();
     initCalculator();
     initPhoneStyleEnvelope();
+    initParallaxEffect(); // Только для десктопа
     
     // Анимация появления конверта
     const envelopeWrapper = document.querySelector('.letter-envelope-wrapper');
@@ -524,47 +516,19 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Страница полностью загружена');
         animateOnScroll();
         
-        // Дополнительная проверка для мобильных (ТОЛЬКО ОДИН РАЗ)
-        if (window.innerWidth <= 768 && window.pageYOffset > 100) {
-            console.log('Скролл не наверху, фиксируем...');
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
         // Включаем плавный скролл
         document.documentElement.classList.add('smooth-scroll-ready');
     });
 });
 
-// Вызываем также при изменении ориентации (БЕЗ СКРОЛЛА НАВЕРХ)
+// При изменении ориентации только обновляем обработчики
 window.addEventListener('orientationchange', function() {
     console.log('Ориентация изменена');
     // Только обновляем фикс для якорных ссылок
-    fixMobileAnchorScroll();
+    setTimeout(fixMobileAnchorScroll, 100);
 });
 
-// Эффект параллакса при скролле
-window.addEventListener('scroll', function() {
-    const envelope = document.querySelector('.letter-envelope');
-    const contactSection = document.getElementById('contact');
-    
-    if (envelope && contactSection) {
-        const scrolled = window.pageYOffset;
-        const sectionTop = contactSection.offsetTop;
-        const sectionHeight = contactSection.offsetHeight;
-        const windowHeight = window.innerHeight;
-        
-        // Параллакс эффект для конверта
-        if (scrolled > sectionTop - windowHeight && scrolled < sectionTop + sectionHeight) {
-            const rate = (scrolled - sectionTop) * 0.05;
-            envelope.style.transform = `translateY(${rate}px) scale(1)`;
-        }
-    }
-});
-
-// Адаптивность для мобильных устройств
+// Адаптивность для мобильных устройств (без лишних скроллов)
 function handleMobileAdjustments() {
     const envelope = document.querySelector('.letter-envelope');
     
@@ -576,9 +540,6 @@ function handleMobileAdjustments() {
     }
 }
 
-window.addEventListener('resize', handleMobileAdjustments);
-handleMobileAdjustments();
-
 // Поддержка тач-устройств
 document.addEventListener('touchstart', function() {
     const envelope = document.querySelector('.letter-envelope');
@@ -587,28 +548,27 @@ document.addEventListener('touchstart', function() {
     }
 });
 
-// Дополнительные интерактивные эффекты
-document.addEventListener('DOMContentLoaded', function() {
-    // Эффект при скролле к конверту
-    const contactSection = document.getElementById('contact');
-    const envelope = document.querySelector('.letter-envelope');
-    
-    if (contactSection && envelope) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Легкая анимация конверта при появлении секции
-                    envelope.style.transform = 'scale(1.05)';
-                    setTimeout(() => {
-                        envelope.style.transform = 'scale(1)';
-                    }, 300);
-                }
-            });
-        }, { threshold: 0.3 });
+// Дополнительные интерактивные эффекты (только для десктопа)
+if (window.innerWidth > 768) {
+    document.addEventListener('DOMContentLoaded', function() {
+        // Эффект при скролле к конверту
+        const contactSection = document.getElementById('contact');
+        const envelope = document.querySelector('.letter-envelope');
         
-        observer.observe(contactSection);
-    }
-});
-
-// УДАЛЕНЫ ВСЕ ЛИШНИЕ ТАЙМЕРЫ КОТОРЫЕ СКРОЛЛИЛИ НАВЕРХ!
-// НЕТ больше window.scrollTo в таймерах через 2 секунды и т.д.
+        if (contactSection && envelope) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Легкая анимация конверта при появлении секции
+                        envelope.style.transform = 'scale(1.05)';
+                        setTimeout(() => {
+                            envelope.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            observer.observe(contactSection);
+        }
+    });
+}
