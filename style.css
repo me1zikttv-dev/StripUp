@@ -1739,10 +1739,11 @@ footer {
     /* ✅ УМЕНЬШЕННАЯ МОБИЛЬНАЯ ВЕРСИЯ ТЕЛЕФОНА (увеличена для читаемости) */
     /* ============================================ */
     .phone-image-container-large {
-        width: 360px; /* увеличено для более читаемой мобильной версии */
-        height: 630px;
+        /* Увеличиваем размер примерно в 2 раза (ограничено шириной экрана) */
+        width: min(720px, 96vw);
+        height: auto; /* высота определяется содержимым (image) */
         margin: 0 auto;
-        max-width: 92vw;
+        max-width: 96vw;
     }
     
     /* ✅ УМЕНЬШЕННАЯ МАСКА ДЛЯ МОБИЛЬНЫХ */
@@ -1916,9 +1917,9 @@ footer {
     /* ✅ ЕЩЁ МЕНЬШЕ ТЕЛЕФОН ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ (увеличено) */
     /* ============================================ */
     .phone-image-container-large {
-        width: 320px;
-        height: 560px;
-        max-width: 94vw;
+        width: min(640px, 96vw);
+        height: auto;
+        max-width: 96vw;
     }
     
     .phone-screen-mask {
@@ -1974,9 +1975,42 @@ footer {
     /* ✅ МИНИМАЛЬНЫЙ РАЗМЕР ТЕЛЕФОНА (увеличено для читаемости) */
     /* ============================================ */
     .phone-image-container-large {
-        width: 300px; /* увеличено для минимальных экранов */
-        height: 520px;
+        width: min(600px, 96vw);
+        height: auto;
         max-width: 96vw;
+    }
+
+    /* Центрируем содержимое телефона: отзывы и навигацию */
+    .phone-content-overlay-large {
+        justify-content: center; /* вертикально центрируем */
+        gap: 12px;
+    }
+
+    /* Внутренний контейнер отзывов: центрируем текст по центру экрана телефона */
+    .phone-reviews-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Навигация под отзывом, по центру */
+    .phone-nav {
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    .phone-nav .phone-dots {
+        order: 2;
     }
     
     .phone-screen-mask {
