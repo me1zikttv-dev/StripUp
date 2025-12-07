@@ -1747,6 +1747,50 @@ footer {
         box-sizing: border-box;
     }
 
+    /* STRONG OVERRIDE: сделать изображение телефона максимально большим (приближенно ×3) */
+    .phone-image-container-large {
+        width: 98vw !important;
+        max-width: none !important;
+        height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .phone-img-large {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: contain !important;
+    }
+
+    /* увеличиваем текст и внутренние паддинги пропорционально */
+    .phone-review p {
+        font-size: 22px !important;
+        line-height: 1.5 !important;
+        padding: 0 14px !important;
+    }
+
+    .review-signature {
+        font-size: 16px !important;
+    }
+
+    .review-text-wrapper {
+        padding: 22px 14px !important;
+    }
+
+    /* очень заметные навигационные кнопки */
+    .phone-nav-btn {
+        width: 64px !important;
+        height: 64px !important;
+        font-size: 26px !important;
+        border-radius: 14px !important;
+    }
+
+    .phone-dot {
+        width: 10px !important;
+        height: 10px !important;
+    }
+
     /* Принудительные overrides на случай, если другие правила переопределяют поведение */
     .reviews-section .phone-image-container-large {
         width: calc(100% - 40px) !important;
