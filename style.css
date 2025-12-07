@@ -1747,6 +1747,23 @@ footer {
         box-sizing: border-box;
     }
 
+    /* Принудительные overrides на случай, если другие правила переопределяют поведение */
+    .reviews-section .phone-image-container-large {
+        width: calc(100% - 40px) !important;
+        max-width: 760px !important;
+        height: auto !important;
+    }
+
+    .interview-content {
+        transform: translate(0px, var(--interview-offset-y)) !important;
+        margin: 0 auto !important;
+    }
+
+    .phone-content-overlay-large {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
     /* Центрируем overlay (текст + навигация) внутри увеличенного макета телефона */
     .phone-content-overlay-large {
         justify-content: center;
@@ -1932,6 +1949,21 @@ footer {
         box-sizing: border-box;
     }
 
+    /* Принудительные overrides для 480px */
+    .reviews-section .phone-image-container-large {
+        width: calc(100% - 32px) !important;
+        max-width: 720px !important;
+    }
+
+    .interview-content {
+        transform: translate(0px, var(--interview-offset-y)) !important;
+    }
+
+    .phone-content-overlay-large {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
     .phone-screen-mask {
         top: 10%;
         left: 6%;
@@ -1993,6 +2025,21 @@ footer {
         height: auto;
         margin: 0 auto;
         box-sizing: border-box;
+    }
+
+    /* Принудительные overrides для очень узких экранов (360px) */
+    .reviews-section .phone-image-container-large {
+        width: calc(100% - 24px) !important;
+        max-width: 640px !important;
+    }
+
+    .interview-content {
+        transform: translate(0px, var(--interview-offset-y)) !important;
+    }
+
+    .phone-content-overlay-large {
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     /* Центрирование содержимого телефона */
