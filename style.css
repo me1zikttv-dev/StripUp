@@ -254,11 +254,11 @@ nav a:hover:after {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 630px;
-    min-height: 450px;
+    height: 640px;
+    min-height: 460px;
     background: linear-gradient(135deg, var(--powder-pink), var(--light-pink));
     border-radius: 25px;
-    padding: 15px;
+    padding: 25px;
     overflow: hidden;
     border: 3px solid var(--dark-pink);
     box-shadow: 0 8px 25px rgba(212, 106, 148, 0.2);
