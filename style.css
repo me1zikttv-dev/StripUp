@@ -2302,3 +2302,78 @@ html.smooth-scroll-ready {
     .phone-nav-btn { width:56px !important; height:56px !important; font-size:22px !important; }
     .phone-dot { width:10px !important; height:10px !important; }
 }
+
+/* Emergency override: принудительное масштабирование телефона и центровка интервью */
+@media (max-width: 900px) {
+    /* Масштабируем весь контейнер телефона чтобы увеличить изображение и содержимое в ~3 раза */
+    .phone-image-container-large {
+        transform: scale(3) !important;
+        transform-origin: top center !important;
+        width: 98vw !important;
+        max-width: none !important;
+        overflow: visible !important;
+        position: relative !important;
+        z-index: 60 !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Изображение внутри телефона должно оставаться 100% ширины контейнера */
+    .phone-image-container-large .phone-img-large {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: contain !important;
+    }
+
+    /* Убедимся, что overlay и маска корректно отображаются поверх масштабированного контейнера */
+    .phone-image-container-large .phone-screen-mask,
+    .phone-image-container-large .phone-content-overlay-large {
+        position: absolute !important;
+        inset: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        pointer-events: auto !important;
+    }
+
+    /* Центрируем всю секцию отзывов + интервью и сами интервью-блоки */
+    .reviews-interview-container, .reviews-section, .interview {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+
+    .interview-content {
+        transform: none !important;
+        margin: 0 auto !important;
+        width: calc(100% - 32px) !important;
+        text-align: center !important;
+        padding-top: 0 !important;
+    }
+
+    .interview-columns {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .interview-item {
+        width: 100% !important;
+        max-width: 720px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Предотвращаем наложение header поверх масштабированного телефона */
+    header { z-index: 80 !important; }
+    .reviews-interview-container { padding-top: 18px !important; }
+
+    /* Навигация и точки остаются удобного размера внутри масштабированного контейнера */
+    .phone-nav-btn { width: 56px !important; height: 56px !important; font-size: 22px !important; }
+    .phone-dot { width: 10px !important; height: 10px !important; }
+}

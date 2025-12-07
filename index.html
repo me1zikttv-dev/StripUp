@@ -7,7 +7,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&family=Prata&family=Lora:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
+    <!-- Temporary inline override to force mobile layout immediately (remove later) -->
+    <style>
+        @media (max-width: 900px) {
+            .reviews-interview-container, .reviews-section, .interview { width:100% !important; box-sizing:border-box !important; }
+            .reviews-interview-container { display:flex !important; flex-direction:column !important; align-items:center !important; gap:12px !important; }
+            .reviews-section .phone-image-container-large, .phone-image-container-large { width:98vw !important; max-width:98vw !important; height:auto !important; margin:0 auto !important; }
+            .phone-img-large { width:100% !important; height:auto !important; display:block !important; object-fit:cover !important; }
+            .phone-content-overlay-large { position:relative !important; inset:auto !important; display:flex !important; flex-direction:column !important; justify-content:center !important; align-items:center !important; padding:8px !important; }
+            .interview-content { transform: translate(0px, var(--interview-offset-y)) !important; margin:0 auto !important; width:calc(100% - 32px) !important; }
+            .interview-columns { width:100% !important; display:flex !important; flex-direction:column !important; align-items:center !important; gap:12px !important; }
+            .interview-item { width:100% !important; max-width:100% !important; box-sizing:border-box !important; }
+            .phone-review p { font-size:20px !important; line-height:1.5 !important; padding:0 12px !important; }
+            .review-signature { font-size:14px !important; }
+            .phone-nav { display:flex !important; justify-content:center !important; gap:12px !important; margin-top:10px !important; }
+            .phone-nav-btn { width:56px !important; height:56px !important; font-size:22px !important; }
+            .phone-dot { width:10px !important; height:10px !important; }
+        }
+        @media (max-width: 420px) {
+            .reviews-section .phone-image-container-large, .phone-image-container-large { width:96vw !important; max-width:96vw !important; }
+            .phone-review p { font-size:18px !important; }
+            .phone-nav-btn { width:48px !important; height:48px !important; font-size:20px !important; }
+        }
+    </style>
     <meta name="color-scheme" content="light">
     <meta name="description" content="StripUp — платформа для девушек, обучение с нуля, честные выплаты, поддержка 24/7. Начни зарабатывать уже сегодня.">
 </head>
