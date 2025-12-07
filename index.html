@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="style.css">
     <meta name="color-scheme" content="light">
     <meta name="description" content="StripUp — платформа для девушек, обучение с нуля, честные выплаты, поддержка 24/7. Начни зарабатывать уже сегодня.">
-
 </head>
 <body>
     <!-- Floating Hearts -->
@@ -26,6 +25,7 @@
                 <ul>
                     <li><a href="#features">Преимущества</a></li>
                     <li><a href="#pricing">Тарифы</a></li>
+                    <li><a href="#calculator">Калькулятор</a></li>
                     <li><a href="#faq">Вопросы</a></li>
                     <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#contact">Контакты</a></li>
@@ -234,7 +234,7 @@
                 <div class="faq-item">
                     <div class="faq-box">
                         <div class="faq-question">
-                            <span>Как устроена система оплата?</span>
+                            <span>Как устроена система оплаты?</span>
                             <span>+</span>
                         </div>
                         <div class="faq-answer">
@@ -260,7 +260,7 @@
                             <span>+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом. Мы поможем с настройкаой, объясним все технические моменты и сделаем так, чтобы всё работало без перебоев.</p>
+                            <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом. Мы поможем с настройкой, объясним все технические моменты и сделаем так, чтобы всё работало без перебоев.</p>
                         </div>
                     </div>
                 </div>
@@ -311,40 +311,53 @@
                 <h2 class="section-title">Отзывы моделей</h2>
                 <div class="reviews-container">
                     <div class="phone-mockup">
-                        <div class="phone-box">
-                            <div class="phone">
-                                <div class="cat-ears"></div>
-                                <div class="phone-content">
+                        <!-- ТЕЛЕФОН С КОММЕНТАРИЯМИ ВНУТРИ ЭКРАНА -->
+                        <div class="phone-image-container-large">
+                            <img src="images/phone.png" alt="Отзывы моделей" class="phone-img-large">
+                            
+                            <!-- ✅ МАСКА ЭКРАНА -->
+                            <div class="phone-screen-mask">
+                                <div class="phone-content-overlay-large">
                                     <div class="phone-reviews-container">
                                         <div class="phone-review active">
-                                            <p>"StripUp изменил мою жизнь! Теперь я финансово независима и могу сама распоряжаться своим временем."</p>
-                                            <span class="review-signature">- Анастасия</span>
+                                            <div class="review-text-wrapper">
+                                                <p>"StripUp изменил мою жизнь! Теперь я финансово независима и могу сама распоряжаться своим временем."</p>
+                                                <span class="review-signature">- Анастасия</span>
+                                            </div>
                                         </div>
                                         <div class="phone-review">
-                                            <p>"Пришла в студию без опыта, очень переживала. Но команда поддержала, обучила всему с нуля. Сейчас имею стабильный доход и уверенность в завтрашнем дне."</p>
-                                            <span class="review-signature">- Алиса, 23 года</span>
+                                            <div class="review-text-wrapper">
+                                                <p>"Пришла в студию без опыта, очень переживала. Но команда поддержала, обучила всему с нуля. Сейчас имею стабильный доход и уверенность в завтрашнем дне."</p>
+                                                <span class="review-signature">- Алиса, 23 года</span>
+                                            </div>
                                         </div>
                                         <div class="phone-review">
-                                            <p>"Работаю уже полгода, всё прозрачно и честно. Выплаты вовремя, поддержка всегда на связи. Рекомендую всем девушкам!"</p>
-                                            <span class="review-signature">- София, 26 лет</span>
+                                            <div class="review-text-wrapper">
+                                                <p>"Работаю уже полгода, всё прозрачно и честно. Выплаты вовремя, поддержка всегда на связи. Рекомендую всем девушкам!"</p>
+                                                <span class="review-signature">- София, 26 лет</span>
+                                            </div>
                                         </div>
                                         <div class="phone-review">
-                                            <p>"Обучение прошла легко и интересно. Менеджеры отвечают на все вопросы, помогают в сложных ситуациях. Атмосфера в коллективе очень дружелюбная."</p>
-                                            <span class="review-signature">- Мария, 21 год</span>
+                                            <div class="review-text-wrapper">
+                                                <p>"Обучение прошла легко и интересно. Менеджеры отвечают на все вопросы, помогают в сложных ситуациях. Атмосфера в коллективе очень дружелюбная."</p>
+                                                <span class="review-signature">- Мария, 21 год</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- НАВИГАЦИЯ ВНУТРИ ТЕЛЕФОНА -->
                                     <div class="phone-nav">
                                         <button class="phone-nav-btn prev-btn">‹</button>
                                         <div class="phone-dots">
-                                            <span class="phone-dot active"></span>
-                                            <span class="phone-dot"></span>
-                                            <span class="phone-dot"></span>
-                                            <span class="phone-dot"></span>
+                                            <button class="phone-dot active"></button>
+                                            <button class="phone-dot"></button>
+                                            <button class="phone-dot"></button>
+                                            <button class="phone-dot"></button>
                                         </div>
                                         <button class="phone-nav-btn next-btn">›</button>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

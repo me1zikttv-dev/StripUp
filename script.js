@@ -72,7 +72,7 @@ function createHearts() {
     }
 }
 
-// Phone reviews carousel
+// Phone reviews carousel - УЛУЧШЕННАЯ АНИМАЦИЯ
 function initPhoneReviews() {
     const reviews = document.querySelectorAll('.phone-review');
     const dots = document.querySelectorAll('.phone-dot');
@@ -82,14 +82,53 @@ function initPhoneReviews() {
     if (!reviews.length || !dots.length) return;
     
     let currentReview = 0;
+    let autoRotateInterval = null;
+    const ROTATE_INTERVAL = 8000; // 8 секунд
+    let isAnimating = false;
 
-    function showReview(index) {
-        reviews.forEach(review => review.classList.remove('active'));
+    // ✅ УЛУЧШЕННАЯ ФУНКЦИЯ ПОКАЗА ОТЗЫВА
+    function showReview(index, direction = 'next') {
+        if (isAnimating) return;
+        
+        isAnimating = true;
+        
+        // Проверяем границы
+        if (index < 0) index = reviews.length - 1;
+        if (index >= reviews.length) index = 0;
+        
+        const currentActive = document.querySelector('.phone-review.active');
+        const nextActive = reviews[index];
+        
+        // Убираем active у всех точек
         dots.forEach(dot => dot.classList.remove('active'));
         
-        reviews[index].classList.add('active');
+        // Активируем точку нового отзыва
         dots[index].classList.add('active');
-        currentReview = index;
+        
+        // Если это первый показ или тот же отзыв
+        if (!currentActive || currentActive === nextActive) {
+            if (currentActive) currentActive.classList.remove('active');
+            nextActive.classList.add('active');
+            currentReview = index;
+            isAnimating = false;
+            return;
+        }
+        
+        // Добавляем классы для анимации
+        currentActive.classList.add('leaving');
+        currentActive.classList.remove('active');
+        
+        // Через небольшой delay показываем новый отзыв
+        setTimeout(() => {
+            nextActive.classList.add('active');
+            currentActive.classList.remove('leaving');
+            currentReview = index;
+            
+            // Сбрасываем флаг анимации
+            setTimeout(() => {
+                isAnimating = false;
+            }, 100);
+        }, 300);
     }
 
     function nextReview() {
@@ -97,7 +136,7 @@ function initPhoneReviews() {
         if (nextIndex >= reviews.length) {
             nextIndex = 0;
         }
-        showReview(nextIndex);
+        showReview(nextIndex, 'next');
     }
 
     function prevReview() {
@@ -105,48 +144,83 @@ function initPhoneReviews() {
         if (prevIndex < 0) {
             prevIndex = reviews.length - 1;
         }
-        showReview(prevIndex);
+        showReview(prevIndex, 'prev');
     }
 
-    // Auto-rotate reviews
-    let autoRotate = setInterval(nextReview, 5000);
-
-    // Event listeners
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            clearInterval(autoRotate);
-            nextReview();
-            autoRotate = setInterval(nextReview, 5000);
-        });
+    // Автопрокрутка
+    function startAutoRotate() {
+        if (autoRotateInterval) clearInterval(autoRotateInterval);
+        autoRotateInterval = setInterval(nextReview, ROTATE_INTERVAL);
     }
 
+    // Пауза автопрокрутки
+    function pauseAutoRotate() {
+        if (autoRotateInterval) {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = null;
+        }
+    }
+
+    // Запускаем автопрокрутку
+    startAutoRotate();
+
+    // Обработчики событий для кнопок
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            clearInterval(autoRotate);
+            pauseAutoRotate();
             prevReview();
-            autoRotate = setInterval(nextReview, 5000);
+            setTimeout(startAutoRotate, 10000);
         });
     }
 
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            pauseAutoRotate();
+            nextReview();
+            setTimeout(startAutoRotate, 10000);
+        });
+    }
+
+    // Обработчики для точек
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            clearInterval(autoRotate);
+            if (index === currentReview || isAnimating) return;
+            pauseAutoRotate();
             showReview(index);
-            autoRotate = setInterval(nextReview, 5000);
+            setTimeout(startAutoRotate, 10000);
         });
     });
 
-    // Pause auto-rotate on hover (только на десктопе)
-    const phoneContent = document.querySelector('.phone-content');
+    // Пауза при наведении (десктоп)
+    const phoneContent = document.querySelector('.phone-content-overlay-large');
     if (phoneContent && window.innerWidth > 768) {
-        phoneContent.addEventListener('mouseenter', () => {
-            clearInterval(autoRotate);
-        });
+        phoneContent.addEventListener('mouseenter', pauseAutoRotate);
+        phoneContent.addEventListener('mouseleave', startAutoRotate);
+    }
 
-        phoneContent.addEventListener('mouseleave', () => {
-            autoRotate = setInterval(nextReview, 5000);
+    // Пауза при касании (мобильные)
+    if (phoneContent && window.innerWidth <= 768) {
+        let touchTimer;
+        
+        phoneContent.addEventListener('touchstart', () => {
+            pauseAutoRotate();
+            clearTimeout(touchTimer);
+            
+            // Возобновляем через 15 секунд бездействия
+            touchTimer = setTimeout(() => {
+                startAutoRotate();
+            }, 15000);
         });
     }
+
+    // Пауза при уходе со страницы
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            pauseAutoRotate();
+        } else {
+            startAutoRotate();
+        }
+    });
 }
 
 // FAQ accordion
@@ -436,7 +510,7 @@ function initPhoneStyleEnvelope() {
 
 // Add loading animation for elements
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .phone-box, .letter-envelope-wrapper, .interview-item, .calculator-box, .result-card');
+    const elements = document.querySelectorAll('.pricing-box-horizontal, .about-combined-box, .letter-envelope-wrapper, .interview-item, .calculator-box, .result-card, .phone-image-container-large');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
