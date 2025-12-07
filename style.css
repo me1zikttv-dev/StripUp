@@ -952,6 +952,15 @@ section {
     margin-top: var(--phone-offset-y);
 }
 
+/* Адаптивное правило для самого изображения внутри макета телефона */
+.phone-img-large {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
 
 /* ✅ МАСКА ЭКРАНА ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
 .phone-screen-mask {
@@ -1035,11 +1044,14 @@ section {
     line-height: 1.5;
     color: var(--burgundy);
     text-align: center;
-    max-width: 85%;
+    max-width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
     overflow: hidden;
+    box-sizing: border-box;
+    /* Защита от длинных слов/URL, чтобы текст не выезжал за правый край */
+    word-break: break-word;
 }
 
 .review-signature {
@@ -1727,8 +1739,8 @@ footer {
     /* ✅ УМЕНЬШЕННАЯ МОБИЛЬНАЯ ВЕРСИЯ ТЕЛЕФОНА */
     /* ============================================ */
     .phone-image-container-large {
-        width: 180px; /* УМЕНЬШЕНО примерно в 2 раза с 280px */
-        height: 315px; /* УМЕНЬШЕНО примерно в 2 раза с 490px */
+        width: 240px; /* УМЕНЬШЕНО примерно в 2 раза с 280px; увеличено для читаемости на мобильных */
+        height: 420px; /* скорректировано, чтобы сохранить соотношение и вместить контент */
         margin: 0 auto;
     }
     
@@ -1903,8 +1915,8 @@ footer {
     /* ✅ ЕЩЁ МЕНЬШЕ ТЕЛЕФОН ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ */
     /* ============================================ */
     .phone-image-container-large {
-        width: 160px; /* УМЕНЬШЕНО ещё больше */
-        height: 280px; /* УМЕНЬШЕНО ещё больше */
+        width: 200px; /* чуть крупнее, чтобы содержимое не обрезалось */
+        height: 360px;
     }
     
     .phone-screen-mask {
@@ -1960,8 +1972,8 @@ footer {
     /* ✅ МИНИМАЛЬНЫЙ РАЗМЕР ТЕЛЕФОНА */
     /* ============================================ */
     .phone-image-container-large {
-        width: 140px; /* МИНИМАЛЬНЫЙ размер */
-        height: 245px; /* МИНИМАЛЬНЫЙ размер */
+        width: 180px; /* увеличено для минимальных экранов, чтобы навигация и текст были читаемы */
+        height: 320px; /* подогнано под ширину */
     }
     
     .phone-screen-mask {
@@ -1989,11 +2001,13 @@ footer {
     }
     
     .phone-nav-btn {
-        width: 18px;
-        height: 18px;
-        font-size: 10px;
-        background: transparent;
-        border: none;
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+        background: rgba(255,255,255,0.95);
+        border: 1px solid rgba(176,49,94,0.12);
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(176,49,94,0.06);
     }
     
     .phone-dot {
