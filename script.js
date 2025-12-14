@@ -39,12 +39,12 @@ function fixMobileAnchorScroll() {
 
             e.preventDefault();
 
-            const headerOffset = 60;
+            const headerOffset = 55;
             const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
             window.scrollTo({
                 top: y,
-                behavior: 'auto' // БЕЗ smooth на мобильных
+                behavior: 'auto'
             });
 
             // Закрываем мобильное меню
@@ -59,15 +59,15 @@ function createHearts() {
     const container = document.getElementById('hearts-container');
     if (!container) return;
     
-    const heartsCount = 20;
+    const heartsCount = 15;
     
     for (let i = 0; i < heartsCount; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart');
         heart.innerHTML = '💗';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDelay = Math.random() * 8 + 's';
-        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDelay = Math.random() * 6 + 's';
+        heart.style.fontSize = (Math.random() * 15 + 12) + 'px';
         container.appendChild(heart);
     }
 }
@@ -83,10 +83,9 @@ function initPhoneReviews() {
     
     let currentReview = 0;
     let autoRotateInterval = null;
-    const ROTATE_INTERVAL = 8000; // 8 секунд
+    const ROTATE_INTERVAL = 8000;
     let isAnimating = false;
 
-    // ✅ УЛУЧШЕННАЯ ФУНКЦИЯ ПОКАЗА ОТЗЫВА
     function showReview(index, direction = 'next') {
         if (isAnimating) return;
         
@@ -124,7 +123,6 @@ function initPhoneReviews() {
             currentActive.classList.remove('leaving');
             currentReview = index;
             
-            // Сбрасываем флаг анимации
             setTimeout(() => {
                 isAnimating = false;
             }, 100);
@@ -206,7 +204,6 @@ function initPhoneReviews() {
             pauseAutoRotate();
             clearTimeout(touchTimer);
             
-            // Возобновляем через 15 секунд бездействия
             touchTimer = setTimeout(() => {
                 startAutoRotate();
             }, 15000);
@@ -253,7 +250,6 @@ function initFAQ() {
 
 // Smooth scrolling for navigation links (ТОЛЬКО ДЛЯ ДЕСКТОПА)
 function initSmoothScroll() {
-    // На мобильных используем fixMobileAnchorScroll
     if (window.innerWidth <= 768) return;
     
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
@@ -262,7 +258,7 @@ function initSmoothScroll() {
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
             if (target) {
-                const headerHeight = 80;
+                const headerHeight = 70;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = targetPosition - headerHeight;
                 
@@ -280,12 +276,12 @@ function initHeaderScroll() {
     const header = document.querySelector('header');
     if (header) {
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 80) {
                 header.style.background = 'rgba(255, 247, 249, 0.98)';
-                header.style.boxShadow = '0 5px 30px rgba(176, 49, 94, 0.2)';
+                header.style.boxShadow = '0 4px 25px rgba(176, 49, 94, 0.18)';
             } else {
                 header.style.background = 'rgba(255, 247, 249, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(176, 49, 94, 0.15)';
+                header.style.boxShadow = '0 2px 15px rgba(176, 49, 94, 0.15)';
             }
         });
     }
@@ -302,14 +298,12 @@ function initMobileMenu() {
             navMenu.classList.toggle('active');
         });
         
-        // Close menu when clicking on links
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
             });
         });
         
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (navMenu.classList.contains('active') && 
                 !navMenu.contains(e.target) && 
@@ -318,7 +312,6 @@ function initMobileMenu() {
             }
         });
         
-        // Закрытие по Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
@@ -329,7 +322,6 @@ function initMobileMenu() {
 
 // Calculator functionality В РУБЛЯХ
 function initCalculator() {
-    // DOM elements
     const incomeSlider = document.getElementById('income');
     const incomeValue = document.getElementById('income-value');
     const daysSlider = document.getElementById('days');
@@ -361,7 +353,6 @@ function initCalculator() {
         }).format(amount) + ' ₽';
     }
 
-    // Calculate income
     function calculateIncome() {
         const dailyIncome = parseInt(incomeSlider.value);
         const workDays = parseInt(daysSlider.value);
@@ -385,12 +376,10 @@ function initCalculator() {
         netIncomeEl.textContent = formatCurrency(netIncome);
     }
 
-    // Инициализируем значения при загрузке
     function initializeValues() {
         updateSliderValue(incomeSlider, incomeValue);
         updateSliderValue(daysSlider, daysValue);
         
-        // Устанавливаем начальные значения
         const initialDailyIncome = 20000;
         const initialWorkDays = 20;
         grossIncomeEl.textContent = formatCurrency(initialDailyIncome * initialWorkDays);
@@ -398,7 +387,6 @@ function initCalculator() {
         netIncomeEl.textContent = formatCurrency(initialDailyIncome * initialWorkDays);
     }
 
-    // EVENTS
     incomeSlider.addEventListener('input', () => {
         updateSliderValue(incomeSlider, incomeValue);
         calculateIncome();
@@ -418,7 +406,6 @@ function initCalculator() {
         });
     });
 
-    // Инициализация
     initializeValues();
     calculateIncome();
 }
@@ -431,7 +418,6 @@ function initPhoneStyleEnvelope() {
     
     if (!envelope) return;
     
-    // 1. Анимация сердечка на печати
     if (sealHeart) {
         const heartColors = ['#ff6b9d', '#ff5a94', '#b0315e', '#ff7ba8'];
         let colorIndex = 0;
@@ -446,31 +432,25 @@ function initPhoneStyleEnvelope() {
         }, 2000);
     }
     
-    // 2. Клик по конверту
     envelope.addEventListener('click', function(e) {
-        // Не открываем если кликнули по ссылке
         if (e.target.closest('.envelope-join-text')) return;
         
-        // Легкая анимация при клике
         this.style.transform = 'scale(0.98)';
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 200);
     });
     
-    // 3. Клик по тексту "Присоединиться"
     if (joinText) {
         joinText.addEventListener('click', function(e) {
-            // Пульсация при клике
             this.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 this.style.transform = 'scale(1.05)';
             }, 150);
             
-            // Анимация конверта
             const envelope = this.closest('.letter-envelope');
             if (envelope) {
-                envelope.style.transform = 'translateY(-5px)';
+                envelope.style.transform = 'translateY(-4px)';
                 setTimeout(() => {
                     envelope.style.transform = 'translateY(0)';
                 }, 300);
@@ -478,12 +458,11 @@ function initPhoneStyleEnvelope() {
         });
     }
     
-    // 4. Автоматическое открытие клапана при наведении (только на десктопе)
     if (window.innerWidth > 768) {
         envelope.addEventListener('mouseenter', function() {
             const flap = this.querySelector('.envelope-flap');
             if (flap) {
-                flap.style.transform = 'rotateX(-25deg)';
+                flap.style.transform = 'rotateX(-22deg)';
             }
             
             const joinText = this.querySelector('.envelope-join-text');
@@ -502,7 +481,7 @@ function initPhoneStyleEnvelope() {
             const joinText = this.querySelector('.envelope-join-text');
             if (joinText) {
                 joinText.style.opacity = '0';
-                joinText.style.transform = 'translateY(20px)';
+                joinText.style.transform = 'translateY(18px)';
             }
         });
     }
@@ -523,8 +502,8 @@ function animateOnScroll() {
     
     elements.forEach(element => {
         element.style.opacity = '0';
-        element.style.transform = 'translateY(50px)';
-        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        element.style.transform = 'translateY(40px)';
+        element.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
         observer.observe(element);
     });
 }
@@ -542,9 +521,8 @@ function initParallaxEffect() {
                 const sectionHeight = contactSection.offsetHeight;
                 const windowHeight = window.innerHeight;
                 
-                // Параллакс эффект для конверта
                 if (scrolled > sectionTop - windowHeight && scrolled < sectionTop + sectionHeight) {
-                    const rate = (scrolled - sectionTop) * 0.05;
+                    const rate = (scrolled - sectionTop) * 0.04;
                     envelope.style.transform = `translateY(${rate}px)`;
                 }
             }
@@ -554,62 +532,50 @@ function initParallaxEffect() {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM загружен, инициализируем...');
-    
-    // 1. Сначала фиксируем скролл на мобильных (ТОЛЬКО ОДИН РАЗ при загрузке)
     fixMobileInitialScroll();
     fixMobileAnchorScroll();
     
-    // 2. Основные функции
     createHearts();
     initPhoneReviews();
     initFAQ();
-    initSmoothScroll(); // Только для десктопа
+    initSmoothScroll();
     initHeaderScroll();
     initMobileMenu();
     initCalculator();
     initPhoneStyleEnvelope();
-    initParallaxEffect(); // Только для десктопа
+    initParallaxEffect();
     
-    // Анимация появления конверта
     const envelopeWrapper = document.querySelector('.letter-envelope-wrapper');
     
     if (envelopeWrapper) {
         envelopeWrapper.style.opacity = '0';
-        envelopeWrapper.style.transform = 'translateY(30px) scale(0.9)';
-        envelopeWrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        envelopeWrapper.style.transform = 'translateY(25px) scale(0.9)';
+        envelopeWrapper.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         
         setTimeout(() => {
             envelopeWrapper.style.opacity = '1';
             envelopeWrapper.style.transform = 'translateY(0) scale(1)';
-        }, 400);
+        }, 300);
     }
     
-    // Включаем плавный скролл после полной загрузки
     window.addEventListener('load', function() {
-        console.log('Страница полностью загружена');
         animateOnScroll();
-        
-        // Включаем плавный скролл
         document.documentElement.classList.add('smooth-scroll-ready');
     });
 });
 
 // При изменении ориентации только обновляем обработчики
 window.addEventListener('orientationchange', function() {
-    console.log('Ориентация изменена');
-    // Только обновляем фикс для якорных ссылок
     setTimeout(fixMobileAnchorScroll, 100);
 });
 
-// Адаптивность для мобильных устройств (без лишних скроллов)
+// Адаптивность для мобильных устройств
 function handleMobileAdjustments() {
     const envelope = document.querySelector('.letter-envelope');
     
     if (window.innerWidth < 768) {
-        // Уменьшаем анимации на мобильных
         if (envelope) {
-            envelope.style.transition = 'transform 0.3s ease';
+            envelope.style.transition = 'transform 0.25s ease';
         }
     }
 }
@@ -625,7 +591,6 @@ document.addEventListener('touchstart', function() {
 // Дополнительные интерактивные эффекты (только для десктопа)
 if (window.innerWidth > 768) {
     document.addEventListener('DOMContentLoaded', function() {
-        // Эффект при скролле к конверту
         const contactSection = document.getElementById('contact');
         const envelope = document.querySelector('.letter-envelope');
         
@@ -633,11 +598,10 @@ if (window.innerWidth > 768) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Легкая анимация конверта при появлении секции
-                        envelope.style.transform = 'scale(1.05)';
+                        envelope.style.transform = 'scale(1.04)';
                         setTimeout(() => {
                             envelope.style.transform = 'scale(1)';
-                        }, 300);
+                        }, 250);
                     }
                 });
             }, { threshold: 0.3 });
