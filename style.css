@@ -933,7 +933,9 @@ section {
     align-items: center;
 }
 
-/* ТЕЛЕФОН ДЛЯ ДЕСКТОПА */
+/* ============================================ */
+/* ✅ ТЕЛЕФОН ДЛЯ ДЕСКТОПА - С КОРРЕКТНЫМИ РАЗМЕРАМИ */
+/* ============================================ */
 .phone-image-container-large {
     width: 580px;
     height: 660px;
@@ -950,7 +952,7 @@ section {
     object-fit: contain;
 }
 
-/* МАСКА ЭКРАНА ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
+/* ✅ МАСКА ЭКРАНА ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
 .phone-screen-mask {
     position: absolute;
     top: 70px;
@@ -962,7 +964,7 @@ section {
     z-index: 2;
 }
 
-/* ОСНОВНОЙ КОНТЕЙНЕР КОММЕНТАРИЕВ */
+/* ✅ ОСНОВНОЙ КОНТЕЙНЕР КОММЕНТАРИЕВ */
 .phone-content-overlay-large {
     position: absolute;
     inset: 0;
@@ -983,7 +985,7 @@ section {
     overflow: hidden;
 }
 
-/* АНИМАЦИЯ КОММЕНТАРИЕВ ДЛЯ ДЕСКТОПА */
+/* ✅ АНИМАЦИЯ КОММЕНТАРИЕВ ДЛЯ ДЕСКТОПА */
 .phone-review {
     position: absolute;
     inset: 0;
@@ -1023,7 +1025,7 @@ section {
     box-sizing: border-box;
 }
 
-/* ТЕКСТ КОММЕНТАРИЕВ ДЛЯ ДЕСКТОПА */
+/* ✅ ТЕКСТ КОММЕНТАРИЕВ ДЛЯ ДЕСКТОПА */
 .phone-review p {
     font-style: italic;
     margin-bottom: 40px;
@@ -1048,7 +1050,7 @@ section {
     margin-top: 8px;
 }
 
-/* НАВИГАЦИЯ ВНУТРИ ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
+/* ✅ НАВИГАЦИЯ ВНУТРИ ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
 .phone-nav {
     position: absolute;
     bottom: 15px;
@@ -1849,75 +1851,35 @@ html.smooth-scroll-ready {
 }
 
 /* ============================== */
-/* ✅ ИСПРАВЛЕНИЕ ТЕЛЕФОНА ДЛЯ МОБИЛЬНЫХ */
+/* ✅ ИСПРАВЛЕНИЕ ТЕЛЕФОНА ДЛЯ МОБИЛЬНЫХ - ВАЖНЕЙШИЙ ФИКС */
 /* ============================== */
 
-/* Убираем проблемный блок с !important и 98vw */
+/* 🔥 ЖЁСТКИЙ ФИКС ДЛЯ РЕАЛЬНЫХ МОБИЛЬНЫХ - КОНТРОЛЬ РАЗМЕРА */
+.phone-image-container-large {
+    max-width: 380px;
+    width: 90vw;
+}
+
+.phone-img-large {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 🔥 ПЕРЕКРЫВАЕМ ПРОБЛЕМНЫЙ БЛОК НА МОБИЛЬНЫХ */
 @media (max-width: 900px) {
     .phone-image-container-large {
-        width: 90vw; /* Уменьшаем с 98vw */
-        max-width: 420px; /* Добавляем ограничение по ширине */
+        width: auto !important;
+        max-width: 380px !important;
         height: auto;
         margin: 0 auto;
     }
-    
-    /* Принудительные центровки без разрушительных !important */
-    .reviews-interview-container { 
-        align-items: center; 
-        flex-direction: column;
-    }
-    
-    .interview-content { 
-        transform: translate(0px, var(--interview-offset-y)); 
-        margin: 0 auto; 
-    }
-    
-    .interview-columns { 
-        width: 100%; 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-    }
-
-    .phone-content-overlay-large { 
-        justify-content: center; 
-        align-items: center; 
-    }
-
-    .phone-review p { 
-        font-size: 18px; 
-        line-height: 1.5; 
-        padding: 0 12px; 
-    }
-    
-    .review-signature { 
-        font-size: 14px; 
-    }
-    
-    .phone-nav { 
-        display:flex; 
-        justify-content:center; 
-        gap:12px; 
-        margin-top:12px; 
-    }
-    
-    .phone-nav-btn { 
-        width:44px; 
-        height:44px; 
-        font-size:20px; 
-    }
-    
-    .phone-dot { 
-        width:8px; 
-        height:8px; 
-    }
 }
 
-/* Правильное ограничение телефона на мобильных */
+/* ✅ СОВРЕМЕННОЕ РЕШЕНИЕ С clamp() - ИДЕАЛЬНО ДЛЯ ВСЕХ УСТРОЙСТВ */
 @media (max-width: 768px) {
     .phone-image-container-large {
-        width: 85vw !important;      /* ⬅ уменьшаем */
-        max-width: 360px !important; /* ⬅ физический предел */
+        width: clamp(280px, 85vw, 420px) !important;
+        max-width: none !important;
         margin: 0 auto !important;
         height: auto !important;
     }
@@ -1958,8 +1920,7 @@ html.smooth-scroll-ready {
 /* Для маленьких экранов */
 @media (max-width: 480px) {
     .phone-image-container-large {
-        width: 82vw !important;
-        max-width: 320px !important;
+        width: clamp(260px, 82vw, 380px) !important;
     }
     
     .phone-screen-mask {
@@ -1990,8 +1951,7 @@ html.smooth-scroll-ready {
 /* Для очень маленьких экранов */
 @media (max-width: 360px) {
     .phone-image-container-large {
-        width: 78vw !important;
-        max-width: 280px !important;
+        width: clamp(240px, 78vw, 340px) !important;
     }
     
     .phone-screen-mask {
