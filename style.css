@@ -8,19 +8,20 @@
     --box-border: 2px solid var(--burgundy);
     --interview-offset-x: 20px;
     --interview-offset-y: 38px;
-    --phone-offset-y: -120px;
 }
 
 /* ============================================ */
 /* 🖥 ЖЁСТКИЙ ФИКС ДЛЯ ПК - ОСНОВНОЙ РАЗМЕР */
 /* ============================================ */
-.phone-image-container-large {
-    width: 600px !important;
+/* 🔥 Увеличенный телефон */
+.phone-image-container-large{
+    width: 720px !important;
+    height: auto !important;
+    aspect-ratio: 600 / 700;
+    position: relative;
+    margin: 0 auto;
     max-width: none !important;
     min-width: 600px !important;
-    margin: 0 auto !important;
-    height: 700px !important;
-    position: relative;
 }
 
 /* ============================================ */
@@ -391,7 +392,7 @@ section {
 /* Features Section */
 .features-image-container {
     width: 100%;
-    max-width: 700px;
+    max-width: 1200px;
     margin: 0 auto;
     background: transparent;
 }
@@ -946,349 +947,491 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
 
 .phone-mockup {
     flex: 0 0 auto;
-    width: 100%;
+    width: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ИЗОБРАЖЕНИЕ ВНУТРИ ТЕЛЕФОНА */
-.phone-img-large {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
+/* =========================
+   REVIEWS PHONE: СОДЕРЖАНИЕ ПОД РАМКОЙ
+   ========================= */
+
+/* Контейнер телефона */
+.phone-image-container-large{
+  position: relative;
 }
 
-/* МАСКА ЭКРАНА ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
-.phone-screen-mask {
-    position: absolute;
-    top: 70px;
-    left: 22px;
-    right: 22px;
-    bottom: 3px;
-    overflow: hidden;
-    border-radius:22px;
-    z-index: 2;
+/* ✅ Телефон-рамка всегда сверху */
+.phone-frame{
+  position: relative;
+  z-index: 5;
+  pointer-events: none; /* чтобы клики проходили на кнопки под ним */
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-/* ОСНОВНОЙ КОНТЕЙНЕР КОММЕНТАРИЕВ */
-.phone-content-overlay-large {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    box-sizing: border-box;
+/* ✅ Экран телефона (контент под рамкой) */
+/* 🔽 опускаем отзывы вниз */
+.phone-screen-mask{
+  position: absolute;
+  top: 60px;        /* ⬅️ БЫЛО 70 */
+  left: 25px;
+  right: 25px;
+  bottom: 8px;      /* чуть больше снизу */
+  border-radius: 22px;
+  overflow: hidden;
+  z-index: 2; /* ниже рамки */
 }
 
-/* Контейнер для отзывов */
-.phone-reviews-container {
-    flex: 1;
-    position: relative;
-    width: 100%;
-    height: calc(100% - 45px);
-    overflow: hidden;
+/* Контент экрана */
+.phone-screen-content{
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* АНИМАЦИЯ КОММЕНТАРИЕВ ДЛЯ ДЕСКТОПА */
-.phone-review {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 80px 60px;
-    box-sizing: border-box;
-    opacity: 0;
-    transform: translateX(100px);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: none;
+/* Слайды */
+.phone-slides{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
 
-.phone-review.active {
-    opacity: 1;
-    transform: translateX(0px);
-    pointer-events: auto;
+/* Слайд - ИСПРАВЛЕННЫЙ КОД (без translateX) */
+.phone-slide{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .35s ease;  /* только прозрачность */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
-.phone-review.leaving {
-    opacity: 0;
-    transform: translateX(0px);
+.phone-slide.active{
+  opacity: 1;
 }
 
-/* Обертка для текста */
-.review-text-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 100%;
-    padding: 50px;
-    box-sizing: border-box;
+.phone-slide img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  display: block;
+}
+.phone-slide{
+  padding: 16px;
 }
 
-/* ТЕКСТ КОММЕНТАРИЕВ ДЛЯ ДЕСКТОПА */
-.phone-review p {
-    font-style: italic;
-    margin-bottom: 40px;
-    font-size: 18px;
-    line-height: 1.5;
-    color: var(--burgundy);
-    text-align: center;
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-    overflow: hidden;
-    box-sizing: border-box;
-    word-break: break-word;
+.phone-slide img{
+  transform: scale(0.69);
 }
 
-.review-signature {
-    font-size: 13px;
-    color: var(--dark-pink);
-    font-weight: 500;
-    text-align: center;
-    margin-top: 8px;
+/* ✅ Навигация находится ПОД рамкой, но кликается */
+/* 🔥 стрелки ближе друг к другу */
+.phone-nav{
+  position: absolute;
+  bottom: 210px;
+  left: 190px;     /* было 130 */
+  right: 190px;    /* было 130 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  z-index: 3; /* под рамкой (5), но над картинкой */
+  pointer-events: auto;
 }
 
-/* НАВИГАЦИЯ ВНУТРИ ТЕЛЕФОНА ДЛЯ ДЕСКТОПА */
-.phone-nav {
-    position: absolute;
-    bottom: 15px;
-    left: 130px;
-    right: 130px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
+.phone-nav-btn{
+  background: rgba(255,255,255,0.97);
+  color: var(--burgundy);
+  border: 2px solid rgba(176,49,94,0.12);
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(176,49,94,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+}
+
+.phone-nav-btn:hover{
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(176,49,94,0.12);
+}
+
+.phone-nav-btn:active{
+  transform: scale(0.95);
+}
+
+.phone-dots{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+}
+.phone-dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: rgba(176,49,94,0.28);
+  transition: transform .2s ease, background .2s ease;
+}
+.phone-dot.active{
+  background: var(--burgundy);
+  transform: scale(1.35);
+}
+
+/* Мобилка: маска проценты + удобная навигация */
+@media (max-width: 768px){
+  .phone-image-container-large{
+    width: 92vw !important;
+    max-width: 460px !important;
+    min-width: unset !important;
+    aspect-ratio: 600 / 700;
+    margin: 0 auto !important;
+  }
+  
+  .phone-screen-mask{
+    top: 8%;
+    left: 4%;
+    right: 4%;
+    bottom: 7%;
+    border-radius: 16px;
+  }
+  .phone-nav{
+    left: 18px;
+    right: 18px;
+    bottom: 10px;
+  }
+  .phone-nav-btn{
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+/* ===================== */
+/* НОВЫЙ КОНВЕРТ С ПИСЬМОМ */
+/* ===================== */
+.contact {
+    padding: 60px 0;
     background: transparent;
-    border: none;
-    box-shadow: none;
-    pointer-events: auto;
-    z-index: 10;
 }
 
-/* СТРЕЛОЧКИ */
-.phone-nav-btn {
-    background: rgba(255,255,255,0.97);
-    color: var(--burgundy);
-    border: 2px solid rgba(176,49,94,0.12);
-    width: 24px;
-    height: 24px;
-    padding: 3px;
-    font-size: 16px;
-    cursor: pointer;
-    opacity: 0.95;
-    transition: transform 0.16s ease, opacity 0.16s ease, box-shadow 0.16s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(176,49,94,0.06);
-}
-
-.phone-nav-btn:hover {
-    opacity: 1;
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(176,49,94,0.12);
-}
-
-.phone-nav-btn:active {
-    transform: scale(0.9);
-}
-
-.phone-nav-btn:active {
-    transform: scale(0.95);
-    background-color: var(--light-pink);
-}
-
-.phone-nav-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    border-color: var(--light-pink);
-}
-
-/* Точки-индикаторы */
-.phone-dots {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-
-.phone-dot {
-    width: 5px;
-    height: 5px;
-    background: rgba(176, 49, 94, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    padding: 0;
-    flex-shrink: 0;
-}
-
-.phone-dot.active {
-    background: var(--burgundy);
-    transform: scale(1.3);
-    box-shadow: 0 0 4px rgba(176, 49, 94, 0.5);
-}
-
-.phone-dot:hover:not(.active) {
-    background: rgba(176, 49, 94, 0.5);
-    transform: scale(1.2);
-}
-
-/* Contact Section */
 .letter-envelope-container {
     position: relative;
     width: 100%;
     max-width: 360px;
     margin: 40px auto 0;
-}
-
-.letter-envelope {
-    position: relative;
-    width: 100%;
-    height: 220px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.envelope-box {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: var(--powder-pink);
-    border: 8px solid #ff9ec0;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.envelope-ears {
-    position: absolute;
-    top: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 28px;
-    background: var(--powder-pink);
-    border-radius: 50% 50% 0 0;
-    z-index: 1;
-}
-
-.ear {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    background: var(--powder-pink);
-    border-radius: 50%;
-    top: -14px;
-    border: 8px solid #ff9ec0;
-}
-
-.ear.left {
-    left: 4px;
-}
-
-.ear.right {
-    right: 4px;
-}
-
-.envelope-flap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(135deg, #ff7ba8, #ff5a94);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform 0.5s ease;
-    z-index: 10;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 22px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-}
-
-.seal-heart {
-    font-size: 28px;
-    animation: heartbeat 1.5s ease-in-out infinite;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
-}
-
-.envelope-front {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(135deg, var(--powder-pink), var(--light-pink));
-    z-index: 5;
-}
-
-.envelope-body {
-    width: 100%;
-    height: 100%;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
 }
 
-.envelope-join-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--burgundy);
-    text-decoration: none;
-    text-align: center;
-    padding: 12px 26px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 249, 0.95));
-    border-radius: 45px;
-    border: 2px solid var(--burgundy);
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(18px);
-    box-shadow: 0 3px 12px rgba(176, 49, 94, 0.18);
-    z-index: 20;
+/* Переменные для нового конверта */
+:root{
+  --env-w: 320px;
+  --env-h: 210px;
+  --pink-base:  #f3c6cf;
+  --pink-light: #f7d7dd;
+  --pink-mid:   #f1bac6;
+  --pink-dark:  #efadbd;
+  --seal:       #e66a8a;
+  --ink-color:  #d95375;
+
+  /* тайминги */
+  --flap-dur: .7s;
+  --flap-delay: .1s;
+  --letter-delay: .75s; /* старт письма после открытия */
+  --letter-dur: 1.05s;
 }
 
-.letter-envelope:hover .envelope-flap {
-    transform: rotateX(-22deg);
+/* КОНВЕРТ */
+.envelope{
+  width:var(--env-w);
+  height:var(--env-h);
+  position:relative;
+  perspective:900px;
+  cursor:pointer;
+  overflow:hidden; /* письмо прячется внутри */
+  user-select:none;
+  /* Для мобильных: увеличиваем область нажатия */
+  padding: 10px;
+  margin: -10px;
+  transform-origin: center;
+}
+/* когда открываем — письмо может выехать наружу */
+.envelope:hover{ overflow:visible; }
+
+/* Для touch-устройств: активное состояние при нажатии */
+@media (hover: none) and (pointer: coarse) {
+  .envelope.touch-active .flap--top{
+    transform: rotateX(180deg);
+    z-index:1;
+  }
+  
+  .envelope.touch-active .seal{
+    opacity:0;
+    transform:translate(-50%,-70%) scale(.6) rotate(-45deg);
+    z-index:1;
+  }
+  
+  .envelope.touch-active .letter{
+    animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards;
+    animation-delay: var(--letter-delay);
+    overflow: visible;
+  }
+  
+  .envelope.touch-active{ overflow:visible; }
 }
 
-.letter-envelope:hover .envelope-join-text {
-    opacity: 1;
-    transform: translateY(0);
+.env__back{
+  position:absolute;
+  inset:0;
+  background: var(--pink-base);
+  border-radius:12px;
+  box-shadow:0 18px 30px rgba(0,0,0,.12);
+  z-index:0;
+  border: 2px solid var(--burgundy);
 }
 
-.letter-envelope:hover {
-    transform: translateY(-4px);
+/* ПИСЬМО: тетрадный лист в линейку */
+.letter{
+  position:absolute;
+  left:50%;
+  top:18px;
+  width:88%;
+  height:80%;
+  background:#fff;
+  border-radius:10px;
+
+  /* старт: внутри конверта (не торчит и не "появляется снизу") */
+  transform: translate(-50%, 22px);
+  box-shadow: 0 4px 15px rgba(0,0,0,.10);
+
+  /* под карманом */
+  z-index:1;
+
+  will-change: transform;
+  
+  /* Тетрадная линейка: горизонтальные линии */
+  background-image: 
+    /* Красная вертикальная линия слева */
+    linear-gradient(
+      to right,
+      var(--pink-mid) 0px,
+      var(--pink-mid) 2px,
+      transparent 2px,
+      transparent 100%
+    ),
+    /* Горизонтальные линии в линейку */
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 29px, /* Расстояние между линиями */
+      var(--pink-light) 29px,
+      var(--pink-light) 30px  /* Толщина линии 1px */
+    );
+  
+  /* Позиционирование линий */
+  background-position: 
+    15px 0,  /* Красная линия с отступом 15px */
+    0 0;     /* Горизонтальные линии */
+  
+  background-size: 
+    100% 100%, /* Красная линия на всю высоту */
+    100% 30px; /* Горизонтальные линии с шагом 30px */
+  
+  background-repeat: no-repeat, repeat;
+  
+  /* Центрирование содержимого */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.envelope-join-text:hover {
-    background: linear-gradient(135deg, var(--burgundy), var(--dark-pink));
-    color: white;
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 6px 20px rgba(176, 49, 94, 0.25);
-    border-color: var(--burgundy);
+/* Кликабельный текст в рамке */
+.letter-link {
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px 35px; /* Увеличиваем для мобильных */
+  border: 2px solid var(--ink-color);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  /* Для мобильных: увеличиваем область клика */
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-link:hover,
+.letter-link:active {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.letter-link-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--ink-color);
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Декоративные элементы рамки */
+.letter-link::before,
+.letter-link::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink-color);
+  border-radius: 50%;
+}
+
+.letter-link::before {
+  top: -6px;
+  left: -6px;
+}
+
+.letter-link::after {
+  top: -6px;
+  right: -6px;
+}
+
+.letter-link::before,
+.letter-link::after {
+  background-color: #fff;
+}
+
+/* Ключевая анимация: сначала "достали вверх", потом "положили" */
+@keyframes pullAndLay {
+  0%   { transform: translate(-50%, 22px);  z-index:1; }
+  /* достали — высоко вверх (ещё под карманом) */
+  58%  { transform: translate(-50%, -120px); z-index:1; box-shadow: 0 16px 30px rgba(0,0,0,.18); }
+  /* шаг по слоям: теперь письмо сверху */
+  59%  { transform: translate(-50%, -120px); z-index:6; }
+  /* положили на конверт — ниже */
+  100% { transform: translate(-50%, -55px); z-index:6; box-shadow: 0 12px 24px rgba(0,0,0,.16); }
+}
+
+.flap{ position:absolute; inset:0; border-radius:12px; }
+
+/* "карман" (передняя часть) — он и создаёт ощущение «изнутри» */
+.flap--left{
+  background: var(--pink-dark);
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+  z-index:2;
+}
+.flap--right{
+  background: var(--pink-mid);
+  clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+  z-index:2;
+}
+.flap--bottom{
+  background: var(--pink-dark);
+  clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+  z-index:3;
+}
+
+/* верхний клапан */
+.flap--top{
+  background: var(--pink-light);
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top center;
+  transition: transform var(--flap-dur) ease var(--flap-delay);
+  z-index:5;
+  backface-visibility:hidden;
+}
+
+/* печать */
+.seal{
+  position:absolute;
+  left:50%;
+  top:52%;
+  width:36px;
+  height:40px;
+  background:var(--seal);
+  transform:translate(-50%,-50%) rotate(-45deg);
+  z-index:6;
+  transition: transform .5s ease var(--flap-delay), opacity .35s ease var(--flap-delay);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+.seal::before,
+.seal::after{
+  content:"";
+  position:absolute;
+  width:36px;
+  height:36px;
+  background:var(--seal);
+  border-radius:50%;
+}
+.seal::before{ top:-18px; left:0; }
+.seal::after{ left:18px; top:0; }
+
+/* HOVER: сначала открываем, потом достаём и кладём письмо */
+.envelope:hover .flap--top{
+  transform: rotateX(180deg);
+  z-index:1; /* уходит назад */
+}
+
+.envelope:hover .seal{
+  opacity:0;
+  transform:translate(-50%,-70%) scale(.6) rotate(-45deg);
+  z-index:1;
+}
+
+.envelope:hover .letter{
+  animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: var(--letter-delay);
+}
+
+/* при уходе курсора всё возвращается внутрь */
+.envelope:not(:hover) .letter{
+  animation:none;
+  transform: translate(-50%, 22px);
+  z-index:1;
+  box-shadow: 0 4px 15px rgba(0,0,0,.10);
+}
+
+/* Делаем ссылку некликабельной, когда письмо внутри конверта */
+.envelope:not(:hover) .letter-link,
+.envelope:not(.touch-active) .letter-link {
+  pointer-events: none;
+}
+
+.envelope:hover .letter-link,
+.envelope.touch-active .letter-link {
+  pointer-events: auto;
 }
 
 /* Footer */
@@ -1380,19 +1523,9 @@ footer {
 }
 
 /* ==================== */
-/* МОБИЛЬНАЯ ВЕРСИЯ - ПРАВИЛЬНЫЙ ПОДХОД */
+/* МОБИЛЬНАЯ ВЕРСИЯ */
 /* ==================== */
 @media (max-width: 768px) {
-    /* Убираем жесткий фикс для ПК на мобильных */
-    .phone-image-container-large {
-        width: 85vw !important;
-        max-width: 360px !important;
-        min-width: unset !important;
-        height: auto !important;
-        margin: 0 auto !important;
-    }
-    
-    /* Обнуляем все возможные трансформации родителей */
     .phone-mockup,
     .reviews-container,
     .reviews-section,
@@ -1403,7 +1536,6 @@ footer {
         width: 100% !important;
     }
     
-    /* Остальные мобильные стили */
     html {
         scroll-behavior: auto !important;
         overflow-x: hidden;
@@ -1436,7 +1568,6 @@ footer {
     :root {
         --interview-offset-x: 0px;
         --interview-offset-y: 10px;
-        --phone-offset-y: -15px;
     }
     
     nav ul {
@@ -1482,7 +1613,6 @@ footer {
         height: 40px;
     }
     
-    /* Мобильная Hero секция */
     .main-hero-section {
         padding: 60px 0 30px;
         margin-top: 55px;
@@ -1554,7 +1684,6 @@ footer {
         font-weight: 400;
     }
     
-    /* ФОТО НА МОБИЛЬНЫХ */
     .about-image-combined {
         height: 280px;
         flex: none;
@@ -1589,7 +1718,6 @@ footer {
         border: 2px solid var(--burgundy);
     }
     
-    /* Общие стили для мобильных */
     section {
         padding: 35px 0;
         width: 100%;
@@ -1601,7 +1729,6 @@ footer {
         margin-bottom: 25px;
     }
     
-    /* Мобильные Pricing карточки */
     .pricing-cards-horizontal {
         flex-direction: column;
         align-items: center;
@@ -1638,7 +1765,6 @@ footer {
         font-size: 13px;
     }
     
-    /* Мобильный калькулятор */
     .calculator {
         padding: 35px 0;
     }
@@ -1672,7 +1798,6 @@ footer {
         font-size: 22px;
     }
     
-    /* ФИКС ДЛЯ ЦЕННИКА НА МОБИЛЬНЫХ */
     .slider-container {
         position: relative;
         padding-top: 40px;
@@ -1712,7 +1837,6 @@ footer {
         margin-top: 15px;
     }
     
-    /* Мобильные отзывы и интервью */
     .reviews-interview-container {
         flex-direction: column;
         gap: 25px;
@@ -1748,29 +1872,22 @@ footer {
         font-size: 14px;
     }
     
-    /* Мобильная версия телефона */
-    .phone-screen-mask {
-        top: 8%;
-        left: 4%;
-        right: 4%;
-        bottom: 7%;
-        border-radius: 16px;
+    /* Адаптивность для нового конверта на мобильных */
+    .contact {
+        padding: 40px 0;
     }
     
-    .phone-review p {
-        font-size: 16px !important;
-        line-height: 1.4 !important;
-        padding: 0 10px !important;
+    .letter-envelope-container {
+        margin: 20px auto 0;
+        transform: scale(0.9);
     }
     
-    .review-signature {
-        font-size: 12px !important;
+    .letter-link {
+        padding: 18px 30px;
     }
     
-    .phone-nav-btn {
-        width: 40px !important;
-        height: 40px !important;
-        font-size: 18px !important;
+    .letter-link-text {
+        font-size: 22px;
     }
 }
 
@@ -1791,7 +1908,6 @@ footer {
         font-size: 20px;
     }
     
-    /* Фото на очень маленьких экранах */
     .about-image-combined {
         height: 240px;
     }
@@ -1802,10 +1918,16 @@ footer {
         max-width: 100%;
     }
     
-    /* Телефон для маленьких экранов */
-    .phone-image-container-large {
-        width: 82vw !important;
-        max-width: 320px !important;
+    .letter-envelope-container {
+        transform: scale(0.8);
+    }
+    
+    .letter-link {
+        padding: 16px 28px;
+    }
+    
+    .letter-link-text {
+        font-size: 20px;
     }
 }
 
@@ -1820,12 +1942,6 @@ footer {
     
     .about-selfy-img-combined {
         height: 180px;
-    }
-    
-    /* Телефон для очень маленьких экранов */
-    .phone-image-container-large {
-        width: 78vw !important;
-        max-width: 280px !important;
     }
 }
 
@@ -1861,7 +1977,7 @@ img, video, canvas {
     }
 }
 
-/* ЕДИНЫЙ ФОН КАК НА ПК — ДЛЯ МОБИЛЬНЫХ */
+/* ЕДИНЫЙ ФОН */
 html, body {
     background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
 }
@@ -1876,15 +1992,6 @@ html {
 body {
     background-color: #fff;
     color: #000;
-}
-
-/* Принудительно сохраняем розовые рамки в dark mode */
-@media (prefers-color-scheme: dark) {
-    .tariff-box {
-        border-color: #b0315e !important;
-        background-color: #fff !important;
-        color: #000 !important;
-    }
 }
 
 /* Отключить плавный скролл при загрузке */
@@ -1902,7 +2009,6 @@ html.no-smooth-scroll {
         scroll-padding-top: 55px;
     }
     
-    /* Гарантированно показываем начало страницы */
     .main-hero-section {
         min-height: calc(100vh - 55px);
         display: flex;
@@ -1915,13 +2021,3 @@ html.no-smooth-scroll {
 html.smooth-scroll-ready {
     scroll-behavior: smooth;
 }
-
-/* ============================================ */
-/* ✅ УДАЛЯЕМ ВСЕ ПРОБЛЕМНЫЕ СТИЛИ pointer: coarse */
-/* ============================================ */
-
-/* ❌ ЭТОГО КОДА НЕ ДОЛЖНО БЫТЬ ВООБЩЕ: */
-/* @media (pointer: coarse) { ... } */
-
-/* ❌ УДАЛЯЕМ ВСЕ ГЛОБАЛЬНЫЕ !important КРОМЕ НАШИХ ФИКСОВ */
-/* (остальные !important должны быть только в медиа-запросах) */

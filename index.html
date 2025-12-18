@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&family=Prata&family=Lora:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=10">
     <meta name="color-scheme" content="light">
     <meta name="description" content="StripUp — платформа для девушек, обучение с нуля, честные выплаты, поддержка 24/7. Начни зарабатывать уже сегодня.">
 </head>
@@ -56,7 +56,7 @@
                             <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста.</p>
                             <p>Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
                             <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
-                            <p class="signature">С любовью, <span>команда StripUp</span></p>
+                        
                         </div>
                         <div class="about-image-combined">
                             <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img-combined">
@@ -205,10 +205,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="calculator-note">
-                            <p>💡 <strong>Совет:</strong> Начните со тарифа "Старт" на 2 недели, чтобы оценить потенциал без комиссии!</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -309,55 +305,43 @@
         <section id="reviews" class="reviews-section">
             <div class="container">
                 <h2 class="section-title">Отзывы моделей</h2>
+
                 <div class="reviews-container">
                     <div class="phone-mockup">
-                        <!-- ТЕЛЕФОН С КОММЕНТАРИЯМИ ВНУТРИ ЭКРАНА -->
-                        <div class="phone-image-container-large">
-                            <img src="images/phone.png" alt="Отзывы моделей" class="phone-img-large">
-                            
-                            <!-- ✅ МАСКА ЭКРАНА -->
-                            <div class="phone-screen-mask">
-                                <div class="phone-content-overlay-large">
-                                    <div class="phone-reviews-container">
-                                        <div class="phone-review active">
-                                            <div class="review-text-wrapper">
-                                                <p>"StripUp изменил мою жизнь! Теперь я финансово независима и могу сама распоряжаться своим временем."</p>
-                                                <span class="review-signature">- Анастасия</span>
-                                            </div>
-                                        </div>
-                                        <div class="phone-review">
-                                            <div class="review-text-wrapper">
-                                                <p>"Пришла в студию без опыта, очень переживала. Но команда поддержала, обучила всему с нуля. Сейчас имею стабильный доход и уверенность в завтрашнем дне."</p>
-                                                <span class="review-signature">- Алиса, 23 года</span>
-                                            </div>
-                                        </div>
-                                        <div class="phone-review">
-                                            <div class="review-text-wrapper">
-                                                <p>"Работаю уже полгода, всё прозрачно и честно. Выплаты вовремя, поддержка всегда на связи. Рекомендую всем девушкам!"</p>
-                                                <span class="review-signature">- София, 26 лет</span>
-                                            </div>
-                                        </div>
-                                        <div class="phone-review">
-                                            <div class="review-text-wrapper">
-                                                <p>"Обучение прошла легко и интересно. Менеджеры отвечают на все вопросы, помогают в сложных ситуациях. Атмосфера в коллективе очень дружелюбная."</p>
-                                                <span class="review-signature">- Мария, 21 год</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- НАВИГАЦИЯ ВНУТРИ ТЕЛЕФОНА -->
-                                    <div class="phone-nav">
-                                        <button class="phone-nav-btn prev-btn">‹</button>
-                                        <div class="phone-dots">
-                                            <button class="phone-dot active"></button>
-                                            <button class="phone-dot"></button>
-                                            <button class="phone-dot"></button>
-                                            <button class="phone-dot"></button>
-                                        </div>
-                                        <button class="phone-nav-btn next-btn">›</button>
-                                    </div>
+                        <div class="phone-image-container-large" id="reviews-phone">
+
+                          <!-- ✅ ЭКРАН (ОТЗЫВЫ) ПОД ТЕЛЕФОНОМ -->
+                          <div class="phone-screen-mask">
+                            <div class="phone-screen-content">
+                              <div class="phone-slides">
+                                <div class="phone-slide active"><img src="images/отзыв1.jpg" alt="Отзыв 1"></div>
+                                <div class="phone-slide"><img src="images/отзыв2.jpg" alt="Отзыв 2"></div>
+                                <div class="phone-slide"><img src="images/отзыв3.jpg" alt="Отзыв 3"></div>
+                                <div class="phone-slide"><img src="images/отзыв4.jpg" alt="Отзыв 4"></div>
+                                <div class="phone-slide"><img src="images/отзыв5.jpg" alt="Отзыв 5"></div>
+                                <div class="phone-slide"><img src="images/отзыв6.jpg" alt="Отзыв 6"></div>
+                              </div>
+
+                              <div class="phone-nav">
+                                <button class="phone-nav-btn prev-btn" aria-label="Предыдущий">‹</button>
+
+                                <div class="phone-dots">
+                                  <button class="phone-dot active" data-index="0"></button>
+                                  <button class="phone-dot" data-index="1"></button>
+                                  <button class="phone-dot" data-index="2"></button>
+                                  <button class="phone-dot" data-index="3"></button>
+                                  <button class="phone-dot" data-index="4"></button>
+                                  <button class="phone-dot" data-index="5"></button>
                                 </div>
+
+                                <button class="phone-nav-btn next-btn" aria-label="Следующий">›</button>
+                              </div>
                             </div>
-                            
+                          </div>
+
+                          <!-- ✅ ТЕЛЕФОН СВЕРХУ (РАМКА) -->
+                          <img src="images/phone.png" alt="Отзывы моделей" class="phone-img-large phone-frame">
+
                         </div>
                     </div>
                 </div>
@@ -365,41 +349,28 @@
         </section>
     </div>
 
-    <!-- Contact Section с конвертом в стиле телефона -->
+    <!-- Contact Section с новым конвертом -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Контакты</h2>
             
             <div class="letter-envelope-container">
-                <div class="letter-envelope-wrapper">
-                    
-                    <!-- Конверт в стиле телефона -->
-                    <div class="letter-envelope">
-                        <!-- Рамка конверта как у телефона -->
-                        <div class="envelope-box">
-                            <!-- Ушки как у телефона -->
-                            <div class="envelope-ears">
-                                <div class="ear left"></div>
-                                <div class="ear right"></div>
-                            </div>
-                            
-                            <!-- Верхний клапан -->
-                            <div class="envelope-flap">
-                                <div class="seal-heart">💗</div>
-                            </div>
+                <div class="envelope" id="envelope">
+                    <div class="env__back"></div>
 
-                            <!-- Нижняя часть конверта -->
-                            <div class="envelope-front">
-                                <div class="envelope-body">
-                                    <!-- Текст "Присоединиться" на конверте -->
-                                    <a href="https://t.me/StripUpStudio" target="_blank" class="envelope-join-text">
-                                        Присоединиться
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="letter">
+                        <!-- Ссылка на Telegram -->
+                        <a href="https://t.me/StripUpStudio" target="_blank" class="letter-link">
+                            <span class="letter-link-text">написать&nbsp;нам</span>
+                        </a>
                     </div>
 
+                    <div class="flap flap--left"></div>
+                    <div class="flap flap--right"></div>
+                    <div class="flap flap--bottom"></div>
+                    <div class="flap flap--top"></div>
+
+                    <div class="seal"></div>
                 </div>
             </div>
         </div>
@@ -419,6 +390,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>

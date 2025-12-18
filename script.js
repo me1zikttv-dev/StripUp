@@ -72,154 +72,6 @@ function createHearts() {
     }
 }
 
-// Phone reviews carousel - УЛУЧШЕННАЯ АНИМАЦИЯ
-function initPhoneReviews() {
-    const reviews = document.querySelectorAll('.phone-review');
-    const dots = document.querySelectorAll('.phone-dot');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    
-    if (!reviews.length || !dots.length) return;
-    
-    let currentReview = 0;
-    let autoRotateInterval = null;
-    const ROTATE_INTERVAL = 8000;
-    let isAnimating = false;
-
-    function showReview(index, direction = 'next') {
-        if (isAnimating) return;
-        
-        isAnimating = true;
-        
-        // Проверяем границы
-        if (index < 0) index = reviews.length - 1;
-        if (index >= reviews.length) index = 0;
-        
-        const currentActive = document.querySelector('.phone-review.active');
-        const nextActive = reviews[index];
-        
-        // Убираем active у всех точек
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // Активируем точку нового отзыва
-        dots[index].classList.add('active');
-        
-        // Если это первый показ или тот же отзыв
-        if (!currentActive || currentActive === nextActive) {
-            if (currentActive) currentActive.classList.remove('active');
-            nextActive.classList.add('active');
-            currentReview = index;
-            isAnimating = false;
-            return;
-        }
-        
-        // Добавляем классы для анимации
-        currentActive.classList.add('leaving');
-        currentActive.classList.remove('active');
-        
-        // Через небольшой delay показываем новый отзыв
-        setTimeout(() => {
-            nextActive.classList.add('active');
-            currentActive.classList.remove('leaving');
-            currentReview = index;
-            
-            setTimeout(() => {
-                isAnimating = false;
-            }, 100);
-        }, 300);
-    }
-
-    function nextReview() {
-        let nextIndex = currentReview + 1;
-        if (nextIndex >= reviews.length) {
-            nextIndex = 0;
-        }
-        showReview(nextIndex, 'next');
-    }
-
-    function prevReview() {
-        let prevIndex = currentReview - 1;
-        if (prevIndex < 0) {
-            prevIndex = reviews.length - 1;
-        }
-        showReview(prevIndex, 'prev');
-    }
-
-    // Автопрокрутка
-    function startAutoRotate() {
-        if (autoRotateInterval) clearInterval(autoRotateInterval);
-        autoRotateInterval = setInterval(nextReview, ROTATE_INTERVAL);
-    }
-
-    // Пауза автопрокрутки
-    function pauseAutoRotate() {
-        if (autoRotateInterval) {
-            clearInterval(autoRotateInterval);
-            autoRotateInterval = null;
-        }
-    }
-
-    // Запускаем автопрокрутку
-    startAutoRotate();
-
-    // Обработчики событий для кнопок
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            pauseAutoRotate();
-            prevReview();
-            setTimeout(startAutoRotate, 10000);
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            pauseAutoRotate();
-            nextReview();
-            setTimeout(startAutoRotate, 10000);
-        });
-    }
-
-    // Обработчики для точек
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            if (index === currentReview || isAnimating) return;
-            pauseAutoRotate();
-            showReview(index);
-            setTimeout(startAutoRotate, 10000);
-        });
-    });
-
-    // Пауза при наведении (десктоп)
-    const phoneContent = document.querySelector('.phone-content-overlay-large');
-    if (phoneContent && window.innerWidth > 768) {
-        phoneContent.addEventListener('mouseenter', pauseAutoRotate);
-        phoneContent.addEventListener('mouseleave', startAutoRotate);
-    }
-
-    // Пауза при касании (мобильные)
-    if (phoneContent && window.innerWidth <= 768) {
-        let touchTimer;
-        
-        phoneContent.addEventListener('touchstart', () => {
-            pauseAutoRotate();
-            clearTimeout(touchTimer);
-            
-            touchTimer = setTimeout(() => {
-                startAutoRotate();
-            }, 15000);
-        });
-    }
-
-    // Пауза при уходе со страницы
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            pauseAutoRotate();
-        } else {
-            startAutoRotate();
-        }
-    });
-}
-
 // FAQ accordion
 function initFAQ() {
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -410,81 +262,80 @@ function initCalculator() {
     calculateIncome();
 }
 
-// Инициализация конверта в стиле телефона
-function initPhoneStyleEnvelope() {
-    const envelope = document.querySelector('.letter-envelope');
-    const sealHeart = document.querySelector('.seal-heart');
-    const joinText = document.querySelector('.envelope-join-text');
+// Инициализация нового конверта с письмом
+function initNewEnvelope() {
+  const envelope = document.getElementById('envelope');
+  if (!envelope) return;
+  
+  let touchActive = false;
+  
+  // Проверяем, является ли устройство touch-устройством
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+  
+  if (isTouchDevice) {
+    // Для touch-устройств добавляем обработчики
+    envelope.addEventListener('touchstart', function(e) {
+      // Предотвращаем всплытие, чтобы не мешать клику по ссылке
+      if (e.target.classList.contains('letter-link')) {
+        return;
+      }
+      
+      e.preventDefault();
+      
+      // Снимаем активное состояние со всех конвертов
+      document.querySelectorAll('.envelope').forEach(function(item) {
+        item.classList.remove('touch-active');
+      });
+      
+      // Добавляем активное состояние к текущему конверту
+      envelope.classList.toggle('touch-active');
+      touchActive = envelope.classList.contains('touch-active');
+    }, { passive: false });
     
-    if (!envelope) return;
-    
-    if (sealHeart) {
-        const heartColors = ['#ff6b9d', '#ff5a94', '#b0315e', '#ff7ba8'];
-        let colorIndex = 0;
-        
-        setInterval(() => {
-            sealHeart.style.color = heartColors[colorIndex];
-            colorIndex = (colorIndex + 1) % heartColors.length;
-            
-            setTimeout(() => {
-                sealHeart.style.color = '#b0315e';
-            }, 500);
-        }, 2000);
-    }
-    
-    envelope.addEventListener('click', function(e) {
-        if (e.target.closest('.envelope-join-text')) return;
-        
-        this.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 200);
+    // Закрываем конверт при клике вне его области
+    document.addEventListener('touchstart', function(e) {
+      if (!envelope.contains(e.target)) {
+        envelope.classList.remove('touch-active');
+        touchActive = false;
+      }
     });
     
-    if (joinText) {
-        joinText.addEventListener('click', function(e) {
-            this.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1.05)';
-            }, 150);
-            
-            const envelope = this.closest('.letter-envelope');
-            if (envelope) {
-                envelope.style.transform = 'translateY(-4px)';
-                setTimeout(() => {
-                    envelope.style.transform = 'translateY(0)';
-                }, 300);
-            }
-        });
+    // Предотвращаем стандартное поведение ссылки при первом касании
+    const link = envelope.querySelector('.letter-link');
+    link.addEventListener('touchstart', function(e) {
+      if (!envelope.classList.contains('touch-active')) {
+        e.preventDefault();
+        // Открываем конверт при первом касании на ссылку
+        envelope.classList.add('touch-active');
+        touchActive = true;
+      }
+    });
+  }
+  
+  // Для десктопных устройств сохраняем hover-эффект
+  envelope.addEventListener('mouseenter', function() {
+    if (!isTouchDevice) {
+      envelope.classList.add('touch-active');
     }
+  });
+  
+  envelope.addEventListener('mouseleave', function() {
+    if (!isTouchDevice) {
+      envelope.classList.remove('touch-active');
+    }
+  });
+  
+  // Анимация при первом появлении
+  setTimeout(() => {
+    envelope.style.opacity = '0';
+    envelope.style.transform = 'scale(0.9) translateY(20px)';
+    envelope.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     
-    if (window.innerWidth > 768) {
-        envelope.addEventListener('mouseenter', function() {
-            const flap = this.querySelector('.envelope-flap');
-            if (flap) {
-                flap.style.transform = 'rotateX(-22deg)';
-            }
-            
-            const joinText = this.querySelector('.envelope-join-text');
-            if (joinText) {
-                joinText.style.opacity = '1';
-                joinText.style.transform = 'translateY(0)';
-            }
-        });
-        
-        envelope.addEventListener('mouseleave', function() {
-            const flap = this.querySelector('.envelope-flap');
-            if (flap) {
-                flap.style.transform = 'rotateX(0deg)';
-            }
-            
-            const joinText = this.querySelector('.envelope-join-text');
-            if (joinText) {
-                joinText.style.opacity = '0';
-                joinText.style.transform = 'translateY(18px)';
-            }
-        });
-    }
+    requestAnimationFrame(() => {
+      envelope.style.opacity = '1';
+      envelope.style.transform = 'scale(1) translateY(0)';
+    });
+  }, 300);
 }
 
 // Add loading animation for elements
@@ -530,20 +381,98 @@ function initParallaxEffect() {
     }
 }
 
+function initImageReviewsSlider() {
+  const root = document.getElementById('reviews-phone');
+  if (!root) return;
+
+  const slides = root.querySelectorAll('.phone-slide');
+  const dots = root.querySelectorAll('.phone-dot');
+  const prevBtn = root.querySelector('.prev-btn');
+  const nextBtn = root.querySelector('.next-btn');
+
+  if (!slides.length) return;
+
+  let current = 0;
+  let isAnimating = false;
+
+  function setActive(index) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    slides[current].classList.remove('active');
+    slides[index].classList.add('active');
+
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[index]) dots[index].classList.add('active');
+
+    current = index;
+
+    setTimeout(() => { isAnimating = false; }, 450);
+  }
+
+  function next() { setActive(current + 1); }
+  function prev() { setActive(current - 1); }
+
+  if (nextBtn) nextBtn.addEventListener('click', next);
+  if (prevBtn) prevBtn.addEventListener('click', prev);
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.index, 10);
+      if (!Number.isNaN(idx)) setActive(idx);
+    });
+  });
+
+  // ✅ свайп на мобильных
+  const mask = root.querySelector('.phone-screen-mask');
+  if (mask) {
+    let startX = 0;
+    let startY = 0;
+    let moved = false;
+
+    mask.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      moved = false;
+    }, { passive: true });
+
+    mask.addEventListener('touchmove', () => {
+      moved = true;
+    }, { passive: true });
+
+    mask.addEventListener('touchend', (e) => {
+      if (!moved) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      // горизонтальный свайп
+      if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) next();
+        else prev();
+      }
+    }, { passive: true });
+  }
+}
+
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     fixMobileInitialScroll();
     fixMobileAnchorScroll();
     
     createHearts();
-    initPhoneReviews();
     initFAQ();
     initSmoothScroll();
     initHeaderScroll();
     initMobileMenu();
     initCalculator();
-    initPhoneStyleEnvelope();
+    initNewEnvelope(); // Используем новый конверт
     initParallaxEffect();
+    initImageReviewsSlider();
     
     const envelopeWrapper = document.querySelector('.letter-envelope-wrapper');
     
@@ -592,7 +521,7 @@ document.addEventListener('touchstart', function() {
 if (window.innerWidth > 768) {
     document.addEventListener('DOMContentLoaded', function() {
         const contactSection = document.getElementById('contact');
-        const envelope = document.querySelector('.letter-envelope');
+        const envelope = document.querySelector('.envelope');
         
         if (contactSection && envelope) {
             const observer = new IntersectionObserver((entries) => {
