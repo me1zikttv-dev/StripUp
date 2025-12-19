@@ -1587,3 +1587,40 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 
+@media (max-width: 768px){
+  /* 1) навигация не переносится */
+  #reviews-phone .phone-nav{
+    left: 12px !important;
+    right: 12px !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* 2) точки не переносятся (никогда) */
+  #reviews-phone .phone-dots{
+    flex: 1 !important;
+    min-width: 0 !important;        /* важно для iOS */
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+
+    overflow-x: auto !important;     /* если прям совсем узко — пусть скроллится, но не в колонку */
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;           /* Firefox */
+  }
+  #reviews-phone .phone-dots::-webkit-scrollbar{ display: none; } /* Safari/Chrome */
+
+  /* 3) уменьшаем стрелки, точки и обводку */
+  #reviews-phone .phone-nav-btn{
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 18px !important;
+    border-width: 1px !important;   /* обводка меньше */
+    border-radius: 10px !important;
+  }
+  #reviews-phone .phone-dot{
+    width: 5px !important;
+    height: 5px !important;
+  }
+}
