@@ -1100,16 +1100,22 @@ section {
   transform: scale(1.35);
 }
 
-/* Мобилка: маска проценты + удобная навигация */
+/* ПК — поднимаем сильно */
+.phone-image-container-large{
+  margin-top: -140px !important;
+}
+
+/* МОБИЛКА — поднимаем аккуратно */
 @media (max-width: 768px){
   .phone-image-container-large{
     width: 92vw !important;
     max-width: 460px !important;
     min-width: unset !important;
     aspect-ratio: 600 / 700;
-    margin: 0 auto !important;
+    margin: -40px auto 0 !important;
   }
-  
+}
+
   .phone-screen-mask{
     top: 8%;
     left: 4%;
@@ -1127,7 +1133,6 @@ section {
     height: 40px;
     font-size: 20px;
   }
-}
 
 /* ===================== */
 /* НОВЫЙ КОНВЕРТ С ПИСЬМОМ */
