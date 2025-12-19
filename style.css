@@ -1577,6 +1577,9 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 @media (max-width: 768px){
-  #reviews-phone .prev-btn{ margin-right: 25px !important; }
-  #reviews-phone .next-btn{ margin-left: 25px !important; }
+  .phone-nav{
+    left: 120px !important;
+    right: 120px !important;
+    bottom: 110px !important; /* двигай это */
+  }
 }
