@@ -1,4 +1,3 @@
-// ФИКС: Предотвратить скролл при загрузке на мобильных (ТОЛЬКО ОДИН РАЗ)
 let mobileScrollFixed = false;
 
 function fixMobileInitialScroll() {
@@ -6,12 +5,9 @@ function fixMobileInitialScroll() {
   if (!isMobile || mobileScrollFixed) return;
 
   mobileScrollFixed = true;
-
   document.documentElement.classList.add('no-smooth-scroll');
 
-  requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
-  });
+  requestAnimationFrame(() => window.scrollTo(0, 0));
 
   if (window.location.hash) {
     history.replaceState(null, null, window.location.pathname);
@@ -23,7 +19,6 @@ function fixMobileInitialScroll() {
   }, 300);
 }
 
-// ФИКС: Исправить скролл к якорям на мобильных (БЕЗ smooth-scroll)
 function fixMobileAnchorScroll() {
   if (window.innerWidth > 768) return;
 
@@ -48,13 +43,11 @@ function fixMobileAnchorScroll() {
   });
 }
 
-// Floating hearts animation
 function createHearts() {
   const container = document.getElementById('hearts-container');
   if (!container) return;
 
   const heartsCount = 15;
-
   for (let i = 0; i < heartsCount; i++) {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -66,12 +59,10 @@ function createHearts() {
   }
 }
 
-// FAQ accordion
 function initFAQ() {
   document.querySelectorAll('.faq-question').forEach(question => {
     question.addEventListener('click', () => {
       const item = question.parentNode.parentNode;
-      const isActive = item.classList.contains('active');
 
       document.querySelectorAll('.faq-item').forEach(otherItem => {
         if (otherItem !== item) {
@@ -89,7 +80,6 @@ function initFAQ() {
   });
 }
 
-// Smooth scrolling for navigation links (ТОЛЬКО ДЛЯ ДЕСКТОПА)
 function initSmoothScroll() {
   if (window.innerWidth <= 768) return;
 
@@ -98,18 +88,15 @@ function initSmoothScroll() {
       e.preventDefault();
       const targetId = this.getAttribute('href');
       const target = document.querySelector(targetId);
-      if (target) {
-        const headerHeight = 70;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = targetPosition - headerHeight;
+      if (!target) return;
 
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-      }
+      const headerHeight = 70;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: targetPosition - headerHeight, behavior: 'smooth' });
     });
   });
 }
 
-// Add scroll effect for header
 function initHeaderScroll() {
   const header = document.querySelector('header');
   if (!header) return;
@@ -125,11 +112,9 @@ function initHeaderScroll() {
   });
 }
 
-// Mobile menu functionality
 function initMobileMenu() {
   const menuToggle = document.querySelector('.mobile-menu-toggle');
   const navMenu = document.querySelector('nav ul');
-
   if (!menuToggle || !navMenu) return;
 
   menuToggle.addEventListener('click', (e) => {
@@ -156,67 +141,61 @@ function initMobileMenu() {
   });
 }
 
-// Calculator
+/* ✅ КАЛЬКУЛЯТОР ПОД ТАРИФЫ 80/70/60 */
 function initCalculator() {
-  const incomeSlider = document.getElementById('income');
-  const incomeValue = document.getElementById('income-value');
-  const daysSlider = document.getElementById('days');
-  const daysValue = document.getElementById('days-value');
+  const shiftsSlider = document.getElementById('shifts');
+  const shiftsValue = document.getElementById('shifts-value');
   const planButtons = document.querySelectorAll('.plan-btn');
+
   const grossIncomeEl = document.getElementById('gross-income');
   const commissionEl = document.getElementById('commission');
   const netIncomeEl = document.getElementById('net-income');
 
-  if (!incomeSlider || !daysSlider || !incomeValue || !daysValue || !grossIncomeEl || !commissionEl || !netIncomeEl) return;
+  if (!shiftsSlider || !shiftsValue || !grossIncomeEl || !commissionEl || !netIncomeEl) return;
 
-  const commissionRates = { start: 0, pro: 15, premium: 10 };
-  let currentPlan = 'start';
+  const DAILY_INCOME_USD = 90;
+  const WEEKS_PER_MONTH = 4;
 
-  function updateSliderValue(slider, valueEl) {
-    const value = parseInt(slider.value, 10);
-    valueEl.textContent = value.toLocaleString('ru-RU');
+  // Это % модели (твоя доля)
+  const modelShare = {
+    solo: 80,
+    coach: 70,
+    operator: 60
+  };
+
+  let currentPlan = 'solo';
+
+  function formatUSD(amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0
+    }).format(amount);
   }
 
-  function formatCurrency(amount) {
-    return new Intl.NumberFormat('ru-RU', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount) + ' ₽';
+  function updateSliderValue() {
+    shiftsValue.textContent = String(parseInt(shiftsSlider.value, 10));
   }
 
   function calculateIncome() {
-    const dailyIncome = parseInt(incomeSlider.value, 10);
-    const workDays = parseInt(daysSlider.value, 10);
-    const commissionRate = commissionRates[currentPlan];
+    const shiftsPerWeek = parseInt(shiftsSlider.value, 10);
+    const totalShifts = shiftsPerWeek * WEEKS_PER_MONTH;
 
-    const grossIncome = dailyIncome * workDays;
+    const grossIncome = DAILY_INCOME_USD * totalShifts;
 
-    let commission = 0;
-    if (currentPlan === 'start') {
-      const freeDays = Math.min(workDays, 10);
-      const paidDays = Math.max(0, workDays - freeDays);
-      commission = dailyIncome * paidDays * commissionRate / 100;
-    } else {
-      commission = grossIncome * commissionRate / 100;
-    }
+    const yourPercent = modelShare[currentPlan] ?? 80;
+    const netIncome = grossIncome * (yourPercent / 100);
+    const commission = grossIncome - netIncome;
 
-    const netIncome = grossIncome - commission;
-
-    grossIncomeEl.textContent = formatCurrency(grossIncome);
-    commissionEl.textContent = formatCurrency(commission);
-    netIncomeEl.textContent = formatCurrency(netIncome);
+    grossIncomeEl.textContent = formatUSD(grossIncome);
+    commissionEl.textContent = formatUSD(commission);
+    netIncomeEl.textContent = formatUSD(netIncome);
   }
 
-  function initializeValues() {
-    updateSliderValue(incomeSlider, incomeValue);
-    updateSliderValue(daysSlider, daysValue);
-
-    const initialDailyIncome = 20000;
-    const initialWorkDays = 20;
-    grossIncomeEl.textContent = formatCurrency(initialDailyIncome * initialWorkDays);
-    commissionEl.textContent = formatCurrency(0);
-    netIncomeEl.textContent = formatCurrency(initialDailyIncome * initialWorkDays);
-  }
-
-  incomeSlider.addEventListener('input', () => { updateSliderValue(incomeSlider, incomeValue); calculateIncome(); });
-  daysSlider.addEventListener('input', () => { updateSliderValue(daysSlider, daysValue); calculateIncome(); });
+  shiftsSlider.addEventListener('input', () => {
+    updateSliderValue();
+    calculateIncome();
+  });
 
   planButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -227,11 +206,10 @@ function initCalculator() {
     });
   });
 
-  initializeValues();
+  updateSliderValue();
   calculateIncome();
 }
 
-// Envelope (touch + hover)
 function initNewEnvelope() {
   const envelope = document.getElementById('envelope');
   if (!envelope) return;
@@ -264,21 +242,8 @@ function initNewEnvelope() {
     envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
     envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
   }
-
-  // маленькая анимация появления (как у тебя было)
-  setTimeout(() => {
-    envelope.style.opacity = '0';
-    envelope.style.transform = 'scale(0.9) translateY(20px)';
-    envelope.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-
-    requestAnimationFrame(() => {
-      envelope.style.opacity = '1';
-      envelope.style.transform = 'scale(1) translateY(0)';
-    });
-  }, 300);
 }
 
-// Scroll animations (НЕ трогаем phone-image-container-large, чтобы не ломать z-index/навигацию)
 function animateOnScroll() {
   const elements = document.querySelectorAll(
     '.pricing-box-horizontal, .about-combined-box, .interview-item, .calculator-box, .result-card'
@@ -293,11 +258,11 @@ function animateOnScroll() {
     });
   }, { threshold: 0.1 });
 
-  elements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(40px)';
-    element.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(element);
+  elements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(40px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
   });
 }
 
@@ -329,7 +294,6 @@ function initImageReviewsSlider() {
     if (dots[index]) dots[index].classList.add('active');
 
     current = index;
-
     setTimeout(() => { isAnimating = false; }, 450);
   }
 
@@ -346,12 +310,9 @@ function initImageReviewsSlider() {
     });
   });
 
-  // свайп
   const mask = root.querySelector('.phone-screen-mask');
   if (mask) {
-    let startX = 0;
-    let startY = 0;
-    let moved = false;
+    let startX = 0, startY = 0, moved = false;
 
     mask.addEventListener('touchstart', (e) => {
       const t = e.touches[0];
@@ -360,9 +321,7 @@ function initImageReviewsSlider() {
       moved = false;
     }, { passive: true });
 
-    mask.addEventListener('touchmove', () => {
-      moved = true;
-    }, { passive: true });
+    mask.addEventListener('touchmove', () => { moved = true; }, { passive: true });
 
     mask.addEventListener('touchend', (e) => {
       if (!moved) return;
@@ -371,8 +330,7 @@ function initImageReviewsSlider() {
       const dy = t.clientY - startY;
 
       if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
-        if (dx < 0) next();
-        else prev();
+        if (dx < 0) next(); else prev();
       }
     }, { passive: true });
   }
@@ -400,24 +358,3 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('orientationchange', function () {
   setTimeout(fixMobileAnchorScroll, 100);
 });
-
-// Доп. эффект для десктопа (как было), без конфликтов
-if (window.innerWidth > 768) {
-  document.addEventListener('DOMContentLoaded', function () {
-    const contactSection = document.getElementById('contact');
-    const envelope = document.querySelector('.envelope');
-
-    if (contactSection && envelope) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            envelope.style.transform = 'scale(1.04)';
-            setTimeout(() => { envelope.style.transform = 'scale(1)'; }, 250);
-          }
-        });
-      }, { threshold: 0.3 });
-
-      observer.observe(contactSection);
-    }
-  });
-}

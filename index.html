@@ -1,397 +1,412 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StripUp - Твой успех начинается здесь и сейчас!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StripUp - Твой успех начинается здесь и сейчас!</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&family=Prata&family=Lora:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&family=Prata&family=Lora:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=10">
-    <meta name="color-scheme" content="light">
-    <meta name="description" content="StripUp — платформа для девушек, обучение с нуля, честные выплаты, поддержка 24/7. Начни зарабатывать уже сегодня.">
+  <link rel="stylesheet" href="style.css?v=12">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="StripUp — платформа для девушек, обучение с нуля, честные выплаты, поддержка 24/7. Начни зарабатывать уже сегодня.">
 </head>
+
 <body>
-    <!-- Floating Hearts -->
-    <div class="floating-hearts" id="hearts-container"></div>
+  <div class="floating-hearts" id="hearts-container"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <img src="images/logo.png" alt="StripUp" class="logo-img">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#features">Преимущества</a></li>
-                    <li><a href="#pricing">Тарифы</a></li>
-                    <li><a href="#calculator">Калькулятор</a></li>
-                    <li><a href="#faq">Вопросы</a></li>
-                    <li><a href="#reviews">Отзывы</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-                <button class="mobile-menu-toggle">☰</button>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="StripUp" class="logo-img">
+      </a>
 
-    <!-- Объединенная Hero + About Section -->
-    <section class="main-hero-section">
-        <div class="container main-hero-container">
-            <!-- Hero контент слева -->
-            <div class="hero-content-wrapper">
-                <div class="hero-content">
-                    <h1>Твой успех начинается здесь и сейчас!</h1>
-                    <p>Преврати свое обаяние в стабильный доход. Мы обеспечим тебя самой современной платформой и надежной поддержкой 24/7.</p>
-                    <a href="#contact" class="cta-button">Стать моделью</a>
-                </div>
-            </div>
-
-            <!-- Объединенный блок About + Photo -->
-            <div class="about-combined-wrapper">
-                <div class="about-combined-box">
-                    <h2 class="section-title">О студии</h2>
-                    <div class="about-combined-content">
-                        <div class="about-text-combined">
-                            <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста.</p>
-                            <p>Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
-                            <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
-                        </div>
-                        <div class="about-image-combined">
-                            <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img-combined">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section с картинкой -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Почему мы</h2>
-            <div class="features-image-container">
-                <img src="images/kupidon.png" alt="Преимущества StripUp" class="features-image">
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Тарифы</h2>
-            <div class="pricing-cards-horizontal">
-                <div class="pricing-card-horizontal">
-                    <div class="pricing-box-horizontal">
-                        <h3>Старт</h3>
-                        <div class="price-horizontal">0% <span>/ первые 2 недели</span></div>
-                        <ul class="pricing-features-horizontal">
-                            <li>Базовое обучение</li>
-                            <li>Доступ к платформе</li>
-                            <li>Поддержка менеджера</li>
-                            <li>Еженедельные выплаты</li>
-                        </ul>
-                        <a href="#contact" class="cta-button">Выбрать</a>
-                    </div>
-                </div>
-
-                <div class="pricing-card-horizontal popular-horizontal">
-                    <div class="popular-badge-horizontal">Популярный</div>
-                    <div class="pricing-box-horizontal">
-                        <h3>Профи</h3>
-                        <div class="price-horizontal">15% <span>/ от дохода</span></div>
-                        <ul class="pricing-features-horizontal">
-                            <li>Расширенное обучение</li>
-                            <li>Приоритетная поддержка</li>
-                            <li>Персональный менеджер</li>
-                            <li>Продвижение профиля</li>
-                            <li>Выплаты 2 раза в месяц</li>
-                        </ul>
-                        <a href="#contact" class="cta-button">Выбрать</a>
-                    </div>
-                </div>
-
-                <div class="pricing-card-horizontal">
-                    <div class="pricing-box-horizontal">
-                        <h3>Премиум</h3>
-                        <div class="price-horizontal">10% <span>/ от дохода</span></div>
-                        <ul class="pricing-features-horizontal">
-                            <li>Индивидуальное обучение</li>
-                            <li>Эксклюзивная поддержка</li>
-                            <li>Премиум-продвижение</li>
-                            <li>Аналитика и консультации</li>
-                            <li>Гибкий график выплат</li>
-                        </ul>
-                        <a href="#contact" class="cta-button">Выбрать</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <h2 class="section-title">Калькулятор дохода</h2>
-            <div class="calculator-container">
-                <div class="calculator-box">
-                    <div class="calculator-content">
-                        <div class="calculator-controls">
-                            <div class="calculator-group">
-                                <label for="income">Средний доход в день (₽)</label>
-                                <div class="slider-container">
-                                    <input type="range" id="income" min="5000" max="50000" value="20000" step="1000" class="slider">
-                                    <div class="slider-value">
-                                        <span id="income-value">20 000</span> ₽
-                                    </div>
-                                </div>
-                                <div class="slider-ticks">
-                                    <span>5 000</span>
-                                    <span>15 000</span>
-                                    <span>25 000</span>
-                                    <span>35 000</span>
-                                    <span>50 000</span>
-                                </div>
-                            </div>
-
-                            <div class="calculator-group">
-                                <label for="days">Рабочих дней в месяц</label>
-                                <div class="slider-container">
-                                    <input type="range" id="days" min="10" max="30" value="20" step="1" class="slider">
-                                    <div class="slider-value">
-                                        <span id="days-value">20</span> дней
-                                    </div>
-                                </div>
-                                <div class="slider-ticks">
-                                    <span>10</span>
-                                    <span>15</span>
-                                    <span>20</span>
-                                    <span>25</span>
-                                    <span>30</span>
-                                </div>
-                            </div>
-
-                            <div class="calculator-group">
-                                <label for="plan">Выберите тариф</label>
-                                <div class="plan-selector">
-                                    <button class="plan-btn active" data-plan="start">Старт (0%)</button>
-                                    <button class="plan-btn" data-plan="pro">Профи (15%)</button>
-                                    <button class="plan-btn" data-plan="premium">Премиум (10%)</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="calculator-results">
-                            <div class="result-card">
-                                <div class="result-icon"></div>
-                                <div class="result-content">
-                                    <div class="result-label">Ваш доход в месяц</div>
-                                    <div class="result-value" id="gross-income">400 000 ₽</div>
-                                </div>
-                            </div>
-
-                            <div class="result-card">
-                                <div class="result-icon"></div>
-                                <div class="result-content">
-                                    <div class="result-label">Комиссия студии</div>
-                                    <div class="result-value" id="commission">0 ₽</div>
-                                </div>
-                            </div>
-
-                            <div class="result-card total">
-                                <div class="result-icon"></div>
-                                <div class="result-content">
-                                    <div class="result-label">Ваша чистая прибыль</div>
-                                    <div class="result-value" id="net-income">400 000 ₽</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Вопросы и ответы</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-box">
-                        <div class="faq-question">
-                            <span>Как проходит обучение?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Обучение проходит онлайн, в виде личных созвонов, где вместе разбираем технику, правила безопасности, поведенческие рекомендации и стратегии роста. Каждое занятие проходит в неформальной, поддерживающей атмосфере: ты можешь задавать любые вопросы и сразу получать понятные ответы. Это не сухая теория, всё направлено на твоё развитие, уверенность и реальные результаты. Обучение помогает раскрыться, действовать смело и осознанно, чувствовать себя уверенно и двигаться к своим целям с вдохновением.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-box">
-                        <div class="faq-question">
-                            <span>Как устроена система оплаты?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Выплаты: в первый месяц еженедельно, чтобы тебе было комфортно начинать. Далее два раза в месяц по стабильному графику. Мы ведём полностью прозрачную статистику, чтобы ты всегда видела свой результат и могла отслеживать рост дохода.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-box">
-                        <div class="faq-question">
-                            <span>Нужен ли опыт?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Опыт не требуется. Мы обучаем с нуля, сопровождаем и поддерживаем на каждом этапе, помогая уверенно развиваться и расти в профессии.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-box">
-                        <div class="faq-question">
-                            <span>Какое оборудование нужно?</span>
-                            <span>+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом. Мы поможем с настройкой, объясним все технические моменты и сделаем так, чтобы всё работало без перебоев.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews and Interview Sections -->
-    <div class="reviews-interview-container">
-        <!-- Interview Section (СЛЕВА) -->
-        <section id="interview" class="interview">
-            <div class="container">
-                <h2 class="section-title">Мы ждем на собеседование именно тебя</h2>
-                <div class="interview-content">
-                    <div class="interview-columns">
-                        <div class="interview-column">
-                            <div class="interview-item">
-                                <div class="interview-icon"></div>
-                                <h3>Возраст от 18 до 30 лет</h3>
-                                <p>Ты молода, хочешь добиться в жизни успеха, готова учиться и двигаться вперед? Приходи работать к нам!</p>
-                            </div>
-                            <div class="interview-item">
-                                <div class="interview-icon"></div>
-                                <h3>Опыт работы</h3>
-                                <p>Это не так важно, мы обучаем с нуля, главное это твое стремление и активная жизненная позиция.</p>
-                            </div>
-                        </div>
-                        <div class="interview-column">
-                            <div class="interview-item">
-                                <div class="interview-icon"></div>
-                                <h3>Внешность</h3>
-                                <p>Внешность в этой работе далеко не самое главное, энергичность и харизма, как модели, будут твоими главными плюсами.</p>
-                            </div>
-                            <div class="interview-item">
-                                <div class="interview-icon"></div>
-                                <h3>Английский язык</h3>
-                                <p>Знания английского языка будет плюсом, но в любом случае на компьютере установлена программа/переводчик.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reviews Section (СПРАВА) -->
-        <section id="reviews" class="reviews-section">
-            <div class="container">
-                <h2 class="section-title">Отзывы моделей</h2>
-
-                <div class="reviews-container">
-                    <div class="phone-mockup">
-                        <div class="phone-image-container-large" id="reviews-phone">
-
-                          <div class="phone-screen-mask">
-                            <div class="phone-screen-content">
-                              <div class="phone-slides">
-                                <div class="phone-slide active"><img src="images/отзыв1.jpg" alt="Отзыв 1"></div>
-                                <div class="phone-slide"><img src="images/отзыв2.jpg" alt="Отзыв 2"></div>
-                                <div class="phone-slide"><img src="images/отзыв3.jpg" alt="Отзыв 3"></div>
-                                <div class="phone-slide"><img src="images/отзыв4.jpg" alt="Отзыв 4"></div>
-                                <div class="phone-slide"><img src="images/отзыв5.jpg" alt="Отзыв 5"></div>
-                                <div class="phone-slide"><img src="images/отзыв6.jpg" alt="Отзыв 6"></div>
-                              </div>
-
-                              <div class="phone-nav">
-                                <button class="phone-nav-btn prev-btn" aria-label="Предыдущий">‹</button>
-
-                                <div class="phone-dots">
-                                  <button class="phone-dot active" data-index="0"></button>
-                                  <button class="phone-dot" data-index="1"></button>
-                                  <button class="phone-dot" data-index="2"></button>
-                                  <button class="phone-dot" data-index="3"></button>
-                                  <button class="phone-dot" data-index="4"></button>
-                                  <button class="phone-dot" data-index="5"></button>
-                                </div>
-
-                                <button class="phone-nav-btn next-btn" aria-label="Следующий">›</button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <img src="images/phone.png" alt="Отзывы моделей" class="phone-img-large phone-frame">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <nav>
+        <ul>
+          <li><a href="#features">Преимущества</a></li>
+          <li><a href="#pricing">Тарифы</a></li>
+          <li><a href="#calculator">Калькулятор</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <button class="mobile-menu-toggle" type="button" aria-label="Открыть меню">☰</button>
+      </nav>
     </div>
+  </header>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-
-            <div class="letter-envelope-container">
-                <div class="envelope" id="envelope">
-                    <div class="env__back"></div>
-
-                    <div class="letter">
-                        <a href="https://t.me/StripUpStudio" target="_blank" class="letter-link">
-                            <span class="letter-link-text">написать&nbsp;нам</span>
-                        </a>
-                    </div>
-
-                    <div class="flap flap--left"></div>
-                    <div class="flap flap--right"></div>
-                    <div class="flap flap--bottom"></div>
-                    <div class="flap flap--top"></div>
-
-                    <div class="seal"></div>
-                </div>
-            </div>
+  <section class="main-hero-section">
+    <div class="container main-hero-container">
+      <div class="hero-content-wrapper">
+        <div class="hero-content">
+          <h1>Твой успех начинается здесь и сейчас!</h1>
+          <p>Преврати свое обаяние в стабильный доход. Мы обеспечим тебя самой современной платформой и надежной поддержкой 24/7.</p>
+          <a href="#contact" class="cta-button">Стать моделью</a>
         </div>
+      </div>
+
+      <div class="about-combined-wrapper">
+        <div class="about-combined-box">
+          <h2 class="section-title">О студии</h2>
+
+          <div class="about-combined-content">
+            <div class="about-text-combined">
+              <p>StripUp — это не просто студия, это сообщество, где каждая модель находит поддержку, вдохновение и возможности для роста.</p>
+              <p>Мы создали пространство, где ты можешь раскрыть свой потенциал и построить успешную карьеру.</p>
+              <p>Наша команда обеспечивает круглосуточную поддержку, помогая тебе на каждом этапе — от первых шагов до становления в качестве профессиональной модели.</p>
+            </div>
+
+            <div class="about-image-combined">
+              <img src="images/selfy.png" alt="Модель StripUp" class="about-selfy-img-combined">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Почему мы</h2>
+      <div class="features-image-container">
+        <img src="images/kupidon.png" alt="Преимущества StripUp" class="features-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Тарифы (НОВЫЕ) -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Тарифы</h2>
+
+      <div class="pricing-cards-horizontal">
+        <!-- ВСЁ САМА -->
+        <div class="pricing-card-horizontal">
+          <div class="pricing-box-horizontal">
+            <h3>ВСЁ САМА</h3>
+            <div class="price-horizontal">80% <span>/ твоя доля</span></div>
+
+            <ul class="pricing-features-horizontal">
+              <li>Для тех, кто хочет быть самостоятельной и свободной.</li>
+              <li>Красивое и аккуратное оформление аккаунтов.</li>
+              <li>Поддержка в технических вопросах, чтобы всё работало без стресса.</li>
+              <li>Еженедельные стабильные выплаты на карту.</li>
+              <li>Отчёт о доходах за неделю, чтобы видеть свой рост.</li>
+              <li>Ты сама хозяйка своего пути, а мы всегда рядом, чтобы подстраховать.</li>
+            </ul>
+
+            <a href="#contact" class="cta-button">Выбрать</a>
+          </div>
+        </div>
+
+        <!-- Коуч плюс -->
+        <div class="pricing-card-horizontal popular-horizontal">
+          <div class="popular-badge-horizontal">Популярный</div>
+          <div class="pricing-box-horizontal">
+            <h3>Коуч плюс</h3>
+            <div class="price-horizontal">70% <span>/ твоя доля</span></div>
+
+            <ul class="pricing-features-horizontal">
+              <li>Подходит, если хочется не только работать, но и развиваться с поддержкой.</li>
+              <li>Красивое и аккуратное оформление аккаунтов.</li>
+              <li>Фотосессия от студии каждые 3 месяца — новые образы и свежий контент.</li>
+              <li>Разбор твоей работы раз в две недели от коуча, который помогает раскрывать твой потенциал.</li>
+              <li>Постоянная техническая помощь.</li>
+              <li>Еженедельные выплаты на карту.</li>
+              <li>Подробный отчёт о доходах за неделю.</li>
+              <li>С этим пакетом ты не одна — рядом команда, которая вдохновляет и помогает.</li>
+            </ul>
+
+            <a href="#contact" class="cta-button">Выбрать</a>
+          </div>
+        </div>
+
+        <!-- Твой личный оператор -->
+        <div class="pricing-card-horizontal">
+          <div class="pricing-box-horizontal">
+            <h3>Твой личный оператор</h3>
+            <div class="price-horizontal">60% <span>/ твоя доля</span></div>
+
+            <ul class="pricing-features-horizontal">
+              <li>Ты наслаждаешься процессом, а мы заботимся обо всём остальном.</li>
+              <li>Максимальная забота и поддержка — всё ради твоего спокойствия.</li>
+              <li>Красивое и аккуратное оформление аккаунтов.</li>
+              <li>Мы полностью берём работу на себя — твоя задача только сиять в кадре.</li>
+              <li>Оператор работает удалённо по 6 часов в смену, 5 дней в неделю.</li>
+              <li>Техническая помощь всегда на связи.</li>
+              <li>Индивидуальная стратегия.</li>
+              <li>Стабильные выплаты каждую неделю прямо на карту.</li>
+            </ul>
+
+            <a href="#contact" class="cta-button">Выбрать</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ✅ Calculator -->
+  <section id="calculator" class="calculator">
+    <div class="container">
+      <h2 class="section-title">Калькулятор дохода</h2>
+
+      <div class="calculator-layout">
+        <div class="calculator-visual">
+          <img src="images/kalkulator.png" alt="Калькулятор" class="calculator-img">
+        </div>
+
+        <div class="calculator-panel">
+          <div class="calculator-box">
+            <div class="calculator-content">
+
+              <div class="calculator-fixed-note">
+                Доход в день фиксирован: <strong>$90</strong>
+              </div>
+
+              <div class="calculator-controls">
+                <div class="calculator-group">
+                  <label for="shifts">Рабочих смен в неделю</label>
+
+                  <div class="slider-container">
+                    <input type="range" id="shifts" min="4" max="7" value="5" step="1" class="slider">
+                    <div class="slider-value">
+                      <span id="shifts-value">5</span> смен
+                    </div>
+                  </div>
+
+                  <div class="slider-ticks slider-ticks-compact">
+                    <span>4</span><span>5</span><span>6</span><span>7</span>
+                  </div>
+                </div>
+
+                <div class="calculator-group">
+                  <label>Выберите тариф</label>
+                  <div class="plan-selector">
+                    <button class="plan-btn active" type="button" data-plan="solo">ВСЁ САМА (80%)</button>
+                    <button class="plan-btn" type="button" data-plan="coach">Коуч плюс (70%)</button>
+                    <button class="plan-btn" type="button" data-plan="operator">Личный оператор (60%)</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="calculator-results">
+                <div class="result-card">
+                  <div class="result-content">
+                    <div class="result-label">Ваш доход в месяц (≈ 4 недели)</div>
+                    <div class="result-value" id="gross-income">$0</div>
+                  </div>
+                </div>
+
+                <div class="result-card">
+                  <div class="result-content">
+                    <div class="result-label">Комиссия студии</div>
+                    <div class="result-value" id="commission">$0</div>
+                  </div>
+                </div>
+
+                <div class="result-card total">
+                  <div class="result-content">
+                    <div class="result-label">Ваша чистая прибыль</div>
+                    <div class="result-value" id="net-income">$0</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="section-title">Вопросы и ответы</h2>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-box">
+            <div class="faq-question">
+              <span>Как проходит обучение?</span>
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Обучение проходит онлайн, в виде личных созвонов, где вместе разбираем технику, правила безопасности, поведенческие рекомендации и стратегии роста. Каждое занятие проходит в неформальной, поддерживающей атмосфере: ты можешь задавать любые вопросы и сразу получать понятные ответы. Это не сухая теория, всё направлено на твоё развитие, уверенность и реальные результаты.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-box">
+            <div class="faq-question">
+              <span>Как устроена система оплаты?</span>
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Выплаты: еженедельно по стабильному графику. Мы ведём полностью прозрачную статистику, чтобы ты всегда видела свой результат и могла отслеживать рост дохода.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-box">
+            <div class="faq-question">
+              <span>Нужен ли опыт?</span>
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Опыт не требуется. Мы обучаем с нуля, сопровождаем и поддерживаем на каждом этапе.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-box">
+            <div class="faq-question">
+              <span>Какое оборудование нужно?</span>
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Достаточно современного смартфона или ноутбука с хорошей камерой и стабильным интернетом.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Reviews + Interview -->
+  <div class="reviews-interview-container">
+    <section id="interview" class="interview">
+      <div class="container">
+        <h2 class="section-title">Мы ждем на собеседование именно тебя</h2>
+
+        <div class="interview-content">
+          <div class="interview-columns">
+            <div class="interview-column">
+              <div class="interview-item">
+                <div class="interview-icon"></div>
+                <h3>Возраст от 18 до 30 лет</h3>
+                <p>Ты молода, хочешь добиться в жизни успеха, готова учиться и двигаться вперед? Приходи работать к нам!</p>
+              </div>
+              <div class="interview-item">
+                <div class="interview-icon"></div>
+                <h3>Опыт работы</h3>
+                <p>Это не так важно, мы обучаем с нуля, главное это твое стремление и активная жизненная позиция.</p>
+              </div>
+            </div>
+
+            <div class="interview-column">
+              <div class="interview-item">
+                <div class="interview-icon"></div>
+                <h3>Внешность</h3>
+                <p>Внешность в этой работе далеко не самое главное, энергичность и харизма, как модели, будут твоими главными плюсами.</p>
+              </div>
+              <div class="interview-item">
+                <div class="interview-icon"></div>
+                <h3>Английский язык</h3>
+                <p>Знания английского языка будет плюсом, но в любом случае на компьютере установлена программа/переводчик.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-box">
-                    <div class="footer-logo">StripUp</div>
-                    <div class="copyright">
-                        &copy; 2025 StripUp. Все права защищены.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <section id="reviews" class="reviews-section">
+      <div class="container">
+        <h2 class="section-title">Отзывы моделей</h2>
 
-    <script src="script.js?v=5"></script>
+        <div class="reviews-container">
+          <div class="phone-mockup">
+            <div class="phone-image-container-large" id="reviews-phone">
+
+              <div class="phone-screen-mask">
+                <div class="phone-screen-content">
+                  <div class="phone-slides">
+                    <div class="phone-slide active"><img src="images/отзыв1.jpg" alt="Отзыв 1"></div>
+                    <div class="phone-slide"><img src="images/отзыв2.jpg" alt="Отзыв 2"></div>
+                    <div class="phone-slide"><img src="images/отзыв3.jpg" alt="Отзыв 3"></div>
+                    <div class="phone-slide"><img src="images/отзыв4.jpg" alt="Отзыв 4"></div>
+                    <div class="phone-slide"><img src="images/отзыв5.jpg" alt="Отзыв 5"></div>
+                    <div class="phone-slide"><img src="images/отзыв6.jpg" alt="Отзыв 6"></div>
+                  </div>
+
+                  <div class="phone-nav">
+                    <button class="phone-nav-btn prev-btn" type="button" aria-label="Предыдущий">‹</button>
+
+                    <div class="phone-dots">
+                      <button class="phone-dot active" type="button" data-index="0"></button>
+                      <button class="phone-dot" type="button" data-index="1"></button>
+                      <button class="phone-dot" type="button" data-index="2"></button>
+                      <button class="phone-dot" type="button" data-index="3"></button>
+                      <button class="phone-dot" type="button" data-index="4"></button>
+                      <button class="phone-dot" type="button" data-index="5"></button>
+                    </div>
+
+                    <button class="phone-nav-btn next-btn" type="button" aria-label="Следующий">›</button>
+                  </div>
+                </div>
+              </div>
+
+              <img src="images/phone.png" alt="Отзывы моделей" class="phone-img-large phone-frame">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Контакты</h2>
+
+      <div class="letter-envelope-container">
+        <div class="envelope" id="envelope">
+          <div class="env__back"></div>
+
+          <div class="letter">
+            <a href="https://t.me/StripUpStudio" target="_blank" class="letter-link" rel="noopener">
+              <span class="letter-link-text">написать&nbsp;нам</span>
+            </a>
+          </div>
+
+          <div class="flap flap--left"></div>
+          <div class="flap flap--right"></div>
+          <div class="flap flap--bottom"></div>
+          <div class="flap flap--top"></div>
+
+          <div class="seal"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-box">
+          <div class="footer-logo">StripUp</div>
+          <div class="copyright">
+            &copy; 2025 StripUp. Все права защищены.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=12"></script>
 </body>
 </html>
