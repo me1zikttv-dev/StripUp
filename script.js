@@ -23,6 +23,10 @@ function fixMobileAnchorScroll() {
   if (window.innerWidth > 768) return;
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // ✅ чтобы не навешивать обработчик повторно (например после orientationchange)
+    if (anchor.dataset.mobileAnchorBound === '1') return;
+    anchor.dataset.mobileAnchorBound = '1';
+
     anchor.addEventListener('click', function (e) {
       const id = this.getAttribute('href');
       if (!id || id === '#') return;
@@ -127,9 +131,11 @@ function initMobileMenu() {
   });
 
   document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') &&
+    if (
+      navMenu.classList.contains('active') &&
       !navMenu.contains(e.target) &&
-      !menuToggle.contains(e.target)) {
+      !menuToggle.contains(e.target)
+    ) {
       navMenu.classList.remove('active');
     }
   });
@@ -156,7 +162,7 @@ function initCalculator() {
   const DAILY_INCOME_USD = 90;
   const WEEKS_PER_MONTH = 4;
 
-  // Это % модели (твоя доля)
+  // % модели (твоя доля)
   const modelShare = {
     solo: 80,
     coach: 70,

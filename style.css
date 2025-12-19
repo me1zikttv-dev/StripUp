@@ -258,7 +258,7 @@ nav a:hover:after { width: 100%; }
 
 /* ✅ фон-плашка под selfy.png (чуть шире — через flex) */
 .about-image-combined {
-  flex: 1.12; /* было 1 — так фон станет шире без “раздувания” фото */
+  flex: 1; /* было 1 — так фон станет шире без “раздувания” фото */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -274,10 +274,10 @@ nav a:hover:after { width: 100%; }
 
 /* ✅ само фото: убрал “126%”, чтобы не раздувалось от твоих правок */
 .about-selfy-img-combined {
-  width: 100%;
-  height: 100%;
-  max-width: 96%;   /* “рамку” вокруг фото по ширине чуть уменьшаем */
-  max-height: 100%;
+  width: auto;
+  height: 126%;
+  max-width: 150%;   /* “рамку” вокруг фото по ширине чуть уменьшаем */
+  max-height: 108%;
   object-fit: contain;
   object-position: center center;
   border-radius: 18px;
@@ -1460,4 +1460,40 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     max-width: 560px;                 /* размер калькулятора */
     width: 100%;
   }
+}
+/* =========================
+   EXTRA MOBILE FIXES (только телефон)
+   ========================= */
+@media (max-width: 768px) {
+
+  /* ✅ калькулятор: кнопки тарифов не в ряд, а нормально помещаются */
+  .plan-selector{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .plan-btn{
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  /* ✅ отзывы: nav всегда по центру и не “ломается” на маленьких экранах */
+  .phone-nav{
+    left: clamp(14px, 10vw, 90px) !important;
+    right: clamp(14px, 10vw, 90px) !important;
+    bottom: clamp(70px, 18vw, 140px) !important;
+  }
+
+  .phone-dots{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 420px){
+  /* ещё компактнее на очень маленьких */
+  .plan-btn{ font-size: 13px; }
 }
