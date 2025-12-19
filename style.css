@@ -1554,3 +1554,29 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 
 }
+/* ===== MOBILE: настройка навигации отзывов (последним в файле) ===== */
+@media (max-width: 768px){
+  .phone-nav{
+    left: 120px !important;
+    right: 120px !important;
+    bottom: 88px !important; /* ↑ больше = выше, меньше = ниже */
+  }
+}
+@media (max-width: 768px){
+  /* стрелки */
+  #reviews-phone .phone-nav-btn{
+    width: 28px;
+    height: 28px;
+    font-size: 22px;
+    border-radius: 12px;
+  }
+
+  /* точки */
+  #reviews-phone .phone-dot{
+    width: 8px;
+    height: 8px;
+  }
+  #reviews-phone .phone-dot.active{
+    transform: scale(1.5);
+  }
+}
