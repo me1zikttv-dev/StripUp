@@ -1512,7 +1512,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     width: auto !important;
     height: auto !important;
     max-width: 100% !important;
-    max-height: 340px !important;  /* можешь поднять/уменьшить */
+    max-height: 350px !important;  /* можешь поднять/уменьшить */
     display: block !important;
     margin: 0 auto !important;
     object-fit: contain !important;
