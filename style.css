@@ -1572,7 +1572,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   /* точки ВСЕГДА в одну линию */
   #reviews-phone .phone-dots{
     flex-wrap: nowrap !important;
-    gap: 25px !important;
+    gap: 5px !important;
   }
 }
 
+@media (max-width: 768px){
+  #reviews-phone .prev-btn{ margin-right: 12px !important; }
+  #reviews-phone .next-btn{ margin-left: 12px !important; }
+}
