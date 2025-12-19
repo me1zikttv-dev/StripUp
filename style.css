@@ -1043,3 +1043,13 @@ html { overscroll-behavior: none; }
 /* smooth scroll toggles */
 html.no-smooth-scroll { scroll-behavior: auto !important; }
 html.smooth-scroll-ready { scroll-behavior: smooth; }
+/* ПК: двигаем блок "собеседование" вправо к телефону */
+@media (min-width: 769px){
+  #interview{
+    transform: translateX(160px);
+  }
+}
+/* Опустить 4 пункта (карточки) ниже, не трогая заголовок */
+#interview .interview-content{
+  margin-top: 75px; /* меняй число как надо */
+}
