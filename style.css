@@ -1580,6 +1580,6 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   .phone-nav{
     left: 120px !important;
     right: 120px !important;
-    bottom: 110px !important; /* двигай это */
+    bottom: 90px !important; /* двигай это */
   }
 }
