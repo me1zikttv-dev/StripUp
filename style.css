@@ -1464,34 +1464,23 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 /* =========================
    EXTRA MOBILE FIXES (только телефон)
    ========================= */
-@media (max-width: 768px) {
+@media (max-width: 768px){
+  #reviews-phone .phone-dots{
+    display: flex !important;
+    flex-wrap: nowrap !important;     /* ✅ НИКАКОГО wrap */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
 
-  /* ✅ калькулятор: кнопки тарифов не в ряд, а нормально помещаются */
-  .plan-selector{
-    flex-wrap: wrap;
-    gap: 10px;
+    min-width: 0 !important;          /* ✅ важно для iOS */
+    overflow-x: auto !important;      /* если места мало — пусть скроллится */
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
-
-  .plan-btn{
-    flex: 1 1 100%;
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 14px;
-    border-radius: 10px;
-  }
-
-  /* ✅ отзывы: nav всегда по центру и не “ломается” на маленьких экранах */
-  .phone-nav{
-    left: clamp(14px, 10vw, 90px) !important;
-    right: clamp(14px, 10vw, 90px) !important;
-    bottom: clamp(70px, 18vw, 140px) !important;
-  }
-
-  .phone-dots{
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  #reviews-phone .phone-dots::-webkit-scrollbar{ display:none; }
 }
+
 
 @media (max-width: 420px){
   /* ещё компактнее на очень маленьких */
