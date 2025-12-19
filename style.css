@@ -196,11 +196,11 @@ nav a:hover:after { width: 100%; }
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 560px;
+  height: 570px;
   min-height: 400px;
   background: linear-gradient(135deg, var(--powder-pink), var(--light-pink));
   border-radius: 20px;
-  padding: 20px;
+  padding: 17px;
   overflow: hidden;
   border: 2px solid var(--dark-pink);
   box-shadow: 0 6px 20px rgba(212, 106, 148, 0.2);
@@ -208,7 +208,7 @@ nav a:hover:after { width: 100%; }
 
 .about-selfy-img-combined {
   width: auto;
-  height: 120%;
+  height: 126%;
   max-height: 700px;
   max-width: 110%;
   object-fit: contain;
