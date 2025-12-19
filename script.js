@@ -23,10 +23,6 @@ function fixMobileAnchorScroll() {
   if (window.innerWidth > 768) return;
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    // ✅ чтобы не навешивать обработчик повторно (например после orientationchange)
-    if (anchor.dataset.mobileAnchorBound === '1') return;
-    anchor.dataset.mobileAnchorBound = '1';
-
     anchor.addEventListener('click', function (e) {
       const id = this.getAttribute('href');
       if (!id || id === '#') return;
@@ -131,11 +127,9 @@ function initMobileMenu() {
   });
 
   document.addEventListener('click', (e) => {
-    if (
-      navMenu.classList.contains('active') &&
+    if (navMenu.classList.contains('active') &&
       !navMenu.contains(e.target) &&
-      !menuToggle.contains(e.target)
-    ) {
+      !menuToggle.contains(e.target)) {
       navMenu.classList.remove('active');
     }
   });
@@ -162,7 +156,7 @@ function initCalculator() {
   const DAILY_INCOME_USD = 90;
   const WEEKS_PER_MONTH = 4;
 
-  // % модели (твоя доля)
+  // Это % модели (твоя доля)
   const modelShare = {
     solo: 80,
     coach: 70,
@@ -216,26 +210,34 @@ function initCalculator() {
   calculateIncome();
 }
 
+/* ✅ КОНВЕРТ (FIX ДЛЯ ТЕЛЕФОНА) */
 function initNewEnvelope() {
   const envelope = document.getElementById('envelope');
   if (!envelope) return;
 
   const link = envelope.querySelector('.letter-link');
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   if (isTouchDevice) {
+    // 1-й тап — открываем. Если уже открыт — не мешаем клику по ссылке.
     envelope.addEventListener('touchstart', function (e) {
-      if (e.target && e.target.classList && e.target.classList.contains('letter-link')) return;
+      if (envelope.classList.contains('touch-active')) return;
+
+      // если ткнули прямо по ссылке — не блокируем (хотя на первом тапе она обычно ещё не активна)
+      if (e.target && e.target.closest && e.target.closest('.letter-link')) return;
+
       e.preventDefault();
 
       document.querySelectorAll('.envelope').forEach(item => item.classList.remove('touch-active'));
-      envelope.classList.toggle('touch-active');
+      envelope.classList.add('touch-active');
     }, { passive: false });
 
+    // закрыть, если тапнули вне конверта
     document.addEventListener('touchstart', function (e) {
       if (!envelope.contains(e.target)) envelope.classList.remove('touch-active');
-    });
+    }, { passive: true });
 
+    // если нажали на ссылку, а конверт ещё закрыт — сначала откроем
     if (link) {
       link.addEventListener('touchstart', function (e) {
         if (!envelope.classList.contains('touch-active')) {

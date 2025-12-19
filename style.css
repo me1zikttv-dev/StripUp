@@ -1497,3 +1497,45 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   /* ещё компактнее на очень маленьких */
   .plan-btn{ font-size: 13px; }
 }
+/* ===== FIX selfy на телефоне: фон под фото НЕ огромный ===== */
+@media (max-width: 768px){
+  .about-image-combined{
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 8px !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .about-selfy-img-combined{
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 320px !important;  /* можешь поднять/уменьшить */
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+}/* ===== FIX конверта на телефоне: анимация + кликабельная ссылка ===== */
+@media (hover: none) and (pointer: coarse){
+  .envelope.touch-active .letter{
+    animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards !important;
+    animation-delay: var(--letter-delay) !important;
+  }
+
+  .envelope.touch-active .flap--top{
+    transform: rotateX(180deg) !important;
+    z-index: 1 !important;
+  }
+
+  .envelope.touch-active .seal{
+    opacity: 0 !important;
+    transform: translate(-50%,-70%) scale(.6) rotate(-45deg) !important;
+    z-index: 1 !important;
+  }
+
+  /* ссылка должна стать кликабельной после открытия */
+  .envelope.touch-active .letter-link{ pointer-events: auto !important; }
+  .envelope:not(.touch-active) .letter-link{ pointer-events: none !important; }
+}
