@@ -1539,3 +1539,18 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   .envelope.touch-active .letter-link{ pointer-events: auto !important; }
   .envelope:not(.touch-active) .letter-link{ pointer-events: none !important; }
 }
+@media (max-width: 768px){
+
+  /* ✅ Отзывы: делаем картинку больше внутри экрана телефона */
+  .phone-slide{
+    padding: 4px !important;      /* меньше рамка вокруг */
+  }
+
+  .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* без обрезки */
+    transform: scale(0.76) !important; /* было 0.69 — увеличили */
+  }
+
+}
