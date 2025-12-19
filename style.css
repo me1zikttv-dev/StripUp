@@ -1237,7 +1237,7 @@ html.smooth-scroll-ready { scroll-behavior: smooth; }
   }
 
   .header-container { padding: 0 10px; }
-  .logo-img { height: 40px; }
+  .logo-img { height: 80px; }
 
   :root {
     --interview-offset-x: 0px;
