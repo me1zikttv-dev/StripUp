@@ -1436,7 +1436,7 @@ html.smooth-scroll-ready { scroll-behavior: smooth; }
   }
 
   #reviews-phone .phone-slides{
-    transform: translateY(55px) !important;
+    transform: translateY(50px) !important;
   }
 
   #reviews-phone .phone-nav{
