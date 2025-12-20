@@ -1540,6 +1540,6 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 @media (max-width: 768px){
   #features .features-image{
-    transform: scale(1.15) translateX(18px) /* ← увеличивает kupidon */
+    transform: scale(1.15) translateX(16px) /* ← увеличивает kupidon */
   }
 }
