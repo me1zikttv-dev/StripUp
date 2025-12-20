@@ -1582,4 +1582,589 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     right: 120px !important;
     bottom: 90px !important; /* двигай это */
   }
+}/* =========================================================
+   MOBILE: УВЕЛИЧИТЬ phone.png + всё связанное (ТОЛЬКО телефон)
+   ВСТАВИТЬ В САМЫЙ НИЗ style.css
+   ========================================================= */
+@media (max-width: 768px){
+
+  /* 1) Увеличиваем общий контейнер телефона (рамку phone.png) */
+  #reviews-phone.phone-image-container-large{
+    width: 96vw !important;        /* было 92vw — стало больше */
+    max-width: 560px !important;   /* ↑ главный параметр размера */
+    min-width: unset !important;
+    margin: -55px auto 0 !important; /* подъем/опускание блока */
+  }
+
+  /* 2) Рамка (phone.png) — просто гарантируем, что она тянется на 100% */
+  #reviews-phone .phone-frame{
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* 3) Маска экрана (чтобы контент ровно попадал внутрь рамки)
+        Если начнет “вылазить”/“не совпадать” — правь проценты */
+ @media (max-width: 768px){
+  #reviews-phone .phone-screen-mask{
+    top: 9% !important;      /* ниже */
+    bottom: 8.5% !important; /* тоже ниже, чтобы не растянуть экран */
+    left: 3.8% !important;
+    right: 3.8% !important;
+  }
+}
+  /* 4) Картинки отзывов внутри экрана — делаем крупнее */
+  #reviews-phone .phone-slide{
+    padding: 3px !important;       /* меньше “рамка” вокруг картинки */
+  }
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* без обрезки */
+    transform: scale(0.70) !important; /* ↑ больше = крупнее отзывы */
+  }
+
+  /* 5) Навигация (стрелки + точки) — позиция */
+  #reviews-phone .phone-nav{
+    left: 100 !important;
+    right: 100px !important;
+    bottom: 5% !important;        /* ↑ больше = выше, меньше = ниже */
+    gap: 10px !important;          /* расстояние между тремя зонами (стрелка-точки-стрелка) */
+  }
+
+  /* 6) Раздвинуть стрелки дальше друг от друга
+        (чем больше padding-left/right — тем дальше стрелки) */
+  #reviews-phone .phone-nav{
+    padding-left: 78px !important;
+    padding-right: 78px !important;
+  }
+
+  /* 7) Стрелки — размер + обводка */
+  #reviews-phone .phone-nav-btn{
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 20px !important;
+    border-radius: 12px !important;
+    border-width: 1px !important;  /* обводка тоньше */
+  }
+
+  /* 8) Точки — всегда горизонтально, без переносов */
+  #reviews-phone .phone-dots{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;  /* важно: чтобы не вставали вертикально */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+
+  /* 9) Точки — размер */
+  #reviews-phone .phone-dot{
+    width: 7px !important;
+    height: 7px !important;
+  }
+  #reviews-phone .phone-dot.active{
+    transform: scale(1.45) !important;
+  }
+}
+
+/* Для очень маленьких экранов — чуть меньше, чтобы не “вылезало” */
+@media (max-width: 380px){
+  #reviews-phone.phone-image-container-large{
+    max-width: 900px !important;
+    margin-top: -45px !important;
+  }
+  #reviews-phone .phone-slide img{
+    transform: scale(0.78) !important;
+  }
+}
+@media (max-width: 768px){
+  /* убираем padding у контейнера ТОЛЬКО в отзывах */
+  #reviews .container{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+@media (max-width: 768px){
+  #reviews-phone.phone-image-container-large{
+    width: 100vw !important;      /* теперь реально во весь экран */
+    max-width: 560px !important;  /* увеличь если хочешь: 600px */
+    margin: -30px auto 0 !important;
+  }
+}
+@media (max-width: 768px){
+  #reviews-phone .phone-frame{
+    transform: scale(1.08);       /* увеличь до 1.12 если надо */
+    transform-origin: center top;
+  }
+}
+/* ===== MOBILE: увеличить phone.png (рамку телефона) ===== */
+@media (max-width: 768px){
+
+  /* уменьшаем боковые поля контейнера именно в блоке отзывов */
+  #reviews .container{
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  /* даём обёртке занять всю ширину */
+  .phone-mockup{
+    width: 100% !important;
+  }
+
+  /* ✅ сам phone.png контейнер (у тебя: id="reviews-phone" class="phone-image-container-large") */
+  #reviews-phone.phone-image-container-large{
+    width: 100% !important;        /* было 92vw */
+    max-width: 520px !important;   /* было 460px — увеличили */
+    margin: -40px auto 0 !important;
+  }
+}
+@media (max-width: 768px){
+
+  /* 1) убираем фикс 250px, даем блоку занять ширину */
+  .phone-mockup{
+    width: 100% !important;
+  }
+
+  /* 2) расширяем сам контейнер телефона */
+  #reviews-phone.phone-image-container-large{
+    width: 100% !important;
+    max-width: none !important;     /* ВАЖНО: снимаем лимит 460px */
+    min-width: 0 !important;
+  }
+
+  /* 3) чтобы не было лишних полей от .container */
+  #reviews .container{
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+/* =========================
+   MOBILE
+   ========================= */
+@media (max-width: 768px) {
+
+  /* оптимизация */
+  .floating-hearts { display: none; }
+
+  html { scroll-behavior: auto !important; overflow-x: hidden; }
+  body { scroll-padding-top: 60px; width: 100%; overflow-x: hidden; }
+
+  /* =========================
+     HEADER / NAV
+     ========================= */
+  header {
+    padding: 6px 0;
+    height: 55px;
+    background: linear-gradient(135deg, #fff7f9 0%, #f7dce5 100%) !important;
+  }
+
+  .header-container { padding: 0 10px; }
+
+  /* ✅ ЛОГО НА МОБИЛКЕ — меняй тут размер */
+  .logo-img { height: 80px; } /* <-- было 40px */
+
+  :root {
+    --interview-offset-x: 0px;
+    --interview-offset-y: 10px;
+  }
+
+  nav ul {
+    display: none;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    padding: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    gap: 12px;
+    z-index: 1000;
+    max-height: calc(100vh - 55px);
+    overflow-y: auto;
+  }
+  nav ul.active { display: flex; }
+
+  nav a {
+    padding: 10px;
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* =========================
+     HERO / ABOUT
+     ========================= */
+  .main-hero-section {
+    padding: 60px 0 30px;
+    margin-top: 55px;
+    min-height: auto;
+  }
+
+  .main-hero-container {
+    flex-direction: column;
+    gap: 25px;
+    min-height: auto;
+  }
+
+  .hero-content { max-width: 100%; text-align: center; }
+  .hero-content h1 { font-size: 26px; margin-bottom: 12px; font-weight: 800; }
+  .hero-content p  { font-size: 15px; margin-bottom: 20px; padding: 0 8px; font-weight: 500; }
+
+  .about-combined-wrapper { margin-left: 0; max-width: 100%; flex: 1; }
+  .about-combined-box { min-height: auto; border: 2px solid var(--burgundy); border-radius: 18px; }
+  .about-combined-box .section-title { font-size: 22px; margin: 20px 0 15px; padding: 0 15px; font-weight: 800; }
+
+  .about-combined-content { flex-direction: column; gap: 20px; padding: 0 15px 20px; }
+
+  .about-text-combined { flex: 1; min-height: auto; padding: 8px; }
+  .about-text-combined p { font-size: 14px; margin-bottom: 12px; font-weight: 500; }
+
+  /* ✅ SELFIE: уменьшаем “рамку/обводку” вокруг фото */
+  .about-image-combined{
+    height: auto !important;
+    min-height: 0 !important;
+
+    /* <-- ОБВОДКА/РАМКА ВОКРУГ ФОТО (уменьшай) */
+    padding: 6px !important;                 /* было 12px */
+    border-width: 1px !important;            /* было 2px */
+    border-radius: 16px !important;
+
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* ✅ SELFIE: размер самого фото (увеличить/уменьшить) */
+  .about-selfy-img-combined{
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+
+    /* <-- ГЛАВНЫЙ РАЗМЕР ФОТО НА МОБИЛКЕ */
+    max-height: 380px !important;            /* подними до 420/450 если надо */
+
+    object-fit: contain !important;
+    border-radius: 14px !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  /* =========================
+     SECTIONS
+     ========================= */
+  section { padding: 35px 0; width: 100%; overflow: hidden; }
+  .section-title { font-size: 26px; margin-bottom: 25px; }
+
+  /* =========================
+     PRICING
+     ========================= */
+  .pricing-cards-horizontal {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .pricing-card-horizontal { width: 100%; max-width: 360px; }
+  .pricing-card-horizontal.popular-horizontal { transform: scale(1); }
+  .pricing-card-horizontal.popular-horizontal:hover { transform: scale(1) translateY(-4px); }
+
+  /* =========================
+     CALCULATOR
+     ========================= */
+  .calculator-layout { flex-direction: column; gap: 18px; }
+  .calculator-layout .calculator-box { max-width: 100%; }
+
+  .calculator { padding: 35px 0; }
+  .calculator-box { padding: 20px 15px; }
+  .calculator-results { grid-template-columns: 1fr; gap: 12px; }
+
+  .result-card {
+    padding: 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .result-value { font-size: 22px; }
+
+  .slider-container { position: relative; padding-top: 40px; margin-top: 8px; }
+  .slider-value { top: 12px !important; min-width: 80px; font-size: 13px; }
+
+  /* кнопки тарифов аккуратно на мобилке */
+  .plan-selector{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .plan-btn{
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  /* =========================
+     REVIEWS (PHONE) — ГЛАВНЫЙ ФИКС
+     ========================= */
+
+  /* убираем боковые поля именно в отзывах (иначе “пустое место”) */
+  #reviews .container{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* снимаем базовый фикс width:250px */
+  .phone-mockup{
+    width: 100% !important;
+  }
+
+  /* phone.png контейнер — занимает почти всю ширину */
+  #reviews-phone.phone-image-container-large{
+    width: 100vw !important;
+
+    /* <-- главный параметр размера телефона */
+    max-width: 560px !important;
+
+    min-width: 0 !important;
+    margin: -30px auto 0 !important;
+  }
+
+  /* рамка телефона */
+  #reviews-phone .phone-frame{
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* маска экрана (подгонка) */
+  #reviews-phone .phone-screen-mask{
+    top: 7.8% !important;
+    left: 4% !important;
+    right: 4% !important;
+    bottom: 7% !important;
+    border-radius: 16px !important;
+  }
+
+  /* фото отзывов — делаем больше */
+  #reviews-phone .phone-slide{ padding: 2px !important; }
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+
+    /* <-- размер фотки комментария */
+    transform: scale(0.86) !important;
+  }
+
+  /* навигация: стрелки + точки */
+  #reviews-phone .phone-nav{
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12% !important;
+
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  /* стрелки меньше + тоньше обводка */
+  #reviews-phone .phone-nav-btn{
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 18px !important;
+    border-radius: 10px !important;
+
+    /* <-- обводка стрелок */
+    border-width: 1px !important;
+  }
+
+  /* точки всегда в линию (на iOS тоже) */
+  #reviews-phone .phone-dots{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+
+    /* если совсем нет места — можно прокручивать */
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    min-width: 0 !important;
+  }
+  #reviews-phone .phone-dots::-webkit-scrollbar{ display:none; }
+
+  /* размер точек */
+  #reviews-phone .phone-dot{
+    width: 6px !important;
+    height: 6px !important;
+  }
+  #reviews-phone .phone-dot.active{
+    transform: scale(1.35) !important;
+  }
+
+  /* =========================
+     CONTACT / ENVELOPE (touch fix)
+     ========================= */
+  .contact { padding: 40px 0; }
+  .letter-envelope-container { margin: 20px auto 0; transform: scale(0.9); }
+  .letter-link { padding: 18px 30px; }
+  .letter-link-text { font-size: 22px; }
+
+  /* ✅ конверт: на тач-устройствах бумажка выезжает и ссылка кликабельна */
+  @media (hover: none) and (pointer: coarse){
+    .envelope.touch-active .letter{
+      animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards !important;
+      animation-delay: var(--letter-delay) !important;
+    }
+
+    .envelope.touch-active .flap--top{
+      transform: rotateX(180deg) !important;
+      z-index: 1 !important;
+    }
+
+    .envelope.touch-active .seal{
+      opacity: 0 !important;
+      transform: translate(-50%,-70%) scale(.6) rotate(-45deg) !important;
+      z-index: 1 !important;
+    }
+
+    .envelope.touch-active .letter-link{ pointer-events: auto !important; }
+    .envelope:not(.touch-active) .letter-link{ pointer-events: none !important; }
+  }
+}
+
+/* =========================
+   Smaller breakpoints (optional)
+   ========================= */
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 23px; }
+  .hero-content p { font-size: 14px; }
+  .section-title { font-size: 22px; }
+
+  /* selfie чуть ниже на очень маленьких */
+  .about-selfy-img-combined{ max-height: 340px !important; }
+
+  /* телефон чуть меньше */
+  #reviews-phone.phone-image-container-large{ max-width: 520px !important; }
+  #reviews-phone .phone-slide img{ transform: scale(0.84) !important; }
+}
+
+@media (max-width: 360px) {
+  .hero-content h1 { font-size: 21px; }
+  .about-selfy-img-combined{ max-height: 320px !important; }
+}
+
+/* iOS input zoom fix */
+@media screen and (max-width: 768px) {
+  input, textarea, select { font-size: 16px !important; }
+}
+
+/* touch improve */
+button, .cta-button, .plan-btn, .phone-nav-btn {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* =========================================================
+   PATCH: SELFIE MOBILE (рамка меньше, фото больше)
+   ========================================================= */
+@media (max-width: 768px){
+
+  /* РАМКА/ОБВОДКА вокруг фото (уменьшай тут) */
+  .about-image-combined{
+    padding: 6px !important;      /* меньше = рамка тоньше */
+    border-width: 1px !important; /* обводка тоньше */
+  }
+
+  /* РАЗМЕР самого фото (увеличить тут) */
+  .about-selfy-img-combined{
+    max-height: 600px !important; /* больше = фото больше */
+  }
+}
+@media (max-width: 768px){
+
+  /* снимаем фиксированную высоту у контейнера */
+  .about-image-combined{
+    height: auto !important;
+  }
+
+  /* снимаем height:100% и даём картинке расти */
+  .about-selfy-img-combined{
+    height: auto !important;
+    width: 110% !important;
+      /* или auto, если не хочешь растягивать по ширине */
+    max-height: 700px !important; /* <-- теперь это будет работать */
+    object-fit: contain !important;
+  }
+}
+@media (max-width: 768px){
+
+  /* 1) УБРАТЬ ограничение 250px, иначе телефон никогда не станет шире */
+  #reviews .phone-mockup{
+    width: 100% !important;
+  }
+
+  /* 2) Увеличить контейнер телефона (это и есть размер phone.png визуально) */
+  #reviews-phone.phone-image-container-large{
+    width: 96vw !important;        /* сделай 98vw если хочешь почти в край */
+    max-width: 600px !important;   /* ГЛАВНЫЙ ЛИМИТ: увеличивай (560/600/650) */
+    margin: -40px auto 0 !important;
+  }
+
+  /* 3) Сама картинка phone.png пусть тянется на 100% контейнера */
+  #reviews-phone .phone-frame{
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+/* MOBILE: увеличить именно phone.png внутри контейнера */
+@media (max-width: 768px){
+
+ @media (max-width: 768px){
+  #reviews-phone .phone-frame{
+    width: 140% !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+
+    margin-left: -20% !important;  /* центрирование для 130% */
+  }
+}
+}
+@media (max-width: 768px){
+  /* фото отзывов внутри phone.png */
+  #reviews-phone .phone-slide{ 
+    padding: 18px !important;      /* больше = фото меньше */
+  }
+
+  #reviews-phone .phone-slide img{
+    transform: scale(0.85) !important;  /* меньше = фото меньше */
+  }
+}
+/* ✅ MOBILE: двигаем ТОЛЬКО комментарии внутри phone.png (не навигацию) */
+@media (max-width: 768px){
+
+  /* Двигает вниз весь блок с картинками отзывов */
+  #reviews-phone .phone-slides{
+    transform: translateY(70px) !important;  /* 👈 32px ≈ “примерно 1 см” */
+  }
+
 }
