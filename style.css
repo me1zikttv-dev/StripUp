@@ -1880,3 +1880,76 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     pointer-events: none !important;
   }
 }
+/* =========================================================
+   iOS ONLY: Reviews phone (phone.png + comments) FIX
+   ВСТАВИТЬ В САМЫЙ НИЗ style.css
+   ========================================================= */
+
+/* iOS-детектор (Safari/Chrome iOS): */
+@supports (-webkit-touch-callout: none) {
+
+  @media (max-width: 768px){
+
+    /* 1) Увеличиваем сам телефон (контейнер) + поднимаем вверх */
+    #reviews-phone.phone-image-container-large{
+      width: 96vw !important;
+      max-width: 680px !important;      /* <-- iOS: размер phone.png (меняй) */
+      min-width: 0 !important;
+      margin: -70px auto 0 !important;  /* <-- iOS: поднять вверх (больше минус = выше) */
+      position: relative !important;
+    }
+
+    /* 2) ВАЖНО для iOS: убираем 140%/сдвиги — рамка строго 100% */
+    #reviews-phone .phone-frame{
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      margin: 0 !important;
+      transform: none !important;
+      transform-origin: center top !important;
+      position: relative !important;
+      z-index: 5 !important;            /* рамка сверху */
+      pointer-events: none !important;
+      display: block !important;
+    }
+
+    /* 3) Экран (маска) — подгонка именно на iOS */
+    #reviews-phone .phone-screen-mask{
+      position: absolute !important;
+      z-index: 2 !important;            /* контент под рамкой */
+      top: 7.6% !important;
+      left: 4% !important;
+      right: 4% !important;
+      bottom: 7.2% !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      -webkit-transform: translateZ(0); /* iOS стабилизация слоёв */
+    }
+
+    /* 4) Сдвигаем КОММЕНТАРИИ ниже (не весь блок) */
+    #reviews-phone .phone-slides{
+      transform: translateY(14px) !important; /* <-- iOS: ниже/выше (10–18px) */
+    }
+
+    /* 5) Увеличиваем сами комментарии внутри экрана */
+    #reviews-phone .phone-slide{
+      padding: 10px !important;         /* меньше padding = больше видимая картинка */
+    }
+
+    #reviews-phone .phone-slide img{
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      transform: scale(0.94) !important; /* <-- iOS: размер комментов (0.90–0.98) */
+      -webkit-transform: scale(0.94) !important;
+    }
+
+    /* 6) Навигация поверх контента (если вдруг уезжает на iOS) */
+    #reviews-phone .phone-nav{
+      z-index: 10 !important;
+      left: 12px !important;
+      right: 12px !important;
+      bottom: 9% !important;
+    }
+  }
+}
