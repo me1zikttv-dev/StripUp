@@ -2050,3 +2050,14 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* ===== ТОЛЬКО ДЛЯ iOS: опускаем комментарии ниже ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* Этот код работает ТОЛЬКО на iOS */
+    #reviews-phone .phone-slides {
+      transform: translateY(70px) !important; /* ← Меняй эту цифру */
+    }
+    
+  }
+}
