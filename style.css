@@ -2014,58 +2014,47 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       transform: scale(1.35) !important;
     }
   }
-}/* ===== iOS ONLY: комменты x2 и ниже + чтобы не резало ===== */
+/* ===== iOS ONLY: всё в одном блоке ===== */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
-
-    /* 0) удобные ручки */
+    
+    /* Удобные переменные для регулировки */
     :root{
-      --ios-comment-scale: 1.4;  /* было 0.85 → примерно x2 */
-      --ios-comment-shift: 140px; /* ниже: больше = ниже */
+      --ios-comment-scale: 1.4;      /* размер комментариев */
+      --ios-comment-shift: 72px;     /* положение комментариев */
+      --ios-phone-shift: -15px;      /* положение телефона */
+      --ios-mask-bottom: 1.8%;       /* место снизу в маске */
     }
-
-    /* 1) увеличиваем комменты */
-    #reviews-phone .phone-slide img{
+    
+    /* 1) Поднимаем весь телефон */
+    #reviews-phone.phone-image-container-large {
+      margin-top: -45px !important; /* Поднять телефон */
+      transform: translateY(var(--ios-phone-shift)) !important;
+    }
+    
+    /* 2) Опускаем комментарии ниже внутри телефона */
+    #reviews-phone .phone-slides {
+      transform: translateY(var(--ios-comment-shift)) !important;
+      -webkit-transform: translateY(var(--ios-comment-shift)) !important;
+    }
+    
+    /* 3) Увеличиваем комментарии */
+    #reviews-phone .phone-slide img {
       transform: scale(var(--ios-comment-scale)) !important;
+      -webkit-transform: scale(var(--ios-comment-scale)) !important;
       transform-origin: center center !important;
     }
-
-    /* 2) опускаем комменты ниже */
-    #reviews-phone .phone-slides{
-      transform: translateY(var(--ios-comment-shift)) translateZ(0) !important;
-      will-change: transform;
+    
+    /* 4) Больше места снизу в маске */
+    #reviews-phone .phone-screen-mask {
+      bottom: var(--ios-mask-bottom) !important;
     }
-
-    /* 3) даём больше “экрана” снизу, чтобы не обрезало */
-    #reviews-phone .phone-screen-mask{
-      top: 7.8% !important;      /* оставляем как было */
-      bottom: 1.8% !important;   /* было ~7% → меньше = больше места снизу */
-      left: 4% !important;
-      right: 4% !important;
+    
+    /* 5) Меньше внутренних отступов */
+    #reviews-phone .phone-slide {
+      padding: 6px !important;
     }
-
-    /* 4) уменьшаем внутренние отступы, чтобы влезало */
-    #reviews-phone .phone-slide{
-      padding: 6px !important;   /* было 18px */
-    }
+    
   }
 }
-/* ===== ТОЛЬКО ДЛЯ iOS: опускаем комментарии ниже ===== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    
-    /* Этот код работает ТОЛЬКО на iOS */
-    #reviews-phone .phone-slides {
-      transform: translateY(72px) !important; /* ← Меняй эту цифру */
-    }
-    
-  }
-}/* ===== ТОЛЬКО ДЛЯ iOS: поднимаем phone.png чуть выше ===== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    
-#reviews-phone.phone-image-container-large {
-  transform: translateY(-10px) !important; /* Поднять на 10px */
-}
-  }
 }
