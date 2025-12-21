@@ -1957,12 +1957,21 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @media (max-width: 768px) {
 
     /* насколько поднять вверх (поставь 120-200px по вкусу) */
-    :root{ --ios-reviews-shift: 85px; }
+    :root{ --ios-reviews-shift: 30px; }
 
     /* поднимаем весь контейнер телефона вместе со всем содержимым */
     #reviews-phone.phone-image-container-large{
       transform: translateY(calc(-1 * var(--ios-reviews-shift))) !important;
     }
 
+  }
+}
+/* iOS ONLY: поднять блок отзывов выше БЕЗ изменения размеров */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    #reviews-phone.phone-image-container-large{
+      position: relative !important;
+      top: -40px !important;  /* <-- тут регулируй: -20 / -30 / -50 */
+    }
   }
 }
