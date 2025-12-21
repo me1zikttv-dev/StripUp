@@ -1876,72 +1876,142 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     
-    /* 1. СБРАСЫВАЕМ все лишние трансформации */
-    #reviews-phone .phone-slides {
-      transform: none !important;
-      -webkit-transform: none !important;
-      margin-top: 0 !important;
-      top: 0 !important;
+    /* 1. Убираем ВСЕ предыдущие трансформации телефона */
+    #reviews-phone.phone-image-container-large {
+      all: unset !important; /* СБРОС ВСЕГО */
+      width: 96vw !important;
+      max-width: 600px !important;
+      margin: -40px auto 0 !important; /* Исходная позиция */
+      position: relative !important;
     }
     
-    /* 2. ОПУСКАЕМ комментарии ВНИЗ через маску */
-    #reviews-phone .phone-screen-mask {
-      top: -40% !important;    /* Опускаем маску ВНИЗ */
-      bottom: 12% !important; /* Увеличиваем снизу */
+    /* 2. Frame - исходное состояние */
+    #reviews-phone .phone-frame {
+      all: unset !important;
+      width: 140% !important;
       height: auto !important;
+      display: block !important;
+      margin-left: -20% !important;
+      transform: scale(1.08) !important;
+      transform-origin: center top !important;
     }
     
-    /* 3. Комментарии НОРМАЛЬНОГО размера (как на Android) */
+    /* 3. Маска экрана - БОЛЬШЕ места снизу */
+    #reviews-phone .phone-screen-mask {
+      all: unset !important;
+      position: absolute !important;
+      top: 7.8% !important;
+      left: 4% !important;
+      right: 4% !important;
+      bottom: 20% !important; /* УВЕЛИЧИВАЕМ снизу! */
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      z-index: 2 !important;
+    }
+    
+    /* 4. Контейнер для комментариев */
+    #reviews-phone .phone-screen-content {
+      all: unset !important;
+      position: absolute !important;
+      inset: 0 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    
+    /* 5. Слайды - опускаем ВНИЗ */
+    #reviews-phone .phone-slides {
+      all: unset !important;
+      position: relative !important;
+      width: 100% !important;
+      height: 100% !important;
+      flex: 1 !important;
+      margin-top: 80px !important; /* ОПУСКАЕМ ВНИЗ */
+    }
+    
+    /* 6. Каждый слайд */
+    #reviews-phone .phone-slide {
+      all: unset !important;
+      position: absolute !important;
+      inset: 0 !important;
+      opacity: 0 !important;
+      transition: opacity .35s ease !important;
+      display: flex !important;
+      align-items: flex-start !important; /* НАЧИНАЕМ С ВЕРХА */
+      justify-content: center !important;
+      padding: 10px 18px !important;
+    }
+    #reviews-phone .phone-slide.active { opacity: 1 !important; }
+    
+    /* 7. Изображения комментариев - НОРМАЛЬНЫЙ размер */
     #reviews-phone .phone-slide img {
-      transform: scale(1) !important; /* Такой же как везде */
-      -webkit-transform: scale(0.85) !important;
+      all: unset !important;
       width: 100% !important;
       height: auto !important;
-      max-height: 350px !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+      display: block !important;
+      transform: scale(1) !important; /* НОРМАЛЬНЫЙ РАЗМЕР */
+      max-height: 400px !important; /* ОГРАНИЧИВАЕМ высоту */
     }
     
-    /* 4. Весь блок телефона - не трогаем высоту */
-    #reviews-phone.phone-image-container-large {
-      transform: none !important;
-      margin-top: -40px !important; /* Как было изначально */
+    /* 8. Навигация - опускаем */
+    #reviews-phone .phone-nav {
+      all: unset !important;
+      position: absolute !important;
+      bottom: 15% !important; /* НИЖЕ */
+      left: 90px !important;
+      right: 90px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 10px !important;
+      z-index: 10 !important;
+      pointer-events: auto !important;
     }
     
-    /* 5. Увеличиваем контейнер для комментариев */
-    #reviews-phone .phone-screen-content {
-      height: 100% !important;
-      min-height: 400px !important;
-      padding-bottom: 20px !important;
-    }
-    
-    /* 6. Комментарии центрируем */
-    #reviews-phone .phone-slide {
+    /* 9. Кнопки навигации */
+    #reviews-phone .phone-nav-btn {
+      all: unset !important;
+      background: rgba(255,255,255,0.97) !important;
+      color: var(--burgundy) !important;
+      border: 2px solid rgba(176,49,94,0.12) !important;
+      width: 28px !important;
+      height: 28px !important;
+      font-size: 18px !important;
+      cursor: pointer !important;
+      border-radius: 10px !important;
+      box-shadow: 0 5px 15px rgba(176,49,94,0.06) !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      height: 100% !important;
-    }
-  }
-}
-
-/* ЕСЛИ ВСЕ РАВНО ОБРЕЗАЕТ - ПРОБУЕМ ЭТО */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    
-    /* Вариант A: Просто увеличиваем маску снизу */
-    #reviews-phone .phone-screen-mask {
-      bottom: 15% !important; /* Еще больше места снизу */
-      top: 5% !important; /* И сверху тоже */
+      transition: transform .16s ease, box-shadow .16s ease !important;
     }
     
-    /* Вариант B: Опускаем через внутренний отступ */
-    #reviews-phone .phone-slides {
-      padding-top: 30px !important; /* Опускаем контент внутри */
+    /* 10. Точки */
+    #reviews-phone .phone-dots {
+      all: unset !important;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 6px !important;
+      min-width: 0 !important;
     }
     
-    /* Вариант C: Комментарии нормального размера */
-    #reviews-phone .phone-slide img {
-      transform: scale(0.9) !important; /* Чуть больше */
-      max-height: 380px !important;
+    #reviews-phone .phone-dot {
+      all: unset !important;
+      width: 6px !important;
+      height: 6px !important;
+      border-radius: 50% !important;
+      cursor: pointer !important;
+      background: rgba(176,49,94,0.28) !important;
+      transition: transform .2s ease, background .2s ease !important;
+    }
+    #reviews-phone .phone-dot.active {
+      background: var(--burgundy) !important;
+      transform: scale(1.35) !important;
     }
   }
 }
