@@ -2295,4 +2295,82 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       }
     }
   }
+}/* ===== iOS ONLY: уменьшаем комментарии ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* 1. Уменьшаем изображения комментариев */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.75) !important; /* Уменьшаем на 25% */
+      max-width: 85% !important;
+      margin: 0 auto !important;
+    }
+    
+    /* 2. Поднимаем комментарии выше (так как они теперь меньше) */
+    #reviews-phone .phone-slides {
+      transform: translateY(40px) !important; /* Было 60px, теперь выше */
+    }
+    
+    /* 3. Увеличиваем отступы вокруг комментариев */
+    #reviews-phone .phone-slide {
+      padding: 5px 15px !important; /* Больше пространства по бокам */
+    }
+    
+    /* 4. Делаем маску экрана шире для уменьшенных комментариев */
+    #reviews-phone .phone-screen-mask {
+      width: 94% !important; /* Шире */
+      left: 3% !important;
+      right: 3% !important;
+      transform: none !important;
+    }
+    
+    /* 5. Поднимаем навигацию выше */
+    #reviews-phone .phone-nav {
+      bottom: 8% !important; /* Было 5%, теперь выше */
+    }
+    
+    /* 6. Уменьшаем phone.png обратно к нормальному размеру */
+    #reviews-phone.phone-image-container-large {
+      transform: scale(1) !important; /* Возвращаем к оригинальному размеру */
+      margin-top: -40px !important; /* Опускаем чуть ниже */
+    }
+  }
+}
+
+/* Тонкая настройка размера для разных устройств */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    /* Для очень маленьких экранов - уменьшаем еще больше */
+    @media (max-width: 360px) {
+      #reviews-phone .phone-slide img {
+        transform: scale(0.7) !important; /* На 30% меньше */
+        max-width: 80% !important;
+      }
+      #reviews-phone .phone-slides {
+        transform: translateY(35px) !important;
+      }
+    }
+    
+    /* Для средних экранов */
+    @media (min-width: 361px) and (max-width: 414px) {
+      #reviews-phone .phone-slide img {
+        transform: scale(0.78) !important; /* На 22% меньше */
+        max-width: 88% !important;
+      }
+      #reviews-phone .phone-slides {
+        transform: translateY(45px) !important;
+      }
+    }
+    
+    /* Для больших экранов (iPhone Pro Max) */
+    @media (min-width: 415px) and (max-width: 428px) {
+      #reviews-phone .phone-slide img {
+        transform: scale(0.8) !important; /* На 20% меньше */
+        max-width: 90% !important;
+      }
+      #reviews-phone .phone-slides {
+        transform: translateY(50px) !important;
+      }
+    }
+  }
 }
