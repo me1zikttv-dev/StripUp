@@ -2079,3 +2079,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    #reviews-phone { outline: 6px solid red !important; }
+  }
+}
