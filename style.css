@@ -2060,4 +2060,14 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
     
   }
+}/* ===== ТОЛЬКО ДЛЯ iOS: поднимаем phone.png чуть выше ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* Поднимаем phone.png выше */
+    #reviews-phone.phone-image-container-large {
+      margin-top: -50px !important; /* ← Меняй эту цифру */
+    }
+    
+  }
 }
