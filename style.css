@@ -2073,7 +2073,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* было 49px в твоём mobile блоке — делаем на 2-4px ниже */
     #reviews-phone .phone-slides{
-      transform: translateY(52px) !important; /* попробуй 51-55 */
+      transform: translateY(55px) !important; /* попробуй 51-55 */
     }
 
   }
