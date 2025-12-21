@@ -1886,7 +1886,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* 2. ОПУСКАЕМ комментарии ВНИЗ через маску */
     #reviews-phone .phone-screen-mask {
-      top: 60% !important;    /* Опускаем маску ВНИЗ */
+      top: 0% !important;    /* Опускаем маску ВНИЗ */
       bottom: 12% !important; /* Увеличиваем снизу */
       height: auto !important;
     }
