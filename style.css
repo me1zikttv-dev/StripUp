@@ -1949,4 +1949,20 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+}/* =========================
+   iOS ONLY: поднять блок отзывов (phone.png + комменты) выше
+   НЕ меняет размеры, только позицию
+   ========================= */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+
+    /* насколько поднять вверх (поставь 120-200px по вкусу) */
+    :root{ --ios-reviews-shift: 140px; }
+
+    /* поднимаем весь контейнер телефона вместе со всем содержимым */
+    #reviews-phone.phone-image-container-large{
+      transform: translateY(calc(-1 * var(--ios-reviews-shift))) !important;
+    }
+
+  }
 }
