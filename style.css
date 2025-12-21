@@ -1982,4 +1982,52 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       bottom: 15% !important;
     }
   }
+}/* ===== iOS ONLY: поднимаем phone.png выше ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* Поднимаем весь блок телефона выше (ближе к заголовку "Отзывы моделей") */
+    #reviews-phone.phone-image-container-large {
+      margin-top: -85px !important; /* Чем больше отрицательное значение, тем выше */
+    }
+    
+    /* Оставляем комментарии на своем месте (не двигаем их) */
+    #reviews-phone .phone-slides {
+      transform: translateY(49px) !important; /* Оставляем как было */
+    }
+    
+    /* Убеждаемся, что изображения комментариев нормального размера */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.85) !important; /* Оставляем как было */
+    }
+    
+    /* Навигацию немного опускаем, чтобы оставалась видимой */
+    #reviews-phone .phone-nav {
+      bottom: 10% !important;
+    }
+    
+    /* Убираем возможные ограничения по высоте */
+    #reviews .phone-mockup,
+    #reviews .reviews-container {
+      min-height: auto !important;
+      height: auto !important;
+    }
+  }
+}
+
+/* Дополнительная настройка для разных размеров экрана iOS */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 375px) {
+    /* Для iPhone SE и маленьких экранов - поднимаем чуть меньше */
+    #reviews-phone.phone-image-container-large {
+      margin-top: -100px !important;
+    }
+  }
+  
+  @media (min-width: 376px) and (max-width: 428px) {
+    /* Для iPhone 12/13 Pro Max и подобных - поднимаем немного выше */
+    #reviews-phone.phone-image-container-large {
+      margin-top: -130px !important;
+    }
+  }
 }
