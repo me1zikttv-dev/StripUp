@@ -2014,45 +2014,40 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       transform: scale(1.35) !important;
     }
   }
-/* ===== iOS ONLY: всё в одном блоке ===== */
+/* ===== iOS FIX: гарантированно работающий вариант ===== */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     
-    /* Удобные переменные для регулировки */
-    :root{
-      --ios-comment-scale: 1.4;      /* размер комментариев */
-      --ios-comment-shift: 72px;     /* положение комментариев */
-      --ios-phone-shift: -15px;      /* положение телефона */
-      --ios-mask-bottom: 1.8%;       /* место снизу в маске */
-    }
-    
-    /* 1) Поднимаем весь телефон */
+    /* ПЕРВОЕ: Убираем ВСЕ предыдущие стили */
+    #reviews-phone .phone-slides,
+    #reviews-phone .phone-slide img,
     #reviews-phone.phone-image-container-large {
-      margin-top: -45px !important; /* Поднять телефон */
-      transform: translateY(var(--ios-phone-shift)) !important;
+      all: unset !important;
     }
     
-    /* 2) Опускаем комментарии ниже внутри телефона */
+    /* ВТОРОЕ: Ставим базовые стили */
+    #reviews-phone.phone-image-container-large {
+      width: 96vw !important;
+      max-width: 600px !important;
+      margin: -45px auto 0 !important; /* ← Поднять телефон */
+      position: relative !important;
+    }
+    
+    /* ТРЕТЬЕ: Комментарии */
     #reviews-phone .phone-slides {
-      transform: translateY(var(--ios-comment-shift)) !important;
-      -webkit-transform: translateY(var(--ios-comment-shift)) !important;
+      position: relative !important;
+      top: 75px !important; /* ← Положение комментариев */
+      width: 100% !important;
+      height: auto !important;
     }
     
-    /* 3) Увеличиваем комментарии */
+    /* ЧЕТВЕРТОЕ: Размер комментариев */
     #reviews-phone .phone-slide img {
-      transform: scale(var(--ios-comment-scale)) !important;
-      -webkit-transform: scale(var(--ios-comment-scale)) !important;
-      transform-origin: center center !important;
-    }
-    
-    /* 4) Больше места снизу в маске */
-    #reviews-phone .phone-screen-mask {
-      bottom: var(--ios-mask-bottom) !important;
-    }
-    
-    /* 5) Меньше внутренних отступов */
-    #reviews-phone .phone-slide {
-      padding: 6px !important;
+      width: 100% !important;
+      transform: scale(1.4) !important; /* ← Размер */
+      max-height: 400px !important;
+      margin: 0 auto !important;
+      display: block !important;
     }
     
   }
