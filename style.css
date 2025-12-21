@@ -2043,3 +2043,19 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* ===== iOS ONLY: комменты больше + ниже (НЕ трогая phone.png) ===== */
+@supports (-webkit-overflow-scrolling: touch) {
+  @media (max-width: 768px){
+
+    /* 1) КОММЕНТЫ КРУПНЕЕ (было 0.85) */
+    #reviews-phone .phone-slide img{
+      transform: scale(0.93) !important;  /* ↑ увеличивай/уменьшай */
+    }
+
+    /* 2) КОММЕНТЫ НИЖЕ (было translateY(48px)) */
+    #reviews-phone .phone-slides{
+      transform: translateY(75px) !important; /* ↑ больше = ниже, меньше = выше */
+    }
+
+  }
+}
