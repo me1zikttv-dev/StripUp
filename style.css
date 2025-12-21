@@ -2054,7 +2054,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* 2) КОММЕНТЫ НИЖЕ (было translateY(48px)) */
     #reviews-phone .phone-slides{
-      transform: translateY(85px) !important; /* ↑ больше = ниже, меньше = выше */
+      transform: translateY(120px) !important; /* ↑ больше = ниже, меньше = выше */
     }
 
   }
