@@ -2056,7 +2056,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* Этот код работает ТОЛЬКО на iOS */
     #reviews-phone .phone-slides {
-      transform: translateY(70px) !important; /* ← Меняй эту цифру */
+      transform: translateY(75px) !important; /* ← Меняй эту цифру */
     }
     
   }
