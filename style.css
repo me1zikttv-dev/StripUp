@@ -1850,24 +1850,33 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
-/* iOS ONLY: поднять увеличенный phone.png и дать место снизу */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
+/* MOBILE: телефон поверх всех блоков (оверлей) */
+@media (max-width: 768px){
 
-    /* 1) поднимаем телефон вверх (чем больше минус — тем выше) */
-    #reviews-phone.phone-image-container-large{
-      transform: scale(1.18) !important;
-      transform-origin: center top !important;
-      margin-top: -90px !important;   /* <-- ПОДНИМАТЬ ТУТ (-70 / -90 / -110) */
-    }
+  /* чтобы z-index вообще работал */
+  #reviews { position: relative; z-index: 1; overflow: visible !important; }
+  #contact { position: relative; z-index: 1; }
 
-    /* 2) даём место снизу, чтобы "Контакты" не наезжали */
-    #reviews{
-      padding-bottom: 220px !important; /* <-- МЕСТО СНИЗУ (180-300) */
-      overflow: visible !important;
-    }
+  /* сам телефон — поверх */
+  #reviews-phone.phone-image-container-large{
+    position: relative !important;
+    z-index: 9999 !important;
+  }
 
-    /* 3) на всякий случай убираем горизонтальные срезы iOS */
-    body { overflow-x: hidden !important; }
+  /* содержимое в телефоне и навигация — тоже поверх */
+  #reviews-phone .phone-screen-mask{
+    position: absolute !important;
+    z-index: 10000 !important;
+  }
+  #reviews-phone .phone-nav{
+    position: absolute !important;
+    z-index: 10001 !important;
+  }
+
+  /* рамка phone.png пусть НЕ перекрывает клики */
+  #reviews-phone .phone-frame{
+    position: relative !important;
+    z-index: 9998 !important;
+    pointer-events: none !important;
   }
 }
