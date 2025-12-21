@@ -1975,3 +1975,71 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* ===== FORCE: твои финальные размеры и слои (mobile, all devices) ===== */
+@media (max-width: 768px){
+
+  /* контейнер телефона */
+  #reviews-phone.phone-image-container-large{
+    width: 96vw !important;
+    max-width: 600px !important;
+    min-width: 0 !important;
+    margin: -40px auto 0 !important;
+    position: relative !important;
+  }
+
+  /* phone.png (рамка) */
+  #reviews-phone .phone-frame{
+    width: 140% !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+    margin-left: -20% !important;
+
+    transform: scale(1.08) !important;
+    transform-origin: center top !important;
+
+    position: relative !important;
+    z-index: 5 !important; /* рамка всегда сверху */
+  }
+
+  /* экран внутри (комменты) */
+  #reviews-phone .phone-screen-mask{
+    top: 7.8% !important;
+    left: 4% !important;
+    right: 4% !important;
+    bottom: 7% !important;
+    border-radius: 16px !important;
+    z-index: 2 !important; /* комменты под рамкой */
+  }
+
+  #reviews-phone .phone-slide{
+    padding: 18px !important;
+  }
+
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transform: scale(0.85) !important;
+  }
+
+  #reviews-phone .phone-slides{
+    transform: translateY(48px) !important;
+  }
+
+  /* навигация поверх экрана */
+  #reviews-phone .phone-nav{
+    left: 90px !important;
+    right: 90px !important;
+    bottom: 8% !important;
+    z-index: 10 !important;
+  }
+}
+/* ===== iOS ONLY: поднять телефон+комменты выше, БЕЗ изменения размеров ===== */
+@supports (-webkit-overflow-scrolling: touch) {
+  @media (max-width: 768px){
+    #reviews-phone.phone-image-container-large{
+      margin-top: -80px !important; /* было -40px, стало выше на ~40px */
+    }
+  }
+}
