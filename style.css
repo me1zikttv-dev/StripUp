@@ -1971,7 +1971,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @media (max-width: 768px) {
     #reviews-phone.phone-image-container-large{
       position: relative !important;
-      top: -40px !important;  /* <-- тут регулируй: -20 / -30 / -50 */
+      top: -70px !important;  /* <-- тут регулируй: -20 / -30 / -50 */
     }
   }
 }
