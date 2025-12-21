@@ -1763,3 +1763,35 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* =========================
+   iOS Safari FIX: reviews phone не обрезается и по центру
+   вставить В САМЫЙ НИЗ style.css
+   ========================= */
+@supports (-webkit-touch-callout: none) {
+
+  /* 1) на iOS запрещаем обрезание именно в блоке отзывов */
+  #reviews,
+  #reviews .container,
+  #reviews .reviews-container,
+  #reviews .phone-mockup,
+  #reviews-phone.phone-image-container-large{
+    overflow: visible !important;
+  }
+
+  /* 2) вместо width:140% + margin-left:-20% (которое iOS часто “кривит”)
+        центрируем через left:50% + translateX(-50%)
+        размеры НЕ меняю — только способ центрирования */
+  #reviews-phone .phone-frame{
+    width: 140% !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+
+    position: relative !important;
+    left: 50% !important;
+    margin-left: 0 !important;
+
+    transform: translateX(-50%) scale(1.08) !important;
+    transform-origin: center top !important;
+  }
+}
