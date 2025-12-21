@@ -2014,4 +2014,39 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       transform: scale(1.35) !important;
     }
   }
+}/* ===== iOS ONLY: комменты x2 и ниже + чтобы не резало ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* 0) удобные ручки */
+    :root{
+      --ios-comment-scale: 1.7;  /* было 0.85 → примерно x2 */
+      --ios-comment-shift: 140px; /* ниже: больше = ниже */
+    }
+
+    /* 1) увеличиваем комменты */
+    #reviews-phone .phone-slide img{
+      transform: scale(var(--ios-comment-scale)) !important;
+      transform-origin: center center !important;
+    }
+
+    /* 2) опускаем комменты ниже */
+    #reviews-phone .phone-slides{
+      transform: translateY(var(--ios-comment-shift)) translateZ(0) !important;
+      will-change: transform;
+    }
+
+    /* 3) даём больше “экрана” снизу, чтобы не обрезало */
+    #reviews-phone .phone-screen-mask{
+      top: 7.8% !important;      /* оставляем как было */
+      bottom: 1.8% !important;   /* было ~7% → меньше = больше места снизу */
+      left: 4% !important;
+      right: 4% !important;
+    }
+
+    /* 4) уменьшаем внутренние отступы, чтобы влезало */
+    #reviews-phone .phone-slide{
+      padding: 6px !important;   /* было 18px */
+    }
+  }
 }
