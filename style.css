@@ -710,9 +710,23 @@ section { padding: 50px 0; width: 100%; }
 /* =========================
    FAQ
    ========================= */
-.faq-container { max-width: 750px; margin: 0 auto; }
-.faq-item { margin-bottom: 15px; border-radius: 14px; overflow: hidden; }
-.faq-box {
+
+.faq-container{
+  width: 100%;
+  max-width: 1400px;              /* шире, чтобы вопросы влезали в строку */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px 16px;
+}
+
+.faq-item{
+  margin-bottom: 0;               /* gap вместо margin */
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.faq-box{
   background: white;
   border: var(--box-border);
   border-radius: 14px;
@@ -720,28 +734,46 @@ section { padding: 50px 0; width: 100%; }
   overflow: hidden;
 }
 
-.faq-question {
+.faq-question{
   background: white;
   padding: 18px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   font-weight: 700;
   transition: background 0.3s ease;
   font-family: 'Playfair Display', serif;
-  font-size: 17px;
+  font-size: 16px;               /* чуть меньше */
 }
-.faq-question:hover { background: var(--light-pink); }
 
-.faq-answer {
+/* текст вопроса в одну строку */
+.faq-question span:first-child{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.faq-question:hover{ background: var(--light-pink); }
+
+.faq-answer{
   background: var(--light-pink);
   padding: 0 18px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease, padding 0.3s ease;
 }
-.faq-item.active .faq-answer { padding: 18px; max-height: 500px; }
+.faq-item.active .faq-answer{ padding: 18px; max-height: 500px; }
+
+/* адаптив */
+@media (max-width: 992px){
+  .faq-container{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px){
+  .faq-container{ grid-template-columns: 1fr; }
+}
+
 
 /* =========================
    REVIEWS + INTERVIEW LAYOUT
