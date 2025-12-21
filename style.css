@@ -2056,7 +2056,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* ПОДНИМАЕМ комментарии чуть-чуть выше */
     #reviews-phone .phone-slides {
-      margin-top: 75px !important; /* Было 80px, теперь 70px (выше) */
+      margin-top: 70px !important; /* Было 80px, теперь 70px (выше) */
     }
     
     /* ИЛИ через transform если margin не работает */
