@@ -1881,75 +1881,72 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 /* =========================================================
-   iOS ONLY: Reviews phone (phone.png + comments) FIX
+   ANDROID FIX: вернуть комментарии ПОД phone.png (внутри экрана)
+   (работает на всех мобилках, но iOS ниже переопределит)
    ВСТАВИТЬ В САМЫЙ НИЗ style.css
    ========================================================= */
+@media (max-width: 768px){
 
-/* iOS-детектор (Safari/Chrome iOS): */
+  /* важно: если у тебя стоит section { overflow:hidden; } — не даём резать телефон */
+  #reviews{ overflow: visible !important; }
+
+  /* контейнер телефона */
+  #reviews-phone.phone-image-container-large{
+    position: relative !important;
+    z-index: 5 !important;
+  }
+
+  /* ✅ рамка phone.png должна быть 100%, без 140% и без сдвигов */
+  #reviews-phone .phone-frame{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 5 !important;            /* рамка выше */
+    pointer-events: none !important;
+  }
+
+  /* ✅ экран (комменты) всегда под рамкой */
+#reviews-phone .phone-screen-mask{
+  position: absolute !important;
+  z-index: 2 !important;
+  overflow: hidden !important;
+
+  /* безопасно и без ругани */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+
+
+/* =========================================================
+   iOS ONLY: увеличить phone.png + всё внутри в 1.5 раза
+   (Android не трогаем)
+   ========================================================= */
 @supports (-webkit-touch-callout: none) {
-
   @media (max-width: 768px){
 
-    /* 1) Увеличиваем сам телефон (контейнер) + поднимаем вверх */
+    /* чтобы увеличение не резалось (у тебя часто стоит overflow:hidden на section) */
+    #reviews{ overflow: visible !important; }
+
+    /* ✅ увеличиваем ВЕСЬ блок телефона, чтобы рамка и маска совпадали */
     #reviews-phone.phone-image-container-large{
-      width: 96vw !important;
-      max-width: 680px !important;      /* <-- iOS: размер phone.png (меняй) */
-      min-width: 0 !important;
-      margin: -70px auto 0 !important;  /* <-- iOS: поднять вверх (больше минус = выше) */
-      position: relative !important;
-    }
-
-    /* 2) ВАЖНО для iOS: убираем 140%/сдвиги — рамка строго 100% */
-    #reviews-phone .phone-frame{
-      width: 100% !important;
-      max-width: 100% !important;
-      height: auto !important;
-      margin: 0 !important;
-      transform: none !important;
+      transform: scale(1.5) !important;      /* <-- 1.5 раза (можешь 1.4 / 1.6) */
       transform-origin: center top !important;
+
+      /* при скейле элемент становится “выше”, поэтому поднимаем */
+      margin: -80px auto 0 !important;       /* <-- если надо выше/ниже: -60..-110 */
+      z-index: 50 !important;                /* поверх соседних блоков */
       position: relative !important;
-      z-index: 5 !important;            /* рамка сверху */
-      pointer-events: none !important;
-      display: block !important;
     }
 
-    /* 3) Экран (маска) — подгонка именно на iOS */
-    #reviews-phone .phone-screen-mask{
-      position: absolute !important;
-      z-index: 2 !important;            /* контент под рамкой */
-      top: 7.6% !important;
-      left: 4% !important;
-      right: 4% !important;
-      bottom: 7.2% !important;
-      border-radius: 16px !important;
-      overflow: hidden !important;
-      -webkit-transform: translateZ(0); /* iOS стабилизация слоёв */
-    }
-
-    /* 4) Сдвигаем КОММЕНТАРИИ ниже (не весь блок) */
-    #reviews-phone .phone-slides{
-      transform: translateY(14px) !important; /* <-- iOS: ниже/выше (10–18px) */
-    }
-
-    /* 5) Увеличиваем сами комментарии внутри экрана */
-    #reviews-phone .phone-slide{
-      padding: 10px !important;         /* меньше padding = больше видимая картинка */
-    }
-
-    #reviews-phone .phone-slide img{
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: contain !important;
-      transform: scale(0.94) !important; /* <-- iOS: размер комментов (0.90–0.98) */
-      -webkit-transform: scale(0.94) !important;
-    }
-
-    /* 6) Навигация поверх контента (если вдруг уезжает на iOS) */
+    /* навигация чтоб не “проваливалась” */
     #reviews-phone .phone-nav{
-      z-index: 10 !important;
-      left: 12px !important;
-      right: 12px !important;
-      bottom: 9% !important;
+      z-index: 60 !important;
     }
   }
+}
 }
