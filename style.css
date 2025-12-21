@@ -2471,4 +2471,76 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       overflow: visible !important;
     }
   }
+}/* ===== iOS ONLY: опускаем комментарии вниз и делаем нормального размера ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* 1. СБРАСЫВАЕМ все лишние трансформации */
+    #reviews-phone .phone-slides {
+      transform: none !important;
+      -webkit-transform: none !important;
+      margin-top: 0 !important;
+      top: 0 !important;
+    }
+    
+    /* 2. ОПУСКАЕМ комментарии ВНИЗ через маску */
+    #reviews-phone .phone-screen-mask {
+      top: 8% !important;    /* Опускаем маску ВНИЗ */
+      bottom: 12% !important; /* Увеличиваем снизу */
+      height: auto !important;
+    }
+    
+    /* 3. Комментарии НОРМАЛЬНОГО размера (как на Android) */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.85) !important; /* Такой же как везде */
+      -webkit-transform: scale(0.85) !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: 350px !important;
+    }
+    
+    /* 4. Весь блок телефона - не трогаем высоту */
+    #reviews-phone.phone-image-container-large {
+      transform: none !important;
+      margin-top: -40px !important; /* Как было изначально */
+    }
+    
+    /* 5. Увеличиваем контейнер для комментариев */
+    #reviews-phone .phone-screen-content {
+      height: 100% !important;
+      min-height: 400px !important;
+      padding-bottom: 20px !important;
+    }
+    
+    /* 6. Комментарии центрируем */
+    #reviews-phone .phone-slide {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 100% !important;
+    }
+  }
+}
+
+/* ЕСЛИ ВСЕ РАВНО ОБРЕЗАЕТ - ПРОБУЕМ ЭТО */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* Вариант A: Просто увеличиваем маску снизу */
+    #reviews-phone .phone-screen-mask {
+      bottom: 15% !important; /* Еще больше места снизу */
+      top: 5% !important; /* И сверху тоже */
+    }
+    
+    /* Вариант B: Опускаем через внутренний отступ */
+    #reviews-phone .phone-slides {
+      padding-top: 30px !important; /* Опускаем контент внутри */
+    }
+    
+    /* Вариант C: Комментарии нормального размера */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.9) !important; /* Чуть больше */
+      max-height: 380px !important;
+    }
+  }
 }
