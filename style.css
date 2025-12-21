@@ -2020,7 +2020,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* 0) удобные ручки */
     :root{
-      --ios-comment-scale: 1.2;  /* было 0.85 → примерно x2 */
+      --ios-comment-scale: 1.3;  /* было 0.85 → примерно x2 */
       --ios-comment-shift: 140px; /* ниже: больше = ниже */
     }
 
