@@ -1731,388 +1731,141 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   clip-path: polygon(-3% 103%, 52% 48%, 103% 103%);
   z-index: 3;
 }
-/* =========================
-   iOS ONLY FIX: phone.png не режется
-   ВСТАВИТЬ В САМЫЙ НИЗ style.css
-   ========================= */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* контейнер пусть не клипает */
-    #reviews-phone.phone-image-container-large{
-      overflow: visible !important;
-    }
-
-    /* на iOS убираем хаки 140% + -20% + scale, из-за них и режет */
-    #reviews-phone .phone-frame{
-      width: 100% !important;
-      max-width: 100% !important;
-      margin-left: 0 !important;
-      transform: none !important;
-    }
-
-    /* маску оставляем ТВОЮ, но через inset iOS стабильнее */
-    #reviews-phone .phone-screen-mask{
-      inset: 7.8% 4% 7% 4% !important; /* top right bottom left — твои же числа */
-      transform: translateZ(0);
-    }
-
-    /* твой сдвиг отзывов вниз оставляем */
-    #reviews-phone .phone-slides{
-      transform: translateY(48px) translateZ(0) !important;
-    }
-  }
-}
-/* =========================
-   iOS Safari FIX: reviews phone не обрезается и по центру
-   вставить В САМЫЙ НИЗ style.css
-   ========================= */
-@supports (-webkit-touch-callout: none) {
-
-  /* 1) на iOS запрещаем обрезание именно в блоке отзывов */
-  #reviews,
-  #reviews .container,
-  #reviews .reviews-container,
-  #reviews .phone-mockup,
-  #reviews-phone.phone-image-container-large{
-    overflow: visible !important;
-  }
-
-  /* 2) вместо width:140% + margin-left:-20% (которое iOS часто “кривит”)
-        центрируем через left:50% + translateX(-50%)
-        размеры НЕ меняю — только способ центрирования */
-  #reviews-phone .phone-frame{
-    width: 140% !important;
-    max-width: none !important;
-    height: auto !important;
-    display: block !important;
-
-    position: relative !important;
-    left: 50% !important;
-    margin-left: 0 !important;
-
-    transform: translateX(-50%) scale(1.08) !important;
-    transform-origin: center top !important;
-  }
-}
-/* iOS: подогнать phone.png ровно под контейнер (красную рамку) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* контейнер телефона = красная рамка */
-    #reviews-phone.phone-image-container-large{
-      position: relative !important;
-      width: 96vw !important;
-      max-width: 600px !important;
-      aspect-ratio: 600 / 700 !important;
-      margin: -40px auto 0 !important;
-      min-width: 0 !important;
-      overflow: visible !important;
-    }
-
-    /* phone.png ровно в рамку, по центру */
-    #reviews-phone .phone-frame{
-      position: absolute !important;
-      inset: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      margin: 0 !important;
-
-      object-fit: contain !important;
-      transform: scale(1.12) !important;   /* <-- размер телефона внутри рамки */
-      transform-origin: center top !important;
-      z-index: 5 !important;
-      pointer-events: none !important;
-      display: block !important;
-    }
-
-  }
+/* iOS input zoom fix (оставляем) */
+@media screen and (max-width: 768px) {
+  input, textarea, select { font-size: 16px !important; }
 }
 
-/* iOS ONLY: увеличить телефон + внутренности (phone.png + экран + навигация) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* 1) Увеличиваем ВЕСЬ блок телефона целиком */
-    #reviews-phone.phone-image-container-large{
-      transform: scale(1.18) !important;   /* <-- главный размер (1.10-1.25) */
-      transform-origin: center top !important;
-      margin: -40px auto 0 !important;     /* если стало слишком высоко/низко — правь тут */
-    }
-
-    /* 2) Чтобы после scale блок не "вылезал" по ширине (iOS любит резать) */
-    #reviews{
-      overflow-x: hidden !important;
-    }
-    #reviews .container{
-      overflow: visible !important;
-    }
-  }
+/* touch improve (оставляем) */
+button, .cta-button, .plan-btn, .phone-nav-btn {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
-/* MOBILE: телефон поверх всех блоков (оверлей) */
+
+/* TOUCH: конверт (оставляем) */
+@media (hover: none) and (pointer: coarse){
+  .envelope.touch-active .letter{
+    animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards !important;
+    animation-delay: var(--letter-delay) !important;
+    overflow: visible;
+  }
+  .envelope.touch-active .flap--top{
+    transform: rotateX(180deg) !important;
+    z-index: 1 !important;
+  }
+  .envelope.touch-active .seal{
+    opacity: 0 !important;
+    transform: translate(-50%,-70%) scale(.6) rotate(-45deg) !important;
+    z-index: 1 !important;
+  }
+  .envelope.touch-active{ overflow: visible; }
+  .envelope.touch-active .letter-link{ pointer-events: auto !important; }
+  .envelope:not(.touch-active) .letter-link{ pointer-events: none !important; }
+}
+
+/* Mobile: kupidon (оставляем) */
 @media (max-width: 768px){
-
-  /* чтобы z-index вообще работал */
-  #reviews { position: relative; z-index: 1; overflow: visible !important; }
-  #contact { position: relative; z-index: 1; }
-
-  /* сам телефон — поверх */
-  #reviews-phone.phone-image-container-large{
-    position: relative !important;
-    z-index: 9999 !important;
-  }
-
-  /* содержимое в телефоне и навигация — тоже поверх */
-  #reviews-phone .phone-screen-mask{
-    position: absolute !important;
-    z-index: 10000 !important;
-  }
-  #reviews-phone .phone-nav{
-    position: absolute !important;
-    z-index: 10001 !important;
-  }
-
-  /* рамка phone.png пусть НЕ перекрывает клики */
-  #reviews-phone .phone-frame{
-    position: relative !important;
-    z-index: 9998 !important;
-    pointer-events: none !important;
+  #features .features-image{
+    transform: scale(1.15) translateX(10px);
   }
 }
-/* =========================================================
-   ANDROID FIX: вернуть комментарии ПОД phone.png (внутри экрана)
-   (работает на всех мобилках, но iOS ниже переопределит)
-   ВСТАВИТЬ В САМЫЙ НИЗ style.css
-   ========================================================= */
-@media (max-width: 768px){
 
-  /* важно: если у тебя стоит section { overflow:hidden; } — не даём резать телефон */
-  #reviews{ overflow: visible !important; }
-
-  /* контейнер телефона */
-  #reviews-phone.phone-image-container-large{
-    position: relative !important;
-    z-index: 5 !important;
-  }
-
-  /* ✅ рамка phone.png должна быть 100%, без 140% и без сдвигов */
-  #reviews-phone .phone-frame{
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    transform: none !important;
-    height: auto !important;
-    display: block !important;
-    position: relative !important;
-    z-index: 5 !important;            /* рамка выше */
-    pointer-events: none !important;
-  }
-
-  /* ✅ экран (комменты) всегда под рамкой */
-#reviews-phone .phone-screen-mask{
-  position: absolute !important;
-  z-index: 2 !important;
-  overflow: hidden !important;
-
-  /* безопасно и без ругани */
-  transform: translateZ(0);
-  will-change: transform;
+/* Envelope: фон/створки (оставляем финальные) */
+.env__back{
+  background: var(--pink-base);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--pink-base);
+}
+.flap--left,
+.flap--right,
+.flap--bottom{
+  background: var(--pink-base) !important;
 }
 
+/* pricing-help-text — оставляем ОДНУ финальную версию (последняя у тебя) */
+.pricing-help-text{
+  margin: -10px auto 0;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--burgundy);
+  line-height: 1.5;
 
+  border: var(--box-border);
+  border-radius: 18px;
 
-/* =========================================================
-   iOS ONLY: увеличить phone.png + всё внутри в 1.5 раза
-   (Android не трогаем)
-   ========================================================= */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* чтобы увеличение не резалось (у тебя часто стоит overflow:hidden на section) */
-    #reviews{ overflow: visible !important; }
-
-    /* ✅ увеличиваем ВЕСЬ блок телефона, чтобы рамка и маска совпадали */
-    #reviews-phone.phone-image-container-large{
-      transform: scale(1.5) !important;      /* <-- 1.5 раза (можешь 1.4 / 1.6) */
-      transform-origin: center top !important;
-
-      /* при скейле элемент становится “выше”, поэтому поднимаем */
-      margin: -80px auto 0 !important;       /* <-- если надо выше/ниже: -60..-110 */
-      z-index: 50 !important;                /* поверх соседних блоков */
-      position: relative !important;
-    }
-
-    /* навигация чтоб не “проваливалась” */
-    #reviews-phone .phone-nav{
-      z-index: 60 !important;
-    }
-  }
-}
-}/* =========================
-   iOS ONLY: поднять блок отзывов (phone.png + комменты) выше
-   НЕ меняет размеры, только позицию
-   ========================= */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-
-    /* насколько поднять вверх (поставь 120-200px по вкусу) */
-    :root{ --ios-reviews-shift: 30px; }
-
-    /* поднимаем весь контейнер телефона вместе со всем содержимым */
-    #reviews-phone.phone-image-container-large{
-      transform: translateY(calc(-1 * var(--ios-reviews-shift))) !important;
-    }
-
-  }
-}
-/* iOS ONLY: поднять блок отзывов выше БЕЗ изменения размеров */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-    #reviews-phone.phone-image-container-large{
-      position: relative !important;
-      top: 0px !important;  /* <-- тут регулируй: -20 / -30 / -50 */
-    }
-  }
-}
-/* ===== FORCE: твои финальные размеры и слои (mobile, all devices) ===== */
-@media (max-width: 768px){
-
-  /* контейнер телефона */
-  #reviews-phone.phone-image-container-large{
-    width: 96vw !important;
-    max-width: 600px !important;
-    min-width: 0 !important;
-    margin: -40px auto 0 !important;
-    position: relative !important;
-  }
-
-  /* phone.png (рамка) */
-  #reviews-phone .phone-frame{
-    width: 140% !important;
-    max-width: none !important;
-    height: auto !important;
-    display: block !important;
-    margin-left: -20% !important;
-
-    transform: scale(1.08) !important;
-    transform-origin: center top !important;
-
-    position: relative !important;
-    z-index: 5 !important; /* рамка всегда сверху */
-  }
-
-  /* экран внутри (комменты) */
-  #reviews-phone .phone-screen-mask{
-    top: 7.8% !important;
-    left: 4% !important;
-    right: 4% !important;
-    bottom: 7% !important;
-    border-radius: 16px !important;
-    z-index: 2 !important; /* комменты под рамкой */
-  }
-
-  #reviews-phone .phone-slide{
-    padding: 18px !important;
-  }
-
-  #reviews-phone .phone-slide img{
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    transform: scale(0.85) !important;
-  }
-
-  #reviews-phone .phone-slides{
-    transform: translateY(48px) !important;
-  }
-
-  /* навигация поверх экрана */
-  #reviews-phone .phone-nav{
-    left: 90px !important;
-    right: 90px !important;
-    bottom: 8% !important;
-    z-index: 10 !important;
-  }
-}
-/* ===== iOS ONLY: поднять телефон+комменты выше, БЕЗ изменения размеров ===== */
-@supports (-webkit-overflow-scrolling: touch) {
-  @media (max-width: 768px){
-    #reviews-phone.phone-image-container-large{
-      margin-top: -80px !important; /* было -40px, стало выше на ~40px */
-    }
-  }
-}
-/* ===== iOS ONLY: комменты больше + ниже (НЕ трогая phone.png) ===== */
-@supports (-webkit-overflow-scrolling: touch) {
-  @media (max-width: 768px){
-
-    /* 1) КОММЕНТЫ КРУПНЕЕ (было 0.85) */
-    #reviews-phone .phone-slide img{
-      transform: scale(1) !important;  /* ↑ увеличивай/уменьшай */
-    }
-
-    /* 2) КОММЕНТЫ НИЖЕ (было translateY(48px)) */
-    #reviews-phone .phone-slides{
-      transform: translateY(120px) !important; /* ↑ больше = ниже, меньше = выше */
-    }
-
-  }
-}
-/* ===== iOS ONLY: чтобы комменты не обрезались снизу ===== */
-@supports (-webkit-overflow-scrolling: touch) {
-  @media (max-width: 768px){
-
-    /* 1) Даем больше места снизу внутри экрана */
-    #reviews-phone .phone-screen-mask{
-      bottom: 4.5% !important;  /* было ~7% — меньше = экран ниже = меньше обрезка */
-    }
-
-    /* 2) Чуть меньше внутренние отступы, чтобы картинка влезала */
-    #reviews-phone .phone-slide{
-      padding: 12px !important; /* было 18px */
-    }
-
-    /* (если всё равно режет) — чуть уменьши scale на 0.01-0.03 */
-    /* #reviews-phone .phone-slide img{ transform: scale(0.91) !important; } */
-  }
-}
-/* ===== iOS Safari ONLY: комменты не режутся снизу ===== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* 1) экран (маска) — чуть больше места снизу */
-    #reviews-phone .phone-screen-mask{
-      bottom: 3.8% !important;   /* было 7% — меньше = больше места снизу */
-      top: 7.8% !important;      /* оставь как было (если надо — 7.6/7.4) */
-      left: 4% !important;
-      right: 4% !important;
-    }
-
-    /* 2) САМОЕ ВАЖНОЕ: ты опустил контент на 48px — из-за этого и режет */
-    #reviews-phone .phone-slides{
-      transform: translateY(75px) !important; /* было 48px */
-    }
-
-    /* 3) если всё равно чуть подрезает — уменьши внутренний паддинг */
-    #reviews-phone .phone-slide{
-      padding: 12px !important;  /* было 18px */
-    }
-
-    /* 4) если хочешь оставить “крупно”, но без резки — чуть меньше scale */
-    #reviews-phone .phone-slide img{
-      transform: scale(0.83) !important; /* было 0.85 */
-    }
-  }
+  padding: 14px 20px;
+  max-width: 900px;
+  background: transparent;
 }
 @media (max-width: 768px){
-  @supports (-webkit-touch-callout: none){
-    /* верх НЕ трогаем, расширяем вниз */
-    #reviews-phone .phone-screen-mask{
-      top: 7.8% !important;      /* как у тебя было */
-      bottom: 3.5% !important;   /* было 7% → стало ниже (больше места) */
-      left: 4% !important;
-      right: 4% !important;
-    }
+  .pricing-help-text{
+    font-size: 15px;
+    padding: 12px 14px;
   }
+}
+
+/* стрелка */
+.strelka-hint{
+  position: absolute;
+  right: -70px;
+  top: -100px;
+  width: 180px;
+  height: auto;
+  z-index: 20;
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 768px){
+  .strelka-hint{
+    right: -35px;
+    top: -100px;
+    width: 160px;
+  }
+}
+
+/* FAQ transition + PC шире (оставляем финальные) */
+.faq-item.active .faq-answer { max-height: 2000px; }
+.faq-answer { transition: max-height .45s ease, padding .45s ease; }
+
+#faq .container{
+  max-width: 1600px;
+}
+.faq-container{
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.faq-question{
+  padding: 18px 14px;
+  font-size: 16px;
+}
+.faq-question span:first-child{
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  flex: 1;
+  min-width: 0;
+}
+.faq-question span:last-child{
+  flex: 0 0 auto;
+  width: 22px;
+  text-align: right;
+}
+
+/* створки конверта — “с запасом” (оставляем финальные) */
+.flap--left{
+  background: var(--pink-base) !important;
+  clip-path: polygon(-3% -3%, 53% 50%, -3% 103%);
+  z-index: 2;
+}
+.flap--right{
+  background: var(--pink-base) !important;
+  clip-path: polygon(103% -3%, 49% 50%, 103% 103%);
+  z-index: 2;
+}
+.flap--bottom{
+  background: var(--pink-base) !important;
+  clip-path: polygon(-3% 103%, 52% 48%, 103% 103%);
+  z-index: 3;
 }
