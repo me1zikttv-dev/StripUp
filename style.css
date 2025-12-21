@@ -2030,4 +2030,66 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       margin-top: -130px !important;
     }
   }
+}/* ===== iOS ONLY: опускаем комментарии внутри phone.png ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* 1. Опускаем контент с комментариями (phone-slides) ниже */
+    #reviews-phone .phone-slides {
+      transform: translateY(80px) !important; /* Увеличиваем значение = ниже */
+    }
+    
+    /* 2. Увеличиваем изображения комментариев для лучшей видимости */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.95) !important; /* Чуть больше, чем было */
+    }
+    
+    /* 3. Увеличиваем область маски экрана, чтобы вместить больше */
+    #reviews-phone .phone-screen-mask {
+      top: 6% !important;
+      bottom: 6% !important;
+    }
+    
+    /* 4. Навигацию опускаем еще ниже, чтобы не мешала */
+    #reviews-phone .phone-nav {
+      bottom: 8% !important;
+    }
+    
+    /* 5. Увеличиваем отступы внутри слайдов */
+    #reviews-phone .phone-slide {
+      padding: 10px !important;
+    }
+    
+    /* 6. Убираем ограничения высоты */
+    #reviews-phone .phone-screen-content {
+      min-height: 500px !important;
+    }
+  }
+}
+
+/* Регулировка для разных моделей iOS */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 375px) {
+    /* Для iPhone SE - опускаем чуть меньше */
+    #reviews-phone .phone-slides {
+      transform: translateY(70px) !important;
+    }
+  }
+  
+  @media (min-width: 376px) and (max-width: 428px) {
+    /* Для больших iPhone - опускаем больше */
+    #reviews-phone .phone-slides {
+      transform: translateY(90px) !important;
+    }
+  }
+  
+  /* Для iPad */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    #reviews-phone .phone-slides {
+      transform: translateY(100px) !important;
+    }
+    #reviews-phone .phone-slide img {
+      transform: scale(1) !important;
+    }
+  }
 }
