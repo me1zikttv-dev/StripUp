@@ -1938,7 +1938,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       transform-origin: center top !important;
 
       /* при скейле элемент становится “выше”, поэтому поднимаем */
-      margin: -75px auto 0 !important;       /* <-- если надо выше/ниже: -60..-110 */
+      margin: -80px auto 0 !important;       /* <-- если надо выше/ниже: -60..-110 */
       z-index: 50 !important;                /* поверх соседних блоков */
       position: relative !important;
     }
@@ -1957,7 +1957,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @media (max-width: 768px) {
 
     /* насколько поднять вверх (поставь 120-200px по вкусу) */
-    :root{ --ios-reviews-shift: 140px; }
+    :root{ --ios-reviews-shift: 155px; }
 
     /* поднимаем весь контейнер телефона вместе со всем содержимым */
     #reviews-phone.phone-image-container-large{
