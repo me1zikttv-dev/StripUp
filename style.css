@@ -1886,14 +1886,14 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* 2. ОПУСКАЕМ комментарии ВНИЗ через маску */
     #reviews-phone .phone-screen-mask {
-      top: 8% !important;    /* Опускаем маску ВНИЗ */
+      top: 60% !important;    /* Опускаем маску ВНИЗ */
       bottom: 12% !important; /* Увеличиваем снизу */
       height: auto !important;
     }
     
     /* 3. Комментарии НОРМАЛЬНОГО размера (как на Android) */
     #reviews-phone .phone-slide img {
-      transform: scale(0.85) !important; /* Такой же как везде */
+      transform: scale(1) !important; /* Такой же как везде */
       -webkit-transform: scale(0.85) !important;
       width: 100% !important;
       height: auto !important;
