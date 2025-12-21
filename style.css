@@ -2050,28 +2050,3 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
-/* ===== iOS ONLY: поднимаем чуть-чуть выше ===== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    
-    /* ПОДНИМАЕМ комментарии чуть-чуть выше */
-    #reviews-phone .phone-slides {
-      margin-top: 70px !important; /* Было 80px, теперь 70px (выше) */
-    }
-    
-    /* ИЛИ через transform если margin не работает */
-    #reviews-phone .phone-slides {
-      transform: translateY(70px) !important; /* Было 80px, теперь 70px */
-    }
-    
-    /* Маску тоже чуть поднимаем */
-    #reviews-phone .phone-screen-mask {
-      bottom: 18% !important; /* Было 20%, теперь 18% (выше) */
-    }
-    
-    /* Можно поднять весь телефон */
-    #reviews-phone.phone-image-container-large {
-      margin-top: -45px !important; /* Было -40px, теперь -45px (выше) */
-    }
-  }
-}
