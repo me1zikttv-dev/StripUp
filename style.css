@@ -1795,3 +1795,19 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     transform-origin: center top !important;
   }
 }
+/* =========================
+   iOS ONLY: увеличить и опустить "комментарии" внутри phone
+   (вставить В САМЫЙ НИЗ style.css)
+   ========================= */
+@supports (-webkit-touch-callout: none) and (max-width: 768px){
+
+  /* 1) Увеличить картинку комментария (внутри экрана) */
+  #reviews-phone .phone-slide img{
+    transform: scale(0.92) !important; /* было 0.85 — стало больше */
+  }
+
+  /* 2) Опустить весь контент комментариев вниз (не двигая рамку телефона) */
+  #reviews-phone .phone-slides{
+    transform: translateY(62px) !important; /* было 48px — ниже */
+  }
+}
