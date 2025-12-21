@@ -2105,3 +2105,14 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+@media (max-width: 768px){
+  @supports (-webkit-touch-callout: none){
+    /* верх НЕ трогаем, расширяем вниз */
+    #reviews-phone .phone-screen-mask{
+      top: 7.8% !important;      /* как у тебя было */
+      bottom: 3.5% !important;   /* было 7% → стало ниже (больше места) */
+      left: 4% !important;
+      right: 4% !important;
+    }
+  }
+}
