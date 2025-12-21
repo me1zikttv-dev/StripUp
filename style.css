@@ -2187,4 +2187,112 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       height: 100% !important;
     }
   }
+}/* ===== iOS ONLY: исправляем phone.png и центрируем комментарии ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* 1. Увеличиваем phone.png немного */
+    #reviews-phone.phone-image-container-large {
+      transform: scale(1.05) !important; /* Увеличиваем на 5% */
+      transform-origin: center top !important;
+      margin-top: -30px !important; /* Немного опускаем вниз */
+    }
+    
+    /* 2. Центрируем комментарии (phone-slides) */
+    #reviews-phone .phone-slides {
+      transform: translateY(60px) !important; /* Регулируем вертикальную позицию */
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      left: 0 !important;
+    }
+    
+    /* 3. Центрируем каждый слайд */
+    #reviews-phone .phone-slide {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      width: 100% !important;
+      padding: 0 10px !important;
+      left: 0 !important;
+      right: 0 !important;
+    }
+    
+    /* 4. Центрируем изображения комментариев */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.9) !important; /* Немного уменьшаем для центрирования */
+      margin: 0 auto !important;
+      display: block !important;
+      max-width: 95% !important;
+      height: auto !important;
+    }
+    
+    /* 5. Центрируем маску экрана */
+    #reviews-phone .phone-screen-mask {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 92% !important; /* Немного уже для центрирования */
+    }
+    
+    /* 6. Центрируем навигацию */
+    #reviews-phone .phone-nav {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 80% !important; /* Уже для центрирования */
+      justify-content: center !important;
+    }
+    
+    /* 7. Центрируем точки (dots) */
+    #reviews-phone .phone-dots {
+      justify-content: center !important;
+      flex: none !important;
+      width: auto !important;
+    }
+    
+    /* 8. Фиксируем ширину frame */
+    #reviews-phone .phone-frame {
+      margin-left: -20% !important;
+      width: 140% !important;
+      max-width: 140% !important;
+      left: 0 !important;
+      right: 0 !important;
+    }
+  }
+}
+
+/* Дополнительная тонкая настройка */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    /* Если комментарии все еще не по центру */
+    #reviews-phone .phone-screen-content {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+    }
+    
+    /* Корректировка позиции для маленьких экранов */
+    @media (max-width: 375px) {
+      #reviews-phone.phone-image-container-large {
+        transform: scale(1.03) !important;
+        margin-top: -25px !important;
+      }
+      #reviews-phone .phone-slides {
+        transform: translateY(50px) !important;
+      }
+    }
+    
+    /* Корректировка для больших iPhone */
+    @media (min-width: 376px) and (max-width: 428px) {
+      #reviews-phone.phone-image-container-large {
+        transform: scale(1.07) !important;
+        margin-top: -35px !important;
+      }
+      #reviews-phone .phone-slides {
+        transform: translateY(70px) !important;
+      }
+    }
+  }
 }
