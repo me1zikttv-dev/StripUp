@@ -2373,4 +2373,102 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       }
     }
   }
+}/* ===== iOS ONLY: исправляем позиционирование комментариев ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* СБРАСЫВАЕМ все трансформации и задаем новые */
+    #reviews-phone .phone-slides {
+      transform: translateY(80px) !important; /* Попробуйте это значение */
+      -webkit-transform: translateY(80px) !important; /* Для Safari */
+      position: relative !important;
+      top: 0 !important;
+    }
+    
+    /* Уменьшаем комментарии */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.8) !important;
+      -webkit-transform: scale(0.8) !important;
+    }
+    
+    /* Альтернативный способ через margin */
+    #reviews-phone .phone-slides {
+      margin-top: 80px !important; /* Используйте margin вместо transform */
+      transform: none !important;
+    }
+    
+    /* ИЛИ через top */
+    #reviews-phone .phone-slides {
+      position: relative !important;
+      top: 80px !important; /* Опускает вниз */
+      transform: none !important;
+    }
+  }
+}
+
+/* РАДИКАЛЬНЫЙ ВАРИАНТ - полный сброс стилей */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* Вариант 1: Через padding контейнера */
+    #reviews-phone .phone-screen-content {
+      padding-top: 80px !important; /* Опускает весь контент */
+      min-height: 500px !important;
+    }
+    
+    /* Вариант 2: Через абсолютное позиционирование */
+    #reviews-phone .phone-slides {
+      position: absolute !important;
+      top: 100px !important; /* Абсолютная позиция сверху */
+      left: 0 !important;
+      right: 0 !important;
+      height: calc(100% - 100px) !important;
+    }
+    
+    /* Вариант 3: Переопределяем ВСЕ возможные стили */
+    #reviews-phone .phone-slides {
+      all: unset !important; /* Сброс всех стилей */
+      position: relative !important;
+      top: 60px !important;
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+    }
+  }
+}
+
+/* ПОПРОБУЙТЕ ЭТОТ КОД - он должен сработать */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    
+    /* ОЧЕНЬ ВАЖНО: Отключаем все предыдущие трансформации */
+    #reviews-phone .phone-slides,
+    #reviews-phone .phone-slide,
+    #reviews-phone .phone-slide img {
+      transform: none !important;
+      -webkit-transform: none !important;
+    }
+    
+    /* Теперь задаем новые стили */
+    #reviews-phone .phone-slides {
+      margin-top: 60px !important; /* Опускаем на 60px */
+      padding-top: 20px !important;
+    }
+    
+    /* Комментарии уменьшаем */
+    #reviews-phone .phone-slide img {
+      width: 85% !important;
+      height: auto !important;
+      max-height: 300px !important;
+      object-fit: contain !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+    
+    /* Увеличиваем контейнер для комментариев */
+    #reviews-phone .phone-screen-mask {
+      min-height: 400px !important;
+      overflow: visible !important;
+    }
+  }
 }
