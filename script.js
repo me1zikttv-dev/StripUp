@@ -59,23 +59,86 @@ function createHearts() {
   }
 }
 
+/* ✅ FAQ — плавное открытие/закрытие + открывается полностью */
 function initFAQ() {
-  document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-      const item = question.parentNode.parentNode;
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
 
-      document.querySelectorAll('.faq-item').forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-          const otherIcon = otherItem.querySelector('.faq-question span:last-child');
-          if (otherIcon) otherIcon.textContent = '+';
-        }
+  function setIcon(item, isOpen) {
+    const icon = item.querySelector('.faq-question span:last-child');
+    if (icon) icon.textContent = isOpen ? '−' : '+';
+  }
+
+  function closeItem(item) {
+    const answer = item.querySelector('.faq-answer');
+    if (!answer) return;
+
+    // фиксируем текущую высоту перед закрытием для плавности
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = '0px';
+    });
+
+    item.classList.remove('active');
+    setIcon(item, false);
+  }
+
+  function openItem(item) {
+    const answer = item.querySelector('.faq-answer');
+    if (!answer) return;
+
+    item.classList.add('active');
+    setIcon(item, true);
+
+    // стартуем с 0 и раскрываем до реальной высоты контента
+    answer.style.maxHeight = '0px';
+
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    });
+  }
+
+  // начальное состояние — закрыто
+  items.forEach(item => {
+    const answer = item.querySelector('.faq-answer');
+    if (answer) answer.style.maxHeight = '0px';
+    item.classList.remove('active');
+    setIcon(item, false);
+  });
+
+  // клики
+  items.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!question || !answer) return;
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('active');
+
+      // закрываем остальные
+      items.forEach(other => {
+        if (other !== item && other.classList.contains('active')) closeItem(other);
       });
 
-      item.classList.toggle('active');
+      // переключаем текущий
+      if (isOpen) closeItem(item);
+      else openItem(item);
+    });
 
-      const icon = question.querySelector('span:last-child');
-      if (icon) icon.textContent = item.classList.contains('active') ? '−' : '+';
+    // если transition закончился и элемент открыт — можно обновить maxHeight на точное значение
+    answer.addEventListener('transitionend', (e) => {
+      if (e.propertyName !== 'max-height') return;
+      if (item.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // если меняется ширина/высота экрана — пересчитать высоту у открытого ответа
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.faq-item.active .faq-answer').forEach(answer => {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
     });
   });
 }
@@ -156,7 +219,6 @@ function initCalculator() {
   const DAILY_INCOME_USD = 90;
   const WEEKS_PER_MONTH = 4;
 
-  // Это % модели (твоя доля)
   const modelShare = {
     solo: 80,
     coach: 70,
@@ -219,11 +281,8 @@ function initNewEnvelope() {
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   if (isTouchDevice) {
-    // 1-й тап — открываем. Если уже открыт — не мешаем клику по ссылке.
     envelope.addEventListener('touchstart', function (e) {
       if (envelope.classList.contains('touch-active')) return;
-
-      // если ткнули прямо по ссылке — не блокируем (хотя на первом тапе она обычно ещё не активна)
       if (e.target && e.target.closest && e.target.closest('.letter-link')) return;
 
       e.preventDefault();
@@ -232,12 +291,10 @@ function initNewEnvelope() {
       envelope.classList.add('touch-active');
     }, { passive: false });
 
-    // закрыть, если тапнули вне конверта
     document.addEventListener('touchstart', function (e) {
       if (!envelope.contains(e.target)) envelope.classList.remove('touch-active');
     }, { passive: true });
 
-    // если нажали на ссылку, а конверт ещё закрыт — сначала откроем
     if (link) {
       link.addEventListener('touchstart', function (e) {
         if (!envelope.classList.contains('touch-active')) {

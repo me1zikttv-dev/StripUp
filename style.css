@@ -15,12 +15,12 @@
   /* конверт */
   --env-w: 320px;
   --env-h: 210px;
---pink-base:  #e3aeb9;  /* корпус темнее */
---pink-light: #e6b7c2;  /* ❗ верх НЕ меняем */
---pink-mid:   #dda1ae;  /* правая часть темнее */
---pink-dark:  #d894a5;  /* низ + левая темнее */
+--pink-base:  #f3c6cf;  /* корпус темнее */
+--pink-light: #f7d7dd;  /* ❗ верх НЕ меняем */
+--pink-mid:   #f1bac6;  /* правая часть темнее */
+--pink-dark:   #efadbd;  /* низ + левая темнее */
   --seal:       #e66a8a;
-  --ink-color:  #d95375;
+  --ink-color:   #d95375;
 
   --flap-dur: .7s;
   --flap-delay: .1s;
@@ -708,26 +708,36 @@ section { padding: 50px 0; width: 100%; }
 .result-card.total .result-value { color: white; }
 
 /* =========================
-   FAQ
+   FAQ (3 колонки, опускается только свой столбец)
    ========================= */
 
 .faq-container{
   width: 100%;
-  max-width: 1400px;              /* шире, чтобы вопросы влезали в строку */
+  max-width: 1400px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px 16px;
+}
+
+.faq-columns{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.faq-col{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .faq-item{
-  margin-bottom: 0;               /* gap вместо margin */
   border-radius: 14px;
   overflow: hidden;
 }
 
 .faq-box{
-  background: white;
+  background: #fff;
   border: var(--box-border);
   border-radius: 14px;
   box-shadow: var(--box-shadow);
@@ -735,7 +745,7 @@ section { padding: 50px 0; width: 100%; }
 }
 
 .faq-question{
-  background: white;
+  background: #fff;
   padding: 18px;
   cursor: pointer;
   display: flex;
@@ -743,37 +753,39 @@ section { padding: 50px 0; width: 100%; }
   align-items: center;
   gap: 12px;
   font-weight: 700;
-  transition: background 0.3s ease;
   font-family: 'Playfair Display', serif;
-  font-size: 16px;               /* чуть меньше */
+  font-size: 16px;
 }
+.faq-question:hover{ background: var(--light-pink); }
 
-/* текст вопроса в одну строку */
+/* если хочешь чтобы вопрос был в 1 строку — оставь */
 .faq-question span:first-child{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.faq-question:hover{ background: var(--light-pink); }
-
 .faq-answer{
   background: var(--light-pink);
   padding: 0 18px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
+  transition: max-height .3s ease, padding .3s ease;
 }
-.faq-item.active .faq-answer{ padding: 18px; max-height: 500px; }
+
+/* padding даём только активному, высоту задаст JS */
+.faq-item.active .faq-answer{
+  padding: 18px;
+}
 
 /* адаптив */
 @media (max-width: 992px){
-  .faq-container{ grid-template-columns: repeat(2, 1fr); }
+  .faq-columns{ flex-wrap: wrap; }
+  .faq-col{ flex: 1 1 calc(50% - 8px); }
 }
 @media (max-width: 768px){
-  .faq-container{ grid-template-columns: 1fr; }
+  .faq-col{ flex: 1 1 100%; }
 }
-
 
 /* =========================
    REVIEWS + INTERVIEW LAYOUT
@@ -1668,4 +1680,54 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     top: -100px;
     width: 160px;
   }
+}.faq-item.active .faq-answer { max-height: 2000px; }
+.faq-answer { transition: max-height .45s ease, padding .45s ease; }
+/* ✅ FAQ — расширяем “обводку/блок” на ПК */
+#faq .container{
+  max-width: 1600px;   /* было 1300 у .container — тут делаем шире только для FAQ */
+}
+
+.faq-container{
+  max-width: 1500px;   /* сам список вопросов шире */
+  margin: 0 auto;
+}
+
+/* ✅ даём больше места тексту вопроса */
+.faq-question{
+  padding: 18px 14px;  /* чуть меньше боковые отступы (больше места тексту) */
+  font-size: 16px;     /* оставляем норм размер */
+}
+
+/* ✅ НЕ обрезаем и не троеточие — строго 1 строка */
+.faq-question span:first-child{
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  flex: 1;
+  min-width: 0;
+}
+
+/* значок справа фикс */
+.faq-question span:last-child{
+  flex: 0 0 auto;
+  width: 22px;
+  text-align: right;
+}
+/* ✅ перекрываем пустоту: делаем створки чуть “с запасом” */
+.flap--left{
+  background: var(--pink-base) !important;
+  clip-path: polygon(-3% -3%, 53% 50%, -3% 103%);
+  z-index: 2;
+}
+
+.flap--right{
+  background: var(--pink-base) !important;
+  clip-path: polygon(103% -3%, 49% 50%, 103% 103%);
+  z-index: 2;
+}
+
+.flap--bottom{
+  background: var(--pink-base) !important;
+  clip-path: polygon(-3% 103%, 52% 48%, 103% 103%);
+  z-index: 3;
 }
