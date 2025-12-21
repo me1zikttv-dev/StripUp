@@ -2077,3 +2077,31 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     /* #reviews-phone .phone-slide img{ transform: scale(0.91) !important; } */
   }
 }
+/* ===== iOS Safari ONLY: комменты не режутся снизу ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* 1) экран (маска) — чуть больше места снизу */
+    #reviews-phone .phone-screen-mask{
+      bottom: 3.8% !important;   /* было 7% — меньше = больше места снизу */
+      top: 7.8% !important;      /* оставь как было (если надо — 7.6/7.4) */
+      left: 4% !important;
+      right: 4% !important;
+    }
+
+    /* 2) САМОЕ ВАЖНОЕ: ты опустил контент на 48px — из-за этого и режет */
+    #reviews-phone .phone-slides{
+      transform: translateY(28px) !important; /* было 48px */
+    }
+
+    /* 3) если всё равно чуть подрезает — уменьши внутренний паддинг */
+    #reviews-phone .phone-slide{
+      padding: 12px !important;  /* было 18px */
+    }
+
+    /* 4) если хочешь оставить “крупно”, но без резки — чуть меньше scale */
+    #reviews-phone .phone-slide img{
+      transform: scale(0.83) !important; /* было 0.85 */
+    }
+  }
+}
