@@ -1795,24 +1795,38 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     transform-origin: center top !important;
   }
 }
-/* =========================
-   iOS ONLY: увеличить и опустить "комментарии" внутри phone
-   (вставить В САМЫЙ НИЗ style.css)
-   ========================= */
-@supports (-webkit-touch-callout: none) and (max-width: 768px){
+/* iOS: подогнать phone.png ровно под контейнер (красную рамку) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
 
-  /* 1) Увеличить картинку комментария (внутри экрана) */
-  #reviews-phone .phone-slide img{
-    transform: scale(0.92) !important; /* было 0.85 — стало больше */
-  }
+    /* контейнер телефона = красная рамка */
+    #reviews-phone.phone-image-container-large{
+      position: relative !important;
+      width: 96vw !important;
+      max-width: 600px !important;
+      aspect-ratio: 600 / 700 !important;
+      margin: -40px auto 0 !important;
+      min-width: 0 !important;
+      overflow: visible !important;
+    }
 
-  /* 2) Опустить весь контент комментариев вниз (не двигая рамку телефона) */
-  #reviews-phone .phone-slides{
-    transform: translateY(62px) !important; /* было 48px — ниже */
+    /* phone.png ровно в рамку, по центру */
+    #reviews-phone .phone-frame{
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+
+      object-fit: contain !important;
+      transform: scale(1.12) !important;   /* <-- размер телефона внутри рамки */
+      transform-origin: center top !important;
+      z-index: 5 !important;
+      pointer-events: none !important;
+      display: block !important;
+    }
+
   }
 }
-@supports (-webkit-touch-callout: none) and (max-width: 768px){
-  #reviews-phone .phone-screen-mask{
-    outline: 4px solid red !important;
-  }
-}
+
