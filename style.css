@@ -2064,10 +2064,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     
-    /* Поднимаем phone.png выше */
-    #reviews-phone.phone-image-container-large {
-      margin-top: -50px !important; /* ← Меняй эту цифру */
-    }
-    
+#reviews-phone.phone-image-container-large {
+  transform: translateY(-10px) !important; /* Поднять на 10px */
+}
   }
 }
