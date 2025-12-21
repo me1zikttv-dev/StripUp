@@ -1731,3 +1731,35 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   clip-path: polygon(-3% 103%, 52% 48%, 103% 103%);
   z-index: 3;
 }
+/* =========================
+   iOS ONLY FIX: phone.png не режется
+   ВСТАВИТЬ В САМЫЙ НИЗ style.css
+   ========================= */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* контейнер пусть не клипает */
+    #reviews-phone.phone-image-container-large{
+      overflow: visible !important;
+    }
+
+    /* на iOS убираем хаки 140% + -20% + scale, из-за них и режет */
+    #reviews-phone .phone-frame{
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      transform: none !important;
+    }
+
+    /* маску оставляем ТВОЮ, но через inset iOS стабильнее */
+    #reviews-phone .phone-screen-mask{
+      inset: 7.8% 4% 7% 4% !important; /* top right bottom left — твои же числа */
+      transform: translateZ(0);
+    }
+
+    /* твой сдвиг отзывов вниз оставляем */
+    #reviews-phone .phone-slides{
+      transform: translateY(48px) translateZ(0) !important;
+    }
+  }
+}
