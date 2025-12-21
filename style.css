@@ -1957,7 +1957,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @media (max-width: 768px) {
 
     /* насколько поднять вверх (поставь 120-200px по вкусу) */
-    :root{ --ios-reviews-shift: 155px; }
+    :root{ --ios-reviews-shift: 100px; }
 
     /* поднимаем весь контейнер телефона вместе со всем содержимым */
     #reviews-phone.phone-image-container-large{
