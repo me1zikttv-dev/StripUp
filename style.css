@@ -1850,3 +1850,24 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* iOS ONLY: поднять увеличенный phone.png и дать место снизу */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* 1) поднимаем телефон вверх (чем больше минус — тем выше) */
+    #reviews-phone.phone-image-container-large{
+      transform: scale(1.18) !important;
+      transform-origin: center top !important;
+      margin-top: -90px !important;   /* <-- ПОДНИМАТЬ ТУТ (-70 / -90 / -110) */
+    }
+
+    /* 2) даём место снизу, чтобы "Контакты" не наезжали */
+    #reviews{
+      padding-bottom: 220px !important; /* <-- МЕСТО СНИЗУ (180-300) */
+      overflow: visible !important;
+    }
+
+    /* 3) на всякий случай убираем горизонтальные срезы iOS */
+    body { overflow-x: hidden !important; }
+  }
+}
