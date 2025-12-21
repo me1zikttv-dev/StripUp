@@ -1505,7 +1505,7 @@ html.smooth-scroll-ready { scroll-behavior: smooth; }
   }
 
   #reviews-phone .phone-slides{
-    transform: translateY(48px) !important;
+    transform: translateY(49px) !important;
   }
 
   #reviews-phone .phone-nav{
@@ -1871,4 +1871,15 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 @media (max-width: 768px){
   #reviews{ overflow: visible !important; }
+}
+/* ===== iOS ONLY: опустить комментарии (не трогая phone.png) ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* опускаем только “контент с комментариями” */
+    #reviews-phone .phone-slides{
+      transform: translateY(60px) !important; /* ↑ больше = ниже */
+    }
+
+  }
 }
