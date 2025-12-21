@@ -1883,3 +1883,30 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
   }
 }
+/* ===== iOS ONLY: поднять phone.png ближе к заголовку (без изменения размеров) ===== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* 1) возвращаем контент как на андроиде, чтобы не резало */
+    #reviews-phone .phone-slides{
+      transform: translateY(48px) !important; /* как у тебя “идеально” */
+    }
+    #reviews-phone .phone-slide img{
+      transform: scale(0.85) !important;      /* твой нормальный размер */
+    }
+
+    /* 2) поднимаем весь блок телефона вверх к “Отзывы моделей” */
+    #reviews-phone.phone-image-container-large{
+      margin-top: -95px !important;  /* было -40px → стало выше */
+    }
+
+    /* на всякий случай, чтобы iOS не клипал при подъеме */
+    #reviews,
+    #reviews .container,
+    #reviews .reviews-container,
+    #reviews .phone-mockup,
+    #reviews-phone.phone-image-container-large{
+      overflow: visible !important;
+    }
+  }
+}
