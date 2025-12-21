@@ -1878,7 +1878,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* опускаем только “контент с комментариями” */
     #reviews-phone .phone-slides{
-      transform: translateY(60px) !important; /* ↑ больше = ниже */
+      transform: translateY(80px) !important; /* ↑ больше = ниже */
     }
 
   }
