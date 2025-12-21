@@ -1830,3 +1830,23 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 
+/* iOS ONLY: увеличить телефон + внутренности (phone.png + экран + навигация) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* 1) Увеличиваем ВЕСЬ блок телефона целиком */
+    #reviews-phone.phone-image-container-large{
+      transform: scale(1.18) !important;   /* <-- главный размер (1.10-1.25) */
+      transform-origin: center top !important;
+      margin: -40px auto 0 !important;     /* если стало слишком высоко/низко — правь тут */
+    }
+
+    /* 2) Чтобы после scale блок не "вылезал" по ширине (iOS любит резать) */
+    #reviews{
+      overflow-x: hidden !important;
+    }
+    #reviews .container{
+      overflow: visible !important;
+    }
+  }
+}
