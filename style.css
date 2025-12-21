@@ -15,10 +15,10 @@
   /* конверт */
   --env-w: 320px;
   --env-h: 210px;
-  --pink-base:  #f3c6cf;
-  --pink-light: #f7d7dd;
-  --pink-mid:   #f1bac6;
-  --pink-dark:  #efadbd;
+--pink-base:  #e3aeb9;  /* корпус темнее */
+--pink-light: #e6b7c2;  /* ❗ верх НЕ меняем */
+--pink-mid:   #dda1ae;  /* правая часть темнее */
+--pink-dark:  #d894a5;  /* низ + левая темнее */
   --seal:       #e66a8a;
   --ink-color:  #d95375;
 
@@ -1067,14 +1067,34 @@ section { padding: 50px 0; width: 100%; }
   100% { transform: translate(-50%, -55px); z-index: 6; box-shadow: 0 12px 24px rgba(0,0,0,.16); }
 }
 
-.flap { position: absolute; inset: 0; border-radius: 12px; }
-.flap--left  { background: var(--pink-dark); clip-path: polygon(0 0, 50% 50%, 0 100%); z-index: 2; }
-.flap--right { background: var(--pink-mid);  clip-path: polygon(100% 0, 50% 50%, 100% 100%); z-index: 2; }
-.flap--bottom{ background: var(--pink-dark); clip-path: polygon(0 100%, 50% 50%, 100% 100%); z-index: 3; }
+.flap { 
+  position: absolute; 
+  inset: 0; 
+  border-radius: 12px; 
+}
 
+/* ЛЕВАЯ СТВОРКА */
+.flap--left {
+  background: var(--pink-dark);
+  clip-path: polygon(-1% -1%, 51% 50%, -1% 101%);
+  z-index: 2;
+}
+
+.flap--right {
+  background: var(--pink-mid);
+  clip-path: polygon(101% -1%, 50% 50%, 101% 101%);
+  z-index: 2;
+}
+
+.flap--bottom {
+  background: var(--pink-dark);
+  clip-path: polygon(-1% 101%, 50% 49.5%, 101% 101%);
+  z-index: 3;
+}
+/* ВЕРХНЯЯ (ОТКРЫВАЮЩАЯСЯ) */
 .flap--top {
   background: var(--pink-light);
-  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  clip-path: polygon(-1% -1%, 50% 51%, 101% -1%);
   transform-origin: top center;
   transition: transform var(--flap-dur) ease var(--flap-delay);
   z-index: 5;
@@ -1541,5 +1561,61 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px){
   #features .features-image{
     transform: scale(1.15) translateX(10px) /* ← увеличивает kupidon */
+  }
+}
+.env__back{
+  background: var(--pink-base);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--pink-base);
+}
+/* цельная лицевая часть (без диагоналей и без швов) */
+.flap--left,
+.flap--right,
+.flap--bottom{
+  background: var(--pink-base) !important;
+}
+.pricing-help-text{
+  margin: -10px auto 0;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--burgundy);
+  line-height: 1.5;
+
+  /* чтобы выглядело как общий блок */
+  background: rgba(255,255,255,0.65);
+  border: 2px solid rgba(176,49,94,0.20);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 25px rgba(176,49,94,0.10);
+  max-width: 900px;
+}
+@media (max-width: 768px){
+  .pricing-help-text{
+    font-size: 15px;
+    padding: 14px 12px;
+    margin-top: 22px;
+  }
+}
+.pricing-help-text{
+  margin: -10px auto 0;      /* поднимает вверх */
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--burgundy);
+  line-height: 1.5;
+
+  /* ✅ ОБВОДКА */
+  border: var(--box-border);
+  border-radius: 18px;
+
+  padding: 14px 20px;
+  max-width: 900px;
+  background: transparent;  /* без заливки */
+}
+@media (max-width: 768px){
+  .pricing-help-text{
+    font-size: 15px;
+    padding: 12px 14px;
   }
 }
