@@ -2063,7 +2063,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* ↑ регулируй тут: -5px / -10px / -15px */
     #reviews-phone.phone-image-container-large{
-      transform: translateY(-10px) !important;
+      transform: translateY(-15px) !important;
     }
 
   }
