@@ -2049,13 +2049,31 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* 1) КОММЕНТЫ КРУПНЕЕ (было 0.85) */
     #reviews-phone .phone-slide img{
-      transform: scale(0.93) !important;  /* ↑ увеличивай/уменьшай */
+      transform: scale(1) !important;  /* ↑ увеличивай/уменьшай */
     }
 
     /* 2) КОММЕНТЫ НИЖЕ (было translateY(48px)) */
     #reviews-phone .phone-slides{
-      transform: translateY(75px) !important; /* ↑ больше = ниже, меньше = выше */
+      transform: translateY(85px) !important; /* ↑ больше = ниже, меньше = выше */
     }
 
+  }
+}
+/* ===== iOS ONLY: чтобы комменты не обрезались снизу ===== */
+@supports (-webkit-overflow-scrolling: touch) {
+  @media (max-width: 768px){
+
+    /* 1) Даем больше места снизу внутри экрана */
+    #reviews-phone .phone-screen-mask{
+      bottom: 4.5% !important;  /* было ~7% — меньше = экран ниже = меньше обрезка */
+    }
+
+    /* 2) Чуть меньше внутренние отступы, чтобы картинка влезала */
+    #reviews-phone .phone-slide{
+      padding: 12px !important; /* было 18px */
+    }
+
+    /* (если всё равно режет) — чуть уменьши scale на 0.01-0.03 */
+    /* #reviews-phone .phone-slide img{ transform: scale(0.91) !important; } */
   }
 }
