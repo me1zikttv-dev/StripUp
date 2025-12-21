@@ -1811,3 +1811,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     transform: translateY(62px) !important; /* было 48px — ниже */
   }
 }
+@supports (-webkit-touch-callout: none) and (max-width: 768px){
+  #reviews-phone .phone-screen-mask{
+    outline: 4px solid red !important;
+  }
+}
