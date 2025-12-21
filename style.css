@@ -2091,7 +2091,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* 2) САМОЕ ВАЖНОЕ: ты опустил контент на 48px — из-за этого и режет */
     #reviews-phone .phone-slides{
-      transform: translateY(28px) !important; /* было 48px */
+      transform: translateY(75px) !important; /* было 48px */
     }
 
     /* 3) если всё равно чуть подрезает — уменьши внутренний паддинг */
