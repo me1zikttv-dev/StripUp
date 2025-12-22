@@ -1929,3 +1929,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* iOS ONLY: опустить навигацию ниже (стрелки + точки) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    #reviews-phone .phone-nav{
+      bottom: 6% !important;   /* меньше % = ниже, больше % = выше */
+    }
+  }
+}
