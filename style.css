@@ -1754,3 +1754,51 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px){
   #reviews{ overflow: visible !important; }
 }
+/* =========================
+   iOS ONLY: подгон phone.png + отзывы (НЕ трогаем Android)
+   ВСТАВИТЬ В САМЫЙ НИЗ style.css
+   ========================= */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    /* оставляем твои последние значения как дефолт */
+    :root{
+      --ios-phone-y: -15px;       /* весь телефон вверх/вниз */
+      --ios-slides-y: 55px;       /* отзывы внутри телефона вверх/вниз */
+
+      --ios-mask-top: 7.8%;
+      --ios-mask-left: 4%;
+      --ios-mask-right: 4%;
+      --ios-mask-bottom: 7%;
+    }
+
+    /* 1) двигаем сам телефон (НЕ комменты) */
+    #reviews-phone.phone-image-container-large{
+      transform: translateY(var(--ios-phone-y)) !important;
+    }
+
+    /* 2) маска экрана — чтобы совпало с вырезом phone.png */
+    #reviews-phone .phone-screen-mask{
+      top: var(--ios-mask-top) !important;
+      left: var(--ios-mask-left) !important;
+      right: var(--ios-mask-right) !important;
+      bottom: var(--ios-mask-bottom) !important;
+    }
+
+    /* 3) двигаем только отзывы внутри экрана */
+    #reviews-phone .phone-slides{
+      transform: translateY(var(--ios-slides-y)) !important;
+      -webkit-transform: translateY(var(--ios-slides-y)) !important;
+      will-change: transform;
+    }
+
+    /* 4) фикс “мыла/сдвига” на iOS (оставляем твой масштаб) */
+    #reviews-phone .phone-slide img{
+      transform: scale(0.85) translateZ(0) !important;
+      -webkit-transform: scale(0.85) translateZ(0) !important;
+      transform-origin: center center !important;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+  }
+}
