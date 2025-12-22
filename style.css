@@ -2065,3 +2065,22 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
   }
 }
+/* iOS FIX: iPhone 15/16 — поднять навигацию выше */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+
+    /* 15 / 15 Pro / 16 / 16 Pro */
+    @media (min-width: 390px) and (max-width: 405px) {
+      #reviews-phone .phone-nav{
+        bottom: 3.5% !important; /* ↑ больше % = выше */
+      }
+    }
+
+    /* 15 Plus / Pro Max / 16 Plus / 16 Pro Max */
+    @media (min-width: 420px) and (max-width: 445px) {
+      #reviews-phone .phone-nav{
+        bottom: 3.5% !important; /* ↑ больше % = выше */
+      }
+    }
+  }
+}
