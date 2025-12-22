@@ -1802,3 +1802,19 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+@media (max-width: 768px){
+  #features .features-image{
+    width: 100% !important;
+    transform: scale(1.30) !important;  /* больше = больше */
+    transform-origin: center top;
+  }
+}
+@media (max-width: 768px){
+  #features .features-image{
+    transform: scale(1.15) translateX(12px) !important; /* +12px = правее */
+    transform-origin: center top;
+  }
+}
+#features .features-image{
+  transform: translateX(25px); /* + = вправо, - = влево */
+}
