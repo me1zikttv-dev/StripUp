@@ -1916,3 +1916,12 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+@media (max-width: 768px){
+  #features .features-image{
+    position: relative;
+    left: 0px;       /* как у тебя */
+    top: -20px;        /* как у тебя */
+    transform: scale(1.3);
+    transform-origin: center;
+  }
+}
