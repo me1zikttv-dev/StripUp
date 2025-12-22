@@ -1968,9 +1968,57 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
-/* TEST: если сработало — увидишь зелёную рамку на iPhone 15/16 */
+/* =========================
+   iOS FIX: iPhone 15/16 (только эти модели)
+   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
+   ========================= */
 @supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (orientation: portrait) and (min-width: 390px) and (max-width: 450px) {
-    #reviews-phone { outline: 6px solid lime !important; }
+
+  /* iPhone 15 / 15 Pro / 16 / 16 Pro (ширина 393–402 CSS px) */
+  @media (max-width: 768px) and (min-width: 390px) and (max-width: 405px) {
+
+    /* комменты чуть ВЫШЕ (меньше px = выше) */
+    #reviews-phone .phone-slides{
+      transform: translateY(62px) !important;
+      -webkit-transform: translateY(62px) !important;
+    }
+
+    /* комменты чуть МЕНЬШЕ */
+    #reviews-phone .phone-slide img{
+      transform: scale(0.86) translateZ(0) !important;
+      -webkit-transform: scale(0.86) translateZ(0) !important;
+    }
+
+    /* маску вниз (чтобы низ не резало) */
+    #reviews-phone .phone-screen-mask{
+      bottom: -6% !important;
+    }
+
+    /* навигацию ниже */
+    #reviews-phone .phone-nav{
+      bottom: 0.5% !important;
+    }
+  }
+
+  /* iPhone 15 Plus / 15 Pro Max / 16 Plus / 16 Pro Max (ширина 430–440 CSS px) */
+  @media (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
+
+    #reviews-phone .phone-slides{
+      transform: translateY(62px) !important;
+      -webkit-transform: translateY(62px) !important;
+    }
+
+    #reviews-phone .phone-slide img{
+      transform: scale(0.86) translateZ(0) !important;
+      -webkit-transform: scale(0.86) translateZ(0) !important;
+    }
+
+    #reviews-phone .phone-screen-mask{
+      bottom: -6% !important;
+    }
+
+    #reviews-phone .phone-nav{
+      bottom: 0.5% !important;
+    }
   }
 }
