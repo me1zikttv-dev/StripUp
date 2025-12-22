@@ -1903,3 +1903,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* iOS: опустить нижнюю границу ЕЩЁ ниже (за счёт отрицательного bottom) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    #reviews-phone .phone-screen-mask{
+      bottom: -4% !important;  /* попробуй -2% / -4% / -6% */
+    }
+  }
+}
