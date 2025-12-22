@@ -1933,7 +1933,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     #reviews-phone .phone-nav{
-      bottom: 3% !important;   /* меньше % = ниже, больше % = выше */
+      bottom: 2% !important;   /* меньше % = ниже, больше % = выше */
     }
   }
 }
