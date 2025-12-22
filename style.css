@@ -1732,426 +1732,98 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* =========================
-   iOS ONLY: reviews (phone.png + комменты) — ПОЛНАЯ ВЕРСИЯ
+   MOBILE: kupidon (оставляем)
    ========================= */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    
-    /* ГЛАВНОЕ: больше места снизу у секции reviews */
-    #reviews{
-      overflow: visible !important;
-      padding-bottom: 100px !important;
-    }
-    
-    /* Отодвигаем Contact вниз */
-    .contact{
-      margin-top: 60px !important;
-      padding: 40px 0;
-    }
-    
-    /* Контейнер телефона */
-    #reviews-phone.phone-image-container-large{
-      width: 96vw !important;
-      max-width: 600px !important;
-      min-width: 0 !important;
-      margin: -40px auto 40px !important; /* добавили margin-bottom: 40px */
-      overflow: visible !important;
-    }
-    
-    /* Рамка телефона */
-    #reviews-phone .phone-frame{
-      width: 140% !important;
-      max-width: none !important;
-      height: auto !important;
-      display: block !important;
-      margin-left: -20% !important;
-      transform: scale(1.08);
-      transform-origin: center top;
-    }
-    
-    /* Маска экрана */
-    #reviews-phone .phone-screen-mask{
-      top: 7.8% !important;
-      left: 4% !important;
-      right: 4% !important;
-      bottom: 7% !important;
-      border-radius: 16px !important;
-    }
-    
-    /* Слайды (контейнер комментариев) */
-    #reviews-phone .phone-slides{
-      transform: translateY(49px) !important;
-      -webkit-transform: translateY(49px) !important;
-      will-change: transform;
-    }
-    
-    /* Отдельный слайд */
-    #reviews-phone .phone-slide{
-      padding: 18px !important;
-    }
-    
-    /* Картинки комментариев */
-    #reviews-phone .phone-slide img{
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: contain !important;
-      transform: scale(1) translateZ(0) !important;
-      -webkit-transform: scale(1) translateZ(0) !important;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-    
-    /* Навигация (стрелки + точки) */
-    #reviews-phone .phone-nav{
-      left: 90px !important;
-      right: 90px !important;
-      bottom: 8% !important;
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      gap: 10px !important;
-    }
-    
-    /* Кнопки стрелок */
-    #reviews-phone .phone-nav-btn{
-      width: 26px !important;
-      height: 26px !important;
-      font-size: 18px !important;
-      border-radius: 10px !important;
-      border-width: 1px !important;
-    }
-    
-    /* Контейнер точек */
-    #reviews-phone .phone-dots{
-      display: flex !important;
-      flex-direction: row !important;
-      flex-wrap: nowrap !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 5px !important;
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      min-width: 0 !important;
-    }
-    #reviews-phone .phone-dots::-webkit-scrollbar{ 
-      display: none; 
-    }
-    
-    /* Точки */
-    #reviews-phone .phone-dot{
-      width: 6px !important;
-      height: 6px !important;
-    }
-    #reviews-phone .phone-dot.active{
-      transform: scale(1.35) !important;
-    }
-  }
-}
-
-@media (max-width: 768px){
-  #reviews-phone .phone-screen-mask,
-  #reviews-phone .phone-screen-content{
-    overflow: visible !important;
-  }
-}
-/* iOS: расширяем видимую область внутри телефона (меньше обрезает низ) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* ЭТО ГЛАВНОЕ: уменьшаешь bottom -> экран становится "выше по высоте" */
-    #reviews-phone .phone-screen-mask{
-      bottom: 4% !important;  /* было 7% / 8% — сделай меньше, например 4% */
-      top: 7.8% !important;   /* если уедет вверх/вниз — правишь это */
-      left: 4% !important;
-      right: 4% !important;
-    }
-
-    /* если ты двигаешь слайды вниз трансформом — они и будут резаться снизу */
-    /* либо уменьшай translateY, либо расширяй mask (bottom меньше) */
-    /* пример: */
-    /* #reviews-phone .phone-slides{ transform: translateY(45px) !important; } */
-  }
-}
-/* iOS: опустить нижнюю границу экрана ниже (дать больше места снизу) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    #reviews-phone .phone-screen-mask{
-      bottom: 2% !important;  /* было 4% -> ниже. Можно 1% или 0% */
-    }
-  }
-}
-/* iOS: опустить нижнюю границу ЕЩЁ ниже (за счёт отрицательного bottom) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    #reviews-phone .phone-screen-mask{
-      bottom: -5% !important;  /* попробуй -2% / -4% / -6% */
-    }
-  }
-}
-/* iOS ONLY: уменьшить комментарии */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    #reviews-phone .phone-slide img{
-      transform: scale(0.89) translateZ(0) !important;
-      -webkit-transform: scale(0.89) translateZ(0) !important;
-    }
-  }
-}
-/* iOS ONLY: опустить комментарии ниже */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    #reviews-phone .phone-slides{
-      transform: translateY(75px) !important;    /* больше px = ниже */
-      -webkit-transform: translateY(75px) !important;
-    }
-  }
-}
-/* iOS ONLY: опустить навигацию ниже (стрелки + точки) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    #reviews-phone .phone-nav{
-      bottom: 1% !important;   /* меньше % = ниже, больше % = выше */
-    }
-  }
-}
 @media (max-width: 768px){
   #features .features-image{
     position: relative;
-    left: 0px;       /* как у тебя */
-    top: -20px;        /* как у тебя */
+    left: 0px;
+    top: -20px;
     transform: scale(1.3);
     transform-origin: center;
   }
 }
+
 /* =========================
-   iOS FIX: iPhone 15/16 (комменты не улетают вниз)
+   iOS FIX: iPhone 15/16 — FINAL CLEAN
+   (15/15 Pro/16/16 Pro + Plus/Pro Max)
    ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
    ========================= */
 @supports (-webkit-touch-callout: none) {
 
-  /* iPhone 15 / 16 / 15 Pro / 16 (393x852) + 16 Pro (402x874) */
-  @media (max-width: 768px)
-    and (min-width: 390px) and (max-width: 405px)
-    and (min-height: 845px) and (max-height: 880px) {
+  /* iPhone 15/15 Pro/16/16 Pro (≈393–402) и Plus/Pro Max (≈430–440) */
+  @media (max-width: 768px) and (min-width: 390px) and (max-width: 405px),
+         (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
 
-    /* комментарии ВЫШЕ (меньше px = выше) */
+    /* база для абсолютов */
+    #reviews-phone{
+      position: relative !important;
+    }
+
+    /* навигацию НЕ режем */
+    #reviews-phone .phone-screen-mask,
+    #reviews-phone .phone-screen-content{
+      overflow: visible !important;
+    }
+
+    /* комменты режутся внутри как надо */
     #reviews-phone .phone-slides{
-      transform: translateY(55px) !important;
-      -webkit-transform: translateY(55px) !important;
-    }
-  }
-
-  /* iPhone 15 Plus / 15 Pro Max / 16 Plus (430x932) + 16 Pro Max (440x956) */
-  @media (max-width: 768px)
-    and (min-width: 420px) and (max-width: 450px)
-    and (min-height: 920px) and (max-height: 980px) {
-
-    #reviews-phone .phone-slides{
-      transform: translateY(55px) !important;
-      -webkit-transform: translateY(55px) !important;
-    }
-  }
-}
-/* iOS: iPhone 15/16 — комментарии чуть меньше */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and
-         ((min-width: 390px) and (max-width: 405px) and (min-height: 845px) and (max-height: 880px)),
-         (max-width: 768px) and
-         ((min-width: 420px) and (max-width: 450px) and (min-height: 920px) and (max-height: 980px)) {
-
-    #reviews-phone .phone-slide img{
-      transform: scale(0.86) translateZ(0) !important;
-      -webkit-transform: scale(0.86) translateZ(0) !important;
-      transform-origin: center center !important;
-    }
-  }
-}
-/* =========================
-   iOS FIX: iPhone 15/16 (только эти модели)
-   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
-   ========================= */
-@supports (-webkit-touch-callout: none) {
-
-  /* iPhone 15 / 15 Pro / 16 / 16 Pro (ширина 393–402 CSS px) */
-  @media (max-width: 768px) and (min-width: 390px) and (max-width: 405px) {
-
-    /* комменты чуть ВЫШЕ (меньше px = выше) */
-    #reviews-phone .phone-slides{
-      transform: translateY(55px) !important;
-      -webkit-transform: translateY(55px) !important;
-    }
-
-    /* комменты чуть МЕНЬШЕ */
-    #reviews-phone .phone-slide img{
-      transform: scale(0.80) translateZ(0) !important;
-      -webkit-transform: scale(0.80) translateZ(0) !important;
-    }
-
-    /* маску вниз (чтобы низ не резало) */
-    #reviews-phone .phone-screen-mask{
-      bottom: -6% !important;
-    }
-
-    /* навигацию ниже */
-    #reviews-phone .phone-nav{
-      bottom: 0.5% !important;
-    }
-  }
-
-  /* iPhone 15 Plus / 15 Pro Max / 16 Plus / 16 Pro Max (ширина 430–440 CSS px) */
-  @media (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
-
-    #reviews-phone .phone-slides{
-      transform: translateY(55px) !important;
-      -webkit-transform: translateY(55px) !important;
-    }
-
-    #reviews-phone .phone-slide img{
-      transform: scale(0.89) translateZ(0) !important;
-      -webkit-transform: scale(0.89) translateZ(0) !important;
-    }
-
-    #reviews-phone .phone-screen-mask{
-      bottom: -6% !important;
-    }
-
-    #reviews-phone .phone-nav{
-      bottom: 0.5% !important;
-    }
-  }
-}
-/* =========================
-   iOS FIX: iPhone 15/16 — комменты чуть БОЛЬШЕ и ВЫШЕ
-   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
-   ========================= */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-
-    /* iPhone 15 / 15 Pro / 16 / 16 Pro (ширина ~393–402px) */
-    @media (min-width: 390px) and (max-width: 405px) {
-
-      /* было 55px — поднимаем на 10–15px */
-      #reviews-phone .phone-slides{
-        transform: translateY(40px) !important;
-        -webkit-transform: translateY(40px) !important;
-      }
-
-      /* было 0.80 — делаем чуть больше */
-      #reviews-phone .phone-slide img{
-        transform: scale(0.83) translateZ(0) !important;
-        -webkit-transform: scale(0.83) translateZ(0) !important;
-        transform-origin: center center !important;
-      }
-    }
-
-    /* iPhone 15 Plus / 15 Pro Max / 16 Plus / 16 Pro Max (ширина ~430–440px) */
-    @media (min-width: 420px) and (max-width: 445px) {
-
-      /* поднимаем на 10–15px */
-      #reviews-phone .phone-slides{
-        transform: translateY(40px) !important;
-        -webkit-transform: translateY(40px) !important;
-      }
-
-      /* было 0.89 — делаем чуть больше */
-      #reviews-phone .phone-slide img{
-        transform: scale(0.92) translateZ(0) !important;
-        -webkit-transform: scale(0.92) translateZ(0) !important;
-        transform-origin: center center !important;
-      }
-    }
-
-  }
-}
-/* iOS FIX: iPhone 15/16 — поднять навигацию выше */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-
-    /* 15 / 15 Pro / 16 / 16 Pro */
-    @media (min-width: 390px) and (max-width: 405px) {
-      #reviews-phone .phone-nav{
-        bottom: 3.5% !important; /* ↑ больше % = выше */
-      }
-    }
-
-    /* 15 Plus / Pro Max / 16 Plus / 16 Pro Max */
-    @media (min-width: 420px) and (max-width: 445px) {
-      #reviews-phone .phone-nav{
-        bottom: 3.5% !important; /* ↑ больше % = выше */
-      }
-    }
-  }
-}
-/* iOS FIX: кнопки навигации поверх комментариев */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-
-    /* навигация всегда сверху */
-    #reviews-phone .phone-nav{
-      position: absolute !important;
-      z-index: 999 !important;
-      pointer-events: auto !important;
-    }
-
-    /* слайды ниже навигации */
-    #reviews-phone .phone-slides{
+      overflow: hidden !important;
       position: relative !important;
       z-index: 1 !important;
     }
 
-    /* чтобы картинки не перехватывали клики по кнопкам */
-    #reviews-phone .phone-slide,
-    #reviews-phone .phone-slide img{
-      pointer-events: none !important;
+    /* навигация поверх и кликабельна */
+    #reviews-phone .phone-nav{
+      position: absolute !important;
+      z-index: 999 !important;
+      left: 90px !important;
+      right: 90px !important;
+      pointer-events: auto !important;
     }
 
-    /* а кнопки — кликабельны */
+    /* кнопки всегда кликабельны */
     #reviews-phone .phone-nav-btn,
     #reviews-phone .phone-dot{
       pointer-events: auto !important;
     }
   }
-}
-/* =========================
-   iOS FIX: iPhone 15/15 Pro/16 — навигация не обрезается
-   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
-   ========================= */
-@supports (-webkit-touch-callout: none) {
 
-  /* iPhone 15 / 15 Pro / 16 / 16 Pro (393–402) */
-  @media (max-width: 768px) and (min-width: 390px) and (max-width: 405px),
+  /* ===== точные настройки под 15/15 Pro/16/16 Pro (390–405) ===== */
+  @media (max-width: 768px) and (min-width: 390px) and (max-width: 405px) {
 
-  /* iPhone 15 Plus / 15 Pro Max / 16 Plus / 16 Pro Max (430–440) */
-  (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
-
-    /* чтобы абсолюты работали стабильно */
-    #reviews-phone{
-      position: relative !important;
-    }
-
-    /* ✅ главное: маска НЕ режет навигацию */
-    #reviews-phone .phone-screen-mask{
-      overflow: visible !important;
-    }
-    #reviews-phone .phone-screen-content{
-      overflow: visible !important;
-    }
-
-    /* ✅ а вот комменты пусть режутся внутри (как и надо) */
     #reviews-phone .phone-slides{
-      overflow: hidden !important;
+      transform: translateY(40px) !important;
+      -webkit-transform: translateY(40px) !important;
     }
 
-    /* ✅ навигация поверх и ВИДНА */
+    #reviews-phone .phone-slide img{
+      transform: scale(0.83) translateZ(0) !important;
+      -webkit-transform: scale(0.83) translateZ(0) !important;
+      transform-origin: center center !important;
+    }
+
     #reviews-phone .phone-nav{
-      position: absolute !important;
-      z-index: 999 !important;
-      bottom: 8% !important;   /* подними/опусти: 5% выше, 7% ниже */
-      left: 90px !important;
-      right: 90px !important;
-      pointer-events: auto !important;
+      bottom: 3.5% !important;
+    }
+  }
+
+  /* ===== точные настройки под Plus/Pro Max (420–445) ===== */
+  @media (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
+
+    #reviews-phone .phone-slides{
+      transform: translateY(40px) !important;
+      -webkit-transform: translateY(40px) !important;
+    }
+
+    #reviews-phone .phone-slide img{
+      transform: scale(0.92) translateZ(0) !important;
+      -webkit-transform: scale(0.92) translateZ(0) !important;
+      transform-origin: center center !important;
+    }
+
+    #reviews-phone .phone-nav{
+      bottom: 3.5% !important;
     }
   }
 }
