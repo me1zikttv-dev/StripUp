@@ -1732,24 +1732,24 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* =========================
-   iOS ONLY: reviews (phone.png + комменты) — ФИНАЛЬНАЯ ВЕРСИЯ
+   iOS ONLY: reviews (phone.png + комменты) — ИСПРАВЛЕНО
    ========================= */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
  
     :root{
-      /* Еще меньше масштаб - чтобы влезло полностью */
-      --ios-comment-scale: 1.0;  /* было 1.15 - уменьшаем */
+      /* Уменьшаем масштаб — чтобы влезло */
+      --ios-comment-scale: 0.88;
+      
+      /* Почти без сдвига или совсем маленький */
+      --ios-comment-shift: 5px;
  
-      /* Меньше сдвиг вниз - поднимаем комментарии выше */
-      --ios-comment-shift: 15px;  /* было 25px */
- 
-      /* Маска экрана - немного больше места снизу */
-      --ios-mask-top: 9%;
-      --ios-mask-bottom: 9%;     /* увеличиваем чуть больше */
+      /* Маска экрана - БОЛЬШЕ места снизу */
+      --ios-mask-top: 8.5%;
+      --ios-mask-bottom: 10.5%;    /* УВЕЛИЧИЛИ снизу */
       --ios-mask-left: 4.5%;
       --ios-mask-right: 4.5%;
- 
+      
       /* Позиция самого телефона */
       --ios-phone-y: -10px;
     }
@@ -1776,13 +1776,16 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
  
     /* 4) Масштаб самих картинок отзывов */
     #reviews-phone .phone-slide{
-      padding: 8px !important;
+      padding: 10px !important;
       overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
  
     #reviews-phone .phone-slide img{
-      transform: scale(var(--ios-comment-scale)) !important;
-      -webkit-transform: scale(var(--ios-comment-scale)) !important;
+      transform: scale(var(--ios-comment-scale)) translateZ(0) !important;
+      -webkit-transform: scale(var(--ios-comment-scale)) translateZ(0) !important;
       transform-origin: center center !important;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
@@ -1790,12 +1793,5 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       max-height: 100% !important;
       object-fit: contain !important;
     }
-  }
-}
- 
-/* чтобы в мобиле reviews не резало */
-@media (max-width: 768px){
-  #reviews{ 
-    overflow: visible !important; 
   }
 }
