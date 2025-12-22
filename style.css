@@ -1832,3 +1832,40 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* iOS ONLY — комментарии внутри phone.png: размер + чтобы не резало */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+
+    :root{
+      --ios-comment-scale: 1.55;  /* размер комментариев */
+      --ios-comment-shift: 38px;  /* сдвиг комментариев ВНИЗ внутри экрана */
+
+      /* маска экрана: меньше число = больше видимой области */
+      --ios-mask-top: 7.2%;       /* меньше => маска выше (больше места сверху) */
+      --ios-mask-bottom: 5.8%;    /* меньше => маска ниже (больше места снизу) */
+    }
+
+    /* 1) Расширяем "экран" (маску), чтобы не обрезало */
+    #reviews-phone .phone-screen-mask{
+      top: var(--ios-mask-top) !important;
+      bottom: var(--ios-mask-bottom) !important;
+    }
+
+    /* 2) Двигаем ТОЛЬКО комментарии внутри экрана */
+    #reviews-phone .phone-slides{
+      transform: translateY(var(--ios-comment-shift)) !important;
+      -webkit-transform: translateY(var(--ios-comment-shift)) !important;
+    }
+
+    /* 3) Увеличиваем сами картинки отзывов */
+    #reviews-phone .phone-slide{
+      padding: 4px !important; /* чтобы не резало по краям */
+    }
+    #reviews-phone .phone-slide img{
+      transform: scale(var(--ios-comment-scale)) !important;
+      -webkit-transform: scale(var(--ios-comment-scale)) !important;
+      transform-origin: center top !important; /* чаще помогает от обрезки снизу */
+      max-height: 100% !important;
+    }
+  }
+}
