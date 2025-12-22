@@ -1732,21 +1732,21 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* =========================
-   iOS ONLY: reviews (phone.png + комменты) — ИСПРАВЛЕНО
+   iOS ONLY: reviews (phone.png + комменты) — ФИНАЛЬНАЯ ВЕРСИЯ
    ========================= */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
  
     :root{
-      /* Уменьшаем масштаб комментариев */
-      --ios-comment-scale: 1.15;  /* было 1.55 - слишком большое */
+      /* Еще меньше масштаб - чтобы влезло полностью */
+      --ios-comment-scale: 1.0;  /* было 1.15 - уменьшаем */
  
-      /* Корректируем сдвиг вниз */
-      --ios-comment-shift: 25px;  /* было 38px */
+      /* Меньше сдвиг вниз - поднимаем комментарии выше */
+      --ios-comment-shift: 15px;  /* было 25px */
  
-      /* Маска экрана - чтобы не резало */
-      --ios-mask-top: 8.5%;
-      --ios-mask-bottom: 8%;
+      /* Маска экрана - немного больше места снизу */
+      --ios-mask-top: 9%;
+      --ios-mask-bottom: 9%;     /* увеличиваем чуть больше */
       --ios-mask-left: 4.5%;
       --ios-mask-right: 4.5%;
  
@@ -1776,7 +1776,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
  
     /* 4) Масштаб самих картинок отзывов */
     #reviews-phone .phone-slide{
-      padding: 6px !important;
+      padding: 8px !important;
       overflow: hidden !important;
     }
  
@@ -1788,6 +1788,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       -webkit-backface-visibility: hidden;
       max-width: 100% !important;
       max-height: 100% !important;
+      object-fit: contain !important;
     }
   }
 }
