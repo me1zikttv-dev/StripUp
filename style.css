@@ -1703,7 +1703,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 /* все устройства */
 #features .features-image{
   position: relative;
-  left: -35px;
+  left: -10px;
   top: -60px;
 }
 
