@@ -1938,8 +1938,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* комментарии ВЫШЕ (меньше px = выше) */
     #reviews-phone .phone-slides{
-      transform: translateY(62px) !important;
-      -webkit-transform: translateY(62px) !important;
+      transform: translateY(55px) !important;
+      -webkit-transform: translateY(55px) !important;
     }
   }
 
@@ -1949,8 +1949,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     and (min-height: 920px) and (max-height: 980px) {
 
     #reviews-phone .phone-slides{
-      transform: translateY(62px) !important;
-      -webkit-transform: translateY(62px) !important;
+      transform: translateY(55px) !important;
+      -webkit-transform: translateY(55px) !important;
     }
   }
 }
