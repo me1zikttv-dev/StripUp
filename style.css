@@ -1849,28 +1849,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
-/* DEBUG: границы блока контактов */
-#contact{
-  outline: 4px solid red !important;
-  outline-offset: -2px;
-}
-@media (max-width: 768px){
-  #reviews { outline: 3px solid red !important; }
-  #reviews-phone { outline: 3px solid hotpink !important; }
 
-  #reviews-phone .phone-screen-mask{
-    outline: 3px solid lime !important;
-    background: rgba(0,255,0,.05) !important;
-  }
-
-  #reviews-phone .phone-screen-content{
-    outline: 3px solid cyan !important;
-    background: rgba(0,255,255,.05) !important;
-  }
-
-  #reviews-phone .phone-slides{ outline: 3px solid orange !important; }
-  #reviews-phone .phone-slide{ outline: 3px solid purple !important; }
-}
 @media (max-width: 768px){
   #reviews-phone .phone-screen-mask,
   #reviews-phone .phone-screen-content{
