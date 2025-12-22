@@ -1818,3 +1818,17 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 #features .features-image{
   transform: translateX(25px); /* + = вправо, - = влево */
 }
+/* iOS ONLY — размер комментариев внутри phone.png */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    :root{
+      --ios-comment-scale: 1.8; /* <- увеличивай 1.5 / 1.6 / 1.7 */
+    }
+
+    #reviews-phone .phone-slide img{
+      transform: scale(var(--ios-comment-scale)) !important;
+      -webkit-transform: scale(var(--ios-comment-scale)) !important;
+      transform-origin: center center !important;
+    }
+  }
+}
