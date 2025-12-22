@@ -1732,66 +1732,120 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* =========================
-   iOS ONLY: reviews (phone.png + комменты) — ИСПРАВЛЕНО
+   iOS ONLY: reviews (phone.png + комменты) — ПОЛНОЕ ИСПРАВЛЕНИЕ
    ========================= */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
  
-    :root{
-      /* Уменьшаем масштаб — чтобы влезло */
-      --ios-comment-scale: 0.88;
-      
-      /* Почти без сдвига или совсем маленький */
-      --ios-comment-shift: 5px;
- 
-      /* Маска экрана - БОЛЬШЕ места снизу */
-      --ios-mask-top: 8.5%;
-      --ios-mask-bottom: 10.5%;    /* УВЕЛИЧИЛИ снизу */
-      --ios-mask-left: 4.5%;
-      --ios-mask-right: 4.5%;
-      
-      /* Позиция самого телефона */
-      --ios-phone-y: -10px;
+    /* Убираем обрезание секции reviews на iOS */
+    #reviews{
+      overflow: visible !important;
+      padding-bottom: 60px !important; /* больше места снизу */
+    }
+    
+    #reviews .container{
+      overflow: visible !important;
     }
  
-    /* 1) Позиция телефона */
+    /* Контейнер телефона - БОЛЬШЕ высота + поднять выше */
     #reviews-phone.phone-image-container-large{
-      transform: translateY(var(--ios-phone-y)) !important;
+      width: 96vw !important;
+      max-width: 600px !important;
+      min-width: 0 !important;
+      margin: -60px auto 0 !important; /* было -40px, стало -60px - выше */
+      min-height: 700px !important; /* добавили минимальную высоту */
+      overflow: visible !important;
     }
  
-    /* 2) Маска экрана */
+    /* Сам телефон (рамка) */
+    #reviews-phone .phone-frame{
+      width: 140% !important;
+      max-width: none !important;
+      height: auto !important;
+      display: block !important;
+      margin-left: -20% !important;
+      transform: scale(1.08);
+      transform-origin: center top;
+    }
+ 
+    /* Маска экрана - БОЛЬШЕ видимая область */
     #reviews-phone .phone-screen-mask{
-      top: var(--ios-mask-top) !important;
-      bottom: var(--ios-mask-bottom) !important;
-      left: var(--ios-mask-left) !important;
-      right: var(--ios-mask-right) !important;
+      top: 7.5% !important;
+      left: 4% !important;
+      right: 4% !important;
+      bottom: 7.5% !important; /* равномерно сверху и снизу */
+      border-radius: 16px !important;
     }
  
-    /* 3) Сдвиг комментариев внутри экрана */
+    /* Контейнер слайдов - небольшой сдвиг */
     #reviews-phone .phone-slides{
-      transform: translateY(var(--ios-comment-shift)) !important;
-      -webkit-transform: translateY(var(--ios-comment-shift)) !important;
+      transform: translateY(42px) !important; /* было 49px на Android */
+      -webkit-transform: translateY(42px) !important;
       will-change: transform;
     }
  
-    /* 4) Масштаб самих картинок отзывов */
+    /* Сам слайд */
     #reviews-phone .phone-slide{
-      padding: 10px !important;
+      padding: 14px !important;
       overflow: hidden !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
     }
  
+    /* Картинки отзывов - уменьшаем масштаб */
     #reviews-phone .phone-slide img{
-      transform: scale(var(--ios-comment-scale)) translateZ(0) !important;
-      -webkit-transform: scale(var(--ios-comment-scale)) translateZ(0) !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      transform: scale(0.80) translateZ(0) !important; /* было 0.85, стало 0.80 */
+      -webkit-transform: scale(0.80) translateZ(0) !important;
       transform-origin: center center !important;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      max-width: 100% !important;
-      max-height: 100% !important;
-      object-fit: contain !important;
+    }
+ 
+    /* Навигация (стрелки и точки) */
+    #reviews-phone .phone-nav{
+      left: 90px !important;
+      right: 90px !important;
+      bottom: 8% !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 10px !important;
+    }
+ 
+    #reviews-phone .phone-nav-btn{
+      width: 26px !important;
+      height: 26px !important;
+      font-size: 18px !important;
+      border-radius: 10px !important;
+      border-width: 1px !important;
+    }
+ 
+    #reviews-phone .phone-dots{
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 5px !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      min-width: 0 !important;
+    }
+    
+    #reviews-phone .phone-dots::-webkit-scrollbar{ 
+      display: none; 
+    }
+ 
+    #reviews-phone .phone-dot{
+      width: 6px !important;
+      height: 6px !important;
+    }
+    
+    #reviews-phone .phone-dot.active{
+      transform: scale(1.35) !important;
     }
   }
 }
