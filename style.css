@@ -2084,3 +2084,33 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* iOS FIX: кнопки навигации поверх комментариев */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+
+    /* навигация всегда сверху */
+    #reviews-phone .phone-nav{
+      position: absolute !important;
+      z-index: 999 !important;
+      pointer-events: auto !important;
+    }
+
+    /* слайды ниже навигации */
+    #reviews-phone .phone-slides{
+      position: relative !important;
+      z-index: 1 !important;
+    }
+
+    /* чтобы картинки не перехватывали клики по кнопкам */
+    #reviews-phone .phone-slide,
+    #reviews-phone .phone-slide img{
+      pointer-events: none !important;
+    }
+
+    /* а кнопки — кликабельны */
+    #reviews-phone .phone-nav-btn,
+    #reviews-phone .phone-dot{
+      pointer-events: auto !important;
+    }
+  }
+}
