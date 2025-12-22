@@ -2114,3 +2114,44 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* =========================
+   iOS FIX: iPhone 15/15 Pro/16 — навигация не обрезается
+   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
+   ========================= */
+@supports (-webkit-touch-callout: none) {
+
+  /* iPhone 15 / 15 Pro / 16 / 16 Pro (393–402) */
+  @media (max-width: 768px) and (min-width: 390px) and (max-width: 405px),
+
+  /* iPhone 15 Plus / 15 Pro Max / 16 Plus / 16 Pro Max (430–440) */
+  (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
+
+    /* чтобы абсолюты работали стабильно */
+    #reviews-phone{
+      position: relative !important;
+    }
+
+    /* ✅ главное: маска НЕ режет навигацию */
+    #reviews-phone .phone-screen-mask{
+      overflow: visible !important;
+    }
+    #reviews-phone .phone-screen-content{
+      overflow: visible !important;
+    }
+
+    /* ✅ а вот комменты пусть режутся внутри (как и надо) */
+    #reviews-phone .phone-slides{
+      overflow: hidden !important;
+    }
+
+    /* ✅ навигация поверх и ВИДНА */
+    #reviews-phone .phone-nav{
+      position: absolute !important;
+      z-index: 999 !important;
+      bottom: 6% !important;   /* подними/опусти: 5% выше, 7% ниже */
+      left: 90px !important;
+      right: 90px !important;
+      pointer-events: auto !important;
+    }
+  }
+}
