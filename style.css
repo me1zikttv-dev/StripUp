@@ -2148,7 +2148,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     #reviews-phone .phone-nav{
       position: absolute !important;
       z-index: 999 !important;
-      bottom: 7% !important;   /* подними/опусти: 5% выше, 7% ниже */
+      bottom: 8% !important;   /* подними/опусти: 5% выше, 7% ниже */
       left: 90px !important;
       right: 90px !important;
       pointer-events: auto !important;
