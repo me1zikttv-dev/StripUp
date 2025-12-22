@@ -2140,3 +2140,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 #features .features-image-container{
   overflow: visible;
 }
+
+/* ===== ТЕЛЕФОНЫ (только мобилка) ===== */
+@media (max-width: 768px){
+  #features .features-image{
+    left: -10px;  /* <-- НА ТЕЛЕФОНЕ левее/правее */
+    top: -20px;   /* <-- НА ТЕЛЕФОНЕ выше/ниже */
+  }
+}
