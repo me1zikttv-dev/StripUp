@@ -2084,3 +2084,47 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     #reviews-phone { outline: 6px solid red !important; }
   }
 }
+/* =========================
+   MOBILE FAQ FIX (переносы + ничего не вылезает)
+   ========================= */
+@media (max-width: 768px){
+
+  /* вопрос */
+  .faq-question{
+    width: 100%;
+    max-width: 100%;
+    white-space: normal !important;          /* разрешить перенос */
+    overflow-wrap: anywhere !important;      /* ломать длинные слова */
+    word-break: break-word !important;       /* запасной вариант */
+  }
+
+  /* сам текст вопроса (если у тебя внутри span/p и т.п.) */
+  .faq-question *{
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* ответ */
+  .faq-answer{
+    width: 100%;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* ссылки/длинные слова внутри ответа */
+  .faq-answer a,
+  .faq-answer p,
+  .faq-answer li{
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* иногда вылезает из-за flex: запрещаем расширяться */
+  .faq-question,
+  .faq-answer{
+    min-width: 0 !important;
+  }
+}
