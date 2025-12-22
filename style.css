@@ -1848,4 +1848,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       transform: scale(1.35) !important;
     }
   }
+}/* DEBUG: границы блока контактов */
+#contact{
+  outline: 4px solid red !important;
+  outline-offset: -2px;
 }
