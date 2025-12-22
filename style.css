@@ -1822,7 +1822,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     :root{
-      --ios-comment-scale: 1.6; /* <- увеличивай 1.5 / 1.6 / 1.7 */
+      --ios-comment-scale: 1.5; /* <- увеличивай 1.5 / 1.6 / 1.7 */
     }
 
     #reviews-phone .phone-slide img{
