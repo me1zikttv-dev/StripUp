@@ -1915,8 +1915,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     #reviews-phone .phone-slide img{
-      transform: scale(0.78) translateZ(0) !important;
-      -webkit-transform: scale(0.78) translateZ(0) !important;
+      transform: scale(0.90) translateZ(0) !important;
+      -webkit-transform: scale(0.90) translateZ(0) !important;
     }
   }
 }
