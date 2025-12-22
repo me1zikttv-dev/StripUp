@@ -1795,8 +1795,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       width: 100% !important;
       height: 100% !important;
       object-fit: contain !important;
-      transform: scale(0.85) translateZ(0) !important;
-      -webkit-transform: scale(0.85) translateZ(0) !important;
+      transform: scale(1) translateZ(0) !important;
+      -webkit-transform: scale(1) translateZ(0) !important;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
