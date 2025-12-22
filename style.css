@@ -2022,3 +2022,46 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* =========================
+   iOS FIX: iPhone 15/16 — комменты чуть БОЛЬШЕ и ВЫШЕ
+   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
+   ========================= */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+
+    /* iPhone 15 / 15 Pro / 16 / 16 Pro (ширина ~393–402px) */
+    @media (min-width: 390px) and (max-width: 405px) {
+
+      /* было 55px — поднимаем на 10–15px */
+      #reviews-phone .phone-slides{
+        transform: translateY(40px) !important;
+        -webkit-transform: translateY(40px) !important;
+      }
+
+      /* было 0.80 — делаем чуть больше */
+      #reviews-phone .phone-slide img{
+        transform: scale(0.83) translateZ(0) !important;
+        -webkit-transform: scale(0.83) translateZ(0) !important;
+        transform-origin: center center !important;
+      }
+    }
+
+    /* iPhone 15 Plus / 15 Pro Max / 16 Plus / 16 Pro Max (ширина ~430–440px) */
+    @media (min-width: 420px) and (max-width: 445px) {
+
+      /* поднимаем на 10–15px */
+      #reviews-phone .phone-slides{
+        transform: translateY(40px) !important;
+        -webkit-transform: translateY(40px) !important;
+      }
+
+      /* было 0.89 — делаем чуть больше */
+      #reviews-phone .phone-slide img{
+        transform: scale(0.92) translateZ(0) !important;
+        -webkit-transform: scale(0.92) translateZ(0) !important;
+        transform-origin: center center !important;
+      }
+    }
+
+  }
+}
