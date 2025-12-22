@@ -2147,4 +2147,13 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     left: -10px;  /* <-- НА ТЕЛЕФОНЕ левее/правее */
     top: -20px;   /* <-- НА ТЕЛЕФОНЕ выше/ниже */
   }
+}/* MOBILE: уменьшить kupidon.png */
+@media (max-width: 768px){
+  #features .features-image{
+    width: 85% !important;   /* меньше = меньше картинка (например 70%) */
+    max-width: 420px !important; /* лимит, чтобы не была огромной */
+    height: auto !important;
+    display: block;
+    margin: 0 auto;          /* по центру */
+  }
 }
