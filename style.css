@@ -2128,3 +2128,15 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     min-width: 0 !important;
   }
 }
+
+/* kupidon.png — выше и левее на ВСЕХ устройствах */
+#features .features-image{
+  position: relative;
+  left: -35px;   /* левее: -20px, -30px... */
+  top: -60px;    /* выше: -30px, -40px... */
+}
+
+/* если картинку может обрезать контейнер */
+#features .features-image-container{
+  overflow: visible;
+}
