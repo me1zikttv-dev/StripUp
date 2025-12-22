@@ -1979,8 +1979,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* комменты чуть ВЫШЕ (меньше px = выше) */
     #reviews-phone .phone-slides{
-      transform: translateY(62px) !important;
-      -webkit-transform: translateY(62px) !important;
+      transform: translateY(55px) !important;
+      -webkit-transform: translateY(55px) !important;
     }
 
     /* комменты чуть МЕНЬШЕ */
@@ -2004,13 +2004,13 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @media (max-width: 768px) and (min-width: 420px) and (max-width: 445px) {
 
     #reviews-phone .phone-slides{
-      transform: translateY(56px) !important;
-      -webkit-transform: translateY(56px) !important;
+      transform: translateY(55px) !important;
+      -webkit-transform: translateY(55px) !important;
     }
 
     #reviews-phone .phone-slide img{
-      transform: scale(0.86) translateZ(0) !important;
-      -webkit-transform: scale(0.86) translateZ(0) !important;
+      transform: scale(0.89) translateZ(0) !important;
+      -webkit-transform: scale(0.89) translateZ(0) !important;
     }
 
     #reviews-phone .phone-screen-mask{
