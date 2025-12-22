@@ -1895,3 +1895,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     /* #reviews-phone .phone-slides{ transform: translateY(45px) !important; } */
   }
 }
+/* iOS: опустить нижнюю границу экрана ниже (дать больше места снизу) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    #reviews-phone .phone-screen-mask{
+      bottom: 2% !important;  /* было 4% -> ниже. Можно 1% или 0% */
+    }
+  }
+}
