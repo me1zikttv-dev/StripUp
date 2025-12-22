@@ -1732,140 +1732,69 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* =========================
-   iOS ONLY: reviews (phone.png + комменты) — финал
+   iOS ONLY: reviews (phone.png + комменты) — ИСПРАВЛЕНО
    ========================= */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
-
-    /* iOS: приподнять phone.png */
-    #reviews-phone.phone-image-container-large{
-      transform: translateY(-15px) !important;
-    }
-
-    /* iOS: комментарии чуть ниже */
-    #reviews-phone .phone-slides{
-      transform: translateY(55px) !important;
-      -webkit-transform: translateY(55px) !important;
-    }
-  }
-}
-
-/* чтобы в мобиле reviews не резало */
-@media (max-width: 768px){
-  #reviews{ overflow: visible !important; }
-}
-/* =========================
-   iOS ONLY: подгон phone.png + отзывы (НЕ трогаем Android)
-   ВСТАВИТЬ В САМЫЙ НИЗ style.css
-   ========================= */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* оставляем твои последние значения как дефолт */
+ 
     :root{
-      --ios-phone-y: -15px;       /* весь телефон вверх/вниз */
-      --ios-slides-y: 55px;       /* отзывы внутри телефона вверх/вниз */
-
-      --ios-mask-top: 7.8%;
-      --ios-mask-left: 4%;
-      --ios-mask-right: 4%;
-      --ios-mask-bottom: 7%;
+      /* Уменьшаем масштаб комментариев */
+      --ios-comment-scale: 1.15;  /* было 1.55 - слишком большое */
+ 
+      /* Корректируем сдвиг вниз */
+      --ios-comment-shift: 25px;  /* было 38px */
+ 
+      /* Маска экрана - чтобы не резало */
+      --ios-mask-top: 8.5%;
+      --ios-mask-bottom: 8%;
+      --ios-mask-left: 4.5%;
+      --ios-mask-right: 4.5%;
+ 
+      /* Позиция самого телефона */
+      --ios-phone-y: -10px;
     }
-
-    /* 1) двигаем сам телефон (НЕ комменты) */
+ 
+    /* 1) Позиция телефона */
     #reviews-phone.phone-image-container-large{
       transform: translateY(var(--ios-phone-y)) !important;
     }
-
-    /* 2) маска экрана — чтобы совпало с вырезом phone.png */
+ 
+    /* 2) Маска экрана */
     #reviews-phone .phone-screen-mask{
       top: var(--ios-mask-top) !important;
+      bottom: var(--ios-mask-bottom) !important;
       left: var(--ios-mask-left) !important;
       right: var(--ios-mask-right) !important;
-      bottom: var(--ios-mask-bottom) !important;
     }
-
-    /* 3) двигаем только отзывы внутри экрана */
-    #reviews-phone .phone-slides{
-      transform: translateY(var(--ios-slides-y)) !important;
-      -webkit-transform: translateY(var(--ios-slides-y)) !important;
-      will-change: transform;
-    }
-
-    /* 4) фикс “мыла/сдвига” на iOS (оставляем твой масштаб) */
-    #reviews-phone .phone-slide img{
-      transform: scale(0.85) translateZ(0) !important;
-      -webkit-transform: scale(0.85) translateZ(0) !important;
-      transform-origin: center center !important;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-  }
-}
-@media (max-width: 768px){
-  #features .features-image{
-    width: 100% !important;
-    transform: scale(1.30) !important;  /* больше = больше */
-    transform-origin: center top;
-  }
-}
-@media (max-width: 768px){
-  #features .features-image{
-    transform: scale(1.15) translateX(12px) !important; /* +12px = правее */
-    transform-origin: center top;
-  }
-}
-#features .features-image{
-  transform: translateX(25px); /* + = вправо, - = влево */
-}
-/* iOS ONLY — размер комментариев внутри phone.png */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-    :root{
-      --ios-comment-scale: 1.4; /* <- увеличивай 1.5 / 1.6 / 1.7 */
-    }
-
-    #reviews-phone .phone-slide img{
-      transform: scale(var(--ios-comment-scale)) !important;
-      -webkit-transform: scale(var(--ios-comment-scale)) !important;
-      transform-origin: center center !important;
-    }
-  }
-}
-/* iOS ONLY — комментарии внутри phone.png: размер + чтобы не резало */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    :root{
-      --ios-comment-scale: 1.55;  /* размер комментариев */
-      --ios-comment-shift: 38px;  /* сдвиг комментариев ВНИЗ внутри экрана */
-
-      /* маска экрана: меньше число = больше видимой области */
-      --ios-mask-top: 7.2%;       /* меньше => маска выше (больше места сверху) */
-      --ios-mask-bottom: 5.8%;    /* меньше => маска ниже (больше места снизу) */
-    }
-
-    /* 1) Расширяем "экран" (маску), чтобы не обрезало */
-    #reviews-phone .phone-screen-mask{
-      top: var(--ios-mask-top) !important;
-      bottom: var(--ios-mask-bottom) !important;
-    }
-
-    /* 2) Двигаем ТОЛЬКО комментарии внутри экрана */
+ 
+    /* 3) Сдвиг комментариев внутри экрана */
     #reviews-phone .phone-slides{
       transform: translateY(var(--ios-comment-shift)) !important;
       -webkit-transform: translateY(var(--ios-comment-shift)) !important;
+      will-change: transform;
     }
-
-    /* 3) Увеличиваем сами картинки отзывов */
+ 
+    /* 4) Масштаб самих картинок отзывов */
     #reviews-phone .phone-slide{
-      padding: 4px !important; /* чтобы не резало по краям */
+      padding: 6px !important;
+      overflow: hidden !important;
     }
+ 
     #reviews-phone .phone-slide img{
       transform: scale(var(--ios-comment-scale)) !important;
       -webkit-transform: scale(var(--ios-comment-scale)) !important;
-      transform-origin: center top !important; /* чаще помогает от обрезки снизу */
+      transform-origin: center center !important;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      max-width: 100% !important;
       max-height: 100% !important;
     }
+  }
+}
+ 
+/* чтобы в мобиле reviews не резало */
+@media (max-width: 768px){
+  #reviews{ 
+    overflow: visible !important; 
   }
 }
