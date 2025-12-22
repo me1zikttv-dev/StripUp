@@ -1915,8 +1915,17 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
     #reviews-phone .phone-slide img{
-      transform: scale(0.90) translateZ(0) !important;
-      -webkit-transform: scale(0.90) translateZ(0) !important;
+      transform: scale(0.89) translateZ(0) !important;
+      -webkit-transform: scale(0.89) translateZ(0) !important;
+    }
+  }
+}
+/* iOS ONLY: опустить комментарии ниже */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    #reviews-phone .phone-slides{
+      transform: translateY(25px) !important;    /* больше px = ниже */
+      -webkit-transform: translateY(25px) !important;
     }
   }
 }
