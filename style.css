@@ -1730,79 +1730,144 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 /* ... (оставь весь твой iOS FIX блок как в твоём файле) ... */
 
 /* =========================================================
-   ✅ VACANCIES + MODAL (ДОБАВЛЕНО)
+   ✅ VACANCIES + MODAL (CLEAN — без повторов)
    ========================================================= */
 #vacancies{
   padding-top: 30px;
 }
 
-.vacancy-box{
-  min-height: 610px; /* чуть выше, чтобы колонки нормально влезали */
+/* ряд именно для вакансий — шире */
+#vacancies .pricing-cards-horizontal{
+  max-width: 1400px;
 }
 
-.vacancy-columns{
-  display: flex;
-  gap: 14px;
-  text-align: left;
-  margin-top: 10px;
-  flex: 1;
+/* карточка вакансии — шире (как ты сделал) */
+#vacancies .pricing-card-horizontal{
+  max-width: 430px;
+  width: 100%;
+  transform: none !important;
 }
 
-.vacancy-col{
-  flex: 1;
-  background: var(--light-pink);
-  border: 2px solid rgba(176,49,94,0.12);
-  border-radius: 14px;
-  padding: 14px 12px;
+/* если где-то был "популярный/топ" — скрываем */
+#vacancies .popular-badge-horizontal{
+  display: none !important;
 }
 
-.vacancy-col h4{
-  font-family: 'Playfair Display', serif;
-  color: var(--burgundy);
-  font-weight: 800;
-  font-size: 16px;
-  margin-bottom: 10px;
-  text-align: center;
+/* заголовки вакансий — без переносов */
+#vacancies .pricing-box-horizontal h3{
+  white-space: nowrap;
+  font-size: 19px;
 }
 
-.vacancy-list{
-  list-style: none;
-  margin: 0;
-  padding: 0 4px;
+/* кнопка — без переносов */
+#vacancies .cta-button{
+  white-space: nowrap;
 }
 
-.vacancy-list li{
-  margin-bottom: 9px;
-  padding-left: 22px;
-  position: relative;
-  font-size: 13.5px;
+/* пункты — меньше шрифт (как у тебя) */
+#vacancies .pricing-features-horizontal li{
+  font-size: 13px;
   line-height: 1.35;
 }
 
-.vacancy-list li:before{
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--burgundy);
-  font-weight: 800;
-  font-size: 14px;
+/* чуть выше карточка (как ты хотел) */
+.vacancy-box{
+  min-height: 610px;
 }
 
-.vacancies .vacancy-apply-btn{
+/* ===== Текст/контент внутри карточки вакансии ===== */
+.vacancy-lead{
+  font-weight: 800;
+  color: var(--burgundy);
+  margin: 8px 0 14px;
+  text-align: left;
+  line-height: 1.3;
+}
+
+/* 2 колонки внутри карточки */
+.vacancy-cols{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  flex: 1;
+}
+
+/* колонка */
+.vacancy-col{
+  background: var(--light-pink);
+  border: 2px solid var(--dark-pink);
+  border-radius: 14px;
+  padding: 16px 14px;
+  text-align: left;
+  min-height: 520px;
+}
+
+.vacancy-col h4{
+  color: var(--burgundy);
+  font-weight: 900;
+  font-size: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.vacancy-subtitle{
   margin-top: 14px;
 }
 
-/* мобильная адаптация колонок вакансий */
+/* список — ОДИН раз */
+.vacancy-list{
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.vacancy-list li{
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.vacancy-list li::before{
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--burgundy);
+  font-weight: 900;
+}
+
+.vacancy-footer{
+  margin-top: 12px;
+  font-weight: 700;
+  color: #444;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* кнопка заявки */
+.vacancy-apply-btn{
+  width: 100%;
+  margin-top: 12px;
+  white-space: nowrap;
+}
+
+/* мобильная адаптация */
 @media (max-width: 768px){
-  .vacancy-columns{
-    flex-direction: column;
-  }
   .vacancy-box{
+    min-height: auto;
+  }
+  .vacancy-cols{
+    grid-template-columns: 1fr;
+  }
+  .vacancy-col{
     min-height: auto;
   }
 }
 
-/* ============ MODAL ============ */
+/* ============ MODAL (как у тебя, без дублей) ============ */
 .vacancy-modal{
   position: fixed;
   inset: 0;
@@ -1906,396 +1971,106 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   text-align: center;
   line-height: 1.4;
 }
-/* ВАКАНСИИ: без "популярный/топ" масштаба и строго как тарифы */
-#vacancies .pricing-card-horizontal{
-  max-width: 1200px;     /* как в тарифах */
-  width: 100%;
-  transform: none !important;
+/* ======================================================
+   VACANCIES — ULTRA COMPACT + NO WHITE BG
+   ВСТАВЬ В САМЫЙ КОНЕЦ CSS
+   ====================================================== */
+
+/* меньше воздуха вокруг секции */
+#vacancies{
+  padding-top: 10px !important;
+  padding-bottom: 24px !important;
 }
 
-#vacancies .popular-badge-horizontal{
-  display: none !important;
+/* заголовок чуть компактнее */
+#vacancies .section-title{
+  margin-bottom: 18px !important;
 }
-/* =========================
-   VACANCIES: шире карточки + меньше переносов
-   ========================= */
 
-/* расширяем ряд именно для вакансий */
+/* расстояние между тремя карточками */
 #vacancies .pricing-cards-horizontal{
-  max-width: 1400px; /* было 1200 */
+  gap: 12px !important;
+  align-items: stretch !important;
 }
 
-/* делаем каждую карточку шире (как тарифы, но больше) */
-#vacancies .pricing-card-horizontal{
-  max-width: 430px;   /* было 380 */
-  width: 100%;
-  transform: none !important;
+/* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
+#vacancies .pricing-box-horizontal{
+  background: rgba(249, 232, 239, 0.55) !important;  /* лёгкий розовый “стекло” */
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(176,49,94,0.55) !important;  /* бордюр остаётся */
+  box-shadow: 0 10px 26px rgba(176,49,94,0.14) !important;
+
+  padding: 14px 14px 12px !important;                 /* меньше отступы */
+  min-height: unset !important;                       /* убираем принудительную высоту */
+  border-radius: 16px !important;
 }
 
-/* чтобы заголовки не переносились */
+/* заголовки карточек */
 #vacancies .pricing-box-horizontal h3{
-  white-space: nowrap;
-  font-size: 19px; /* чуть меньше, чтобы влезало */
-}
-
-/* чтобы кнопка не переносилась */
-#vacancies .cta-button{
+  font-size: 17px !important;
+  margin-bottom: 8px !important;
   white-space: nowrap;
 }
 
-/* пункты списка: чуть меньше шрифт — меньше переносов */
+/* если у тебя где-то есть lead-текст */
+#vacancies .vacancy-lead{
+  margin: 6px 0 8px !important;
+  font-size: 12.8px !important;
+  line-height: 1.28 !important;
+}
+
+/* внутренние блоки “Мы ищем / Ты получаешь” — тоже без белого */
+#vacancies .vacancy-col{
+  background: rgba(255,255,255,0.35) !important;      /* вместо плотного белого */
+  border: 1.5px solid rgba(176,49,94,0.35) !important;
+  box-shadow: none !important;
+
+  padding: 10px 10px !important;
+  border-radius: 14px !important;
+  min-height: unset !important;                        /* ключ — убрать пустые низы */
+}
+
+/* заголовки внутри блоков */
+#vacancies .vacancy-col h4{
+  font-size: 13.5px !important;
+  margin-bottom: 6px !important;
+}
+
+/* списки — плотнее */
+#vacancies .vacancy-list li{
+  margin-bottom: 6px !important;
+  font-size: 12.6px !important;
+  line-height: 1.25 !important;
+}
+
+/* если используется список как в тарифах внутри вакансий */
+#vacancies .pricing-features-horizontal{
+  margin: 8px 0 10px !important;
+  padding: 0 4px !important;
+}
 #vacancies .pricing-features-horizontal li{
-  font-size: 13px;     /* было 14 */
-  line-height: 1.35;   /* было 1.45 */
+  margin-bottom: 6px !important;
+  font-size: 12.6px !important;
+  line-height: 1.25 !important;
 }
 
-/* если где-то случайно остался "Топ" — скрываем */
-#vacancies .popular-badge-horizontal{ display:none !important; }
-/* =========================
-   VACANCY TEXT (для карточки тиктокера)
-   ========================= */
-.vacancy-text{
-  text-align: left;
-  margin-top: 10px;
-  flex: 1;
+/* прижимаем кнопку к низу и делаем компактнее */
+#vacancies .pricing-box-horizontal{
+  display: flex !important;
+  flex-direction: column !important;
 }
-
-.vacancy-lead{
-  font-weight: 800;
-  color: var(--burgundy);
-  margin-bottom: 10px;
-  line-height: 1.35;
-}
-
-.vacancy-text p{
-  font-size: 13px;
-  line-height: 1.45;
-  margin-bottom: 10px;
-  color: #444;
-}
-
-.vacancy-text h4{
-  font-size: 13px;
-  margin: 10px 0 6px;
-  color: var(--burgundy);
-  font-weight: 800;
-  font-family: 'Raleway', 'Inter', sans-serif;
-}
-
-.vacancy-list{
-  list-style: none;
-  padding: 0;
-  margin: 0 0 10px;
-}
-
-.vacancy-list li{
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 7px;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.vacancy-list li::before{
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--burgundy);
-  font-weight: 800;
-}
-
-.vacancy-footer{
-  margin-top: 6px;
-  font-weight: 700;
-  color: #444;
-}
-
-/* кнопка внизу (как в тарифах) */
-.vacancy-apply-btn{
-  width: 100%;
-  margin-top: 12px;
-  white-space: nowrap;
-}
-/* =========================
-   VACANCIES: 2 столбика внутри карточки (как у других)
-   ========================= */
-.vacancy-lead{
-  font-weight: 800;
-  color: var(--burgundy);
-  margin: 8px 0 14px;
-  text-align: left;
-  line-height: 1.3;
-}
-
-.vacancy-cols{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  flex: 1;
-}
-
-.vacancy-col{
-  background: var(--light-pink);
-  border: 2px solid var(--dark-pink);
-  border-radius: 14px;
-  padding: 16px 14px;
-  text-align: left;
-  min-height: 520px; /* чтобы было похоже по высоте как у остальных */
-}
-
-.vacancy-col h4{
-  color: var(--burgundy);
-  font-weight: 900;
-  font-size: 15px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-}
-
-.vacancy-subtitle{
-  margin-top: 14px;
-}
-
-.vacancy-list{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.vacancy-list li{
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.vacancy-list li::before{
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--burgundy);
-  font-weight: 900;
-}
-
-.vacancy-footer{
-  margin-top: 12px;
-  font-weight: 700;
-  color: #444;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-/* кнопка как у тарифов, при*
-/* =========================================================
-   ✅ VACANCIES: ширина как тарифы + 2 колонки внутри + меньше переносов
-   ========================================================= */
-#vacancies { padding-top: 30px; }
-
-#vacancies .pricing-cards-horizontal{
-  max-width: 1400px;           /* шире, чтобы текст меньше переносился */
-  margin: 0 auto;
-  gap: 18px;
-}
-
-#vacancies .pricing-card-horizontal{
-  max-width: 440px;            /* карточки шире */
-  width: 100%;
-  transform: none !important;
-}
-
-#vacancies .popular-badge-horizontal{ display: none !important; } /* убрать "топ/популярный" если вдруг появится */
-
-#vacancies .pricing-box-horizontal h3{
-  white-space: nowrap;
-  font-size: 19px;
-}
-
-.vacancy-box{
-  min-height: 610px;
-  display: flex;
-  flex-direction: column;
-}
-
-.vacancy-lead{
-  font-weight: 800;
-  color: var(--burgundy);
-  margin: 8px 0 14px;
-  text-align: left;
-  line-height: 1.3;
-}
-
-.vacancy-columns{
-  display: flex;
-  gap: 14px;
-  text-align: left;
-  margin-top: 10px;
-  flex: 1;
-}
-
-.vacancy-cols{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  flex: 1;
-}
-
-.vacancy-col{
-  background: var(--light-pink);
-  border: 2px solid rgba(176,49,94,0.15);
-  border-radius: 14px;
-  padding: 16px 14px;
-  text-align: left;
-  min-width: 0;
-}
-
-.vacancy-col h4{
-  color: var(--burgundy);
-  font-weight: 900;
-  font-size: 15px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-}
-
-.vacancy-subtitle{ margin-top: 14px; }
-
-.vacancy-list{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.vacancy-list li{
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 10px;
-  font-size: 13px;     /* меньше переносов */
-  line-height: 1.35;
-}
-
-.vacancy-list li::before{
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--burgundy);
-  font-weight: 900;
-}
-
-.vacancy-footer{
-  margin-top: 12px;
-  font-weight: 700;
-  color: #444;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.vacancy-apply-btn{
-  width: 100%;
-  margin-top: 12px;
+#vacancies .vacancy-apply-btn,
+#vacancies .cta-button{
+  margin-top: auto !important;
+  padding: 9px 18px !important;
+  font-size: 13.5px !important;
+  border-radius: 20px !important;
   white-space: nowrap;
 }
 
-/* mobile */
+/* мобилка: ещё плотнее */
 @media (max-width: 768px){
-  #vacancies .pricing-cards-horizontal{
-    max-width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  #vacancies .pricing-card-horizontal{
-    max-width: 360px;
-  }
-  .vacancy-columns{ flex-direction: column; }
-  .vacancy-cols{ grid-template-columns: 1fr; }
-  .vacancy-box{ min-height: auto; }
-}
-
-/* =========================================================
-   ✅ MODAL (если у тебя уже есть — можно не дублировать)
-   ========================================================= */
-.vacancy-modal{
-  position: fixed;
-  inset: 0;
-  display: none;
-  z-index: 5000;
-}
-.vacancy-modal.is-open{ display: block; }
-.vacancy-modal__backdrop{
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(3px);
-}
-.vacancy-modal__card{
-  position: relative;
-  max-width: 520px;
-  width: calc(100% - 30px);
-  margin: 90px auto 30px;
-  background: #fff;
-  border: 2px solid var(--burgundy);
-  border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-  padding: 22px 18px 18px;
-}
-.vacancy-modal__close{
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  border: 2px solid rgba(176,49,94,0.15);
-  background: #fff;
-  color: var(--burgundy);
-  font-size: 22px;
-  cursor: pointer;
-  font-weight: 800;
-}
-.vacancy-modal__title{
-  text-align: center;
-  color: var(--burgundy);
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-.vacancy-modal__subtitle{
-  text-align: center;
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-.vacancy-form{ display: flex; flex-direction: column; gap: 12px; }
-.vacancy-form__label span{
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--burgundy);
-  margin-bottom: 6px;
-  font-family: 'Raleway', sans-serif;
-}
-.vacancy-form__input{
-  width: 100%;
-  padding: 12px 12px;
-  border-radius: 12px;
-  border: 2px solid rgba(176,49,94,0.18);
-  background: #fff;
-  outline: none;
-  font-size: 15px;
-}
-.vacancy-form__input:focus{
-  border-color: rgba(176,49,94,0.55);
-  box-shadow: 0 6px 18px rgba(176,49,94,0.10);
-}
-.vacancy-form__submit{ width: 100%; text-align: center; }
-.vacancy-form__hint{
-  margin-top: 6px;
-  font-size: 12px;
-  color: #777;
-  text-align: center;
-  line-height: 1.4;
+  #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
+  #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
+  #vacancies .vacancy-col{ padding: 10px !important; }
 }

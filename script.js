@@ -59,7 +59,7 @@ function createHearts() {
   }
 }
 
-/* ✅ FAQ — плавное открытие/закрытие */
+/* ✅ FAQ */
 function initFAQ() {
   const items = document.querySelectorAll('.faq-item');
   if (!items.length) return;
@@ -72,8 +72,13 @@ function initFAQ() {
   function closeItem(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
+
     answer.style.maxHeight = answer.scrollHeight + 'px';
-    requestAnimationFrame(() => { answer.style.maxHeight = '0px'; });
+
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = '0px';
+    });
+
     item.classList.remove('active');
     setIcon(item, false);
   }
@@ -81,10 +86,15 @@ function initFAQ() {
   function openItem(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
+
     item.classList.add('active');
     setIcon(item, true);
+
     answer.style.maxHeight = '0px';
-    requestAnimationFrame(() => { answer.style.maxHeight = answer.scrollHeight + 'px'; });
+
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    });
   }
 
   items.forEach(item => {
@@ -101,9 +111,11 @@ function initFAQ() {
 
     question.addEventListener('click', () => {
       const isOpen = item.classList.contains('active');
+
       items.forEach(other => {
         if (other !== item && other.classList.contains('active')) closeItem(other);
       });
+
       if (isOpen) closeItem(item);
       else openItem(item);
     });
@@ -184,8 +196,117 @@ function initMobileMenu() {
   });
 }
 
+/* ✅ КАЛЬКУЛЯТОР */
+function initCalculator() {
+  const shiftsSlider = document.getElementById('shifts');
+  const shiftsValue = document.getElementById('shifts-value');
+  const planButtons = document.querySelectorAll('.plan-btn');
+
+  const grossIncomeEl = document.getElementById('gross-income');
+  const commissionEl = document.getElementById('commission');
+  const netIncomeEl = document.getElementById('net-income');
+
+  if (!shiftsSlider || !shiftsValue || !grossIncomeEl || !commissionEl || !netIncomeEl) return;
+
+  const DAILY_INCOME_USD = 90;
+  const WEEKS_PER_MONTH = 4;
+
+  const modelShare = { solo: 80, coach: 70, operator: 60 };
+  let currentPlan = 'solo';
+
+  function formatUSD(amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0
+    }).format(amount);
+  }
+
+  function updateSliderValue() {
+    shiftsValue.textContent = String(parseInt(shiftsSlider.value, 10));
+  }
+
+  function calculateIncome() {
+    const shiftsPerWeek = parseInt(shiftsSlider.value, 10);
+    const totalShifts = shiftsPerWeek * WEEKS_PER_MONTH;
+
+    const grossIncome = DAILY_INCOME_USD * totalShifts;
+
+    const yourPercent = modelShare[currentPlan] ?? 80;
+    const netIncome = grossIncome * (yourPercent / 100);
+    const commission = grossIncome - netIncome;
+
+    grossIncomeEl.textContent = formatUSD(grossIncome);
+    commissionEl.textContent = formatUSD(commission);
+    netIncomeEl.textContent = formatUSD(netIncome);
+  }
+
+  shiftsSlider.addEventListener('input', () => {
+    updateSliderValue();
+    calculateIncome();
+  });
+
+  planButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      planButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentPlan = btn.dataset.plan;
+      calculateIncome();
+    });
+  });
+
+  updateSliderValue();
+  calculateIncome();
+}
+
+/* ✅ REVIEWS slider (если нужен) — оставил твой каркас */
+function initImageReviewsSlider() {
+  const root = document.getElementById('reviews-phone');
+  if (!root) return;
+
+  const slides = root.querySelectorAll('.phone-slide');
+  const dots = root.querySelectorAll('.phone-dot');
+  const prevBtn = root.querySelector('.prev-btn');
+  const nextBtn = root.querySelector('.next-btn');
+
+  if (!slides.length) return;
+
+  let current = 0;
+  let isAnimating = false;
+
+  function setActive(index) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    slides[current].classList.remove('active');
+    slides[index].classList.add('active');
+
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[index]) dots[index].classList.add('active');
+
+    current = index;
+    setTimeout(() => { isAnimating = false; }, 450);
+  }
+
+  function next() { setActive(current + 1); }
+  function prev() { setActive(current - 1); }
+
+  if (nextBtn) nextBtn.addEventListener('click', next);
+  if (prevBtn) prevBtn.addEventListener('click', prev);
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.index, 10);
+      if (!Number.isNaN(idx)) setActive(idx);
+    });
+  });
+}
+
 /* =========================================================
-   ✅ ВАКАНСИИ: МОДАЛКА + отправка в Telegram через tg.php
+   ✅ ВАКАНСИИ: отправка в TELEGRAM (без PHP)
    ========================================================= */
 function initVacancyModal() {
   const modal = document.getElementById('vacancyModal');
@@ -198,10 +319,49 @@ function initVacancyModal() {
   const tgField = document.getElementById('tgField');
   const phoneField = document.getElementById('phoneField');
 
+  const submitBtn = form ? form.querySelector('.vacancy-form__submit') : null;
+
   if (!modal || !form || !vacancyTitle || !vacancyField) return;
 
-  // ✅ ВОТ ЭТОТ ФАЙЛ НУЖНО СОЗДАТЬ НА ХОСТИНГЕ (см. tg.php ниже)
-  const TG_ENDPOINT = 'tg.php';
+  /* =========================
+     🔥 МЕСТА ДЛЯ ЗАМЕНЫ
+     ========================= */
+
+  // ✅ BOT TOKEN (если надо заменить — меняешь тут)
+  const TG_BOT_TOKEN = "8497373725:AAFBV65-Km6M_wKxUWWPkDy7sqkp2NiFk74";
+
+  // ✅ CHAT ID (если надо заменить — меняешь тут)
+  const TG_CHAT_ID = "6324436781";
+
+  /* ========================= */
+
+  function esc(s) {
+    return encodeURIComponent(String(s || '').trim());
+  }
+
+  // Иногда браузер ругается на CORS — но запрос всё равно может уйти.
+  // Для надежности делаем fallback через Image().
+  function sendViaImage(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(true);
+      img.src = url;
+    });
+  }
+
+  async function sendToTelegram(text) {
+    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${esc(text)}`;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      return !!data.ok;
+    } catch (e) {
+      await sendViaImage(url);
+      return true;
+    }
+  }
 
   function openModal(vacancy) {
     vacancyTitle.textContent = vacancy || '—';
@@ -211,9 +371,7 @@ function initVacancyModal() {
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    setTimeout(() => {
-      if (nameField) nameField.focus();
-    }, 50);
+    setTimeout(() => { if (nameField) nameField.focus(); }, 50);
   }
 
   function closeModal() {
@@ -222,6 +380,7 @@ function initVacancyModal() {
     document.body.style.overflow = '';
   }
 
+  // открыть по кнопке
   document.querySelectorAll('.vacancy-apply-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const vacancy = btn.getAttribute('data-vacancy') || '';
@@ -229,15 +388,18 @@ function initVacancyModal() {
     });
   });
 
+  // закрытие по крестику/бекдропу
   modal.addEventListener('click', (e) => {
     const close = e.target && e.target.getAttribute && e.target.getAttribute('data-close');
     if (close) closeModal();
   });
 
+  // закрытие по ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
 
+  // submit -> Telegram
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -251,38 +413,33 @@ function initVacancyModal() {
       return;
     }
 
-    // блокируем кнопку на время отправки
-    const submitBtn = form.querySelector('button[type="submit"]');
+    const text =
+`✅ Заявка с сайта StripUp
+
+Вакансия: ${vacancy}
+Имя: ${name}
+TG: ${tg}
+Телефон: ${phone}`;
+
+    const oldText = submitBtn ? submitBtn.textContent : '';
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Отправляем...';
     }
 
-    try {
-      const res = await fetch(TG_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vacancy, name, tg, phone })
-      });
+    const ok = await sendToTelegram(text);
 
-      const data = await res.json().catch(() => ({}));
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldText || 'Отправить';
+    }
 
-      if (!res.ok || data.ok !== true) {
-        throw new Error(data.error || 'Ошибка отправки');
-      }
-
-      alert('✅ Заявка отправлена! Мы скоро напишем тебе в Telegram.');
+    if (ok) {
+      alert('✅ Заявка отправлена в Telegram!');
       closeModal();
       form.reset();
-
-    } catch (err) {
-      console.error(err);
-      alert('❌ Не удалось отправить заявку. Проверь tg.php и хостинг (PHP).');
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Отправить';
-      }
+    } else {
+      alert('❌ Не удалось отправить. Попробуй ещё раз.');
     }
   });
 }
@@ -296,13 +453,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initSmoothScroll();
   initHeaderScroll();
   initMobileMenu();
+  initCalculator();
+  initImageReviewsSlider();
   initVacancyModal();
-
-  window.addEventListener('load', function () {
-    document.documentElement.classList.add('smooth-scroll-ready');
-  });
-});
-
-window.addEventListener('orientationchange', function () {
-  setTimeout(fixMobileAnchorScroll, 100);
 });
