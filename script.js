@@ -59,7 +59,7 @@ function createHearts() {
   }
 }
 
-/* ✅ FAQ — плавное открытие/закрытие + открывается полностью */
+/* ✅ FAQ — плавное открытие/закрытие */
 function initFAQ() {
   const items = document.querySelectorAll('.faq-item');
   if (!items.length) return;
@@ -72,14 +72,8 @@ function initFAQ() {
   function closeItem(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
-
-    // фиксируем текущую высоту перед закрытием для плавности
     answer.style.maxHeight = answer.scrollHeight + 'px';
-
-    requestAnimationFrame(() => {
-      answer.style.maxHeight = '0px';
-    });
-
+    requestAnimationFrame(() => { answer.style.maxHeight = '0px'; });
     item.classList.remove('active');
     setIcon(item, false);
   }
@@ -87,19 +81,12 @@ function initFAQ() {
   function openItem(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
-
     item.classList.add('active');
     setIcon(item, true);
-
-    // стартуем с 0 и раскрываем до реальной высоты контента
     answer.style.maxHeight = '0px';
-
-    requestAnimationFrame(() => {
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-    });
+    requestAnimationFrame(() => { answer.style.maxHeight = answer.scrollHeight + 'px'; });
   }
 
-  // начальное состояние — закрыто
   items.forEach(item => {
     const answer = item.querySelector('.faq-answer');
     if (answer) answer.style.maxHeight = '0px';
@@ -107,7 +94,6 @@ function initFAQ() {
     setIcon(item, false);
   });
 
-  // клики
   items.forEach(item => {
     const question = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
@@ -115,18 +101,13 @@ function initFAQ() {
 
     question.addEventListener('click', () => {
       const isOpen = item.classList.contains('active');
-
-      // закрываем остальные
       items.forEach(other => {
         if (other !== item && other.classList.contains('active')) closeItem(other);
       });
-
-      // переключаем текущий
       if (isOpen) closeItem(item);
       else openItem(item);
     });
 
-    // если transition закончился и элемент открыт — можно обновить maxHeight на точное значение
     answer.addEventListener('transitionend', (e) => {
       if (e.propertyName !== 'max-height') return;
       if (item.classList.contains('active')) {
@@ -135,7 +116,6 @@ function initFAQ() {
     });
   });
 
-  // если меняется ширина/высота экрана — пересчитать высоту у открытого ответа
   window.addEventListener('resize', () => {
     document.querySelectorAll('.faq-item.active .faq-answer').forEach(answer => {
       answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -204,201 +184,107 @@ function initMobileMenu() {
   });
 }
 
-/* ✅ КАЛЬКУЛЯТОР ПОД ТАРИФЫ 80/70/60 */
-function initCalculator() {
-  const shiftsSlider = document.getElementById('shifts');
-  const shiftsValue = document.getElementById('shifts-value');
-  const planButtons = document.querySelectorAll('.plan-btn');
+/* =========================================================
+   ✅ ВАКАНСИИ: МОДАЛКА + отправка в Telegram через tg.php
+   ========================================================= */
+function initVacancyModal() {
+  const modal = document.getElementById('vacancyModal');
+  const form = document.getElementById('vacancyForm');
 
-  const grossIncomeEl = document.getElementById('gross-income');
-  const commissionEl = document.getElementById('commission');
-  const netIncomeEl = document.getElementById('net-income');
+  const vacancyTitle = document.getElementById('vacancyModalVacancy');
+  const vacancyField = document.getElementById('vacancyField');
 
-  if (!shiftsSlider || !shiftsValue || !grossIncomeEl || !commissionEl || !netIncomeEl) return;
+  const nameField = document.getElementById('nameField');
+  const tgField = document.getElementById('tgField');
+  const phoneField = document.getElementById('phoneField');
 
-  const DAILY_INCOME_USD = 90;
-  const WEEKS_PER_MONTH = 4;
+  if (!modal || !form || !vacancyTitle || !vacancyField) return;
 
-  const modelShare = {
-    solo: 80,
-    coach: 70,
-    operator: 60
-  };
+  // ✅ ВОТ ЭТОТ ФАЙЛ НУЖНО СОЗДАТЬ НА ХОСТИНГЕ (см. tg.php ниже)
+  const TG_ENDPOINT = 'tg.php';
 
-  let currentPlan = 'solo';
+  function openModal(vacancy) {
+    vacancyTitle.textContent = vacancy || '—';
+    vacancyField.value = vacancy || '';
 
-  function formatUSD(amount) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(amount);
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      if (nameField) nameField.focus();
+    }, 50);
   }
 
-  function updateSliderValue() {
-    shiftsValue.textContent = String(parseInt(shiftsSlider.value, 10));
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 
-  function calculateIncome() {
-    const shiftsPerWeek = parseInt(shiftsSlider.value, 10);
-    const totalShifts = shiftsPerWeek * WEEKS_PER_MONTH;
-
-    const grossIncome = DAILY_INCOME_USD * totalShifts;
-
-    const yourPercent = modelShare[currentPlan] ?? 80;
-    const netIncome = grossIncome * (yourPercent / 100);
-    const commission = grossIncome - netIncome;
-
-    grossIncomeEl.textContent = formatUSD(grossIncome);
-    commissionEl.textContent = formatUSD(commission);
-    netIncomeEl.textContent = formatUSD(netIncome);
-  }
-
-  shiftsSlider.addEventListener('input', () => {
-    updateSliderValue();
-    calculateIncome();
-  });
-
-  planButtons.forEach(btn => {
+  document.querySelectorAll('.vacancy-apply-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      planButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentPlan = btn.dataset.plan;
-      calculateIncome();
+      const vacancy = btn.getAttribute('data-vacancy') || '';
+      openModal(vacancy);
     });
   });
 
-  updateSliderValue();
-  calculateIncome();
-}
+  modal.addEventListener('click', (e) => {
+    const close = e.target && e.target.getAttribute && e.target.getAttribute('data-close');
+    if (close) closeModal();
+  });
 
-/* ✅ КОНВЕРТ (FIX ДЛЯ ТЕЛЕФОНА) */
-function initNewEnvelope() {
-  const envelope = document.getElementById('envelope');
-  if (!envelope) return;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
 
-  const link = envelope.querySelector('.letter-link');
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (isTouchDevice) {
-    envelope.addEventListener('touchstart', function (e) {
-      if (envelope.classList.contains('touch-active')) return;
-      if (e.target && e.target.closest && e.target.closest('.letter-link')) return;
+    const vacancy = (vacancyField.value || '').trim();
+    const name = (nameField.value || '').trim();
+    const tg = (tgField.value || '').trim();
+    const phone = (phoneField.value || '').trim();
 
-      e.preventDefault();
-
-      document.querySelectorAll('.envelope').forEach(item => item.classList.remove('touch-active'));
-      envelope.classList.add('touch-active');
-    }, { passive: false });
-
-    document.addEventListener('touchstart', function (e) {
-      if (!envelope.contains(e.target)) envelope.classList.remove('touch-active');
-    }, { passive: true });
-
-    if (link) {
-      link.addEventListener('touchstart', function (e) {
-        if (!envelope.classList.contains('touch-active')) {
-          e.preventDefault();
-          envelope.classList.add('touch-active');
-        }
-      }, { passive: false });
+    if (!name || !tg || !phone) {
+      alert('Заполни все поля: имя, ник в TG и телефон.');
+      return;
     }
-  } else {
-    envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
-    envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
-  }
-}
 
-function animateOnScroll() {
-  const elements = document.querySelectorAll(
-    '.pricing-box-horizontal, .about-combined-box, .interview-item, .calculator-box, .result-card'
-  );
+    // блокируем кнопку на время отправки
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправляем...';
+    }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+    try {
+      const res = await fetch(TG_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vacancy, name, tg, phone })
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || data.ok !== true) {
+        throw new Error(data.error || 'Ошибка отправки');
       }
-    });
-  }, { threshold: 0.1 });
 
-  elements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(40px)';
-    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(el);
-  });
-}
+      alert('✅ Заявка отправлена! Мы скоро напишем тебе в Telegram.');
+      closeModal();
+      form.reset();
 
-function initImageReviewsSlider() {
-  const root = document.getElementById('reviews-phone');
-  if (!root) return;
-
-  const slides = root.querySelectorAll('.phone-slide');
-  const dots = root.querySelectorAll('.phone-dot');
-  const prevBtn = root.querySelector('.prev-btn');
-  const nextBtn = root.querySelector('.next-btn');
-
-  if (!slides.length) return;
-
-  let current = 0;
-  let isAnimating = false;
-
-  function setActive(index) {
-    if (isAnimating) return;
-    isAnimating = true;
-
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
-
-    slides[current].classList.remove('active');
-    slides[index].classList.add('active');
-
-    dots.forEach(d => d.classList.remove('active'));
-    if (dots[index]) dots[index].classList.add('active');
-
-    current = index;
-    setTimeout(() => { isAnimating = false; }, 450);
-  }
-
-  function next() { setActive(current + 1); }
-  function prev() { setActive(current - 1); }
-
-  if (nextBtn) nextBtn.addEventListener('click', next);
-  if (prevBtn) prevBtn.addEventListener('click', prev);
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.dataset.index, 10);
-      if (!Number.isNaN(idx)) setActive(idx);
-    });
-  });
-
-  const mask = root.querySelector('.phone-screen-mask');
-  if (mask) {
-    let startX = 0, startY = 0, moved = false;
-
-    mask.addEventListener('touchstart', (e) => {
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-      moved = false;
-    }, { passive: true });
-
-    mask.addEventListener('touchmove', () => { moved = true; }, { passive: true });
-
-    mask.addEventListener('touchend', (e) => {
-      if (!moved) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-
-      if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
-        if (dx < 0) next(); else prev();
+    } catch (err) {
+      console.error(err);
+      alert('❌ Не удалось отправить заявку. Проверь tg.php и хостинг (PHP).');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Отправить';
       }
-    }, { passive: true });
-  }
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -410,12 +296,9 @@ document.addEventListener('DOMContentLoaded', function () {
   initSmoothScroll();
   initHeaderScroll();
   initMobileMenu();
-  initCalculator();
-  initNewEnvelope();
-  initImageReviewsSlider();
+  initVacancyModal();
 
   window.addEventListener('load', function () {
-    animateOnScroll();
     document.documentElement.classList.add('smooth-scroll-ready');
   });
 });
