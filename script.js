@@ -1,5 +1,6 @@
 let mobileScrollFixed = false;
 
+// ================= MOBILE SCROLL FIX =================
 function fixMobileInitialScroll() {
   const isMobile = window.innerWidth <= 768;
   if (!isMobile || mobileScrollFixed) return;
@@ -43,6 +44,7 @@ function fixMobileAnchorScroll() {
   });
 }
 
+// ================= HEARTS =================
 function createHearts() {
   const container = document.getElementById('hearts-container');
   if (!container) return;
@@ -59,7 +61,7 @@ function createHearts() {
   }
 }
 
-/* ✅ FAQ */
+// ================= FAQ =================
 function initFAQ() {
   const items = document.querySelectorAll('.faq-item');
   if (!items.length) return;
@@ -72,13 +74,11 @@ function initFAQ() {
   function closeItem(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
-
     answer.style.maxHeight = answer.scrollHeight + 'px';
-
     requestAnimationFrame(() => {
+      answer.style.transition = 'max-height 0.35s ease';
       answer.style.maxHeight = '0px';
     });
-
     item.classList.remove('active');
     setIcon(item, false);
   }
@@ -86,45 +86,36 @@ function initFAQ() {
   function openItem(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
-
     item.classList.add('active');
     setIcon(item, true);
-
     answer.style.maxHeight = '0px';
-
     requestAnimationFrame(() => {
+      answer.style.transition = 'max-height 0.35s ease';
       answer.style.maxHeight = answer.scrollHeight + 'px';
     });
   }
 
   items.forEach(item => {
     const answer = item.querySelector('.faq-answer');
-    if (answer) answer.style.maxHeight = '0px';
+    if (answer) {
+      answer.style.maxHeight = '0px';
+      answer.style.overflow = 'hidden';
+    }
     item.classList.remove('active');
     setIcon(item, false);
   });
 
   items.forEach(item => {
     const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    if (!question || !answer) return;
+    if (!question) return;
 
     question.addEventListener('click', () => {
       const isOpen = item.classList.contains('active');
-
       items.forEach(other => {
         if (other !== item && other.classList.contains('active')) closeItem(other);
       });
-
       if (isOpen) closeItem(item);
       else openItem(item);
-    });
-
-    answer.addEventListener('transitionend', (e) => {
-      if (e.propertyName !== 'max-height') return;
-      if (item.classList.contains('active')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
     });
   });
 
@@ -135,9 +126,9 @@ function initFAQ() {
   });
 }
 
+// ================= SMOOTH SCROLL =================
 function initSmoothScroll() {
   if (window.innerWidth <= 768) return;
-
   document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -152,6 +143,7 @@ function initSmoothScroll() {
   });
 }
 
+// ================= HEADER SCROLL =================
 function initHeaderScroll() {
   const header = document.querySelector('header');
   if (!header) return;
@@ -167,12 +159,13 @@ function initHeaderScroll() {
   });
 }
 
+// ================= MOBILE MENU =================
 function initMobileMenu() {
   const menuToggle = document.querySelector('.mobile-menu-toggle');
   const navMenu = document.querySelector('nav ul');
   if (!menuToggle || !navMenu) return;
 
-  menuToggle.addEventListener('click', (e) => {
+  menuToggle.addEventListener('click', e => {
     e.stopPropagation();
     navMenu.classList.toggle('active');
   });
@@ -181,22 +174,22 @@ function initMobileMenu() {
     link.addEventListener('click', () => navMenu.classList.remove('active'));
   });
 
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (navMenu.classList.contains('active') &&
-      !navMenu.contains(e.target) &&
-      !menuToggle.contains(e.target)) {
+        !navMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)) {
       navMenu.classList.remove('active');
     }
   });
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && navMenu.classList.contains('active')) {
       navMenu.classList.remove('active');
     }
   });
 }
 
-/* ✅ КАЛЬКУЛЯТОР */
+// ================= CALCULATOR =================
 function initCalculator() {
   const shiftsSlider = document.getElementById('shifts');
   const shiftsValue = document.getElementById('shifts-value');
@@ -210,7 +203,6 @@ function initCalculator() {
 
   const DAILY_INCOME_USD = 90;
   const WEEKS_PER_MONTH = 4;
-
   const modelShare = { solo: 80, coach: 70, operator: 60 };
   let currentPlan = 'solo';
 
@@ -223,17 +215,13 @@ function initCalculator() {
   }
 
   function updateSliderValue() {
-    shiftsValue.textContent = String(parseInt(shiftsSlider.value, 10));
+    shiftsValue.textContent = parseInt(shiftsSlider.value, 10);
   }
 
   function calculateIncome() {
-    const shiftsPerWeek = parseInt(shiftsSlider.value, 10);
-    const totalShifts = shiftsPerWeek * WEEKS_PER_MONTH;
-
+    const totalShifts = parseInt(shiftsSlider.value, 10) * WEEKS_PER_MONTH;
     const grossIncome = DAILY_INCOME_USD * totalShifts;
-
-    const yourPercent = modelShare[currentPlan] ?? 80;
-    const netIncome = grossIncome * (yourPercent / 100);
+    const netIncome = grossIncome * (modelShare[currentPlan] / 100);
     const commission = grossIncome - netIncome;
 
     grossIncomeEl.textContent = formatUSD(grossIncome);
@@ -259,7 +247,7 @@ function initCalculator() {
   calculateIncome();
 }
 
-/* ✅ REVIEWS slider (если нужен) — оставил твой каркас */
+// ================= IMAGE REVIEWS SLIDER =================
 function initImageReviewsSlider() {
   const root = document.getElementById('reviews-phone');
   if (!root) return;
@@ -268,7 +256,6 @@ function initImageReviewsSlider() {
   const dots = root.querySelectorAll('.phone-dot');
   const prevBtn = root.querySelector('.prev-btn');
   const nextBtn = root.querySelector('.next-btn');
-
   if (!slides.length) return;
 
   let current = 0;
@@ -277,7 +264,6 @@ function initImageReviewsSlider() {
   function setActive(index) {
     if (isAnimating) return;
     isAnimating = true;
-
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
 
@@ -291,12 +277,8 @@ function initImageReviewsSlider() {
     setTimeout(() => { isAnimating = false; }, 450);
   }
 
-  function next() { setActive(current + 1); }
-  function prev() { setActive(current - 1); }
-
-  if (nextBtn) nextBtn.addEventListener('click', next);
-  if (prevBtn) prevBtn.addEventListener('click', prev);
-
+  if (nextBtn) nextBtn.addEventListener('click', () => setActive(current + 1));
+  if (prevBtn) prevBtn.addEventListener('click', () => setActive(current - 1));
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.index, 10);
@@ -305,60 +287,55 @@ function initImageReviewsSlider() {
   });
 }
 
-/* =========================================================
-   ✅ ВАКАНСИИ: отправка в TELEGRAM (без PHP)
-   ========================================================= */
+// ================= CONTACT ENVELOPE =================
+function initContactEnvelope() {
+  const envelope = document.getElementById('envelope');
+  if (!envelope) return;
+  const letterLink = envelope.querySelector('.letter-link');
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+
+  if (isTouchDevice) {
+    envelope.addEventListener('touchstart', e => {
+      if (e.target === letterLink) return;
+      envelope.classList.add('touch-active');
+    }, { passive: true });
+
+    document.addEventListener('touchstart', e => {
+      if (!envelope.contains(e.target)) envelope.classList.remove('touch-active');
+    }, { passive: true });
+  }
+
+  envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
+  envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
+}
+
+// ================= VACANCY MODAL =================
 function initVacancyModal() {
   const modal = document.getElementById('vacancyModal');
   const form = document.getElementById('vacancyForm');
+  if (!modal || !form) return;
 
   const vacancyTitle = document.getElementById('vacancyModalVacancy');
   const vacancyField = document.getElementById('vacancyField');
-
   const nameField = document.getElementById('nameField');
   const tgField = document.getElementById('tgField');
   const phoneField = document.getElementById('phoneField');
+  const submitBtn = form.querySelector('.vacancy-form__submit');
 
-  const submitBtn = form ? form.querySelector('.vacancy-form__submit') : null;
-
-  if (!modal || !form || !vacancyTitle || !vacancyField) return;
-
-  /* =========================
-     🔥 МЕСТА ДЛЯ ЗАМЕНЫ
-     ========================= */
-
-  // ✅ BOT TOKEN (если надо заменить — меняешь тут)
   const TG_BOT_TOKEN = "8497373725:AAFBV65-Km6M_wKxUWWPkDy7sqkp2NiFk74";
-
-  // ✅ CHAT ID (если надо заменить — меняешь тут)
   const TG_CHAT_ID = "6324436781";
 
-  /* ========================= */
-
-  function esc(s) {
-    return encodeURIComponent(String(s || '').trim());
-  }
-
-  // Иногда браузер ругается на CORS — но запрос всё равно может уйти.
-  // Для надежности делаем fallback через Image().
-  function sendViaImage(url) {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(true);
-      img.src = url;
-    });
-  }
+  function esc(s) { return encodeURIComponent(String(s || '').trim()); }
 
   async function sendToTelegram(text) {
     const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${esc(text)}`;
-
     try {
       const res = await fetch(url);
       const data = await res.json();
       return !!data.ok;
     } catch (e) {
-      await sendViaImage(url);
+      const img = new Image();
+      img.src = url;
       return true;
     }
   }
@@ -366,11 +343,9 @@ function initVacancyModal() {
   function openModal(vacancy) {
     vacancyTitle.textContent = vacancy || '—';
     vacancyField.value = vacancy || '';
-
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-
     setTimeout(() => { if (nameField) nameField.focus(); }, 50);
   }
 
@@ -380,101 +355,44 @@ function initVacancyModal() {
     document.body.style.overflow = '';
   }
 
-  // открыть по кнопке
   document.querySelectorAll('.vacancy-apply-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const vacancy = btn.getAttribute('data-vacancy') || '';
-      openModal(vacancy);
-    });
+    btn.addEventListener('click', () => openModal(btn.dataset.vacancy || ''));
   });
 
-  // закрытие по крестику/бекдропу
-  modal.addEventListener('click', (e) => {
-    const close = e.target && e.target.getAttribute && e.target.getAttribute('data-close');
-    if (close) closeModal();
+  modal.addEventListener('click', e => {
+    if (e.target.dataset.close) closeModal();
   });
 
-  // закрытие по ESC
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
 
-  // submit -> Telegram
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-
-    const vacancy = (vacancyField.value || '').trim();
-    const name = (nameField.value || '').trim();
-    const tg = (tgField.value || '').trim();
-    const phone = (phoneField.value || '').trim();
-
-    if (!name || !tg || !phone) {
+    if (!nameField.value || !tgField.value || !phoneField.value) {
       alert('Заполни все поля: имя, ник в TG и телефон.');
       return;
     }
 
-    const text =
-`✅ Заявка с сайта StripUp
+    const text = `✅ Заявка с сайта StripUp\n\nВакансия: ${vacancyField.value}\nИмя: ${nameField.value}\nTG: ${tgField.value}\nТелефон: ${phoneField.value}`;
 
-Вакансия: ${vacancy}
-Имя: ${name}
-TG: ${tg}
-Телефон: ${phone}`;
-
-    const oldText = submitBtn ? submitBtn.textContent : '';
     if (submitBtn) {
       submitBtn.disabled = true;
+      const oldText = submitBtn.textContent;
       submitBtn.textContent = 'Отправляем...';
-    }
-
-    const ok = await sendToTelegram(text);
-
-    if (submitBtn) {
+      const ok = await sendToTelegram(text);
       submitBtn.disabled = false;
-      submitBtn.textContent = oldText || 'Отправить';
+      submitBtn.textContent = oldText;
+      if (ok) { alert('✅ Заявка отправлена!'); closeModal(); form.reset(); }
+      else alert('❌ Не удалось отправить.');
     }
-
-    if (ok) {
-      alert('✅ Заявка отправлена в Telegram!');
-      closeModal();
-      form.reset();
-    } else {
-      alert('❌ Не удалось отправить. Попробуй ещё раз.');
-    }
-  });
-function initContactEnvelope() {
-  const envelope = document.getElementById('envelope');
-  if (!envelope) return;
-
-  const letterLink = envelope.querySelector('.letter-link');
-  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-
-
-  envelope.addEventListener('click', (e) => {
-    if (!isTouchDevice) return;
-
-    if (!envelope.classList.contains('touch-active')) {
-      e.preventDefault();
-      envelope.classList.add('touch-active');
-    }
-  });
-
-  if (letterLink) {
-    letterLink.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  }
-
-  document.addEventListener('click', (e) => {
-    if (!isTouchDevice) return;
-    if (envelope.contains(e.target)) return;
-    envelope.classList.remove('touch-active');
   });
 }
+
+// ================= INIT =================
 document.addEventListener('DOMContentLoaded', function () {
   fixMobileInitialScroll();
   fixMobileAnchorScroll();
-
   createHearts();
   initFAQ();
   initSmoothScroll();
@@ -484,121 +402,4 @@ document.addEventListener('DOMContentLoaded', function () {
   initImageReviewsSlider();
   initVacancyModal();
   initContactEnvelope();
-});
-}
-// JavaScript для обработки касаний на мобильных устройствах
-document.addEventListener('DOMContentLoaded', function() {
-  const envelope = document.getElementById('envelope');
-  let touchActive = false;
-  
-  // Проверяем, является ли устройство touch-устройством
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
-  
-  if (isTouchDevice) {
-    // Для touch-устройств добавляем обработчики
-    envelope.addEventListener('touchstart', function(e) {
-      // Предотвращаем всплытие, чтобы не мешать клику по ссылке
-      if (e.target.classList.contains('letter-link')) {
-        return;
-      }
-      
-      e.preventDefault();
-      
-      // Снимаем активное состояние со всех конвертов
-      document.querySelectorAll('.envelope').forEach(function(item) {
-        item.classList.remove('touch-active');
-      });
-      
-      // Добавляем активное состояние к текущему конверту
-      envelope.classList.toggle('touch-active');
-      touchActive = envelope.classList.contains('touch-active');
-    }, { passive: false });
-    
-    // Закрываем конверт при клике вне его области
-    document.addEventListener('touchstart', function(e) {
-      if (!envelope.contains(e.target)) {
-        envelope.classList.remove('touch-active');
-        touchActive = false;
-      }
-    });
-    
-    // Предотвращаем стандартное поведение ссылки при первом касании
-    const link = envelope.querySelector('.letter-link');
-    link.addEventListener('touchstart', function(e) {
-      if (!envelope.classList.contains('touch-active')) {
-        e.preventDefault();
-        // Открываем конверт при первом касании на ссылку
-        envelope.classList.add('touch-active');
-        touchActive = true;
-      }
-    });
-  }
-  
-  // Для десктопных устройств сохраняем hover-эффект
-  envelope.addEventListener('mouseenter', function() {
-    if (!isTouchDevice) {
-      envelope.classList.add('touch-active');
-    }
-  });
-  
-  envelope.addEventListener('mouseleave', function() {
-    if (!isTouchDevice) {
-      envelope.classList.remove('touch-active');
-    }
-  });
-});// ===== Исправленный JS для работы конверта и ссылки на мобильных =====
-document.addEventListener('DOMContentLoaded', function() {
-  const envelope = document.getElementById('envelope');
-  if (!envelope) return;
-
-  const letterLink = envelope.querySelector('.letter-link');
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
-
-  if (isTouchDevice) {
-    // Тап по конверту — открываем
-    envelope.addEventListener('touchstart', function(e) {
-      if (e.target === letterLink) return; // если по ссылке — сразу переходим
-      envelope.classList.add('touch-active');
-    });
-
-    // Тап вне конверта — закрываем
-    document.addEventListener('touchstart', function(e) {
-      if (!envelope.contains(e.target)) {
-        envelope.classList.remove('touch-active');
-      }
-    });
-  }
-
-  // Hover для десктопа
-  envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
-  envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
-});
-document.addEventListener('DOMContentLoaded', function() {
-  const envelope = document.getElementById('envelope');
-  if (!envelope) return;
-
-  const letterLink = envelope.querySelector('.letter-link');
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
-
-  if (isTouchDevice) {
-    // Тап по конверту
-    envelope.addEventListener('touchstart', function(e) {
-      // Если тап именно по ссылке — не блокируем
-      if (e.target === letterLink) return;
-
-      // Открываем конверт
-      envelope.classList.add('touch-active');
-    }, { passive: true }); // passive=true важно, чтобы Safari не блокировал скролл и ссылку
-
-    // Тап вне конверта — закрываем
-    document.addEventListener('touchstart', function(e) {
-      if (!envelope.contains(e.target)) {
-        envelope.classList.remove('touch-active');
-      }
-    }, { passive: true });
-  }
-
-  // Hover для десктопа
-  envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
-  envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
 });
