@@ -2447,9 +2447,9 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
   /* Переменные для подгонки */
   :root {
-    --reviews-scale: 0.9;     /* масштаб отзывов */
+    --reviews-scale: 1;     /* масштаб отзывов */
     --reviews-offset-x: -20%; /* смещение по горизонтали */
-    --reviews-offset-y: -40px;  /* смещение по вертикали */
+    --reviews-offset-y: -50px;  /* смещение по вертикали */
   }
 
 
