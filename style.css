@@ -2521,7 +2521,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       
       /* можно добавлять/вычитать пиксели вручную */
       margin-left: calc(-21% + 2px) !important; /* сдвинет на 2px вправо */
-      margin-left: calc(-21% - 2px) !important; /* сдвинет на 2px влево */
+      margin-left: calc(-21% - 1px) !important; /* сдвинет на 2px влево */
       
       transform: scale(1.09) translateY(-40px);
       transform-origin: center top;
