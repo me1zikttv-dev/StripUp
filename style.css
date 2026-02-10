@@ -2443,4 +2443,14 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     position: relative;
     left: -11%;          /* <=== сдвиг влево, меняй по вкусу */
   }
+}@media (max-width: 768px) {
+  /* размер отзывов */
+  #reviews-phone .phone-slide img {
+      transform: scale(1) !important;  /* увеличиваем */
+  }
+
+  /* подгонка по центру телефона */
+  #reviews-phone .phone-frame {
+      margin-left: -15% !important;    /* регулируй по горизонтали */
+  }
 }
