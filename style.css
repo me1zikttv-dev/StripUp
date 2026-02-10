@@ -2510,7 +2510,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .phone-frame {
       /* двигаем телефон вверх/вниз */
       margin-left: -21% !important;  /* горизонталь оставляем */
-      transform: scale(1.09) translateY(-20px); /* <- это поднимает телефон */
+      transform: scale(1.09) translateY(-30px); /* <- это поднимает телефон */
       transform-origin: center top;
   }
 }
