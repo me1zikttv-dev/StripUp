@@ -2515,8 +2515,15 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 @media (max-width: 768px) {
-  /* Сдвиг комментариев внутри телефона */
-  #reviews-phone .phone-slide img {
-      margin-left: calc(var(--reviews-offset-x, -16%) - 1px) !important;
+  #reviews-phone .phone-frame {
+      /* горизонтальное смещение */
+      margin-left: -21% !important; /* <-- отрицательное = влево */
+      
+      /* можно добавлять/вычитать пиксели вручную */
+      margin-left: calc(-21% + 2px) !important; /* сдвинет на 2px вправо */
+      margin-left: calc(-21% - 2px) !important; /* сдвинет на 2px влево */
+      
+      transform: scale(1.09) translateY(-40px);
+      transform-origin: center top;
   }
 }
