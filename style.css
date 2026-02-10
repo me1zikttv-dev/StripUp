@@ -2480,7 +2480,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
   /* масштаб самих отзывов */
   #reviews-phone .phone-slide img {
-      transform: scale(0.95) !important;
+      transform: scale(0.80) !important;
       transform-origin: center top;
       outline: 1px dashed red; /* показывает сам контент */
   }
