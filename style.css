@@ -2517,6 +2517,6 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px) {
   /* Сдвиг комментариев внутри телефона */
   #reviews-phone .phone-slide img {
-      margin-left: calc(var(--reviews-offset-x, -16%) - 2px) !important;
+      margin-left: calc(var(--reviews-offset-x, -16%) - 1px) !important;
   }
 }
