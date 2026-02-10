@@ -2501,3 +2501,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 #reviews-phone .phone-frame { outline: 2px dashed green; } /* рамка телефона */
 #reviews-phone .phone-screen-mask { outline: 2px dotted orange; } /* "экран" */
 #reviews-phone .phone-slide img { outline: 2px solid red; } /* контент (отзывы) */
+@media (max-width: 768px) {
+  #reviews-phone {
+      margin-top: -25px; /* сдвигает весь телефон вместе с комментариями */
+  }
+}
