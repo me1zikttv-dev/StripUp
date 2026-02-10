@@ -2243,3 +2243,92 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       outline: 1px dashed red; /* для наглядности */
   }
 }
+:root {
+  /* Навигация комментариев на телефонах */
+  --reviews-nav-dots-bottom: 20px; /* смещение точек снизу */
+  --reviews-nav-dots-left: 50%;     /* горизонтально центр */
+  --reviews-nav-dots-translate-x: -50%; /* центрирование по X */
+
+  --reviews-nav-arrows-top: 50%;    /* стрелки по вертикали */
+  --reviews-nav-arrows-offset-x: 10px; /* от края телефона */
+}
+
+:root {
+  /* Масштаб и смещения телефона */
+  --reviews-scale: 0.9;       
+  --reviews-offset-x: -16px;  
+  --reviews-offset-y: -45px;  
+
+  /* Смещение комментариев */
+  --reviews-comments-x: -20px;  
+
+  /* Навигация: точки и стрелки */
+  --reviews-nav-dots-bottom: -40px;       /* нижние точки, px, меньше = выше */
+  --reviews-nav-dots-left: 50%;          /* центрирование по горизонтали */
+  --reviews-nav-dots-translate-x: -200%;  /* для центрирования */
+
+  --reviews-nav-arrows-top: 85%;         /* стрелки по вертикали, % сверху, меньше = выше */
+  --reviews-nav-arrows-offset-x: 10px;   /* расстояние стрелок от краев, px */
+}
+
+/* Только для телефонов */
+@media (max-width: 768px) {
+  /* Комментарии (внутри телефона) */
+  #reviews-phone .phone-slide img {
+      transform: scale(var(--reviews-scale)) translateX(var(--reviews-comments-x));
+      transform-origin: center top;
+      outline: 1px dashed red; /* отладочная рамка */
+  }
+
+  #reviews-phone .phone-frame {
+      margin-left: var(--reviews-offset-x) !important;
+      margin-top: var(--reviews-offset-y) !important;
+      display: block !important;
+      transform-origin: center top;
+  }
+
+  /* Точки навигации */
+  #reviews-phone .swiper-pagination {
+      position: absolute !important;
+      bottom: var(--reviews-nav-dots-bottom);
+      left: var(--reviews-nav-dots-left);
+      transform: translateX(var(--reviews-nav-dots-translate-x));
+      z-index: 10;
+  }
+
+  /* Стрелки */
+  #reviews-phone .swiper-button-prev,
+  #reviews-phone .swiper-button-next {
+      position: absolute !important;
+      top: var(--reviews-nav-arrows-top);
+      transform: translateY(-50%);
+      z-index: 10;
+  }
+
+  #reviews-phone .swiper-button-prev {
+      left: var(--reviews-nav-arrows-offset-x);
+  }
+
+  #reviews-phone .swiper-button-next {
+      right: var(--reviews-nav-arrows-offset-x);
+  }
+}
+/* ===== РЕАЛЬНОЕ смещение отзывов внутри телефона ===== */
+@media (max-width: 768px){
+
+  :root{
+    --mask-shift-x: 0px;  /* ← меняй это: лево/право */
+    --mask-shift-y: 0px;   /* ← вверх/вниз */
+    --mask-scale: 1;       /* ← размер отзывов */
+  }
+
+  #reviews-phone .phone-screen-mask{
+      transform: translate(var(--mask-shift-x), var(--mask-shift-y));
+  }
+
+  #reviews-phone .swiper-wrapper{
+      transform: scale(var(--mask-scale)) !important;
+      transform-origin: center top;
+  }
+
+}
