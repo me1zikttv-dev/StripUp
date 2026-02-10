@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>StripUp - Твой успех начинается здесь и сейчас!</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&family=Prata&family=Lora:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=1000">
+  <link rel="stylesheet" href="style.css?v=1002">
   <meta name="color-scheme" content="light">
   <meta name="description" content="StripUp — платформа для девушек, обучение с нуля, честные выплаты, поддержка 24/7. Начни зарабатывать уже сегодня.">
 </head>
@@ -125,8 +127,6 @@
           <div class="pricing-box-horizontal vacancy-box">
             <h3>Тик-ток менеджер</h3>
 
-            
-
             <div class="vacancy-columns">
               <div class="vacancy-col">
                 <h4>Мы ищем</h4>
@@ -136,11 +136,6 @@
                   <li>Хорошо чувствуешь себя перед камерой</li>
                   <li>Активную и живую подачу</li>
                   <li>Опыт в сфере — плюс, но не обязателен</li>
-                 
-                </ul>
-
-               
-                  
                 </ul>
               </div>
 
@@ -152,8 +147,6 @@
                   <li>Поддержку и адекватное общение</li>
                   <li>Оплату + бонусы за результат</li>
                 </ul>
-
-              
               </div>
             </div>
 
@@ -340,7 +333,7 @@
     </div>
   </section>
 
-  <!-- Reviews + Interview (оставил как у тебя) -->
+  <!-- Reviews + Interview -->
   <div class="reviews-interview-container">
     <section id="interview" class="interview">
       <div class="container">
@@ -416,6 +409,24 @@
               </div>
 
               <img src="images/phone.png" alt="Отзывы моделей" class="phone-img-large phone-frame">
+              
+              <!-- НОВАЯ НАВИГАЦИЯ ВНУТРИ ТЕЛЕФОНА -->
+              <div class="reviews-phone-navigation">
+                <div class="reviews-nav-container">
+                  <button class="reviews-nav-btn prev-btn" type="button" aria-label="Предыдущий отзыв">‹</button>
+                  
+                  <div class="reviews-dots-container">
+                    <div class="reviews-dot active" data-index="0"></div>
+                    <div class="reviews-dot" data-index="1"></div>
+                    <div class="reviews-dot" data-index="2"></div>
+                    <div class="reviews-dot" data-index="3"></div>
+                    <div class="reviews-dot" data-index="4"></div>
+                    <div class="reviews-dot" data-index="5"></div>
+                  </div>
+                  
+                  <button class="reviews-nav-btn next-btn" type="button" aria-label="Следующий отзыв">›</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -424,7 +435,7 @@
     </section>
   </div>
 
-  <!-- ✅ FAQ (оставил как у тебя) -->
+  <!-- ✅ FAQ -->
   <section id="faq" class="faq">
     <div class="container">
       <h2 class="section-title">Вопросы и ответы</h2>
@@ -653,6 +664,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=1000"></script>
+  <script src="script.js?v=1002"></script>
 </body>
 </html>

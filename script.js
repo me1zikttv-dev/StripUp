@@ -253,9 +253,15 @@ function initImageReviewsSlider() {
   if (!root) return;
 
   const slides = root.querySelectorAll('.phone-slide');
-  const dots = root.querySelectorAll('.phone-dot');
-  const prevBtn = root.querySelector('.prev-btn');
-  const nextBtn = root.querySelector('.next-btn');
+  const oldDots = root.querySelectorAll('.phone-dot');
+  const oldPrevBtn = root.querySelector('.phone-nav .prev-btn');
+  const oldNextBtn = root.querySelector('.phone-nav .next-btn');
+  
+  // НОВЫЕ ЭЛЕМЕНТЫ
+  const newDots = document.querySelectorAll('.reviews-dot');
+  const newPrevBtn = document.querySelector('.reviews-nav-btn.prev-btn');
+  const newNextBtn = document.querySelector('.reviews-nav-btn.next-btn');
+  
   if (!slides.length) return;
 
   let current = 0;
@@ -267,19 +273,40 @@ function initImageReviewsSlider() {
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
 
+    // Обновляем слайды
     slides[current].classList.remove('active');
     slides[index].classList.add('active');
 
-    dots.forEach(d => d.classList.remove('active'));
-    if (dots[index]) dots[index].classList.add('active');
+    // Обновляем старые точки
+    oldDots.forEach(d => d.classList.remove('active'));
+    if (oldDots[index]) oldDots[index].classList.add('active');
+    
+    // Обновляем новые точки
+    newDots.forEach(d => d.classList.remove('active'));
+    if (newDots[index]) newDots[index].classList.add('active');
 
     current = index;
     setTimeout(() => { isAnimating = false; }, 450);
   }
 
-  if (nextBtn) nextBtn.addEventListener('click', () => setActive(current + 1));
-  if (prevBtn) prevBtn.addEventListener('click', () => setActive(current - 1));
-  dots.forEach(dot => {
+  // Обработчики для новых кнопок
+  if (newNextBtn) newNextBtn.addEventListener('click', () => setActive(current + 1));
+  if (newPrevBtn) newPrevBtn.addEventListener('click', () => setActive(current - 1));
+  
+  // Обработчики для старых кнопок (на всякий случай)
+  if (oldNextBtn) oldNextBtn.addEventListener('click', () => setActive(current + 1));
+  if (oldPrevBtn) oldPrevBtn.addEventListener('click', () => setActive(current - 1));
+
+  // Обработчики для новых точек
+  newDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.index, 10);
+      if (!Number.isNaN(idx)) setActive(idx);
+    });
+  });
+  
+  // Обработчики для старых точек
+  oldDots.forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.index, 10);
       if (!Number.isNaN(idx)) setActive(idx);
@@ -402,4 +429,12 @@ document.addEventListener('DOMContentLoaded', function () {
   initImageReviewsSlider();
   initVacancyModal();
   initContactEnvelope();
+  
+  // Задержка для корректного отображения навигации
+  setTimeout(() => {
+    const nav = document.querySelector('.reviews-phone-navigation');
+    if (nav && window.innerWidth <= 768) {
+      console.log('✅ Новая навигация загружена и готова к работе');
+    }
+  }, 500);
 });
