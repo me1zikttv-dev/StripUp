@@ -2446,7 +2446,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }@media (max-width: 768px) {
   /* размер отзывов */
   #reviews-phone .phone-slide img {
-      transform: scale(1) !important;  /* увеличиваем */
+      transform: scale(2) !important;  /* увеличиваем */
   }
 
   /* подгонка по центру телефона */
