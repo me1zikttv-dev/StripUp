@@ -573,3 +573,32 @@ document.addEventListener('DOMContentLoaded', function() {
   envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
   envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
 });
+document.addEventListener('DOMContentLoaded', function() {
+  const envelope = document.getElementById('envelope');
+  if (!envelope) return;
+
+  const letterLink = envelope.querySelector('.letter-link');
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+
+  if (isTouchDevice) {
+    // Тап по конверту
+    envelope.addEventListener('touchstart', function(e) {
+      // Если тап именно по ссылке — не блокируем
+      if (e.target === letterLink) return;
+
+      // Открываем конверт
+      envelope.classList.add('touch-active');
+    }, { passive: true }); // passive=true важно, чтобы Safari не блокировал скролл и ссылку
+
+    // Тап вне конверта — закрываем
+    document.addEventListener('touchstart', function(e) {
+      if (!envelope.contains(e.target)) {
+        envelope.classList.remove('touch-active');
+      }
+    }, { passive: true });
+  }
+
+  // Hover для десктопа
+  envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
+  envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
+});
