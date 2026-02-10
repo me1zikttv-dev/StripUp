@@ -2518,7 +2518,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   --reviews-scale: 0.9;       /* масштаб отзывов */
   --reviews-offset-x: -16px;  /* сдвиг всего телефона горизонтально */
   --reviews-offset-y: -45px;  /* сдвиг всего телефона вертикально */
-  --reviews-comments-x: 0px;  /* сдвиг комментариев по X (лево/право) */
+  --reviews-comments-x: -2px;  /* сдвиг комментариев по X (лево/право) */
 }
 
 /* только для телефонов */
