@@ -2515,15 +2515,16 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 @media (max-width: 768px) {
+  :root {
+    --reviews-scale: 1;          /* масштаб всего контента */
+    --reviews-offset-x: 0;       /* горизонтальное смещение в px */
+    --reviews-offset-y: -40px;   /* вертикальное смещение в px */
+  }
+
   #reviews-phone .phone-frame {
-      /* горизонтальное смещение */
-      margin-left: -21% !important; /* <-- отрицательное = влево */
-      
-      /* можно добавлять/вычитать пиксели вручную */
-      margin-left: calc(-21% + 2px) !important; /* сдвинет на 2px вправо */
-      margin-left: calc(-21% - 1px) !important; /* сдвинет на 2px влево */
-      
-      transform: scale(1.09) translateY(-40px);
+      transform: scale(var(--reviews-scale)) 
+                 translateX(var(--reviews-offset-x)) 
+                 translateY(var(--reviews-offset-y));
       transform-origin: center top;
   }
 }
