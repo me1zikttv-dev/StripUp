@@ -2503,6 +2503,6 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 #reviews-phone .phone-slide img { outline: 2px solid red; } /* контент (отзывы) */
 @media (max-width: 768px) {
   #reviews-phone {
-      margin-top: -25px; /* сдвигает весь телефон вместе с комментариями */
+      margin-top: -30px; /* сдвигает весь телефон вместе с комментариями */
   }
 }
