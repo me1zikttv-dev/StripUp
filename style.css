@@ -2449,7 +2449,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   :root {
     --reviews-scale: 1;     /* масштаб отзывов */
     --reviews-offset-x: -20%; /* смещение по горизонтали */
-    --reviews-offset-y: -35px;  /* смещение по вертикали */
+    --reviews-offset-y: -45px;  /* смещение по вертикали */
   }
 
 
@@ -2510,7 +2510,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .phone-frame {
       /* двигаем телефон вверх/вниз */
       margin-left: -21% !important;  /* горизонталь оставляем */
-      transform: scale(1.09) translateY(-30px); /* <- это поднимает телефон */
+      transform: scale(1.09) translateY(-40px); /* <- это поднимает телефон */
       transform-origin: center top;
   }
 }
