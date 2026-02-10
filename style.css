@@ -2466,6 +2466,26 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       display: block !important;
   }
 }
+@media (max-width: 768px) {
+  /* маска экрана телефона */
+  #reviews-phone .phone-screen-mask {
+      top: 5% !important;     /* отступ сверху — двигай вниз/вверх */
+      bottom: 5% !important;  /* отступ снизу — уменьшаешь/увеличиваешь */
+      left: 4% !important;
+      right: 4% !important;
+      border-radius: 16px !important;
+
+      outline: 2px dashed orange; /* пунктир для отладки */
+  }
+
+  /* масштаб самих отзывов */
+  #reviews-phone .phone-slide img {
+      transform: scale(0.9) !important;
+      transform-origin: center top;
+      outline: 1px dashed red; /* показывает сам контент */
+  }
+}
+
 
 }/* Контуры телефона и экрана для отладки */
 #reviews-phone,
