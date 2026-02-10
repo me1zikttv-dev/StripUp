@@ -2506,3 +2506,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       margin-top: -30px; /* сдвигает весь телефон вместе с комментариями */
   }
 }
+@media (max-width: 768px) {
+  #reviews-phone .phone-frame {
+      /* двигаем телефон вверх/вниз */
+      margin-left: -21% !important;  /* горизонталь оставляем */
+      transform: scale(1.09) translateY(-20px); /* <- это поднимает телефон */
+      transform-origin: center top;
+  }
+}
