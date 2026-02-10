@@ -2294,7 +2294,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   left:50%;
   top:52%;
   width:36px;
-  height:36px;
+  height:39px;
   background:var(--seal);
   transform:translate(-50%,-50%) rotate(-45deg);
   z-index:6;
@@ -2380,4 +2380,11 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   .letter-link-text {
     font-size: 20px;
   }
+}.envelope{
+  position: relative;
+  isolation: isolate;  /* ВАЖНО */
+}
+.seal{
+  position:absolute;
+  z-index: 999; /* поверх клапанов */
 }
