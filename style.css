@@ -2470,7 +2470,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   /* маска экрана телефона */
   #reviews-phone .phone-screen-mask {
       top: 5% !important;     /* отступ сверху — двигай вниз/вверх */
-      bottom: 3% !important;  /* отступ снизу — уменьшаешь/увеличиваешь */
+      bottom: 2% !important;  /* отступ снизу — уменьшаешь/увеличиваешь */
       left: 4% !important;
       right: 4% !important;
       border-radius: 16px !important;
