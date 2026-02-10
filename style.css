@@ -2443,28 +2443,28 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     position: relative;
     left: -11%;          /* <=== сдвиг влево, меняй по вкусу */
   }
-}@media (max-width: 768px) {
-  /* размер отзывов */
+@media (max-width: 768px) {
+
+  /* Переменные для подгонки */
+  :root {
+    --reviews-scale: 0.9;     /* масштаб отзывов */
+    --reviews-offset-x: -20%; /* смещение по горизонтали */
+    --reviews-offset-y: -40px;  /* смещение по вертикали */
+  }
+
+
+  /* размер и масштаб отзывов */
   #reviews-phone .phone-slide img {
-      transform: scale(2) !important;  /* увеличиваем */
+      transform: scale(var(--reviews-scale)) !important;
+      transform-origin: center top; /* точка масштабирования сверху */
   }
 
   /* подгонка по центру телефона */
   #reviews-phone .phone-frame {
-      margin-left: -15% !important;    /* регулируй по горизонтали */
+      margin-left: var(--reviews-offset-x) !important;  /* горизонтально */
+      margin-top: var(--reviews-offset-y) !important;   /* вертикально */
+      display: block !important;
   }
 }
-/* Контуры телефона и экрана для отладки */
-#reviews-phone,
-#reviews-phone .phone-frame,
-#reviews-phone .phone-screen-mask,
-#reviews-phone .phone-slide img {
-    outline: 2px dashed red; /* красная пунктирная рамка */
-    outline-offset: 0px;
-}
 
-/* Если хочется разными цветами */
-#reviews-phone { outline: 2px solid blue; }               /* весь телефон */
-#reviews-phone .phone-frame { outline: 2px dashed green; } /* рамка телефона */
-#reviews-phone .phone-screen-mask { outline: 2px dotted orange; } /* "экран" */
-#reviews-phone .phone-slide img { outline: 2px solid red; } /* контент (отзывы) */
+}
