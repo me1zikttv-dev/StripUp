@@ -2397,3 +2397,16 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     height: auto;      /* сохраняем пропорции */
   }
 }
+/* Только для телефонов */
+@media (max-width: 768px){
+  #features .features-image {
+    max-width: 300px; /* можно менять это число, чтобы увеличить/уменьшить на телефоне */
+    width: 300%;      /* растягиваем до max-width */
+  }
+}/* Только для телефонов */
+@media (max-width: 768px){
+  #features .features-image {
+    width: 80%;      /* растягиваем на 80% ширины экрана */
+    max-width: 300px; /* можешь увеличить до нужного размера */
+  }
+}
