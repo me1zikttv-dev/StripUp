@@ -2147,7 +2147,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
 /* переменные для отзывов и комментариев */
 :root {
-  --reviews-scale: 0.9;       /* масштаб отзывов */
+  --reviews-scale: 0.8;       /* масштаб отзывов */
   --reviews-offset-x: -16px;  /* сдвиг всего телефона горизонтально */
   --reviews-offset-y: -45px;  /* сдвиг всего телефона вертикально */
   --reviews-comments-x: -20px; /* сдвиг комментариев по X */
@@ -2191,4 +2191,55 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .phone-frame { outline: 2px dashed green; }
   #reviews-phone .phone-screen-mask { outline: 2px dotted orange; }
   #reviews-phone .phone-slide img { outline: 2px solid red; }
+}
+:root {
+  /* Настройки сдвига телефона */
+  --phone-offset-x: -63px;   /* горизонтальный сдвиг телефона */
+  --phone-offset-y: -22px;   /* вертикальный сдвиг телефона */
+  --phone-scale: 1;        /* масштаб телефона */
+}
+
+/* Только для телефонов */
+@media (max-width: 768px) {
+  /* Двигаем сам телефон (phone.png) */
+  #reviews-phone .phone-frame {
+      transform: scale(var(--phone-scale)) 
+                 translateX(var(--phone-offset-x)) 
+                 translateY(var(--phone-offset-y));
+      transform-origin: center top;
+  }
+}
+:root {
+  --reviews-comments-x: -0px;  /* сдвиг по горизонтали */
+  --reviews-comments-y: 0px;  /* сдвиг по вертикали (для поднятия/опускания комментариев) */
+}
+
+@media (max-width: 768px) {
+  #reviews-phone .phone-slide img {
+      transform: translateX(var(--reviews-comments-x)) translateY(var(--reviews-comments-y));
+      transform-origin: top center;
+      outline: 1px dashed red; /* рамка для отладки */
+  }
+}
+@media (max-width: 768px) {
+  #reviews-phone .phone-slide {
+      height:651px; /* уменьшить высоту контейнера с комментариями */
+      overflow: hidden; /* чтобы ничего не вылезало */
+  }
+}
+:root {
+  /* масштаб и сдвиги для телефона и комментариев */
+  --reviews-scale: (0.9);       /* масштаб всей картинки */
+  --reviews-translate-x: -2px; /* сдвиг вправо/влево */
+  --reviews-translate-y: -10px; /* сдвиг вверх/вниз */
+}
+
+@media (max-width: 768px) {
+  #reviews-phone .phone-slide img {
+      transform: scale(var(--reviews-scale)) 
+                 translateX(var(--reviews-translate-x)) 
+                 translateY(var(--reviews-translate-y));
+      transform-origin: top center;
+      outline: 1px dashed red; /* для наглядности */
+  }
 }
