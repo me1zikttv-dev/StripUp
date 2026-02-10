@@ -2514,17 +2514,18 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       transform-origin: center top;
   }
 }
-@media (max-width: 768px) {
-  :root {
-    --reviews-scale: 1;          /* масштаб всего контента */
-    --reviews-offset-x: 0;       /* горизонтальное смещение в px */
-    --reviews-offset-y: -40px;   /* вертикальное смещение в px */
-  }
+:root {
+  --reviews-scale: 0.9;       /* масштаб отзывов */
+  --reviews-offset-x: -16px;  /* сдвиг всего телефона горизонтально */
+  --reviews-offset-y: -45px;  /* сдвиг всего телефона вертикально */
+  --reviews-comments-x: 0px;  /* сдвиг комментариев по X (лево/право) */
+}
 
-  #reviews-phone .phone-frame {
-      transform: scale(var(--reviews-scale)) 
-                 translateX(var(--reviews-offset-x)) 
-                 translateY(var(--reviews-offset-y));
+/* только для телефонов */
+@media (max-width: 768px) {
+  #reviews-phone .phone-slide img {
+      transform: scale(var(--reviews-scale)) translateX(var(--reviews-comments-x));
       transform-origin: center top;
+      outline: 1px dashed red; /* показывает контент */
   }
 }
