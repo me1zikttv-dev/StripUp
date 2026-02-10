@@ -1995,39 +1995,33 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
 /* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
 #vacancies .pricing-box-horizontal{
-  background: rgba(249, 232, 239, 0.55) !important;  /* лёгкий розовый “стекло” */
+  background: rgba(249, 232, 239, 0.55) !important;
   backdrop-filter: blur(6px);
-  border: 2px solid rgba(176,49,94,0.55) !important;  /* бордюр остаётся */
+  border: var(--box-border) !important;  /* ← СОВПАДАЕТ с остальным сайтом */
   box-shadow: 0 10px 26px rgba(176,49,94,0.14) !important;
 
-  padding: 14px 14px 12px !important;                 /* меньше отступы */
-  min-height: unset !important;                       /* убираем принудительную высоту */
+  padding: 14px 14px 12px !important;
+  min-height: unset !important;
   border-radius: 16px !important;
 }
 
-/* заголовки карточек */
-#vacancies .pricing-box-horizontal h3{
-  font-size: 17px !important;
-  margin-bottom: 8px !important;
-  white-space: nowrap;
+/* 2 колонки внутри карточки — отступ между "Мы ищем" и "Ты получаешь" */
+#vacancies .vacancy-cols{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  flex: 1 !important;
 }
 
-/* если у тебя где-то есть lead-текст */
-#vacancies .vacancy-lead{
-  margin: 6px 0 8px !important;
-  font-size: 12.8px !important;
-  line-height: 1.28 !important;
-}
-
-/* внутренние блоки “Мы ищем / Ты получаешь” — тоже без белого */
+/* внутренние блоки "Мы ищем / Ты получаешь" — ОСТАВЛЯЕМ КАК БЫЛО */
 #vacancies .vacancy-col{
-  background: rgba(255,255,255,0.35) !important;      /* вместо плотного белого */
-  border: 1.5px solid rgba(176,49,94,0.35) !important;
+  background: rgba(255,255,255,0.35) !important;
+  border: 1.5px solid rgba(176,49,94,0.35) !important;  /* ← ОСТАЁТСЯ СВЕТЛОЕ */
   box-shadow: none !important;
 
   padding: 10px 10px !important;
   border-radius: 14px !important;
-  min-height: unset !important;                        /* ключ — убрать пустые низы */
+  min-height: unset !important;
 }
 
 /* заголовки внутри блоков */
@@ -2073,4 +2067,317 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
   #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
   #vacancies .vacancy-col{ padding: 10px !important; }
+  #vacancies .vacancy-cols{ gap: 10px !important; }
+}/* ======================================================
+   VACANCIES — ULTRA COMPACT + NO WHITE BG
+   ВСТАВЬ В САМЫЙ КОНЕЦ CSS
+   ====================================================== */
+
+/* меньше воздуха вокруг секции */
+#vacancies{
+  padding-top: 10px !important;
+  padding-bottom: 24px !important;
+}
+
+/* заголовок чуть компактнее */
+#vacancies .section-title{
+  margin-bottom: 18px !important;
+}
+
+/* расстояние между тремя карточками */
+#vacancies .pricing-cards-horizontal{
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+/* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
+#vacancies .pricing-box-horizontal{
+  background: rgba(249, 232, 239, 0.55) !important;
+  backdrop-filter: blur(6px);
+  border: var(--box-border) !important;  /* ← СОВПАДАЕТ с остальным сайтом */
+  box-shadow: 0 10px 26px rgba(176,49,94,0.14) !important;
+
+  padding: 14px 14px 12px !important;
+  min-height: unset !important;
+  border-radius: 16px !important;
+}
+
+/* 2 колонки внутри карточки — отступ между "Мы ищем" и "Ты получаешь" */
+#vacancies .vacancy-columns{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  flex: 1 !important;
+}
+
+/* внутренние блоки "Мы ищем / Ты получаешь" — ОСТАВЛЯЕМ КАК БЫЛО */
+#vacancies .vacancy-col{
+  background: rgba(255,255,255,0.35) !important;
+  border: 1.5px solid rgba(176,49,94,0.35) !important;  /* ← ОСТАЁТСЯ СВЕТЛОЕ */
+  box-shadow: none !important;
+
+  padding: 10px 10px !important;
+  border-radius: 14px !important;
+  min-height: unset !important;
+}
+
+/* заголовки внутри блоков */
+#vacancies .vacancy-col h4{
+  font-size: 13.5px !important;
+  margin-bottom: 6px !important;
+}
+
+/* списки — плотнее */
+#vacancies .vacancy-list li{
+  margin-bottom: 6px !important;
+  font-size: 12.6px !important;
+  line-height: 1.25 !important;
+}
+
+/* если используется список как в тарифах внутри вакансий */
+#vacancies .pricing-features-horizontal{
+  margin: 8px 0 10px !important;
+  padding: 0 4px !important;
+}
+#vacancies .pricing-features-horizontal li{
+  margin-bottom: 6px !important;
+  font-size: 12.6px !important;
+  line-height: 1.25 !important;
+}
+
+/* прижимаем кнопку к низу и делаем компактнее */
+#vacancies .pricing-box-horizontal{
+  display: flex !important;
+  flex-direction: column !important;
+}
+#vacancies .vacancy-apply-btn,
+#vacancies .cta-button{
+  margin-top: auto !important;
+  padding: 9px 18px !important;
+  font-size: 13.5px !important;
+  border-radius: 20px !important;
+  white-space: nowrap;
+}
+
+/* мобилка: ещё плотнее */
+@media (max-width: 768px){
+  #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
+  #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
+  #vacancies .vacancy-col{ padding: 10px !important; }
+  #vacancies .vacancy-columns{ gap: 10px !important; }
+}/* ======================================================
+   VACANCIES — ULTRA COMPACT + NO WHITE BG
+   ВСТАВЬ В САМЫЙ КОНЕЦ CSS
+   ====================================================== */
+
+/* меньше воздуха вокруг секции */
+#vacancies{
+  padding-top: 10px !important;
+  padding-bottom: 24px !important;
+}
+
+/* заголовок чуть компактнее */
+#vacancies .section-title{
+  margin-bottom: 18px !important;
+}
+
+/* расстояние между тремя карточками */
+#vacancies .pricing-cards-horizontal{
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+/* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
+#vacancies .pricing-box-horizontal{
+  background: rgba(249, 232, 239, 0.55) !important;
+  backdrop-filter: blur(6px);
+  border: var(--box-border) !important;
+  box-shadow: 0 10px 26px rgba(176,49,94,0.14) !important;
+
+  padding: 14px 14px 12px !important;
+  min-height: unset !important;
+  border-radius: 16px !important;
+  
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 2 колонки внутри карточки — отступ между "Мы ищем" и "Ты получаешь" */
+#vacancies .vacancy-columns{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  flex: 1 !important;
+}
+
+/* внутренние блоки "Мы ищем / Ты получаешь" */
+#vacancies .vacancy-col{
+  background: rgba(255,255,255,0.35) !important;
+  border: 1.5px solid rgba(176,49,94,0.35) !important;
+  box-shadow: none !important;
+
+  padding: 10px 10px !important;
+  border-radius: 14px !important;
+  min-height: unset !important;
+}
+
+/* заголовки внутри блоков */
+#vacancies .vacancy-col h4{
+  font-size: 13.5px !important;
+  margin-bottom: 6px !important;
+}
+
+/* списки — плотнее */
+#vacancies .vacancy-list li{
+  margin-bottom: 6px !important;
+  font-size: 12.6px !important;
+  line-height: 1.25 !important;
+}
+
+/* если используется список как в тарифах внутри вакансий */
+#vacancies .pricing-features-horizontal{
+  margin: 8px 0 10px !important;
+  padding: 0 4px !important;
+}
+#vacancies .pricing-features-horizontal li{
+  margin-bottom: 6px !important;
+  font-size: 12.6px !important;
+  line-height: 1.25 !important;
+}
+
+/* кнопка заявки — прижимаем к низу */
+#vacancies .vacancy-apply-btn,
+#vacancies .cta-button{
+  margin-top: auto !important;
+  padding: 9px 18px !important;
+  font-size: 13.5px !important;
+  border-radius: 20px !important;
+  white-space: nowrap;
+}
+
+/* мобилка: ещё плотнее */
+@media (max-width: 768px){
+  #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
+  #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
+  #vacancies .vacancy-col{ padding: 10px !important; }
+  #vacancies .vacancy-columns{ gap: 10px !important; }
+}.flap,
+.seal {
+  pointer-events: none;
+}
+.letter-link {
+  position: relative;
+  z-index: 5;
+}
+
+.some-class {
+  background: var(--pink-dark);
+  clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+  position: relative; /* на всякий */
+  z-index: 3;
+}
+
+
+/* верхний клапан */
+.flap--top{
+  background: var(--pink-light);
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top center;
+  transition: transform var(--flap-dur) ease var(--flap-delay);
+  z-index:5;
+  backface-visibility:hidden;
+}
+
+/* печать */
+.seal{
+  position:absolute;
+  left:50%;
+  top:52%;
+  width:36px;
+  height:36px;
+  background:var(--seal);
+  transform:translate(-50%,-50%) rotate(-45deg);
+  z-index:6;
+  transition: transform .5s ease var(--flap-delay), opacity .35s ease var(--flap-delay);
+}
+.seal::before,
+.seal::after{
+  content:"";
+  position:absolute;
+  width:36px;
+  height:36px;
+  background:var(--seal);
+  border-radius:50%;
+}
+.seal::before{ top:-18px; left:0; }
+.seal::after{ left:18px; top:0; }
+
+/* HOVER: сначала открываем, потом достаём и кладём письмо */
+.envelope:hover .flap--top{
+  transform: rotateX(180deg);
+  z-index:1; /* уходит назад */
+}
+
+.envelope:hover .seal{
+  opacity:0;
+  transform:translate(-50%,-70%) scale(.6) rotate(-45deg);
+  z-index:1;
+}
+
+.envelope:hover .letter{
+  animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: var(--letter-delay);
+}
+
+/* при уходе курсора всё возвращается внутрь */
+.envelope:not(:hover) .letter{
+  animation:none;
+  transform: translate(-50%, 22px);
+  z-index:1;
+  box-shadow: 0 4px 15px rgba(0,0,0,.10);
+}
+
+/* Делаем ссылку некликабельной, когда письмо внутри конверта */
+.envelope:not(:hover) .letter-link,
+.envelope:not(.touch-active) .letter-link {
+  pointer-events: none;
+}
+
+.envelope:hover .letter-link,
+.envelope.touch-active .letter-link {
+  pointer-events: auto;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .envelope {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+  
+  .letter-link {
+    padding: 18px 30px;
+  }
+  
+  .letter-link-text {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .envelope {
+    transform: scale(0.8);
+  }
+  
+  .letter-link {
+    padding: 16px 28px;
+  }
+  
+  .letter-link-text {
+    font-size: 20px;
+  }
 }

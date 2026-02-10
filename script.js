@@ -442,8 +442,35 @@ TG: ${tg}
       alert('❌ Не удалось отправить. Попробуй ещё раз.');
     }
   });
-}
+function initContactEnvelope() {
+  const envelope = document.getElementById('envelope');
+  if (!envelope) return;
 
+  const letterLink = envelope.querySelector('.letter-link');
+  const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+
+  envelope.addEventListener('click', (e) => {
+    if (!isTouchDevice) return;
+
+    if (!envelope.classList.contains('touch-active')) {
+      e.preventDefault();
+      envelope.classList.add('touch-active');
+    }
+  });
+
+  if (letterLink) {
+    letterLink.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!isTouchDevice) return;
+    if (envelope.contains(e.target)) return;
+    envelope.classList.remove('touch-active');
+  });
+}
 document.addEventListener('DOMContentLoaded', function () {
   fixMobileInitialScroll();
   fixMobileAnchorScroll();
@@ -456,4 +483,67 @@ document.addEventListener('DOMContentLoaded', function () {
   initCalculator();
   initImageReviewsSlider();
   initVacancyModal();
+  initContactEnvelope();
+});
+}
+// JavaScript для обработки касаний на мобильных устройствах
+document.addEventListener('DOMContentLoaded', function() {
+  const envelope = document.getElementById('envelope');
+  let touchActive = false;
+  
+  // Проверяем, является ли устройство touch-устройством
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+  
+  if (isTouchDevice) {
+    // Для touch-устройств добавляем обработчики
+    envelope.addEventListener('touchstart', function(e) {
+      // Предотвращаем всплытие, чтобы не мешать клику по ссылке
+      if (e.target.classList.contains('letter-link')) {
+        return;
+      }
+      
+      e.preventDefault();
+      
+      // Снимаем активное состояние со всех конвертов
+      document.querySelectorAll('.envelope').forEach(function(item) {
+        item.classList.remove('touch-active');
+      });
+      
+      // Добавляем активное состояние к текущему конверту
+      envelope.classList.toggle('touch-active');
+      touchActive = envelope.classList.contains('touch-active');
+    }, { passive: false });
+    
+    // Закрываем конверт при клике вне его области
+    document.addEventListener('touchstart', function(e) {
+      if (!envelope.contains(e.target)) {
+        envelope.classList.remove('touch-active');
+        touchActive = false;
+      }
+    });
+    
+    // Предотвращаем стандартное поведение ссылки при первом касании
+    const link = envelope.querySelector('.letter-link');
+    link.addEventListener('touchstart', function(e) {
+      if (!envelope.classList.contains('touch-active')) {
+        e.preventDefault();
+        // Открываем конверт при первом касании на ссылку
+        envelope.classList.add('touch-active');
+        touchActive = true;
+      }
+    });
+  }
+  
+  // Для десктопных устройств сохраняем hover-эффект
+  envelope.addEventListener('mouseenter', function() {
+    if (!isTouchDevice) {
+      envelope.classList.add('touch-active');
+    }
+  });
+  
+  envelope.addEventListener('mouseleave', function() {
+    if (!isTouchDevice) {
+      envelope.classList.remove('touch-active');
+    }
+  });
 });
