@@ -2388,3 +2388,12 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   position:absolute;
   z-index: 999; /* поверх клапанов */
 }
+@media (max-width: 768px) {
+  #features .features-image {
+    left: 0;           /* убираем отрицательный сдвиг */
+    top: -20px;        /* можно оставить небольшой */
+    width: 90%;        /* почти весь экран */
+    max-width: 300px;  /* ограничение, чтобы не стало слишком большим */
+    height: auto;      /* сохраняем пропорции */
+  }
+}
