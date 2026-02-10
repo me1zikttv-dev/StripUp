@@ -2454,3 +2454,17 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       margin-left: -15% !important;    /* регулируй по горизонтали */
   }
 }
+/* Контуры телефона и экрана для отладки */
+#reviews-phone,
+#reviews-phone .phone-frame,
+#reviews-phone .phone-screen-mask,
+#reviews-phone .phone-slide img {
+    outline: 2px dashed red; /* красная пунктирная рамка */
+    outline-offset: 0px;
+}
+
+/* Если хочется разными цветами */
+#reviews-phone { outline: 2px solid blue; }               /* весь телефон */
+#reviews-phone .phone-frame { outline: 2px dashed green; } /* рамка телефона */
+#reviews-phone .phone-screen-mask { outline: 2px dotted orange; } /* "экран" */
+#reviews-phone .phone-slide img { outline: 2px solid red; } /* контент (отзывы) */
