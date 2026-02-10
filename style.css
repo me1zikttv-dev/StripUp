@@ -1973,222 +1973,27 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 /* ======================================================
    VACANCIES — ULTRA COMPACT + NO WHITE BG
-   ВСТАВЬ В САМЫЙ КОНЕЦ CSS
    ====================================================== */
 
 /* меньше воздуха вокруг секции */
-#vacancies{
+#vacancies {
   padding-top: 10px !important;
   padding-bottom: 24px !important;
 }
 
 /* заголовок чуть компактнее */
-#vacancies .section-title{
+#vacancies .section-title {
   margin-bottom: 18px !important;
 }
 
-/* расстояние между тремя карточками */
-#vacancies .pricing-cards-horizontal{
+/* расстояние между карточками */
+#vacancies .pricing-cards-horizontal {
   gap: 12px !important;
   align-items: stretch !important;
 }
 
-/* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
-#vacancies .pricing-box-horizontal{
-  background: rgba(249, 232, 239, 0.55) !important;
-  backdrop-filter: blur(6px);
-  border: var(--box-border) !important;  /* ← СОВПАДАЕТ с остальным сайтом */
-  box-shadow: 0 10px 26px rgba(176,49,94,0.14) !important;
-
-  padding: 14px 14px 12px !important;
-  min-height: unset !important;
-  border-radius: 16px !important;
-}
-
-/* 2 колонки внутри карточки — отступ между "Мы ищем" и "Ты получаешь" */
-#vacancies .vacancy-cols{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 12px !important;
-  flex: 1 !important;
-}
-
-/* внутренние блоки "Мы ищем / Ты получаешь" — ОСТАВЛЯЕМ КАК БЫЛО */
-#vacancies .vacancy-col{
-  background: rgba(255,255,255,0.35) !important;
-  border: 1.5px solid rgba(176,49,94,0.35) !important;  /* ← ОСТАЁТСЯ СВЕТЛОЕ */
-  box-shadow: none !important;
-
-  padding: 10px 10px !important;
-  border-radius: 14px !important;
-  min-height: unset !important;
-}
-
-/* заголовки внутри блоков */
-#vacancies .vacancy-col h4{
-  font-size: 13.5px !important;
-  margin-bottom: 6px !important;
-}
-
-/* списки — плотнее */
-#vacancies .vacancy-list li{
-  margin-bottom: 6px !important;
-  font-size: 12.6px !important;
-  line-height: 1.25 !important;
-}
-
-/* если используется список как в тарифах внутри вакансий */
-#vacancies .pricing-features-horizontal{
-  margin: 8px 0 10px !important;
-  padding: 0 4px !important;
-}
-#vacancies .pricing-features-horizontal li{
-  margin-bottom: 6px !important;
-  font-size: 12.6px !important;
-  line-height: 1.25 !important;
-}
-
-/* прижимаем кнопку к низу и делаем компактнее */
-#vacancies .pricing-box-horizontal{
-  display: flex !important;
-  flex-direction: column !important;
-}
-#vacancies .vacancy-apply-btn,
-#vacancies .cta-button{
-  margin-top: auto !important;
-  padding: 9px 18px !important;
-  font-size: 13.5px !important;
-  border-radius: 20px !important;
-  white-space: nowrap;
-}
-
-/* мобилка: ещё плотнее */
-@media (max-width: 768px){
-  #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
-  #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
-  #vacancies .vacancy-col{ padding: 10px !important; }
-  #vacancies .vacancy-cols{ gap: 10px !important; }
-}/* ======================================================
-   VACANCIES — ULTRA COMPACT + NO WHITE BG
-   ВСТАВЬ В САМЫЙ КОНЕЦ CSS
-   ====================================================== */
-
-/* меньше воздуха вокруг секции */
-#vacancies{
-  padding-top: 10px !important;
-  padding-bottom: 24px !important;
-}
-
-/* заголовок чуть компактнее */
-#vacancies .section-title{
-  margin-bottom: 18px !important;
-}
-
-/* расстояние между тремя карточками */
-#vacancies .pricing-cards-horizontal{
-  gap: 12px !important;
-  align-items: stretch !important;
-}
-
-/* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
-#vacancies .pricing-box-horizontal{
-  background: rgba(249, 232, 239, 0.55) !important;
-  backdrop-filter: blur(6px);
-  border: var(--box-border) !important;  /* ← СОВПАДАЕТ с остальным сайтом */
-  box-shadow: 0 10px 26px rgba(176,49,94,0.14) !important;
-
-  padding: 14px 14px 12px !important;
-  min-height: unset !important;
-  border-radius: 16px !important;
-}
-
-/* 2 колонки внутри карточки — отступ между "Мы ищем" и "Ты получаешь" */
-#vacancies .vacancy-columns{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 12px !important;
-  flex: 1 !important;
-}
-
-/* внутренние блоки "Мы ищем / Ты получаешь" — ОСТАВЛЯЕМ КАК БЫЛО */
-#vacancies .vacancy-col{
-  background: rgba(255,255,255,0.35) !important;
-  border: 1.5px solid rgba(176,49,94,0.35) !important;  /* ← ОСТАЁТСЯ СВЕТЛОЕ */
-  box-shadow: none !important;
-
-  padding: 10px 10px !important;
-  border-radius: 14px !important;
-  min-height: unset !important;
-}
-
-/* заголовки внутри блоков */
-#vacancies .vacancy-col h4{
-  font-size: 13.5px !important;
-  margin-bottom: 6px !important;
-}
-
-/* списки — плотнее */
-#vacancies .vacancy-list li{
-  margin-bottom: 6px !important;
-  font-size: 12.6px !important;
-  line-height: 1.25 !important;
-}
-
-/* если используется список как в тарифах внутри вакансий */
-#vacancies .pricing-features-horizontal{
-  margin: 8px 0 10px !important;
-  padding: 0 4px !important;
-}
-#vacancies .pricing-features-horizontal li{
-  margin-bottom: 6px !important;
-  font-size: 12.6px !important;
-  line-height: 1.25 !important;
-}
-
-/* прижимаем кнопку к низу и делаем компактнее */
-#vacancies .pricing-box-horizontal{
-  display: flex !important;
-  flex-direction: column !important;
-}
-#vacancies .vacancy-apply-btn,
-#vacancies .cta-button{
-  margin-top: auto !important;
-  padding: 9px 18px !important;
-  font-size: 13.5px !important;
-  border-radius: 20px !important;
-  white-space: nowrap;
-}
-
-/* мобилка: ещё плотнее */
-@media (max-width: 768px){
-  #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
-  #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
-  #vacancies .vacancy-col{ padding: 10px !important; }
-  #vacancies .vacancy-columns{ gap: 10px !important; }
-}/* ======================================================
-   VACANCIES — ULTRA COMPACT + NO WHITE BG
-   ВСТАВЬ В САМЫЙ КОНЕЦ CSS
-   ====================================================== */
-
-/* меньше воздуха вокруг секции */
-#vacancies{
-  padding-top: 10px !important;
-  padding-bottom: 24px !important;
-}
-
-/* заголовок чуть компактнее */
-#vacancies .section-title{
-  margin-bottom: 18px !important;
-}
-
-/* расстояние между тремя карточками */
-#vacancies .pricing-cards-horizontal{
-  gap: 12px !important;
-  align-items: stretch !important;
-}
-
-/* УБИРАЕМ БЕЛЫЙ ФОН у больших карточек вакансий */
-#vacancies .pricing-box-horizontal{
+/* убираем белый фон у больших карточек вакансий */
+#vacancies .pricing-box-horizontal {
   background: rgba(249, 232, 239, 0.55) !important;
   backdrop-filter: blur(6px);
   border: var(--box-border) !important;
@@ -2202,8 +2007,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   flex-direction: column !important;
 }
 
-/* 2 колонки внутри карточки — отступ между "Мы ищем" и "Ты получаешь" */
-#vacancies .vacancy-columns{
+/* 2 колонки внутри карточки */
+#vacancies .vacancy-columns {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 12px !important;
@@ -2211,7 +2016,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* внутренние блоки "Мы ищем / Ты получаешь" */
-#vacancies .vacancy-col{
+#vacancies .vacancy-col {
   background: rgba(255,255,255,0.35) !important;
   border: 1.5px solid rgba(176,49,94,0.35) !important;
   box-shadow: none !important;
@@ -2222,32 +2027,27 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* заголовки внутри блоков */
-#vacancies .vacancy-col h4{
+#vacancies .vacancy-col h4 {
   font-size: 13.5px !important;
   margin-bottom: 6px !important;
 }
 
 /* списки — плотнее */
-#vacancies .vacancy-list li{
+#vacancies .vacancy-list li,
+#vacancies .pricing-features-horizontal li {
   margin-bottom: 6px !important;
   font-size: 12.6px !important;
   line-height: 1.25 !important;
 }
 
-/* если используется список как в тарифах внутри вакансий */
-#vacancies .pricing-features-horizontal{
+#vacancies .pricing-features-horizontal {
   margin: 8px 0 10px !important;
   padding: 0 4px !important;
-}
-#vacancies .pricing-features-horizontal li{
-  margin-bottom: 6px !important;
-  font-size: 12.6px !important;
-  line-height: 1.25 !important;
 }
 
 /* кнопка заявки — прижимаем к низу */
 #vacancies .vacancy-apply-btn,
-#vacancies .cta-button{
+#vacancies .cta-button {
   margin-top: auto !important;
   padding: 9px 18px !important;
   font-size: 13.5px !important;
@@ -2256,30 +2056,22 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* мобилка: ещё плотнее */
-@media (max-width: 768px){
-  #vacancies .pricing-cards-horizontal{ gap: 10px !important; }
-  #vacancies .pricing-box-horizontal{ padding: 12px 12px 10px !important; }
-  #vacancies .vacancy-col{ padding: 10px !important; }
-  #vacancies .vacancy-columns{ gap: 10px !important; }
-}.flap,
-.seal {
-  pointer-events: none;
-}
-.letter-link {
-  position: relative;
-  z-index: 5;
+@media (max-width: 768px) {
+  #vacancies .pricing-cards-horizontal { gap: 10px !important; }
+  #vacancies .pricing-box-horizontal { padding: 12px 12px 10px !important; }
+  #vacancies .vacancy-col { padding: 10px !important; }
+  #vacancies .vacancy-columns { gap: 10px !important; }
 }
 
-.some-class {
-  background: var(--pink-dark);
-  clip-path: polygon(0 100%, 50% 50%, 100% 100%);
-  position: relative; /* на всякий */
-  z-index: 3;
-}
+/* ======================================================
+   LETTER / ENVELOPE
+   ====================================================== */
 
+.flap, .seal { pointer-events: none; }
+.letter-link { position: relative; z-index: 5; }
 
 /* верхний клапан */
-.flap--top{
+.flap--top {
   background: var(--pink-light);
   clip-path: polygon(0 0, 50% 50%, 100% 0);
   transform-origin: top center;
@@ -2289,7 +2081,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* печать */
-.seal{
+.seal {
   position:absolute;
   left:50%;
   top:52%;
@@ -2301,7 +2093,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   transition: transform .5s ease var(--flap-delay), opacity .35s ease var(--flap-delay);
 }
 .seal::before,
-.seal::after{
+.seal::after {
   content:"";
   position:absolute;
   width:36px;
@@ -2309,216 +2101,56 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   background:var(--seal);
   border-radius:50%;
 }
-.seal::before{ top:-18px; left:0; }
-.seal::after{ left:18px; top:0; }
+.seal::before { top:-18px; left:0; }
+.seal::after { left:18px; top:0; }
 
-/* HOVER: сначала открываем, потом достаём и кладём письмо */
-.envelope:hover .flap--top{
-  transform: rotateX(180deg);
-  z-index:1; /* уходит назад */
-}
-
-.envelope:hover .seal{
-  opacity:0;
-  transform:translate(-50%,-70%) scale(.6) rotate(-45deg);
-  z-index:1;
-}
-
-.envelope:hover .letter{
+/* HOVER */
+.envelope:hover .flap--top { transform: rotateX(180deg); z-index:1; }
+.envelope:hover .seal { opacity:0; transform:translate(-50%,-70%) scale(.6) rotate(-45deg); z-index:1; }
+.envelope:hover .letter {
   animation: pullAndLay var(--letter-dur) cubic-bezier(.2,.8,.2,1) forwards;
   animation-delay: var(--letter-delay);
 }
 
-/* при уходе курсора всё возвращается внутрь */
-.envelope:not(:hover) .letter{
-  animation:none;
-  transform: translate(-50%, 22px);
-  z-index:1;
-  box-shadow: 0 4px 15px rgba(0,0,0,.10);
-}
+/* при уходе курсора */
+.envelope:not(:hover) .letter { animation:none; transform: translate(-50%, 22px); z-index:1; box-shadow: 0 4px 15px rgba(0,0,0,.10); }
 
-/* Делаем ссылку некликабельной, когда письмо внутри конверта */
+/* ссылка некликабельна, пока письмо внутри */
 .envelope:not(:hover) .letter-link,
-.envelope:not(.touch-active) .letter-link {
-  pointer-events: none;
-}
-
+.envelope:not(.touch-active) .letter-link { pointer-events: none; }
 .envelope:hover .letter-link,
-.envelope.touch-active .letter-link {
-  pointer-events: auto;
-}
+.envelope.touch-active .letter-link { pointer-events: auto; }
 
-/* Адаптивность для мобильных устройств */
+/* мобильная адаптивность */
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-  
-  .envelope {
-    transform: scale(0.9);
-    transform-origin: center;
-  }
-  
-  .letter-link {
-    padding: 18px 30px;
-  }
-  
-  .letter-link-text {
-    font-size: 22px;
-  }
+  body { padding: 10px; }
+  .envelope { transform: scale(0.9); transform-origin: center; }
+  .letter-link { padding: 18px 30px; }
+  .letter-link-text { font-size: 22px; }
 }
-
 @media (max-width: 480px) {
-  .envelope {
-    transform: scale(0.8);
-  }
-  
-  .letter-link {
-    padding: 16px 28px;
-  }
-  
-  .letter-link-text {
-    font-size: 20px;
-  }
-}.envelope{
-  position: relative;
-  isolation: isolate;  /* ВАЖНО */
+  .envelope { transform: scale(0.8); }
+  .letter-link { padding: 16px 28px; }
+  .letter-link-text { font-size: 20px; }
 }
-.seal{
-  position:absolute;
-  z-index: 999; /* поверх клапанов */
-}
+
+/* ======================================================
+   FEATURES & REVIEWS PHONE
+   ====================================================== */
+
+/* подгонка изображений на телефоне */
 @media (max-width: 768px) {
-  #features .features-image {
-    left: 0;           /* убираем отрицательный сдвиг */
-    top: -20px;        /* можно оставить небольшой */
-    width: 90%;        /* почти весь экран */
-    max-width: 300px;  /* ограничение, чтобы не стало слишком большим */
-    height: auto;      /* сохраняем пропорции */
-  }
-}
-/* Только для телефонов */
-@media (max-width: 768px){
-  #features .features-image {
-    max-width: 300px; /* можно менять это число, чтобы увеличить/уменьшить на телефоне */
-    width: 300%;      /* растягиваем до max-width */
-  }
-}/* Только для телефонов */
-@media (max-width: 768px){
-  #features .features-image {
-    width: 80%;      /* растягиваем на 80% ширины экрана */
-    max-width: 300px; /* можешь увеличить до нужного размера */
-  }
-}@media (max-width: 768px) {
-  #features .features-image-container {
-    width: 140%;       /* занимаем всю ширину экрана */
-    padding: 0;        /* убираем внутренние отступы */
-    margin: 0;         /* убираем внешние отступы */
-    overflow: visible; /* чтобы картинка не обрезалась */
-    display: flex;
-    justify-content: center; /* центрируем картинку */
-  }
-
-  #features .features-image {
-    width: 100%;       /* <=== Меняешь это число, чтобы увеличить/уменьшить */
-    max-width: none;  /* убираем ограничения */
-    height: auto;     /* сохраняем пропорции */
-    top: 0;           /* убираем ненужный сдвиг */
-    left: 0;          /* убираем левый сдвиг */
-    position: relative; /* оставляем relative для возможности top/left */
-  }
-}
-@media (max-width: 768px) {
-  #features .features-image-container {
-    width: 129.5%;
-    overflow: visible;
-    display: flex;
-    justify-content: flex-start; /* привязываем к левому краю */
-  }
-
-  #features .features-image {
-    width: 140%;         /* размер картинки */
-    max-width: none;
-    height: auto;
-    position: relative;
-    left: -11%;          /* <=== сдвиг влево, меняй по вкусу */
-  }
-@media (max-width: 768px) {
-
-  /* Переменные для подгонки */
-  :root {
-    --reviews-scale: 1;     /* масштаб отзывов */
-    --reviews-offset-x: -16%; /* смещение по горизонтали */
-    --reviews-offset-y: -45px;  /* смещение по вертикали */
-  }
-
-
-  /* размер и масштаб отзывов */
-  #reviews-phone .phone-slide img {
-      transform: scale(var(--reviews-scale)) !important;
-      transform-origin: center top; /* точка масштабирования сверху */
-  }
-
-  /* подгонка по центру телефона */
-  #reviews-phone .phone-frame {
-      margin-left: var(--reviews-offset-x) !important;  /* горизонтально */
-      margin-top: var(--reviews-offset-y) !important;   /* вертикально */
-      display: block !important;
-  }
-}
-@media (max-width: 768px) {
-  /* маска экрана телефона */
-  #reviews-phone .phone-screen-mask {
-      top: 5% !important;     /* отступ сверху — двигай вниз/вверх */
-      bottom: 0% !important;  /* отступ снизу — уменьшаешь/увеличиваешь */
-      left: 4% !important;
-      right: 4% !important;
-      border-radius: 16px !important;
-
-      outline: 2px dashed orange; /* пунктир для отладки */
-  }
-
-  /* масштаб самих отзывов */
-  #reviews-phone .phone-slide img {
-      transform: scale(0.90) !important;
-      transform-origin: center top;
-      outline: 1px dashed red; /* показывает сам контент */
-  }
+  #features .features-image { left:0; top:-20px; width:80%; max-width:300px; height:auto; position:relative; }
+  #features .features-image-container { width:129.5%; overflow:visible; display:flex; justify-content:flex-start; }
+  #features .features-image { width:140%; left:-11%; }
 }
 
-
-}/* Контуры телефона и экрана для отладки */
-#reviews-phone,
-#reviews-phone .phone-frame,
-#reviews-phone .phone-screen-mask,
-#reviews-phone .phone-slide img {
-    outline: 2px dashed red; /* красная пунктирная рамка */
-    outline-offset: 0px;
-}
-
-/* Если хочется разными цветами */
-#reviews-phone { outline: 2px solid blue; }               /* весь телефон */
-#reviews-phone .phone-frame { outline: 2px dashed green; } /* рамка телефона */
-#reviews-phone .phone-screen-mask { outline: 2px dotted orange; } /* "экран" */
-#reviews-phone .phone-slide img { outline: 2px solid red; } /* контент (отзывы) */
-@media (max-width: 768px) {
-  #reviews-phone {
-      margin-top: -30px; /* сдвигает весь телефон вместе с комментариями */
-  }
-}
-@media (max-width: 768px) {
-  #reviews-phone .phone-frame {
-      /* двигаем телефон вверх/вниз */
-      margin-left: -21% !important;  /* горизонталь оставляем */
-      transform: scale(1.09) translateY(-40px); /* <- это поднимает телефон */
-      transform-origin: center top;
-  }
-}
+/* переменные для отзывов и комментариев */
 :root {
   --reviews-scale: 0.9;       /* масштаб отзывов */
   --reviews-offset-x: -16px;  /* сдвиг всего телефона горизонтально */
   --reviews-offset-y: -45px;  /* сдвиг всего телефона вертикально */
-  --reviews-comments-x: -20px;  /* сдвиг комментариев по X (лево/право) */
+  --reviews-comments-x: -20px; /* сдвиг комментариев по X */
 }
 
 /* только для телефонов */
@@ -2526,6 +2158,37 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .phone-slide img {
       transform: scale(var(--reviews-scale)) translateX(var(--reviews-comments-x));
       transform-origin: center top;
-      outline: 1px dashed red; /* показывает контент */
+      outline: 1px dashed red;
   }
+
+  #reviews-phone .phone-frame {
+      margin-left: var(--reviews-offset-x) !important;
+      margin-top: var(--reviews-offset-y) !important;
+      display: block !important;
+      transform: scale(1.09) translateY(-40px);
+      transform-origin: center top;
+  }
+
+  #reviews-phone .phone-screen-mask {
+      top: 5% !important;
+      bottom: 0% !important;
+      left: 4% !important;
+      right: 4% !important;
+      border-radius: 16px !important;
+      outline: 2px dashed orange;
+  }
+
+  #reviews-phone { margin-top: -30px; }
+
+  /* контуры для отладки */
+  #reviews-phone,
+  #reviews-phone .phone-frame,
+  #reviews-phone .phone-screen-mask,
+  #reviews-phone .phone-slide img {
+      outline-offset: 0px;
+  }
+  #reviews-phone { outline: 2px solid blue; }
+  #reviews-phone .phone-frame { outline: 2px dashed green; }
+  #reviews-phone .phone-screen-mask { outline: 2px dotted orange; }
+  #reviews-phone .phone-slide img { outline: 2px solid red; }
 }
