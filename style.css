@@ -2409,4 +2409,38 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     width: 80%;      /* растягиваем на 80% ширины экрана */
     max-width: 300px; /* можешь увеличить до нужного размера */
   }
+}@media (max-width: 768px) {
+  #features .features-image-container {
+    width: 140%;       /* занимаем всю ширину экрана */
+    padding: 0;        /* убираем внутренние отступы */
+    margin: 0;         /* убираем внешние отступы */
+    overflow: visible; /* чтобы картинка не обрезалась */
+    display: flex;
+    justify-content: center; /* центрируем картинку */
+  }
+
+  #features .features-image {
+    width: 100%;       /* <=== Меняешь это число, чтобы увеличить/уменьшить */
+    max-width: none;  /* убираем ограничения */
+    height: auto;     /* сохраняем пропорции */
+    top: 0;           /* убираем ненужный сдвиг */
+    left: 0;          /* убираем левый сдвиг */
+    position: relative; /* оставляем relative для возможности top/left */
+  }
+}
+@media (max-width: 768px) {
+  #features .features-image-container {
+    width: 129.5%;
+    overflow: visible;
+    display: flex;
+    justify-content: flex-start; /* привязываем к левому краю */
+  }
+
+  #features .features-image {
+    width: 140%;         /* размер картинки */
+    max-width: none;
+    height: auto;
+    position: relative;
+    left: -11%;          /* <=== сдвиг влево, меняй по вкусу */
+  }
 }
