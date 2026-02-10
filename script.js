@@ -546,4 +546,30 @@ document.addEventListener('DOMContentLoaded', function() {
       envelope.classList.remove('touch-active');
     }
   });
+});// ===== Исправленный JS для работы конверта и ссылки на мобильных =====
+document.addEventListener('DOMContentLoaded', function() {
+  const envelope = document.getElementById('envelope');
+  if (!envelope) return;
+
+  const letterLink = envelope.querySelector('.letter-link');
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+
+  if (isTouchDevice) {
+    // Тап по конверту — открываем
+    envelope.addEventListener('touchstart', function(e) {
+      if (e.target === letterLink) return; // если по ссылке — сразу переходим
+      envelope.classList.add('touch-active');
+    });
+
+    // Тап вне конверта — закрываем
+    document.addEventListener('touchstart', function(e) {
+      if (!envelope.contains(e.target)) {
+        envelope.classList.remove('touch-active');
+      }
+    });
+  }
+
+  // Hover для десктопа
+  envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
+  envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
 });
