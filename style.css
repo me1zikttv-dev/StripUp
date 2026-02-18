@@ -2326,3 +2326,17 @@ body{
   transform-style: preserve-3d;
   will-change: transform;
 }
+/* ============================
+   REVIEWS NAV — FINAL POSITION
+   ============================ */
+@media (max-width: 768px){
+  #reviews-phone .reviews-phone-navigation{
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    bottom: 105px !important; /* ← ВОТ ЭТО ДВИГАЕТ ВЕРТИКАЛЬНО */
+    /* хочешь выше: 115px / 125px
+       хочешь ниже: 95px / 85px */
+  }
+}
