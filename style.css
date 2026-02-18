@@ -2307,3 +2307,22 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* ============================
+   FIX: Android Yandex Browser
+   ============================ */
+html{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+/* именно отзывы: фиксируем рендер transforms в Яндекс/Chromium */
+#reviews-phone .phone-slides,
+#reviews-phone .phone-slide img{
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
