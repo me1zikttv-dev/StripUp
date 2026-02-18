@@ -2410,7 +2410,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* КРУТИЛКА: + = вниз, - = вверх */
     #reviews-phone{
-      --android-phone-y: 35px;  /* <-- КРУТИ ТУТ */
+      --android-phone-y: 55px;  /* <-- КРУТИ ТУТ */
     }
 
     /* Двигаем ТОЛЬКО phone.png */
