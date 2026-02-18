@@ -1970,3 +1970,137 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+/* ======================================================
+   REVIEWS (ТОЛЬКО МОБИЛКИ) — ЧИСТО И БЕЗ КОНФЛИКТОВ
+   ПК ВООБЩЕ НЕ ТРОГАЕМ
+   ====================================================== */
+@media (max-width: 768px){
+
+  /* Скрываем старую навигацию внутри .phone-screen-content (ПК-шную) */
+  #reviews-phone .phone-screen-content .phone-nav{
+    display: none !important;
+  }
+
+  /* Телефон: нормальная ширина */
+  #reviews-phone.phone-image-container-large{
+    width: 96vw !important;
+    max-width: 600px !important;
+    min-width: 0 !important;
+    margin: -40px auto 0 !important;
+  }
+
+  /* Рамка телефона — как у тебя, но без адского масштаба */
+  #reviews-phone .phone-frame{
+    width: 140% !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+    margin-left: -20% !important;
+    transform: scale(1.08) !important;
+    transform-origin: center top !important;
+    margin-top: -75px !important;
+  }
+
+  /* Экран телефона */
+  #reviews-phone .phone-screen-mask{
+    top: 7.8% !important;
+    left: 4% !important;
+    right: 4% !important;
+    bottom: 7% !important;
+    border-radius: 16px !important;
+    overflow: hidden !important; /* важно: не "visible" */
+  }
+
+  /* Слайды */
+  #reviews-phone .phone-slide{
+    padding: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Картинки отзывов (один финальный scale, без конфликтов) */
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transform: scale(0.88) !important; /* меняй 0.82–0.95 по вкусу */
+    border-radius: 14px !important;
+  }
+
+  /* Сдвиг слайдов внутри экрана (если нужно) */
+  #reviews-phone .phone-slides{
+    transform: translateY(20px) !important; /* меняй: 0..40 */
+  }
+
+  /* Включаем новую навигацию (только мобилка) */
+  #reviews-phone .reviews-phone-navigation{
+    position: absolute !important;
+    bottom: 90px !important; /* меняй выше/ниже */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 72% !important;
+    max-width: 240px !important;
+    z-index: 50 !important;
+    display: flex !important;
+    justify-content: center !important;
+    pointer-events: auto !important;
+  }
+
+  #reviews-phone .reviews-nav-container{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 22px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  #reviews-phone .reviews-nav-btn{
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,0.88) !important;
+    border: 1px solid var(--burgundy) !important;
+    color: var(--burgundy) !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
+  }
+
+  #reviews-phone .reviews-dots-container{
+    display: flex !important;
+    gap: 5px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #reviews-phone .reviews-dot{
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: rgba(176,49,94,0.25) !important;
+    border: 0.5px solid rgba(176,49,94,0.15) !important;
+  }
+
+  #reviews-phone .reviews-dot.active{
+    background: var(--burgundy) !important;
+    border-color: var(--burgundy) !important;
+    transform: scale(1.35) !important;
+  }
+
+ /* iOS: чуть лучше рендер */
+@supports (-webkit-touch-callout: none) {
+  #reviews-phone .phone-slide img {
+    transform: scale(0.88) !important;
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+}
