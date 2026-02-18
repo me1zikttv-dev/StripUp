@@ -2177,43 +2177,26 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     display: none !important;
   }
 /* ======================================================
-   REVIEWS — MOBILE ONLY (ТОЛЬКО ОТЗЫВЫ)
+   REVIEWS — MOBILE ONLY (ТОЛЬКО ОТЗЫВЫ / ТОЛЬКО IMG)
    phone.png / рамку / mask / навигацию / контейнер НЕ ТРОГАЕМ
    ВСТАВЬ В САМЫЙ КОНЕЦ style.css
    ====================================================== */
+
 @media (max-width: 768px){
 
-  /* ---------------------------
-     БАЗА (если устройство не распознали)
-     --------------------------- */
+  /* БАЗА (если устройство не распознали) */
   #reviews-phone{
-    --reviewScale: 0.92;  /* размер отзывов */
+    --reviewScale: 0.90;  /* размер отзывов */
     --reviewY: 0px;       /* сдвиг отзывов вниз/вверх */
-    --slidePad: 10px;     /* внутренний отступ слайда */
   }
 
-  /* Слайд: можно менять только паддинг (это не phone.png) */
-  #reviews-phone .phone-slide{
-    padding: var(--slidePad) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* ВАЖНО: НЕ двигаем .phone-slides (иначе двигается и навигация/всё) */
-  #reviews-phone .phone-slides{
-    transform: none !important;
-    -webkit-transform: none !important;
-  }
-
-  /* ОТЗЫВЫ: двигаем и масштабируем ТОЛЬКО КАРТИНКУ */
+  /* ВАЖНО: трогаем ТОЛЬКО картинку отзыва */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
     display: block !important;
     max-height: none !important;
-    border-radius: 14px !important;
 
     transform: translateY(var(--reviewY)) scale(var(--reviewScale)) !important;
     -webkit-transform: translateY(var(--reviewY)) scale(var(--reviewScale)) !important;
@@ -2222,15 +2205,12 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     -webkit-transform-origin: center center !important;
   }
 
-  /* ---------------------------
-     iOS (iPhone/iPad)
-     iOS у тебя: НУЖНО чуть НИЖЕ
-     --------------------------- */
+  /* ================= iOS (iPhone/iPad) ================= */
   @supports (-webkit-touch-callout: none){
     #reviews-phone{
-      --reviewScale: 0.88; /* <-- меняй */
-      --reviewY: 20px;     /* <-- опустить вниз */
-      --slidePad: 10px;    /* <-- если нужно */
+      /* iPhone: у тебя было мелко — делаем БОЛЬШЕ */
+      --reviewScale: 0.98; /* попробуй 0.96–1.05 */
+      --reviewY: 0px;      /* если нужно ниже: 6px / 10px */
     }
 
     #reviews-phone .phone-slide img{
@@ -2240,16 +2220,13 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 
-  /* ---------------------------
-     Android (и всё, что не iOS)
-     Android у тебя: НУЖНО БОЛЬШЕ + ПОДНЯТЬ
-     --------------------------- */
+  /* ================= Android (не iOS) ================= */
   @supports not (-webkit-touch-callout: none){
     #reviews-phone{
-      --reviewScale: 0.98; /* <-- увеличь (1.00–1.10) если надо */
-      --reviewY: -10px;    /* <-- поднять (в минус) */
-      --slidePad: 8px;     /* <-- если надо */
+      /* Android: у тебя было слишком крупно — уменьшаем */
+      --reviewScale: 0.86; /* попробуй 0.82–0.90 */
+      --reviewY: 0px;      /* если нужно выше: -6px / -10px */
     }
   }
 }
-} 
+}
