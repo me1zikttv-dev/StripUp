@@ -2288,4 +2288,9 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       backface-visibility: hidden;
     }
   }
+}/* ========== ПОДНЯТИЕ ТЕЛЕФОНА ТОЛЬКО НА МОБИЛЬНЫХ ========== */
+@media (max-width: 768px) {
+  #reviews-phone .phone-frame {
+    margin-top: -50px !important;
+  }
 }
