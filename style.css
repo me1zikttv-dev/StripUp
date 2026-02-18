@@ -2198,7 +2198,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports not (-webkit-touch-callout: none){
 
     :root{
-      --reviewScale: 1.25;   /* ← УМЕНЬШИЛИ */
+      --reviewScale: 1.45;   /* ← УМЕНЬШИЛИ */
       --slidesY: -8px;       /* ← ПОДНЯЛИ */
       --slidePad: 10px;
     }
