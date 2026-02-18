@@ -2382,17 +2382,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 
-  /* -------- Android отдельно -------- */
-  @supports not (-webkit-touch-callout: none){
-    #reviews-phone{
-      /* Android: у тебя было слишком крупно — уменьшаем */
-      --rv-img-scale: 1;   /* <-- крути */
-      --rv-img-y: -79px;        /* <-- крути */
-
-      --rv-slides-y: 49px;    /* <-- крути */
-    }
-  }
-}
+ 
 @media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
 
@@ -2410,4 +2400,5 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       -webkit-transform-origin: center center !important;
     }
   }
+}
 }
