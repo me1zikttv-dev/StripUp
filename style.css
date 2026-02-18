@@ -1584,7 +1584,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 @media (max-width: 768px){
   #features .features-image{
-    left: -10px;
+    left: 10px;
     top: -40px;
   }
 }
@@ -1595,6 +1595,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     height: auto !important;
     display: block;
     margin: 0 auto;
+    transform: scale(1.05);
   }
 }
 
