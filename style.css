@@ -2293,4 +2293,9 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .phone-frame {
     margin-top: -75px !important;
   }
+}/* ========== УМЕНЬШЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ ========== */
+@media (max-width: 768px) {
+  #reviews-phone .phone-slide img {
+    transform: scale(0.75) !important;
+  }
 }
