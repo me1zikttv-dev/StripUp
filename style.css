@@ -2176,191 +2176,80 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .reviews-phone-navigation {
     display: none !important;
   }
-}/* ======================================================
-   УВЕЛИЧЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ (ВКЛЮЧАЯ iOS)
+/* ======================================================
+   REVIEWS — MOBILE ONLY (ТОЛЬКО ОТЗЫВЫ)
+   phone.png / рамку / mask / навигацию / контейнер НЕ ТРОГАЕМ
+   ВСТАВЬ В САМЫЙ КОНЕЦ style.css
    ====================================================== */
-@media (max-width: 768px) {
-  /* Увеличиваем изображения отзывов */
-  #reviews-phone .phone-slide img {
-    transform: scale(1.2) !important; /* Увеличиваем с 0.85 до 1.2 */
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    max-height: 550px !important; /* Ограничиваем максимальную высоту */
+@media (max-width: 768px){
+
+  /* ---------------------------
+     БАЗА (если устройство не распознали)
+     --------------------------- */
+  #reviews-phone{
+    --reviewScale: 0.92;  /* размер отзывов */
+    --reviewY: 0px;       /* сдвиг отзывов вниз/вверх */
+    --slidePad: 10px;     /* внутренний отступ слайда */
   }
-  
-  /* Увеличиваем область слайда */
-  #reviews-phone .phone-slide {
-    padding: 5px !important; /* Уменьшаем отступы */
+
+  /* Слайд: можно менять только паддинг (это не phone.png) */
+  #reviews-phone .phone-slide{
+    padding: var(--slidePad) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
-  
-  /* Поднимаем слайды выше */
-  #reviews-phone .phone-slides {
-    transform: translateY(15px) !important; /* Поднимаем комментарии */
-  }
-  
-  /* Настройки маски экрана телефона */
-  #reviews-phone .phone-screen-mask {
-    top: 6% !important;
-    left: 3% !important;
-    right: 3% !important;
-    bottom: 6% !important;
-    border-radius: 16px !important;
-  }
-  
-  /* Увеличиваем навигацию */
-  .reviews-nav-container {
-    gap: 30px !important;
-  }
-  
-  .reviews-nav-btn {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 16px !important;
-  }
-  
-  .reviews-dot {
-    width: 8px !important;
-    height: 8px !important;
-  }
-  
-  .reviews-dot.active {
-    transform: scale(1.4) !important;
-  }
-  
-  /* Оптимизация для маленьких экранов */
-  @media (max-width: 480px) {
-    #reviews-phone .phone-slide img {
-      transform: scale(1.15) !important;
-      max-height: 450px !important;
-    }
-    
-    #reviews-phone .phone-slides {
-      transform: translateY(15px) !important;
-    }
-    
-    .reviews-nav-container {
-      gap: 20px !important;
-    }
-    
-    .reviews-nav-btn {
-      width: 30px !important;
-      height: 30px !important;
-    }
-  }
-  
-  @media (max-width: 360px) {
-    #reviews-phone .phone-slide img {
-      transform: scale(1.1) !important;
-      max-height: 380px !important;
-    }
-    
-    #reviews-phone .phone-slides {
-      transform: translateY(20px) !important;
-    }
-  }
-}
 
-/* ======================================================
-   УЛУЧШЕНИЯ ДЛЯ iOS
-   ====================================================== */
-@supports (-webkit-touch-callout: none) {
-  /* CSS только для iOS устройств */
-  @media (max-width: 768px) {
-    #reviews-phone .phone-slide img {
-      transform: scale(1.22) !important; /* Чуть больше для iOS */
-      -webkit-transform: scale(1.22) !important;
-      max-height: 520px !important;
-    }
-    
-    #reviews-phone .phone-slides {
-      transform: translateY(15px) !important;
-      -webkit-transform: translateY(15px) !important;
-    }
-    
-    /* Улучшаем качество изображения на iOS */
-    #reviews-phone .phone-slide img {
-      image-rendering: -webkit-optimize-contrast;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
+  /* ВАЖНО: НЕ двигаем .phone-slides (иначе двигается и навигация/всё) */
+  #reviews-phone .phone-slides{
+    transform: none !important;
+    -webkit-transform: none !important;
   }
-}/* ========== ПОДНЯТИЕ ТЕЛЕФОНА ТОЛЬКО НА МОБИЛЬНЫХ ========== */
-@media (max-width: 768px) {
-  #reviews-phone .phone-frame {
-    margin-top: -75px !important;
-  }
-}/* ========== УМЕНЬШЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ ========== */
-@media (max-width: 768px) {
-  #reviews-phone .phone-slide img {
-    transform: scale(0.85) !important;
-  }
-}/* ========== НАСТРОЙКА ТОЛЬКО ДЛЯ iOS ========== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-    /* Поднимаем телефон выше */
-    #reviews-phone .phone-frame {
-      margin-top: -80px !important;
-    }
-    
-    /* Уменьшаем комментарии */
-    #reviews-phone .phone-slide img {
-      transform: scale(0.7) !important;
-    }
-    
-    /* Поднимаем комментарии выше внутри экрана */
-    #reviews-phone .phone-slides {
-      transform: translateY(0px) !important;
-    }
-    
-    /* Навигацию поднимаем выше */
-    #reviews-phone .reviews-phone-navigation {
-      bottom: 80px !important;
-    }
-  }
-}/* ======================================================
-   REVIEWS: ТРОГАЕМ ТОЛЬКО КАРТИНКИ ОТЗЫВОВ (IMG)
-   phone.png / рамку / mask / навигацию НЕ ТРОГАЕМ
-   ====================================================== */
-@media (max-width: 768px){
 
-  /* база (если устройство не определилось) */
+  /* ОТЗЫВЫ: двигаем и масштабируем ТОЛЬКО КАРТИНКУ */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
-    transform: translateY(0px) scale(0.92) !important;
-    -webkit-transform: translateY(0px) scale(0.92) !important;
-    transform-origin: center center !important;
-    -webkit-transform-origin: center center !important;
-    border-radius: 14px !important;
     display: block !important;
     max-height: none !important;
+    border-radius: 14px !important;
+
+    transform: translateY(var(--reviewY)) scale(var(--reviewScale)) !important;
+    -webkit-transform: translateY(var(--reviewY)) scale(var(--reviewScale)) !important;
+
+    transform-origin: center center !important;
+    -webkit-transform-origin: center center !important;
   }
 
-  /* ================= iOS (iPhone) ================= */
+  /* ---------------------------
+     iOS (iPhone/iPad)
+     iOS у тебя: НУЖНО чуть НИЖЕ
+     --------------------------- */
   @supports (-webkit-touch-callout: none){
-    #reviews-phone .phone-slide img{
-      /* 👇 тут крути */
-      transform: translateY(20px) scale(1) !important;
-      -webkit-transform: translateY(18px) scale(0.88) !important;
+    #reviews-phone{
+      --reviewScale: 0.88; /* <-- меняй */
+      --reviewY: 20px;     /* <-- опустить вниз */
+      --slidePad: 10px;    /* <-- если нужно */
+    }
 
-      /* улучшение рендера на iOS */
+    #reviews-phone .phone-slide img{
       image-rendering: -webkit-optimize-contrast;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
   }
 
-  /* ================= Android ================= */
+  /* ---------------------------
+     Android (и всё, что не iOS)
+     Android у тебя: НУЖНО БОЛЬШЕ + ПОДНЯТЬ
+     --------------------------- */
   @supports not (-webkit-touch-callout: none){
-    #reviews-phone .phone-slide img{
-      /* 👇 тут крути */
-      transform: translateY(6px) scale(1) !important;
-      -webkit-transform: translateY(6px) scale(0.95) !important;
+    #reviews-phone{
+      --reviewScale: 0.98; /* <-- увеличь (1.00–1.10) если надо */
+      --reviewY: -10px;    /* <-- поднять (в минус) */
+      --slidePad: 8px;     /* <-- если надо */
     }
   }
 }
+} 
