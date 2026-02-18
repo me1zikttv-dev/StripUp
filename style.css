@@ -2112,7 +2112,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
     :root{
-      --reviewScale: 1.06; /* ↑ увеличить (1.02–1.12) */
+      --reviewScale: 1; /* ↑ увеличить (1.02–1.12) */
       --reviewY: -10px;    /* ↑ поднять (-6..-22px) */
     }
   }
