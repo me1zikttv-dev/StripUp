@@ -2369,10 +2369,10 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports (-webkit-touch-callout: none){
     #reviews-phone{
       /* iPhone: если нужно ЧУТЬ БОЛЬШЕ и/или по-другому сдвиг */
-      --rv-img-scale: 0.90;   /* <-- крути */
+      --rv-img-scale: 1;   /* <-- крути */
       --rv-img-y: 0px;        /* <-- крути */
 
-      --rv-slides-y: 49px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
+      --rv-slides-y: 52px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
     }
 
     #reviews-phone .phone-slide img{
@@ -2386,8 +2386,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports not (-webkit-touch-callout: none){
     #reviews-phone{
       /* Android: у тебя было слишком крупно — уменьшаем */
-      --rv-img-scale: 0.80;   /* <-- крути */
-      --rv-img-y: 0px;        /* <-- крути */
+      --rv-img-scale: 1;   /* <-- крути */
+      --rv-img-y: -50px;        /* <-- крути */
 
       --rv-slides-y: 49px;    /* <-- крути */
     }
