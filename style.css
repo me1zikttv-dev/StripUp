@@ -2115,7 +2115,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   /* Возвращаем навигацию на место */
   #reviews-phone .phone-nav {
     position: absolute !important;
-    bottom: 210px !important; /* ← ЭТО ВЫСОТА СНИЗУ */
+    bottom: 240px !important; /* ← ЭТО ВЫСОТА СНИЗУ */
     left: 200px !important;   /* ← ОТСТУП СЛЕВА */
     right: 200px !important;  /* ← ОТСТУП СПРАВА */
     display: flex !important;
@@ -2394,7 +2394,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* Android: двигаем и масштабируем саму картинку отзыва */
     #reviews-phone .phone-slide img{
-      transform: translateY(-79px) scale(0.80) !important;   /* <-- вот это ты и хотел */
+      transform: translateY(-79px) scale(0.60) !important;   /* <-- вот это ты и хотел */
       -webkit-transform: translateY(-79px) scale(1) !important;
       transform-origin: center center !important;
       -webkit-transform-origin: center center !important;
