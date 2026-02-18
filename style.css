@@ -2393,3 +2393,21 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+@media (max-width: 768px){
+  @supports not (-webkit-touch-callout: none){
+
+    /* Android: двигаем весь блок слайдов (самый сильный рычаг) */
+    #reviews-phone .phone-slides{
+      transform: translateY(49px) !important;  /* <-- крути: меньше/в минус = выше */
+      -webkit-transform: translateY(49px) !important;
+    }
+
+    /* Android: двигаем и масштабируем саму картинку отзыва */
+    #reviews-phone .phone-slide img{
+      transform: translateY(-79px) scale(1) !important;   /* <-- вот это ты и хотел */
+      -webkit-transform: translateY(-79px) scale(1) !important;
+      transform-origin: center center !important;
+      -webkit-transform-origin: center center !important;
+    }
+  }
+}
