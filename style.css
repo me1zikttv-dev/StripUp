@@ -2176,4 +2176,116 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   #reviews-phone .reviews-phone-navigation {
     display: none !important;
   }
+}/* ======================================================
+   УВЕЛИЧЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ (ВКЛЮЧАЯ iOS)
+   ====================================================== */
+@media (max-width: 768px) {
+  /* Увеличиваем изображения отзывов */
+  #reviews-phone .phone-slide img {
+    transform: scale(1.2) !important; /* Увеличиваем с 0.85 до 1.2 */
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    max-height: 550px !important; /* Ограничиваем максимальную высоту */
+  }
+  
+  /* Увеличиваем область слайда */
+  #reviews-phone .phone-slide {
+    padding: 5px !important; /* Уменьшаем отступы */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Поднимаем слайды выше */
+  #reviews-phone .phone-slides {
+    transform: translateY(15px) !important; /* Поднимаем комментарии */
+  }
+  
+  /* Настройки маски экрана телефона */
+  #reviews-phone .phone-screen-mask {
+    top: 6% !important;
+    left: 3% !important;
+    right: 3% !important;
+    bottom: 6% !important;
+    border-radius: 16px !important;
+  }
+  
+  /* Увеличиваем навигацию */
+  .reviews-nav-container {
+    gap: 30px !important;
+  }
+  
+  .reviews-nav-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 16px !important;
+  }
+  
+  .reviews-dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+  
+  .reviews-dot.active {
+    transform: scale(1.4) !important;
+  }
+  
+  /* Оптимизация для маленьких экранов */
+  @media (max-width: 480px) {
+    #reviews-phone .phone-slide img {
+      transform: scale(1.15) !important;
+      max-height: 450px !important;
+    }
+    
+    #reviews-phone .phone-slides {
+      transform: translateY(15px) !important;
+    }
+    
+    .reviews-nav-container {
+      gap: 20px !important;
+    }
+    
+    .reviews-nav-btn {
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    #reviews-phone .phone-slide img {
+      transform: scale(1.1) !important;
+      max-height: 380px !important;
+    }
+    
+    #reviews-phone .phone-slides {
+      transform: translateY(20px) !important;
+    }
+  }
+}
+
+/* ======================================================
+   УЛУЧШЕНИЯ ДЛЯ iOS
+   ====================================================== */
+@supports (-webkit-touch-callout: none) {
+  /* CSS только для iOS устройств */
+  @media (max-width: 768px) {
+    #reviews-phone .phone-slide img {
+      transform: scale(1.22) !important; /* Чуть больше для iOS */
+      -webkit-transform: scale(1.22) !important;
+      max-height: 520px !important;
+    }
+    
+    #reviews-phone .phone-slides {
+      transform: translateY(15px) !important;
+      -webkit-transform: translateY(15px) !important;
+    }
+    
+    /* Улучшаем качество изображения на iOS */
+    #reviews-phone .phone-slide img {
+      image-rendering: -webkit-optimize-contrast;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+  }
 }
