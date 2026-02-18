@@ -1595,6 +1595,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     height: auto !important;
     display: block;
     margin: 0 auto;
+    transform: scale(1.2);  /* Добавьте эту строку для дополнительного увеличения */
   }
 }
 
