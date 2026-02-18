@@ -2369,10 +2369,10 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports (-webkit-touch-callout: none){
     #reviews-phone{
       /* iPhone: если нужно ЧУТЬ БОЛЬШЕ и/или по-другому сдвиг */
-      --rv-img-scale: 0.98;   /* <-- крути */
+      --rv-img-scale: 0.96;   /* <-- крути */
       --rv-img-y: 0px;        /* <-- крути */
 
-      --rv-slides-y: 52px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
+      --rv-slides-y: 55px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
     }
 
     #reviews-phone .phone-slide img{
