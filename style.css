@@ -2097,7 +2097,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports (-webkit-touch-callout: none){
     :root{
       --reviewScale: 1.00; /* iPhone норм */
-      --reviewY: 18px;     /* ↓ опустить (крути 10–30px) */
+      --reviewY: 22px;     /* ↓ опустить (крути 10–30px) */
     }
 
     #reviews-phone .phone-slide img{
