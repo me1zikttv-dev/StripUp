@@ -2323,32 +2323,24 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }/* ======================================================
    REVIEWS — MOBILE TUNING (ТОЛЬКО КОММЕНТАРИИ / ОТЗЫВЫ)
-   НЕ ТРОГАЕМ: phone.png (.phone-frame), навигацию, mask, контейнеры
-   ТРОГАЕМ ТОЛЬКО:
-   - #reviews-phone .phone-slide img   (масштаб/сдвиг отзывов)
-   - #reviews-phone .phone-slides      (если надо поднять/опустить ВЕСЬ контент внутри экрана)
    ====================================================== */
 
 @media (max-width: 768px){
 
-  /* -------- РУЧКИ (крути значения) -------- */
+  /* -------- БАЗОВЫЕ НАСТРОЙКИ (для всех) -------- */
   #reviews-phone{
-    /* Общие (fallback если не iOS) */
-    --rv-img-scale: 0.85;   /* размер КАРТИНКИ отзыва */
-    --rv-img-y: 0px;        /* сдвиг КАРТИНКИ отзыва (вниз + / вверх -) */
-
-    --rv-slides-y: 49px;    /* сдвиг ВСЕГО БЛОКА СЛАЙДОВ (вниз + / вверх -) */
+    --rv-img-scale: 0.85;   /* размер картинки отзыва */
+    --rv-img-y: 0px;        /* сдвиг картинки отзыва */
+    --rv-slides-y: 49px;    /* сдвиг всего блока слайдов */
   }
 
-  /* -------- ВСЕ ПРАВКИ ТОЛЬКО ДЛЯ ОТЗЫВОВ -------- */
-
-  /* 1) Сдвиг ВСЕГО содержимого отзывов внутри маски (если нужен) */
+  /* Сдвиг всего содержимого отзывов внутри маски */
   #reviews-phone .phone-slides{
     transform: translateY(var(--rv-slides-y)) !important;
     -webkit-transform: translateY(var(--rv-slides-y)) !important;
   }
 
-  /* 2) Масштаб/сдвиг именно картинки отзыва */
+  /* Масштаб/сдвиг именно картинки отзыва */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
@@ -2361,18 +2353,15 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     transform-origin: center center !important;
     -webkit-transform-origin: center center !important;
 
-    /* НЕ трогаем max-height/auto — чтобы не ломать размеры по устройствам */
     max-height: none !important;
   }
 
-  /* -------- iOS отдельно -------- */
+  /* -------- iOS (Safari) -------- */
   @supports (-webkit-touch-callout: none){
     #reviews-phone{
-      /* iPhone: если нужно ЧУТЬ БОЛЬШЕ и/или по-другому сдвиг */
-      --rv-img-scale: 0.93;   /* <-- крути */
-      --rv-img-y: 0px;        /* <-- крути */
-
-      --rv-slides-y: 45px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
+      --rv-img-scale: 0.93;
+      --rv-img-y: 0px;
+      --rv-slides-y: 45px;
     }
 
     #reviews-phone .phone-slide img{
@@ -2380,45 +2369,22 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
-/* ================= ANDROID — ОТЗЫВЫ (крупнее) ================= */
-@media (max-width: 768px){
-  @supports not (-webkit-touch-callout: none){
+  }
 
-    /* весь блок отзывов: меньше/в минус = выше */
+  /* -------- ANDROID (все браузеры кроме Safari) -------- */
+  @supports not (-webkit-touch-callout: none){
+    /* весь блок отзывов */
     #reviews-phone .phone-slides{
       transform: translateY(20px) !important;
       -webkit-transform: translateY(20px) !important;
     }
 
-    /* сама картинка отзыва: scale больше = крупнее */
+    /* сама картинка отзыва */
     #reviews-phone .phone-slide img{
       transform: translateY(-85px) scale(0.94) !important;
       -webkit-transform: translateY(-85px) scale(0.94) !important;
       transform-origin: center center !important;
       -webkit-transform-origin: center center !important;
-    }
-  }
-}
-  
- }
-}
-/* ================= ANDROID ONLY — PHONE.PNG (phone-frame) ================= */
-/* iOS НЕ трогаем вообще */
-
-@media (max-width: 768px){
-  @supports not (-webkit-touch-callout: none){
-
-    /* КРУТИЛКА: + = вниз, - = вверх */
-    #reviews-phone{
-      --android-phone-y: 55px;  /* <-- КРУТИ ТУТ */
-    }
-
-    /* Двигаем ТОЛЬКО phone.png */
-    #reviews-phone .phone-frame{
-      margin-top: 0 !important; /* на случай если у тебя где-то было margin-top */
-      transform: translateY(var(--android-phone-y)) scale(1.08) !important;
-      -webkit-transform: translateY(var(--android-phone-y)) scale(1.08) !important;
-      transform-origin: center top !important;
     }
   }
 }
