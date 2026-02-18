@@ -1,440 +1,406 @@
-let mobileScrollFixed = false;
+(() => {
+  "use strict";
 
-// ================= MOBILE SCROLL FIX =================
-function fixMobileInitialScroll() {
-  const isMobile = window.innerWidth <= 768;
-  if (!isMobile || mobileScrollFixed) return;
+  /* =========================
+     Helpers
+  ========================= */
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  mobileScrollFixed = true;
-  document.documentElement.classList.add('no-smooth-scroll');
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-  requestAnimationFrame(() => window.scrollTo(0, 0));
+  /* =========================
+     Mobile menu
+  ========================= */
+  const initMobileMenu = () => {
+    const toggle = $(".mobile-menu-toggle");
+    const navList = $("nav ul");
+    if (!toggle || !navList) return;
 
-  if (window.location.hash) {
-    history.replaceState(null, null, window.location.pathname);
-  }
+    const closeMenu = () => {
+      navList.classList.remove("active");
+      toggle.setAttribute("aria-expanded", "false");
+    };
 
-  setTimeout(() => {
-    document.documentElement.classList.remove('no-smooth-scroll');
-    document.documentElement.classList.add('smooth-scroll-ready');
-  }, 300);
-}
+    const openMenu = () => {
+      navList.classList.add("active");
+      toggle.setAttribute("aria-expanded", "true");
+    };
 
-function fixMobileAnchorScroll() {
-  if (window.innerWidth > 768) return;
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const id = this.getAttribute('href');
-      if (!id || id === '#') return;
-
-      const target = document.querySelector(id);
-      if (!target) return;
-
+    toggle.addEventListener("click", (e) => {
       e.preventDefault();
-
-      const headerOffset = 55;
-      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-
-      window.scrollTo({ top: y, behavior: 'auto' });
-
-      const navMenu = document.querySelector('nav ul');
-      if (navMenu) navMenu.classList.remove('active');
+      const isOpen = navList.classList.contains("active");
+      isOpen ? closeMenu() : openMenu();
     });
-  });
-}
 
-// ================= HEARTS =================
-function createHearts() {
-  const container = document.getElementById('hearts-container');
-  if (!container) return;
-
-  const heartsCount = 15;
-  for (let i = 0; i < heartsCount; i++) {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '💗';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDelay = Math.random() * 6 + 's';
-    heart.style.fontSize = (Math.random() * 15 + 12) + 'px';
-    container.appendChild(heart);
-  }
-}
-
-// ================= FAQ =================
-function initFAQ() {
-  const items = document.querySelectorAll('.faq-item');
-  if (!items.length) return;
-
-  function setIcon(item, isOpen) {
-    const icon = item.querySelector('.faq-question span:last-child');
-    if (icon) icon.textContent = isOpen ? '−' : '+';
-  }
-
-  function closeItem(item) {
-    const answer = item.querySelector('.faq-answer');
-    if (!answer) return;
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-    requestAnimationFrame(() => {
-      answer.style.transition = 'max-height 0.35s ease';
-      answer.style.maxHeight = '0px';
+    // close on link click
+    $$("a", navList).forEach((a) => {
+      a.addEventListener("click", () => closeMenu());
     });
-    item.classList.remove('active');
-    setIcon(item, false);
-  }
 
-  function openItem(item) {
-    const answer = item.querySelector('.faq-answer');
-    if (!answer) return;
-    item.classList.add('active');
-    setIcon(item, true);
-    answer.style.maxHeight = '0px';
-    requestAnimationFrame(() => {
-      answer.style.transition = 'max-height 0.35s ease';
-      answer.style.maxHeight = answer.scrollHeight + 'px';
+    // close on outside click
+    document.addEventListener("click", (e) => {
+      if (!navList.classList.contains("active")) return;
+      const insideNav = navList.contains(e.target);
+      const insideBtn = toggle.contains(e.target);
+      if (!insideNav && !insideBtn) closeMenu();
     });
-  }
 
-  items.forEach(item => {
-    const answer = item.querySelector('.faq-answer');
-    if (answer) {
-      answer.style.maxHeight = '0px';
-      answer.style.overflow = 'hidden';
-    }
-    item.classList.remove('active');
-    setIcon(item, false);
-  });
+    // close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+  };
 
-  items.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    if (!question) return;
+  /* =========================
+     FAQ accordion
+  ========================= */
+  const initFAQ = () => {
+    const items = $$(".faq-item");
+    if (!items.length) return;
 
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('active');
-      items.forEach(other => {
-        if (other !== item && other.classList.contains('active')) closeItem(other);
+    items.forEach((item) => {
+      const q = $(".faq-question", item);
+      if (!q) return;
+
+      q.addEventListener("click", () => {
+        // toggle current; close others
+        const willOpen = !item.classList.contains("active");
+        items.forEach((i) => i.classList.remove("active"));
+        if (willOpen) item.classList.add("active");
       });
-      if (isOpen) closeItem(item);
-      else openItem(item);
     });
-  });
+  };
 
-  window.addEventListener('resize', () => {
-    document.querySelectorAll('.faq-item.active .faq-answer').forEach(answer => {
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-    });
-  });
-}
+  /* =========================
+     Touch envelope (contact)
+  ========================= */
+  const initEnvelopeTouch = () => {
+    const env = $(".envelope");
+    if (!env) return;
 
-// ================= SMOOTH SCROLL =================
-function initSmoothScroll() {
-  if (window.innerWidth <= 768) return;
-  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    // Only for touch devices
+    const isTouch =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouch) return;
+
+    const setActive = (on) => {
+      env.classList.toggle("touch-active", !!on);
+    };
+
+    env.addEventListener("click", (e) => {
+      // 1st tap opens, 2nd tap on link should work
+      // If click on link - let it pass
+      const link = e.target.closest(".letter-link");
+      if (link) return;
+
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      const headerHeight = 70;
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: targetPosition - headerHeight, behavior: 'smooth' });
+      setActive(!env.classList.contains("touch-active"));
     });
-  });
-}
 
-// ================= HEADER SCROLL =================
-function initHeaderScroll() {
-  const header = document.querySelector('header');
-  if (!header) return;
-
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 80) {
-      header.style.background = 'rgba(255, 247, 249, 0.98)';
-      header.style.boxShadow = '0 4px 25px rgba(176, 49, 94, 0.18)';
-    } else {
-      header.style.background = 'rgba(255, 247, 249, 0.95)';
-      header.style.boxShadow = '0 2px 15px rgba(176, 49, 94, 0.15)';
-    }
-  });
-}
-
-// ================= MOBILE MENU =================
-function initMobileMenu() {
-  const menuToggle = document.querySelector('.mobile-menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  if (!menuToggle || !navMenu) return;
-
-  menuToggle.addEventListener('click', e => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-  });
-
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => navMenu.classList.remove('active'));
-  });
-
-  document.addEventListener('click', e => {
-    if (navMenu.classList.contains('active') &&
-        !navMenu.contains(e.target) &&
-        !menuToggle.contains(e.target)) {
-      navMenu.classList.remove('active');
-    }
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-      navMenu.classList.remove('active');
-    }
-  });
-}
-
-// ================= CALCULATOR =================
-function initCalculator() {
-  const shiftsSlider = document.getElementById('shifts');
-  const shiftsValue = document.getElementById('shifts-value');
-  const planButtons = document.querySelectorAll('.plan-btn');
-
-  const grossIncomeEl = document.getElementById('gross-income');
-  const commissionEl = document.getElementById('commission');
-  const netIncomeEl = document.getElementById('net-income');
-
-  if (!shiftsSlider || !shiftsValue || !grossIncomeEl || !commissionEl || !netIncomeEl) return;
-
-  const DAILY_INCOME_USD = 90;
-  const WEEKS_PER_MONTH = 4;
-  const modelShare = { solo: 80, coach: 70, operator: 60 };
-  let currentPlan = 'solo';
-
-  function formatUSD(amount) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(amount);
-  }
-
-  function updateSliderValue() {
-    shiftsValue.textContent = parseInt(shiftsSlider.value, 10);
-  }
-
-  function calculateIncome() {
-    const totalShifts = parseInt(shiftsSlider.value, 10) * WEEKS_PER_MONTH;
-    const grossIncome = DAILY_INCOME_USD * totalShifts;
-    const netIncome = grossIncome * (modelShare[currentPlan] / 100);
-    const commission = grossIncome - netIncome;
-
-    grossIncomeEl.textContent = formatUSD(grossIncome);
-    commissionEl.textContent = formatUSD(commission);
-    netIncomeEl.textContent = formatUSD(netIncome);
-  }
-
-  shiftsSlider.addEventListener('input', () => {
-    updateSliderValue();
-    calculateIncome();
-  });
-
-  planButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      planButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentPlan = btn.dataset.plan;
-      calculateIncome();
+    // close on outside tap
+    document.addEventListener("click", (e) => {
+      if (!env.classList.contains("touch-active")) return;
+      if (!env.contains(e.target)) setActive(false);
     });
-  });
 
-  updateSliderValue();
-  calculateIncome();
-}
+    // close on scroll (optional, helps on mobile)
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (env.classList.contains("touch-active")) setActive(false);
+      },
+      { passive: true }
+    );
+  };
 
-// ================= IMAGE REVIEWS SLIDER =================
-function initImageReviewsSlider() {
-  const root = document.getElementById('reviews-phone');
-  if (!root) return;
+  /* =========================
+     Reviews phone slider
+     Works with BOTH:
+      - desktop nav: .phone-nav-btn[data-dir], .phone-dot
+      - mobile nav:  .reviews-nav-btn[data-dir], .reviews-dot
+  ========================= */
+  const initReviewsPhone = () => {
+    const root = $("#reviews-phone");
+    if (!root) return;
 
-  const slides = root.querySelectorAll('.phone-slide');
-  const oldDots = root.querySelectorAll('.phone-dot');
-  const oldPrevBtn = root.querySelector('.phone-nav .prev-btn');
-  const oldNextBtn = root.querySelector('.phone-nav .next-btn');
-  
-  // НОВЫЕ ЭЛЕМЕНТЫ
-  const newDots = document.querySelectorAll('.reviews-dot');
-  const newPrevBtn = document.querySelector('.reviews-nav-btn.prev-btn');
-  const newNextBtn = document.querySelector('.reviews-nav-btn.next-btn');
-  
-  if (!slides.length) return;
+    const slides = $$(".phone-slide", root);
+    if (!slides.length) return;
 
-  let current = 0;
-  let isAnimating = false;
+    // Desktop dots (if exist)
+    const deskDots = $$(".phone-dot", root);
+    // Mobile dots (if exist)
+    const mobDots = $$(".reviews-dot", root);
 
-  function setActive(index) {
-    if (isAnimating) return;
-    isAnimating = true;
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
+    const setActive = (idx) => {
+      const total = slides.length;
+      const i = ((idx % total) + total) % total;
 
-    // Обновляем слайды
-    slides[current].classList.remove('active');
-    slides[index].classList.add('active');
+      slides.forEach((s, n) => s.classList.toggle("active", n === i));
+      deskDots.forEach((d, n) => d.classList.toggle("active", n === i));
+      mobDots.forEach((d, n) => d.classList.toggle("active", n === i));
 
-    // Обновляем старые точки
-    oldDots.forEach(d => d.classList.remove('active'));
-    if (oldDots[index]) oldDots[index].classList.add('active');
-    
-    // Обновляем новые точки
-    newDots.forEach(d => d.classList.remove('active'));
-    if (newDots[index]) newDots[index].classList.add('active');
+      activeIndex = i;
+    };
 
-    current = index;
-    setTimeout(() => { isAnimating = false; }, 450);
-  }
+    const getActiveFromDOM = () => {
+      const found = slides.findIndex((s) => s.classList.contains("active"));
+      return found >= 0 ? found : 0;
+    };
 
-  // Обработчики для новых кнопок
-  if (newNextBtn) newNextBtn.addEventListener('click', () => setActive(current + 1));
-  if (newPrevBtn) newPrevBtn.addEventListener('click', () => setActive(current - 1));
-  
-  // Обработчики для старых кнопок (на всякий случай)
-  if (oldNextBtn) oldNextBtn.addEventListener('click', () => setActive(current + 1));
-  if (oldPrevBtn) oldPrevBtn.addEventListener('click', () => setActive(current - 1));
+    let activeIndex = getActiveFromDOM();
+    setActive(activeIndex);
 
-  // Обработчики для новых точек
-  newDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.dataset.index, 10);
-      if (!Number.isNaN(idx)) setActive(idx);
+    const prev = () => setActive(activeIndex - 1);
+    const next = () => setActive(activeIndex + 1);
+
+    // Desktop arrows
+    $$(".phone-nav-btn", root).forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const dir =
+          btn.dataset.dir ||
+          (btn.classList.contains("prev") ? "prev" : "next");
+        dir === "prev" ? prev() : next();
+      });
     });
-  });
-  
-  // Обработчики для старых точек
-  oldDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.dataset.index, 10);
-      if (!Number.isNaN(idx)) setActive(idx);
+
+    // Mobile arrows
+    $$(".reviews-nav-btn", root).forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const dir = btn.dataset.dir || "next";
+        dir === "prev" ? prev() : next();
+      });
     });
+
+    // Dots (both)
+    deskDots.forEach((dot, i) => {
+      dot.addEventListener("click", (e) => {
+        e.preventDefault();
+        setActive(i);
+      });
+    });
+    mobDots.forEach((dot, i) => {
+      dot.addEventListener("click", (e) => {
+        e.preventDefault();
+        setActive(i);
+      });
+    });
+
+    // Swipe support (mobile)
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
+
+    const onTouchStart = (e) => {
+      if (!e.touches || e.touches.length !== 1) return;
+      tracking = true;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = (e) => {
+      if (!tracking) return;
+      tracking = false;
+
+      const touch = (e.changedTouches && e.changedTouches[0]) || null;
+      if (!touch) return;
+
+      const dx = touch.clientX - startX;
+      const dy = touch.clientY - startY;
+
+      // horizontal swipe only
+      if (Math.abs(dx) < 35) return;
+      if (Math.abs(dy) > 80) return;
+
+      dx < 0 ? next() : prev();
+    };
+
+    root.addEventListener("touchstart", onTouchStart, { passive: true });
+    root.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    // Keyboard arrows (desktop)
+    document.addEventListener("keydown", (e) => {
+      // only if reviews visible-ish
+      const rect = root.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    });
+  };
+
+  /* =========================
+     Calculator (safe init)
+     Supports:
+       - sliders with class .slider
+       - value bubbles with .slider-value near slider
+       - plan buttons with .plan-btn (data-plan)
+       - outputs:
+           #calcTotal, #calcMonthly, #calcPeople (optional)
+     If your ids differ — JS won't break.
+  ========================= */
+  const initCalculator = () => {
+    const calc = $("#calculator");
+    if (!calc) return;
+
+    const sliders = $$(".slider", calc);
+    const planButtons = $$(".plan-btn", calc);
+
+    // Optional outputs (only update if exist)
+    const outTotal = $("#calcTotal");
+    const outMonthly = $("#calcMonthly");
+    const outPeople = $("#calcPeople");
+
+    // Internal state
+    let plan = planButtons.find((b) => b.classList.contains("active"))?.dataset
+      ?.plan || "base";
+
+    const readSliderValue = (slider) => {
+      const v = Number(slider.value);
+      return Number.isFinite(v) ? v : 0;
+    };
+
+    const updateBubble = (slider) => {
+      // bubble might be sibling or inside same group
+      const group = slider.closest(".calculator-group") || slider.parentElement;
+      const bubble = group ? $(".slider-value", group) : null;
+      if (!bubble) return;
+
+      const min = Number(slider.min ?? 0);
+      const max = Number(slider.max ?? 100);
+      const val = readSliderValue(slider);
+
+      bubble.textContent = slider.dataset.suffix
+        ? `${val}${slider.dataset.suffix}`
+        : `${val}`;
+
+      // position bubble above thumb
+      const percent =
+        max === min ? 0 : ((val - min) / (max - min)) * 100;
+      // keep within reasonable bounds
+      const left = clamp(percent, 5, 95);
+      bubble.style.left = `${left}%`;
+    };
+
+    const updateAllBubbles = () => sliders.forEach(updateBubble);
+
+    const compute = () => {
+      // This is a generic calculation.
+      // If your site had specific formula earlier — скажи какие входы и формулу, и я подстрою 1:1.
+      const values = sliders.map(readSliderValue);
+      const sum = values.reduce((a, b) => a + b, 0);
+
+      // Plan multiplier (example)
+      const mult =
+        plan === "pro" ? 1.3 : plan === "max" ? 1.6 : 1.0;
+
+      const total = Math.round(sum * mult);
+      const monthly = Math.round(total / 30);
+
+      if (outTotal) outTotal.textContent = total.toString();
+      if (outMonthly) outMonthly.textContent = monthly.toString();
+      if (outPeople) outPeople.textContent = values[0]?.toString?.() ?? "0";
+    };
+
+    sliders.forEach((slider) => {
+      // init bubble suffix (optional)
+      updateBubble(slider);
+      slider.addEventListener("input", () => {
+        updateBubble(slider);
+        compute();
+      });
+      slider.addEventListener("change", compute);
+    });
+
+    planButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        planButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        plan = btn.dataset.plan || plan;
+        compute();
+      });
+    });
+
+    // initial
+    updateAllBubbles();
+    compute();
+  };
+
+  /* =========================
+     Vacancies modal (safe)
+     Structure supported:
+       .vacancy-apply-btn opens modal #vacancyModal or .vacancy-modal
+       close button .vacancy-modal__close
+       backdrop .vacancy-modal__backdrop
+  ========================= */
+  const initVacancyModal = () => {
+    const modal =
+      $("#vacancyModal") || $(".vacancy-modal");
+    if (!modal) return;
+
+    const openBtns = $$(".vacancy-apply-btn");
+    const closeBtn = $(".vacancy-modal__close", modal);
+    const backdrop = $(".vacancy-modal__backdrop", modal);
+
+    const open = () => modal.classList.add("is-open");
+    const close = () => modal.classList.remove("is-open");
+
+    openBtns.forEach((btn) => btn.addEventListener("click", (e) => {
+      // if it's a link — prevent jump
+      e.preventDefault();
+      open();
+    }));
+
+    closeBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      close();
+    });
+
+    backdrop?.addEventListener("click", close);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  };
+
+  /* =========================
+     Optional: smooth-scroll safety
+     (doesn't break anything, just fixes jumpy behavior sometimes)
+  ========================= */
+  const initSmoothScroll = () => {
+    // If you use CSS smooth scroll, leave it.
+    // Here we only add safe anchor behavior if needed.
+    $$('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        if (!id || id === "#") return;
+
+        const target = $(id);
+        if (!target) return;
+
+        // If mobile menu open - it will close via initMobileMenu anyway
+        // Use native smooth if available; if mobile, let browser handle
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  };
+
+  /* =========================
+     Boot
+  ========================= */
+  document.addEventListener("DOMContentLoaded", () => {
+    initMobileMenu();
+    initFAQ();
+    initEnvelopeTouch();
+    initReviewsPhone();
+    initCalculator();
+    initVacancyModal();
+    initSmoothScroll();
   });
-}
-
-// ================= CONTACT ENVELOPE =================
-function initContactEnvelope() {
-  const envelope = document.getElementById('envelope');
-  if (!envelope) return;
-  const letterLink = envelope.querySelector('.letter-link');
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
-
-  if (isTouchDevice) {
-    envelope.addEventListener('touchstart', e => {
-      if (e.target === letterLink) return;
-      envelope.classList.add('touch-active');
-    }, { passive: true });
-
-    document.addEventListener('touchstart', e => {
-      if (!envelope.contains(e.target)) envelope.classList.remove('touch-active');
-    }, { passive: true });
-  }
-
-  envelope.addEventListener('mouseenter', () => envelope.classList.add('touch-active'));
-  envelope.addEventListener('mouseleave', () => envelope.classList.remove('touch-active'));
-}
-
-// ================= VACANCY MODAL =================
-function initVacancyModal() {
-  const modal = document.getElementById('vacancyModal');
-  const form = document.getElementById('vacancyForm');
-  if (!modal || !form) return;
-
-  const vacancyTitle = document.getElementById('vacancyModalVacancy');
-  const vacancyField = document.getElementById('vacancyField');
-  const nameField = document.getElementById('nameField');
-  const tgField = document.getElementById('tgField');
-  const phoneField = document.getElementById('phoneField');
-  const submitBtn = form.querySelector('.vacancy-form__submit');
-
-  const TG_BOT_TOKEN = "8497373725:AAFBV65-Km6M_wKxUWWPkDy7sqkp2NiFk74";
-  const TG_CHAT_ID = "6324436781";
-
-  function esc(s) { return encodeURIComponent(String(s || '').trim()); }
-
-  async function sendToTelegram(text) {
-    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${esc(text)}`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      return !!data.ok;
-    } catch (e) {
-      const img = new Image();
-      img.src = url;
-      return true;
-    }
-  }
-
-  function openModal(vacancy) {
-    vacancyTitle.textContent = vacancy || '—';
-    vacancyField.value = vacancy || '';
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => { if (nameField) nameField.focus(); }, 50);
-  }
-
-  function closeModal() {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.vacancy-apply-btn').forEach(btn => {
-    btn.addEventListener('click', () => openModal(btn.dataset.vacancy || ''));
-  });
-
-  modal.addEventListener('click', e => {
-    if (e.target.dataset.close) closeModal();
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-  });
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!nameField.value || !tgField.value || !phoneField.value) {
-      alert('Заполни все поля: имя, ник в TG и телефон.');
-      return;
-    }
-
-    const text = `✅ Заявка с сайта StripUp\n\nВакансия: ${vacancyField.value}\nИмя: ${nameField.value}\nTG: ${tgField.value}\nТелефон: ${phoneField.value}`;
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      const oldText = submitBtn.textContent;
-      submitBtn.textContent = 'Отправляем...';
-      const ok = await sendToTelegram(text);
-      submitBtn.disabled = false;
-      submitBtn.textContent = oldText;
-      if (ok) { alert('✅ Заявка отправлена!'); closeModal(); form.reset(); }
-      else alert('❌ Не удалось отправить.');
-    }
-  });
-}
-
-// ================= INIT =================
-document.addEventListener('DOMContentLoaded', function () {
-  fixMobileInitialScroll();
-  fixMobileAnchorScroll();
-  createHearts();
-  initFAQ();
-  initSmoothScroll();
-  initHeaderScroll();
-  initMobileMenu();
-  initCalculator();
-  initImageReviewsSlider();
-  initVacancyModal();
-  initContactEnvelope();
-  
-  // Задержка для корректного отображения навигации
-  setTimeout(() => {
-    const nav = document.querySelector('.reviews-phone-navigation');
-    if (nav && window.innerWidth <= 768) {
-      console.log('✅ Новая навигация загружена и готова к работе');
-    }
-  }, 500);
-});
+})();
