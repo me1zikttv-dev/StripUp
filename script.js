@@ -256,85 +256,61 @@ function initImageReviewsSlider() {
   const oldDots = root.querySelectorAll('.phone-dot');
   const oldPrevBtn = root.querySelector('.phone-nav .prev-btn');
   const oldNextBtn = root.querySelector('.phone-nav .next-btn');
-
-  // ✅ ВАЖНО: новые элементы ищем ТОЛЬКО внутри root
-  const newDots = root.querySelectorAll('.reviews-dot');
-  const newPrevBtn = root.querySelector('.reviews-phone-navigation .reviews-nav-btn.prev-btn');
-  const newNextBtn = root.querySelector('.reviews-phone-navigation .reviews-nav-btn.next-btn');
-
+  
+  // НОВЫЕ ЭЛЕМЕНТЫ
+  const newDots = document.querySelectorAll('.reviews-dot');
+  const newPrevBtn = document.querySelector('.reviews-nav-btn.prev-btn');
+  const newNextBtn = document.querySelector('.reviews-nav-btn.next-btn');
+  
   if (!slides.length) return;
 
   let current = 0;
   let isAnimating = false;
 
-  // 👉 определяем текущий активный слайд из DOM (если вдруг не 0)
-  slides.forEach((s, i) => {
-    if (s.classList.contains('active')) current = i;
-  });
-
   function setActive(index) {
     if (isAnimating) return;
     isAnimating = true;
-
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
 
+    // Обновляем слайды
     slides[current].classList.remove('active');
     slides[index].classList.add('active');
 
-    // старые точки (для ПК)
+    // Обновляем старые точки
     oldDots.forEach(d => d.classList.remove('active'));
     if (oldDots[index]) oldDots[index].classList.add('active');
-
-    // новые точки (для мобилок)
+    
+    // Обновляем новые точки
     newDots.forEach(d => d.classList.remove('active'));
     if (newDots[index]) newDots[index].classList.add('active');
 
     current = index;
-    setTimeout(() => { isAnimating = false; }, 350);
+    setTimeout(() => { isAnimating = false; }, 450);
   }
 
-  /* =========================
-     ПК: оставляем как есть
-     (всегда подключаем старую навигацию)
-  ========================= */
+  // Обработчики для новых кнопок
+  if (newNextBtn) newNextBtn.addEventListener('click', () => setActive(current + 1));
+  if (newPrevBtn) newPrevBtn.addEventListener('click', () => setActive(current - 1));
+  
+  // Обработчики для старых кнопок (на всякий случай)
   if (oldNextBtn) oldNextBtn.addEventListener('click', () => setActive(current + 1));
   if (oldPrevBtn) oldPrevBtn.addEventListener('click', () => setActive(current - 1));
 
-  oldDots.forEach(dot => {
+  // Обработчики для новых точек
+  newDots.forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.index, 10);
       if (!Number.isNaN(idx)) setActive(idx);
     });
   });
-
-  /* =========================
-     МОБИЛКИ: подключаем новую навигацию
-     ✅ ВАЖНО: только если ширина <= 768
-  ========================= */
-  function bindMobileNav() {
-    if (window.innerWidth > 768) return;
-
-    if (newNextBtn) newNextBtn.addEventListener('click', () => setActive(current + 1));
-    if (newPrevBtn) newPrevBtn.addEventListener('click', () => setActive(current - 1));
-
-    newDots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = parseInt(dot.dataset.index, 10);
-        if (!Number.isNaN(idx)) setActive(idx);
-      });
+  
+  // Обработчики для старых точек
+  oldDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.index, 10);
+      if (!Number.isNaN(idx)) setActive(idx);
     });
-  }
-
-  bindMobileNav();
-
-  // если повернули телефон — можно заново активировать (без влияния на ПК)
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-      // обновим активные точки на мобиле
-      newDots.forEach(d => d.classList.remove('active'));
-      if (newDots[current]) newDots[current].classList.add('active');
-    }
   });
 }
 
@@ -453,4 +429,12 @@ document.addEventListener('DOMContentLoaded', function () {
   initImageReviewsSlider();
   initVacancyModal();
   initContactEnvelope();
+  
+  // Задержка для корректного отображения навигации
+  setTimeout(() => {
+    const nav = document.querySelector('.reviews-phone-navigation');
+    if (nav && window.innerWidth <= 768) {
+      console.log('✅ Новая навигация загружена и готова к работе');
+    }
+  }, 500);
 });
