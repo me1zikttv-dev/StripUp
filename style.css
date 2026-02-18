@@ -2104,29 +2104,30 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 /* ==========================================
-   REVIEWS — MOBILE BASE (общие для всех мобилок)
+   REVIEWS — MOBILE BASE
    ========================================== */
 @media (max-width: 768px){
-  :root{
-    /* БАЗА (НЕ iOS/НЕ Android) */
-    --slidesY: 0px;          /* базовый сдвиг отзывов по Y */
-    --reviewScale: 0.88;     /* базовый масштаб отзывов */
 
-    /* Маска экрана телефона */
+  :root{
+    /* БАЗА (если устройство не определилось) */
+    --reviewScale: 0.88;
+    --slidesY: 0px;
+
+    /* Маска телефона */
     --maskTop: 7.8%;
     --maskSide: 4%;
     --maskBottom: 7%;
 
-    /* Можно регулировать "сжатие" через padding */
-    --slidePad: 14px;
+    /* Отступ внутри */
+    --slidePad: 12px;
   }
 
-  /* Скрываем ПК-навигацию на мобилках */
+  /* Скрываем ПК навигацию */
   #reviews-phone .phone-screen-content .phone-nav{
     display: none !important;
   }
 
-  /* Маска (экран телефона) */
+  /* Маска экрана */
   #reviews-phone .phone-screen-mask{
     top: var(--maskTop) !important;
     left: var(--maskSide) !important;
@@ -2136,20 +2137,20 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     overflow: hidden !important;
   }
 
-  /* Сдвиг отзывов внутри экрана */
+  /* Сдвиг отзывов */
   #reviews-phone .phone-slides{
     transform: translateY(var(--slidesY)) !important;
   }
 
-  /* Слайд */
+  /* Контейнер слайда */
   #reviews-phone .phone-slide{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
     padding: var(--slidePad) !important;
   }
 
-  /* Картинки отзывов */
+  /* Сами отзывы */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
@@ -2159,18 +2160,24 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 
+
+
+
+
+
 /* ==========================================
-   iOS — размер норм, НО надо чуть НИЖЕ
+   iOS — НОРМ РАЗМЕР, НО НИЖЕ
    ========================================== */
 @media (max-width: 768px){
   @supports (-webkit-touch-callout: none){
+
     :root{
-      --reviewScale: 0.88;   /* почти не трогаем */
-      --slidesY: 18px;       /* ← ОПУСТИТЬ отзывы (крути 10–30px) */
-      --slidePad: 14px;
+      --reviewScale: 0.88;   /* размер норм */
+      --slidesY: 22px;       /* ← ОПУСТИТЬ */
+      --slidePad: 12px;
     }
 
-    /* чуть лучше рендер на iOS (без -webkit-transform) */
+    /* Улучшение рендера iOS */
     #reviews-phone .phone-slide img{
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
@@ -2179,16 +2186,23 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 
+
+
+
+
+
 /* ==========================================
-   ANDROID/OTHER — надо УВЕЛИЧИТЬ и ПОДНЯТЬ
+   ANDROID — УМЕНЬШИТЬ + ПОДНЯТЬ
    ========================================== */
 @media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
+
     :root{
-      --reviewScale: 1.02;   /* ← УВЕЛИЧИТЬ (крути 0.95–1.10) */
-      --slidesY: -12px;      /* ← ПОДНЯТЬ (крути -6..-25px) */
-      --slidePad: 10px;      /* меньше padding = больше отзыв */
+      --reviewScale: 0.95;   /* ← УМЕНЬШИЛИ */
+      --slidesY: -8px;       /* ← ПОДНЯЛИ */
+      --slidePad: 10px;
     }
+
   }
 }
 }
