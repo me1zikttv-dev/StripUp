@@ -2321,4 +2321,46 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       bottom: 80px !important;
     }
   }
+}/* ======================================================
+   REVIEWS: ТРОГАЕМ ТОЛЬКО КАРТИНКИ ОТЗЫВОВ (IMG)
+   phone.png / рамку / mask / навигацию НЕ ТРОГАЕМ
+   ====================================================== */
+@media (max-width: 768px){
+
+  /* база (если устройство не определилось) */
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transform: translateY(0px) scale(0.92) !important;
+    -webkit-transform: translateY(0px) scale(0.92) !important;
+    transform-origin: center center !important;
+    -webkit-transform-origin: center center !important;
+    border-radius: 14px !important;
+    display: block !important;
+    max-height: none !important;
+  }
+
+  /* ================= iOS (iPhone) ================= */
+  @supports (-webkit-touch-callout: none){
+    #reviews-phone .phone-slide img{
+      /* 👇 тут крути */
+      transform: translateY(18px) scale(0.88) !important;
+      -webkit-transform: translateY(18px) scale(0.88) !important;
+
+      /* улучшение рендера на iOS */
+      image-rendering: -webkit-optimize-contrast;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+  }
+
+  /* ================= Android ================= */
+  @supports not (-webkit-touch-callout: none){
+    #reviews-phone .phone-slide img{
+      /* 👇 тут крути */
+      transform: translateY(6px) scale(0.95) !important;
+      -webkit-transform: translateY(6px) scale(0.95) !important;
+    }
+  }
 }
