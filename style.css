@@ -2178,32 +2178,27 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     display: none !important;
   }
 }/* ======================================================
-   УВЕЛИЧЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ (ВКЛЮЧАЯ iOS)
+   REVIEWS — MOBILE (ФИКС: без конфликтов, точка iOS = iPhone 11)
    ====================================================== */
+
 @media (max-width: 768px) {
-  /* Увеличиваем изображения отзывов */
-  #reviews-phone .phone-slide img {
-    transform: scale(1.2) !important; /* Увеличиваем с 0.85 до 1.2 */
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    max-height: 550px !important; /* Ограничиваем максимальную высоту */
+
+  /* ---- БАЗА (Android и все НЕ-iOS) — твои значения ---- */
+  #reviews-phone{
+    --rv-img-scale: 0.85;   /* твое */
+    --rv-img-y: 0px;        /* твое */
+    --rv-slides-y: 49px;    /* твое */
   }
-  
-  /* Увеличиваем область слайда */
+
+  /* Область слайда (оставляем как было полезное) */
   #reviews-phone .phone-slide {
-    padding: 5px !important; /* Уменьшаем отступы */
+    padding: 5px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
-  
-  /* Поднимаем слайды выше */
-  #reviews-phone .phone-slides {
-    transform: translateY(15px) !important; /* Поднимаем комментарии */
-  }
-  
-  /* Настройки маски экрана телефона */
+
+  /* Маска экрана телефона (оставляем как было) */
   #reviews-phone .phone-screen-mask {
     top: 6% !important;
     left: 3% !important;
@@ -2211,128 +2206,22 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     bottom: 6% !important;
     border-radius: 16px !important;
   }
-  
-  /* Увеличиваем навигацию */
+
+  /* Навигация (оставляем как было) */
   .reviews-nav-container {
     gap: 30px !important;
   }
-  
   .reviews-nav-btn {
     width: 32px !important;
     height: 32px !important;
     font-size: 16px !important;
   }
-  
   .reviews-dot {
     width: 8px !important;
     height: 8px !important;
   }
-  
   .reviews-dot.active {
     transform: scale(1.4) !important;
-  }
-  
-  /* Оптимизация для маленьких экранов */
-  @media (max-width: 480px) {
-    #reviews-phone .phone-slide img {
-      transform: scale(1.15) !important;
-      max-height: 450px !important;
-    }
-    
-    #reviews-phone .phone-slides {
-      transform: translateY(15px) !important;
-    }
-    
-    .reviews-nav-container {
-      gap: 20px !important;
-    }
-    
-    .reviews-nav-btn {
-      width: 30px !important;
-      height: 30px !important;
-    }
-  }
-  
-  @media (max-width: 360px) {
-    #reviews-phone .phone-slide img {
-      transform: scale(1.1) !important;
-      max-height: 380px !important;
-    }
-    
-    #reviews-phone .phone-slides {
-      transform: translateY(20px) !important;
-    }
-  }
-}
-
-/* ======================================================
-   УЛУЧШЕНИЯ ДЛЯ iOS
-   ====================================================== */
-@supports (-webkit-touch-callout: none) {
-  /* CSS только для iOS устройств */
-  @media (max-width: 768px) {
-    #reviews-phone .phone-slide img {
-      transform: scale(1.22) !important; /* Чуть больше для iOS */
-      -webkit-transform: scale(1.22) !important;
-      max-height: 520px !important;
-    }
-    
-    #reviews-phone .phone-slides {
-      transform: translateY(15px) !important;
-      -webkit-transform: translateY(15px) !important;
-    }
-    
-    /* Улучшаем качество изображения на iOS */
-    #reviews-phone .phone-slide img {
-      image-rendering: -webkit-optimize-contrast;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
-  }
-}/* ========== ПОДНЯТИЕ ТЕЛЕФОНА ТОЛЬКО НА МОБИЛЬНЫХ ========== */
-@media (max-width: 768px) {
-  #reviews-phone .phone-frame {
-    margin-top: -75px !important;
-  }
-}/* ========== УМЕНЬШЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ ========== */
-@media (max-width: 768px) {
-  #reviews-phone .phone-slide img {
-    transform: scale(0.85) !important;
-  }
-}/* ========== НАСТРОЙКА ТОЛЬКО ДЛЯ iOS ========== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-    /* Поднимаем телефон выше */
-    #reviews-phone .phone-frame {
-      margin-top: -80px !important;
-    }
-    
-    /* Уменьшаем комментарии */
-    #reviews-phone .phone-slide img {
-      transform: scale(0.7) !important;
-    }
-    
-    /* Поднимаем комментарии выше внутри экрана */
-    #reviews-phone .phone-slides {
-      transform: translateY(0px) !important;
-    }
-    
-    /* Навигацию поднимаем выше */
-    #reviews-phone .reviews-phone-navigation {
-      bottom: 48px !important;
-    }
-  }
-}/* ======================================================
-   REVIEWS — MOBILE TUNING (ТОЛЬКО КОММЕНТАРИИ / ОТЗЫВЫ)
-   ====================================================== */
-
-@media (max-width: 768px){
-
-  /* -------- БАЗОВЫЕ НАСТРОЙКИ (для всех) -------- */
-  #reviews-phone{
-    --rv-img-scale: 0.85;   /* размер картинки отзыва */
-    --rv-img-y: 0px;        /* сдвиг картинки отзыва */
-    --rv-slides-y: 49px;    /* сдвиг всего блока слайдов */
   }
 
   /* Сдвиг всего содержимого отзывов внутри маски */
@@ -2341,7 +2230,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     -webkit-transform: translateY(var(--rv-slides-y)) !important;
   }
 
-  /* Масштаб/сдвиг именно картинки отзыва */
+  /* Масштаб/сдвиг именно картинки отзыва (ЕДИНСТВЕННЫЙ transform!) */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
@@ -2354,15 +2243,23 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     transform-origin: center center !important;
     -webkit-transform-origin: center center !important;
 
-    max-height: none !important;
+    max-height: none !important; /* важно: убираем max-height чтобы не плясало */
   }
 
-  /* -------- iOS (Safari) -------- */
-  @supports (-webkit-touch-callout: none){
+  /* ---- Маленькие экраны: НЕ меняем твой scale, только чуть компактнее навигация ---- */
+  @media (max-width: 480px) {
+    .reviews-nav-container { gap: 20px !important; }
+    .reviews-nav-btn { width: 30px !important; height: 30px !important; }
+  }
+}
+
+/* ---- iOS Safari — точка отсчёта iPhone 11 (твои цифры) ---- */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
     #reviews-phone{
-      --rv-img-scale: 0.93;
-      --rv-img-y: 0px;
-      --rv-slides-y: 45px;
+      --rv-img-scale: 0.93;  /* твое (iPhone 11) */
+      --rv-img-y: 0px;       /* твое */
+      --rv-slides-y: 45px;   /* твое (iPhone 11) */
     }
 
     #reviews-phone .phone-slide img{
@@ -2371,21 +2268,19 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       backface-visibility: hidden;
     }
   }
+}
 
-  @media (max-width: 768px){
-  @supports not (-webkit-touch-callout: none){
-    
-    /* Добавляем !important везде */
-    #reviews-phone .phone-slides {
-      transform: translateY(75px) !important;
-      -webkit-transform: translateY(75px) !important;
-    }
-    
-    /* ИЛИ пробуем двигать сами картинки */
-    #reviews-phone .phone-slide img {
-      transform: translateY(-75px) scale(0.88) !important;
-      -webkit-transform: translateY(-75px) scale(0.88) !important;
-    }
-  }
+/* (Опционально) Поднятие телефона на мобилке — оставил твоё значение */
+@media (max-width: 768px) {
+  #reviews-phone .phone-frame {
+    margin-top: -75px !important;
   }
 }
+
+/* Если хочешь разное поднятие для iOS — включи, но сейчас не трогаю:
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    #reviews-phone .phone-frame { margin-top: -80px !important; }
+  }
+}
+*/
