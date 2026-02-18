@@ -2296,6 +2296,6 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }/* ========== УМЕНЬШЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ ========== */
 @media (max-width: 768px) {
   #reviews-phone .phone-slide img {
-    transform: scale(0.75) !important;
+    transform: scale(0.86) !important;
   }
 }
