@@ -2347,7 +2347,7 @@ body{
   @supports not (-webkit-touch-callout: none){
 
     #reviews-phone .reviews-phone-navigation{
-      bottom: 90px !important; /* ↑ поднимаем выше Android */
+      bottom: 135px !important; /* ↑ поднимаем выше Android */
     }
 
   }
