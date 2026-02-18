@@ -2376,14 +2376,14 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* Добавляем !important везде */
     #reviews-phone .phone-slides {
-      transform: translateY(70px) !important;
-      -webkit-transform: translateY(70px) !important;
+      transform: translateY(75px) !important;
+      -webkit-transform: translateY(75px) !important;
     }
     
     /* ИЛИ пробуем двигать сами картинки */
     #reviews-phone .phone-slide img {
-      transform: translateY(-70px) scale(0.89) !important;
-      -webkit-transform: translateY(-70px) scale(0.89) !important;
+      transform: translateY(-75px) scale(0.88) !important;
+      -webkit-transform: translateY(-75px) scale(0.88) !important;
     }
   }
   }
