@@ -2391,7 +2391,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     #reviews-phone .phone-slide img{
       transform: translateY(-79px) scale(0.60) !important;
-      -webkit-transform: translateY(-79px) scale(0.60) !important; /* ВАЖНО: тоже 0.60 */
+      -webkit-transform: translateY(-79px) scale(0.90) !important; /* ВАЖНО: тоже 0.60 */
       transform-origin: center center !important;
       -webkit-transform-origin: center center !important;
     }
