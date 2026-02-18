@@ -2173,7 +2173,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     :root{
       --reviewScale: 1;   /* размер норм */
-      --slidesY: 26px;       /* ← ОПУСТИТЬ */
+      --slidesY: 30px;       /* ← ОПУСТИТЬ */
       --slidePad: 12px;
     }
 
