@@ -2372,7 +2372,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       --rv-img-scale: 0.96;   /* <-- крути */
       --rv-img-y: 0px;        /* <-- крути */
 
-      --rv-slides-y: 55px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
+      --rv-slides-y: 45px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
     }
 
     #reviews-phone .phone-slide img{
