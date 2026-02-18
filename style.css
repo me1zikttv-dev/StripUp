@@ -2382,8 +2382,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* ИЛИ пробуем двигать сами картинки */
     #reviews-phone .phone-slide img {
-      transform: translateY(30px) scale(0.95) !important;
-      -webkit-transform: translateY(30px) scale(0.95) !important;
+      transform: translateY(0px) scale(0.94) !important;
+      -webkit-transform: translateY(0px) scale(0.94) !important;
     }
   }
   }
