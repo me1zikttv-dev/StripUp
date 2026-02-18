@@ -2335,7 +2335,7 @@ body{
     left: 50% !important;
     transform: translateX(-50%) !important;
 
-    bottom: 105px !important; /* ← ВОТ ЭТО ДВИГАЕТ ВЕРТИКАЛЬНО */
+    bottom: 90px !important; /* ← ВОТ ЭТО ДВИГАЕТ ВЕРТИКАЛЬНО */
     /* хочешь выше: 115px / 125px
        хочешь ниже: 95px / 85px */
   }
