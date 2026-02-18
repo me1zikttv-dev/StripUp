@@ -1982,8 +1982,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px){
   @supports (-webkit-touch-callout: none){
     #reviews-phone{
-      --reviewScale: 0.92; /* iPhone размер */
-      --reviewY: 18px;     /* ↓ вот это двигает ТОЛЬКО отзывы */
+      --reviewScale: 1; /* iPhone размер */
+      --reviewY: 20px;     /* ↓ вот это двигает ТОЛЬКО отзывы */
     }
 
     #reviews-phone .phone-slide img{
@@ -1998,7 +1998,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
     #reviews-phone{
-      --reviewScale: 1.02; /* увеличить */
+      --reviewScale: 1; /* увеличить */
       --reviewY: -10px;    /* поднять */
     }
   }
