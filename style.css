@@ -2402,3 +2402,23 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   
  }
 }
+/* ================= ANDROID ONLY — PHONE.PNG (phone-frame) ================= */
+/* iOS НЕ трогаем вообще */
+
+@media (max-width: 768px){
+  @supports not (-webkit-touch-callout: none){
+
+    /* КРУТИЛКА: + = вниз, - = вверх */
+    #reviews-phone{
+      --android-phone-y: 35px;  /* <-- КРУТИ ТУТ */
+    }
+
+    /* Двигаем ТОЛЬКО phone.png */
+    #reviews-phone .phone-frame{
+      margin-top: 0 !important; /* на случай если у тебя где-то было margin-top */
+      transform: translateY(var(--android-phone-y)) scale(1.08) !important;
+      -webkit-transform: translateY(var(--android-phone-y)) scale(1.08) !important;
+      transform-origin: center top !important;
+    }
+  }
+}
