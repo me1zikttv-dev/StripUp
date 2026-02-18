@@ -1956,24 +1956,16 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }
 
 /* ======================================================
-   iOS ONLY — микро-подстройки (после mobile блока)
-   ====================================================== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-    #reviews-phone .phone-slide img{
-      transform: scale(0.92) !important;
-      -webkit-transform: scale(0.92) !important;
-    }
-    #reviews-phone .phone-slides{
-      transform: translateY(8px) !important;
-      -webkit-transform: translateY(8px) !important;
-    }
-  }
-}
-/* ======================================================
    REVIEWS (ТОЛЬКО МОБИЛКИ) — ЧИСТО, БЕЗ КОНФЛИКТОВ
+   ДВИГАЕМ ТОЛЬКО ОТЗЫВЫ (IMG), НЕ НАВИГАЦИЮ
    ====================================================== */
 @media (max-width: 768px){
+
+  /* Общие переменные (база) */
+  :root{
+    --reviewScale: 0.90;  /* общий масштаб */
+    --reviewY: 0px;       /* общий сдвиг вниз/вверх */
+  }
 
   /* Скрываем старую навигацию (ПК) */
   #reviews-phone .phone-screen-content .phone-nav{
@@ -2010,7 +2002,13 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     overflow: hidden !important;
   }
 
-  /* Слайды */
+  /* Слайды (НЕ ТРОГАЕМ transform, чтобы не двигать навигацию) */
+  #reviews-phone .phone-slides{
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+
+  /* Слайд */
   #reviews-phone .phone-slide{
     padding: 12px !important;
     display: flex !important;
@@ -2018,19 +2016,16 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     justify-content: center !important;
   }
 
-  /* =======================
-     ГЛАВНОЕ: отзывы (img)
-     ======================= */
-  :root{
-    --reviewScale: 0.90;  /* общий масштаб */
-    --reviewY: 0px;       /* общий сдвиг */
-  }
-
+  /* ====== ГЛАВНОЕ: ОТЗЫВЫ (IMG) ====== */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
+
+    /* ДВИГАЕМ ТОЛЬКО ИЗОБРАЖЕНИЕ */
     transform: translateY(var(--reviewY)) scale(var(--reviewScale)) !important;
+    -webkit-transform: translateY(var(--reviewY)) scale(var(--reviewScale)) !important;
+
     transform-origin: center center !important;
     border-radius: 14px !important;
   }
@@ -2038,7 +2033,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   /* Новая навигация (только мобилка) */
   #reviews-phone .reviews-phone-navigation{
     position: absolute !important;
-    bottom: 90px !important;
+    bottom: 90px !important; /* двигаешь навигацию ТОЛЬКО тут */
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 72% !important;
@@ -2102,7 +2097,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports (-webkit-touch-callout: none){
     :root{
       --reviewScale: 1.00; /* iPhone норм */
-      --reviewY: 18px;     /* ↓ ОПУСТИТЬ (крути 10–30px) */
+      --reviewY: 18px;     /* ↓ опустить (крути 10–30px) */
     }
 
     #reviews-phone .phone-slide img{
