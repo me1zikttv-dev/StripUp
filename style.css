@@ -2380,21 +2380,25 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
-  }
+/* ================= ANDROID — ОТЗЫВЫ (крупнее) ================= */
 @media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
 
+    /* весь блок отзывов: меньше/в минус = выше */
     #reviews-phone .phone-slides{
-      transform: translateY(49px) !important;
-      -webkit-transform: translateY(49px) !important;
+      transform: translateY(20px) !important;
+      -webkit-transform: translateY(20px) !important;
     }
 
+    /* сама картинка отзыва: scale больше = крупнее */
     #reviews-phone .phone-slide img{
-      transform: translateY(-79px) scale(0.90) !important;
-      -webkit-transform: translateY(-79px) scale(0.90) !important; /* ВАЖНО: тоже 0.60 */
+      transform: translateY(-40px) scale(0.92) !important;
+      -webkit-transform: translateY(-40px) scale(0.92) !important;
       transform-origin: center center !important;
       -webkit-transform-origin: center center !important;
     }
   }
 }
+  
+ }
 }
