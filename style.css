@@ -2321,41 +2321,58 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       bottom: 48px !important;
     }
   }
-}
-/* ======================================================
+}/* ======================================================
    REVIEWS — MOBILE TUNING (ТОЛЬКО КОММЕНТАРИИ / ОТЗЫВЫ)
    НЕ ТРОГАЕМ: phone.png (.phone-frame), навигацию, mask, контейнеры
-   ТРОГАЕМ ТОЛЬКО: .phone-slides и .phone-slide img
-   ВСТАВЬ В САМЫЙ КОНЕЦ style.css
+   ТРОГАЕМ ТОЛЬКО:
+   - #reviews-phone .phone-slide img   (масштаб/сдвиг отзывов)
+   - #reviews-phone .phone-slides      (если надо поднять/опустить ВЕСЬ контент внутри экрана)
    ====================================================== */
 
 @media (max-width: 768px){
 
-  /* ====== БАЗА (если не распознали устройство) ====== */
+  /* -------- РУЧКИ (крути значения) -------- */
   #reviews-phone{
-    --rv-img-scale: 0.85; /* меньше = меньше */
-    --rv-img-y: 0px;      /* минус = выше */
-    --rv-slides-y: 49px;  /* минус/меньше = выше */
+    /* Общие (fallback если не iOS) */
+    --rv-img-scale: 0.85;   /* размер КАРТИНКИ отзыва */
+    --rv-img-y: 0px;        /* сдвиг КАРТИНКИ отзыва (вниз + / вверх -) */
+
+    --rv-slides-y: 49px;    /* сдвиг ВСЕГО БЛОКА СЛАЙДОВ (вниз + / вверх -) */
   }
 
+  /* -------- ВСЕ ПРАВКИ ТОЛЬКО ДЛЯ ОТЗЫВОВ -------- */
+
+  /* 1) Сдвиг ВСЕГО содержимого отзывов внутри маски (если нужен) */
   #reviews-phone .phone-slides{
     transform: translateY(var(--rv-slides-y)) !important;
     -webkit-transform: translateY(var(--rv-slides-y)) !important;
   }
 
+  /* 2) Масштаб/сдвиг именно картинки отзыва */
   #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+
     transform: translateY(var(--rv-img-y)) scale(var(--rv-img-scale)) !important;
     -webkit-transform: translateY(var(--rv-img-y)) scale(var(--rv-img-scale)) !important;
+
     transform-origin: center center !important;
     -webkit-transform-origin: center center !important;
+
+    /* НЕ трогаем max-height/auto — чтобы не ломать размеры по устройствам */
+    max-height: none !important;
   }
 
-  /* ====== iOS ====== */
+  /* -------- iOS отдельно -------- */
   @supports (-webkit-touch-callout: none){
     #reviews-phone{
-      --rv-img-scale: 0.93;
-      --rv-img-y: 0px;
-      --rv-slides-y: 45px;
+      /* iPhone: если нужно ЧУТЬ БОЛЬШЕ и/или по-другому сдвиг */
+      --rv-img-scale: 0.93;   /* <-- крути */
+      --rv-img-y: 0px;        /* <-- крути */
+
+      --rv-slides-y: 45px;    /* <-- крути (обычно именно это визуально “поднимает/опускает”) */
     }
 
     #reviews-phone .phone-slide img{
@@ -2363,15 +2380,25 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
-  }
-
-  /* ====== ANDROID ====== */
+/* ================= ANDROID — ОТЗЫВЫ (крупнее) ================= */
+@media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
-    #reviews-phone{
-      /* ТЕБЕ НАДО: поднять прилично + чуть увеличить */
-      --rv-slides-y: 10px;   /* делай МЕНЬШЕ/В МИНУС = поднимется сильнее */
-      --rv-img-y: -40px;     /* минус = выше */
-      --rv-img-scale: 0.95;  /* больше = больше (0.92–1.05) */
+
+    /* весь блок отзывов: меньше/в минус = выше */
+    #reviews-phone .phone-slides{
+      transform: translateY(20px) !important;
+      -webkit-transform: translateY(20px) !important;
+    }
+
+    /* сама картинка отзыва: scale больше = крупнее */
+    #reviews-phone .phone-slide img{
+      transform: translateY(-85px) scale(0.94) !important;
+      -webkit-transform: translateY(-85px) scale(0.94) !important;
+      transform-origin: center center !important;
+      -webkit-transform-origin: center center !important;
     }
   }
+}
+  
+ }
 }
