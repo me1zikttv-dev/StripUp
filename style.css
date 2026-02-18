@@ -2296,6 +2296,29 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 }/* ========== УМЕНЬШЕНИЕ КОММЕНТАРИЕВ НА МОБИЛЬНЫХ ========== */
 @media (max-width: 768px) {
   #reviews-phone .phone-slide img {
-    transform: scale(0.86) !important;
+    transform: scale(0.85) !important;
+  }
+}/* ========== НАСТРОЙКА ТОЛЬКО ДЛЯ iOS ========== */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    /* Поднимаем телефон выше */
+    #reviews-phone .phone-frame {
+      margin-top: -80px !important;
+    }
+    
+    /* Уменьшаем комментарии */
+    #reviews-phone .phone-slide img {
+      transform: scale(0.7) !important;
+    }
+    
+    /* Поднимаем комментарии выше внутри экрана */
+    #reviews-phone .phone-slides {
+      transform: translateY(0px) !important;
+    }
+    
+    /* Навигацию поднимаем выше */
+    #reviews-phone .reviews-phone-navigation {
+      bottom: 80px !important;
+    }
   }
 }
