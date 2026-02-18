@@ -2340,3 +2340,15 @@ body{
        хочешь ниже: 95px / 85px */
   }
 }
+/* ============================
+   NAVIGATION — ANDROID ONLY FIX
+   ============================ */
+@media (max-width: 768px){
+  @supports not (-webkit-touch-callout: none){
+
+    #reviews-phone .reviews-phone-navigation{
+      bottom: 90px !important; /* ↑ поднимаем выше Android */
+    }
+
+  }
+}
