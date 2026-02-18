@@ -2103,4 +2103,75 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     backface-visibility: hidden;
   }
 }
+}/* ==========================================
+   REVIEWS — MOBILE BASE (общие для всех мобилок)
+   ========================================== */
+@media (max-width: 768px){
+  :root{
+    /* Общие */
+    --slidesY: 20px;
+
+    /* Маска экрана телефона */
+    --maskTop: 7.8%;
+    --maskSide: 4%;
+    --maskBottom: 7%;
+
+    /* Отзывы (по умолчанию, базовое значение) */
+    --reviewScale: 0.88;
+  }
+
+  /* Скрываем ПК-навигацию на мобилках */
+  #reviews-phone .phone-screen-content .phone-nav{ display:none !important; }
+
+  /* Маска */
+  #reviews-phone .phone-screen-mask{
+    top: var(--maskTop) !important;
+    left: var(--maskSide) !important;
+    right: var(--maskSide) !important;
+    bottom: var(--maskBottom) !important;
+    overflow: hidden !important;
+  }
+
+  /* Сдвиг отзывов */
+  #reviews-phone .phone-slides{
+    transform: translateY(var(--slidesY)) !important;
+  }
+
+  /* ВАЖНО: базовая геометрия отзыва */
+  #reviews-phone .phone-slide{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding: 14px !important; /* лучше регулируй паддингом */
+  }
+
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transform: scale(var(--reviewScale)) !important;
+    transform-origin: center center !important;
+  }
+}
+
+/* ==========================================
+   iOS OVERRIDE — на iPhone делаем отзывы БОЛЬШЕ
+   ========================================== */
+@media (max-width: 768px){
+  @supports (-webkit-touch-callout: none){
+    :root{
+      --reviewScale: 0.95; /* ← крути: 0.92–1.02 */
+    }
+  }
+}
+
+/* ==========================================
+   ANDROID/OTHER OVERRIDE — на Android делаем отзывы МЕНЬШЕ
+   ========================================== */
+@media (max-width: 768px){
+  @supports not (-webkit-touch-callout: none){
+    :root{
+      --reviewScale: 0.85; /* ← крути: 0.78–0.90 */
+    }
+  }
 }
