@@ -2318,7 +2318,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     
     /* Навигацию поднимаем выше */
     #reviews-phone .reviews-phone-navigation {
-      bottom: 40px !important;
+      bottom: 48px !important;
     }
   }
 }/* ======================================================
