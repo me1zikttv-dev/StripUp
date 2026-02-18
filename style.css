@@ -2392,8 +2392,8 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
     /* сама картинка отзыва: scale больше = крупнее */
     #reviews-phone .phone-slide img{
-      transform: translateY(-70px) scale(0.92) !important;
-      -webkit-transform: translateY(-70px) scale(0.92) !important;
+      transform: translateY(-70px) scale(0.94) !important;
+      -webkit-transform: translateY(-70px) scale(0.94) !important;
       transform-origin: center center !important;
       -webkit-transform-origin: center center !important;
     }
