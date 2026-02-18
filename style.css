@@ -2345,7 +2345,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports (-webkit-touch-callout: none){
     #reviews-phone .phone-slide img{
       /* 👇 тут крути */
-      transform: translateY(18px) scale(0.88) !important;
+      transform: translateY(20px) scale(1) !important;
       -webkit-transform: translateY(18px) scale(0.88) !important;
 
       /* улучшение рендера на iOS */
@@ -2359,7 +2359,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @supports not (-webkit-touch-callout: none){
     #reviews-phone .phone-slide img{
       /* 👇 тут крути */
-      transform: translateY(6px) scale(0.95) !important;
+      transform: translateY(6px) scale(1) !important;
       -webkit-transform: translateY(6px) scale(0.95) !important;
     }
   }
