@@ -2415,3 +2415,29 @@ body{
 
   }
 }
+/* ======================================================
+   ONLY iPhone 15 / 15 Plus / (и выше по этим размерам)
+   Поднимаем ОТЗЫВЫ (slides + картинку)
+   Вставить В САМЫЙ КОНЕЦ CSS
+   ====================================================== */
+
+@supports (-webkit-touch-callout: none) {
+
+  /* iPhone 15 / 15 Pro (viewport 393x852) */
+  @media (max-width: 768px) and (width: 393px) and (height: 852px) {
+    #reviews-phone{
+      --rv-slides-y: 40px;  /* МЕНЬШЕ = ВЫШЕ (у тебя было 55 на iPhone 11) */
+      --rv-img-y: 10px;     /* МЕНЬШЕ = ВЫШЕ */
+      /* --rv-img-scale: 0.93;  можно трогать, если надо */
+    }
+  }
+
+  /* iPhone 15 Plus / 15 Pro Max (viewport 430x932) */
+  @media (max-width: 768px) and (width: 430px) and (height: 932px) {
+    #reviews-phone{
+      --rv-slides-y: 40px;  /* МЕНЬШЕ = ВЫШЕ */
+      --rv-img-y: 10px;     /* МЕНЬШЕ = ВЫШЕ */
+    }
+  }
+
+}
