@@ -2178,49 +2178,216 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     display: none !important;
   }
 }/* ======================================================
-   REVIEWS NAV — FINAL (ТОЛЬКО НОВАЯ НАВИГАЦИЯ)
-   Android / ПК не трогаем
-   iOS: iPhone 11 и iPhone 12–15 отдельно
+   REVIEWS — MOBILE (ФИКС: без конфликтов, точка iOS = iPhone 11)
    ====================================================== */
 
-/* 1) На мобилке скрываем СТАРУЮ навигацию внутри маски */
-@media (max-width: 768px){
-  #reviews-phone .phone-screen-content .phone-nav{
-    display: none !important;
+@media (max-width: 768px) {
+
+  /* ---- БАЗА (Android и все НЕ-iOS) — твои значения ---- */
+  #reviews-phone{
+    --rv-img-scale: 0.85;
+    --rv-img-y: 0px;
+    --rv-slides-y: 49px;
+  }
+
+  /* Область слайда */
+  #reviews-phone .phone-slide {
+    padding: 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Маска экрана телефона */
+  #reviews-phone .phone-screen-mask {
+    top: 6% !important;
+    left: 3% !important;
+    right: 3% !important;
+    bottom: 6% !important;
+    border-radius: 16px !important;
+  }
+
+  /* Сдвиг всего содержимого отзывов внутри маски */
+  #reviews-phone .phone-slides{
+    transform: translateY(var(--rv-slides-y)) !important;
+    -webkit-transform: translateY(var(--rv-slides-y)) !important;
+  }
+
+  /* Масштаб/сдвиг именно картинки отзыва */
+  #reviews-phone .phone-slide img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+
+    transform: translateY(var(--rv-img-y)) scale(var(--rv-img-scale)) !important;
+    -webkit-transform: translateY(var(--rv-img-y)) scale(var(--rv-img-scale)) !important;
+
+    transform-origin: center center !important;
+    -webkit-transform-origin: center center !important;
+
+    max-height: none !important;
+  }
+
+  /* Маленькие экраны */
+  @media (max-width: 480px) {
+    .reviews-nav-container { gap: 20px !important; }
+    .reviews-nav-btn { width: 30px !important; height: 30px !important; }
   }
 }
 
-/* 2) БАЗА ДЛЯ МОБИЛКИ (все телефоны): новая навигация */
+/* ---- iOS Safari — точка отсчёта iPhone 11 (твои цифры) ---- */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    #reviews-phone{
+      --rv-img-scale: 0.93;   /* iPhone 11 */
+      --rv-img-y: 25px;
+      --rv-slides-y: 55px;    /* iPhone 11 */
+    }
+
+    #reviews-phone .phone-slide img{
+      image-rendering: -webkit-optimize-contrast;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+  }
+}
+
+/* Поднятие телефона на мобилке — твое */
+@media (max-width: 768px) {
+  #reviews-phone .phone-frame {
+    margin-top: -75px !important;
+  }
+}
+
+/* ============================
+   REVIEWS — ANDROID FIX ONLY
+   (не трогает iOS)
+   ============================ */
 @media (max-width: 768px){
+  @supports not (-webkit-touch-callout: none){
+    #reviews-phone{
+      --rv-slides-y: 15px;
+      --rv-img-y: 0px;
+      --rv-img-scale: 0.85;
+    }
+  }
+}
+
+/* ============================
+   iOS LARGE (iPhone 13–15) FIX (твой)
+   ============================ */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (min-width: 390px) {
+    #reviews-phone{
+      --rv-slides-y: 10px;
+    }
+  }
+}
+
+/* ============================
+   FIX: Android Yandex Browser (твой)
+   ============================ */
+html{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body{
+  overflow-x: hidden;
+}
+#reviews-phone .phone-slides,
+#reviews-phone .phone-slide img{
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ======================================================
+   NAVIGATION — используем phone-nav (реальная навигация)
+   Условия:
+   - iPhone 11 не трогаем
+   - Android не трогаем
+   - меняем только новые айфоны (390px: 12–15 и дальше)
+   ====================================================== */
+
+/* БАЗА: чтобы bottom работал (не меняем положение на Android/11 если оно уже правильное) */
+@media (max-width: 768px){
+  #reviews-phone .phone-nav{
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 25px !important;   /* базово как на 11 */
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* ТОЛЬКО iOS и ТОЛЬКО новые айфоны (группа 390px: 12/13/14/15/и новее) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
+    #reviews-phone .phone-nav{
+      bottom: 35px !important; /* ↑ ВОТ ТУТ ДВИГАЕШЬ ТОЛЬКО НОВЫЕ АЙФОНЫ */
+    }
+  }
+
+  /* ЯВНО: iPhone 11/XR (~414px) — оставляем как было */
+  @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
+    #reviews-phone .phone-nav{
+      bottom: 35px !important;
+    }
+  }
+}
+/* ======================================================
+   REVIEWS NAV — FINAL FIX (ONLY iPhone 12–15)
+   НЕ ТРОГАЕТ Android / iPhone 11 / ПК
+   ====================================================== */
+
+/* БАЗА — как сейчас (для всех мобилок) */
+@media (max-width: 768px){
+
+  /* Скрываем старую навигацию */
+  #reviews-phone .phone-screen-content .phone-nav{
+    display: none !important;
+  }
+
+  /* Новая навигация */
   #reviews-phone .reviews-phone-navigation{
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
+    bottom: 105px !important; /* ← БАЗА (как сейчас стоит) */
     width: 72% !important;
     max-width: 230px !important;
     z-index: 9999 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-
-    bottom: 105px !important; /* БАЗОВОЕ значение (если не iOS) */
   }
 }
 
-/* 3) iOS: iPhone 11 / XR (400–430px) — ОПУСКАЕМ ВНИЗ */
+/* ======================================================
+   iPhone 11 / XR — НЕ ТРОГАЕМ
+   (фиксируем чтобы не съезжал)
+   ====================================================== */
 @supports (-webkit-touch-callout: none){
   @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
+
     #reviews-phone .reviews-phone-navigation{
-      bottom: 75px !important; /* ← ВОТ ЭТО ОПУСКАЕТ ВНИЗ НА iPhone 11 */
+      bottom: 105px !important; /* ← ОСТАВЛЯЕМ КАК БЫЛО */
     }
+
   }
 }
 
-/* 4) iOS: iPhone 12–15 (390px группа: 376–399px) */
+/* ======================================================
+   iPhone 12–15 (390px) — МЕНЯЕШЬ ТОЛЬКО ТУТ
+   ====================================================== */
 @supports (-webkit-touch-callout: none){
   @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
+
     #reviews-phone .reviews-phone-navigation{
-      bottom: 105px !important; /* ← тут для 12–15 (можешь менять отдельно) */
+      bottom: 125px !important; /* ← ХОЧЕШЬ ВЫШЕ — СТАВЬ БОЛЬШЕ */
     }
+
   }
 }
