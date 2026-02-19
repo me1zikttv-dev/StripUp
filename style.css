@@ -2352,51 +2352,40 @@ body{
 
   }
 }/* ==========================================
-   REVIEWS NAV — per iPhone model (iOS only)
-   Управление: меняешь только --nav-bottom
+   NAV POSITION — iOS per iPhone
    ========================================== */
 
-/* 1) БАЗА: для iOS по умолчанию (если модель не поймали) */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px){
-    #reviews-phone{
-      --nav-bottom: 45px; /* базовое (твое текущее) */
+
+    /* база iOS (iPhone 11) */
+    #reviews-phone .phone-nav{
+      bottom: 45px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 80% !important;
+      max-width: 320px !important;
     }
-    #reviews-phone .reviews-phone-navigation{
-      bottom: var(--nav-bottom) !important;
+  }
+
+  /* iPhone 12–15 / Pro (390px) */
+  @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
+    #reviews-phone .phone-nav{
+      bottom: 35px !important; /* ниже чем 11 */
     }
   }
-}
 
-/* 2) iPhone 11 / XR (414px) — отдельное значение */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (width: 414px){
-    #reviews-phone{ --nav-bottom: 45px; } /* <-- двигай тут */
+  /* Pro Max */
+  @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
+    #reviews-phone .phone-nav{
+      bottom: 38px !important;
+    }
   }
-}
 
-/* 3) iPhone 12 / 12 Pro / 13 / 13 Pro / 14 / 14 Pro / 15 / 15 Pro (390px) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (width: 390px){
-    #reviews-phone{ --nav-bottom: 20px; } /* <-- двигай тут */
-  }
-}
-
-/* 4) iPhone Pro Max (428–430px: 12/13/14 Pro Max = 428, 14/15 Plus/Pro Max часто 430) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (width: 428px){
-    #reviews-phone{ --nav-bottom: 35px; } /* <-- двигай тут */
-  }
-}
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (width: 430px){
-    #reviews-phone{ --nav-bottom: 35px; } /* <-- двигай тут */
-  }
-}
-
-/* 5) iPhone mini (360px: 12 mini / 13 mini) */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (width: 360px){
-    #reviews-phone{ --nav-bottom: 28px; } /* <-- двигай тут */
+  /* mini */
+  @media (max-width: 768px) and (max-width: 375px){
+    #reviews-phone .phone-nav{
+      bottom: 32px !important;
+    }
   }
 }
