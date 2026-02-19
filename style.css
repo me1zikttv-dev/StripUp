@@ -2443,7 +2443,7 @@ body{
   /* ЯВНО: iPhone 11/XR (400–430) НЕ ТРОГАЕМ */
   @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
     #reviews-phone{
-      --rv-slides-y: 55px !important;  /* как у тебя было на 11 */
+      --rv-slides-y: 0px !important;  /* как у тебя было на 11 */
       --rv-img-y: 25px !important;
     }
   }
