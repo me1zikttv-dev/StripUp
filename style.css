@@ -2316,7 +2316,7 @@ body{
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    bottom: 45px !important;   /* базово как на 11 */
+    bottom: 25px !important;   /* базово как на 11 */
     z-index: 9999 !important;
     pointer-events: auto !important;
   }
@@ -2326,14 +2326,14 @@ body{
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
     #reviews-phone .phone-nav{
-      bottom: 60px !important; /* ↑ ВОТ ТУТ ДВИГАЕШЬ ТОЛЬКО НОВЫЕ АЙФОНЫ */
+      bottom: 35px !important; /* ↑ ВОТ ТУТ ДВИГАЕШЬ ТОЛЬКО НОВЫЕ АЙФОНЫ */
     }
   }
 
   /* ЯВНО: iPhone 11/XR (~414px) — оставляем как было */
   @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
     #reviews-phone .phone-nav{
-      bottom: 45px !important;
+      bottom: 35px !important;
     }
   }
 }
