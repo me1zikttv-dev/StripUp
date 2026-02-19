@@ -2402,7 +2402,7 @@ body{
     /* iPhone 11 / XR (414-ish) — ОПУСТИТЬ НИЖЕ */
     @media (min-width: 400px) and (max-width: 430px){
       #reviews-phone .reviews-phone-navigation{
-        bottom: 45px !important; /* ↓ меньше = ниже */
+        bottom: 50px !important; /* ↓ меньше = ниже */
       }
     }
 
