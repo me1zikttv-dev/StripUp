@@ -2389,3 +2389,37 @@ body{
     }
   }
 }
+/* ============================
+   MOBILE NAV (phone-nav) — FORCE POSITION
+   ============================ */
+@media (max-width: 768px){
+  #reviews-phone .phone-nav{
+    position: absolute !important;   /* ВОТ ЧЕГО ТЕБЕ НЕ ХВАТАЛО */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 45px !important;         /* это теперь начнет работать */
+    display: flex !important;
+    width: 80% !important;
+    max-width: 320px !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+  }
+}
+@supports (-webkit-touch-callout: none) {
+  /* iPhone 12–15 / Pro (включая iPhone 15) */
+  @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
+    #reviews-phone .phone-nav{
+      bottom: 60px !important; /* ↑ выше чем 11 */
+    }
+  }
+
+  /* iPhone 11 / XR */
+  @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
+    #reviews-phone .phone-nav{
+      bottom: 45px !important; /* iPhone 11 как было */
+    }
+  }
+}
+@media (max-width: 768px){
+  .phone-nav{ outline: 4px solid lime !important; }
+}
