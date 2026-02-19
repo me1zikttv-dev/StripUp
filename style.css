@@ -2416,28 +2416,35 @@ body{
   }
 }
 /* ======================================================
-   ONLY iPhone 15 / 15 Plus / (и выше по этим размерам)
-   Поднимаем ОТЗЫВЫ (slides + картинку)
-   Вставить В САМЫЙ КОНЕЦ CSS
+   FIX: iOS NEW iPhone (12/13/14/15 и новее) — поднять отзывы
+   НЕ трогает Android
+   НЕ трогает iPhone 11 / XR (400–430)
+   ВСТАВИТЬ В САМЫЙ КОНЕЦ CSS
    ====================================================== */
 
 @supports (-webkit-touch-callout: none) {
 
-  /* iPhone 15 / 15 Pro (viewport 393x852) */
-  @media (max-width: 768px) and (width: 393px) and (height: 852px) {
+  /* iPhone 12/13/14/15 (390px ширина) */
+  @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
     #reviews-phone{
-      --rv-slides-y: 40px;  /* МЕНЬШЕ = ВЫШЕ (у тебя было 55 на iPhone 11) */
-      --rv-img-y: 10px;     /* МЕНЬШЕ = ВЫШЕ */
-      /* --rv-img-scale: 0.93;  можно трогать, если надо */
+      --rv-slides-y: 20px !important;  /* МЕНЬШЕ = ВЫШЕ (попробуй 20 -> 10 -> 0) */
+      --rv-img-y: 10px !important;     /* если картинка тоже низко: 10 -> 5 -> 0 */
     }
   }
 
-  /* iPhone 15 Plus / 15 Pro Max (viewport 430x932) */
-  @media (max-width: 768px) and (width: 430px) and (height: 932px) {
+  /* iPhone Plus / Pro Max (430px ширина) — тоже новые */
+  @media (max-width: 768px) and (min-width: 431px) and (max-width: 440px){
     #reviews-phone{
-      --rv-slides-y: 40px;  /* МЕНЬШЕ = ВЫШЕ */
-      --rv-img-y: 10px;     /* МЕНЬШЕ = ВЫШЕ */
+      --rv-slides-y: 20px !important;
+      --rv-img-y: 10px !important;
     }
   }
 
+  /* ЯВНО: iPhone 11/XR (400–430) НЕ ТРОГАЕМ */
+  @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
+    #reviews-phone{
+      --rv-slides-y: 55px !important;  /* как у тебя было на 11 */
+      --rv-img-y: 25px !important;
+    }
+  }
 }
