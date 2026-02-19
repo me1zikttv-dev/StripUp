@@ -2303,7 +2303,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) and (min-width: 390px) {
     #reviews-phone{
-      --rv-slides-y: 30px; /* было 45px → подняли выше */
+      --rv-slides-y: 20px; /* было 45px → подняли выше */
     }
   }
 }
