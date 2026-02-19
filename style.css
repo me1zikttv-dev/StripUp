@@ -2293,7 +2293,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     #reviews-phone{
       --rv-slides-y: 15px; /* было 49px → поднимаем вверх */
       --rv-img-y: 0px;     /* можно оставить 0 */
-      --rv-img-scale: 0.86;/* оставляем твой андроидный масштаб */
+      --rv-img-scale: 0.85;/* оставляем твой андроидный масштаб */
     }
   }
 }
@@ -2335,7 +2335,7 @@ body{
     left: 50% !important;
     transform: translateX(-50%) !important;
 
-    bottom: 35px !important; /* ← ВОТ ЭТО ДВИГАЕТ ВЕРТИКАЛЬНО */
+    bottom: 45px !important; /* ← ВОТ ЭТО ДВИГАЕТ ВЕРТИКАЛЬНО */
     /* хочешь выше: 115px / 125px
        хочешь ниже: 95px / 85px */
   }
