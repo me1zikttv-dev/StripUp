@@ -2337,3 +2337,12 @@ body{
     }
   }
 }
+@media (max-width: 768px){
+  #reviews-phone .phone-nav{
+    position: fixed !important;
+    bottom: 300px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 999999 !important;
+  }
+}
