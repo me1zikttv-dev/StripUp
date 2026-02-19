@@ -2351,4 +2351,52 @@ body{
     }
 
   }
+}/* ==========================================
+   REVIEWS NAV — per iPhone model (iOS only)
+   Управление: меняешь только --nav-bottom
+   ========================================== */
+
+/* 1) БАЗА: для iOS по умолчанию (если модель не поймали) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px){
+    #reviews-phone{
+      --nav-bottom: 45px; /* базовое (твое текущее) */
+    }
+    #reviews-phone .reviews-phone-navigation{
+      bottom: var(--nav-bottom) !important;
+    }
+  }
+}
+
+/* 2) iPhone 11 / XR (414px) — отдельное значение */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (width: 414px){
+    #reviews-phone{ --nav-bottom: 45px; } /* <-- двигай тут */
+  }
+}
+
+/* 3) iPhone 12 / 12 Pro / 13 / 13 Pro / 14 / 14 Pro / 15 / 15 Pro (390px) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (width: 390px){
+    #reviews-phone{ --nav-bottom: 30px; } /* <-- двигай тут */
+  }
+}
+
+/* 4) iPhone Pro Max (428–430px: 12/13/14 Pro Max = 428, 14/15 Plus/Pro Max часто 430) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (width: 428px){
+    #reviews-phone{ --nav-bottom: 35px; } /* <-- двигай тут */
+  }
+}
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (width: 430px){
+    #reviews-phone{ --nav-bottom: 35px; } /* <-- двигай тут */
+  }
+}
+
+/* 5) iPhone mini (360px: 12 mini / 13 mini) */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) and (width: 360px){
+    #reviews-phone{ --nav-bottom: 28px; } /* <-- двигай тут */
+  }
 }
