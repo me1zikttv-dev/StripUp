@@ -2185,12 +2185,12 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 
   /* ---- БАЗА (Android и все НЕ-iOS) — твои значения ---- */
   #reviews-phone{
-    --rv-img-scale: 0.85;   /* твое */
-    --rv-img-y: 0px;        /* твое */
-    --rv-slides-y: 49px;    /* твое */
+    --rv-img-scale: 0.85;
+    --rv-img-y: 0px;
+    --rv-slides-y: 49px;
   }
 
-  /* Область слайда (оставляем как было полезное) */
+  /* Область слайда */
   #reviews-phone .phone-slide {
     padding: 5px !important;
     display: flex !important;
@@ -2198,7 +2198,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     justify-content: center !important;
   }
 
-  /* Маска экрана телефона (оставляем как было) */
+  /* Маска экрана телефона */
   #reviews-phone .phone-screen-mask {
     top: 6% !important;
     left: 3% !important;
@@ -2207,30 +2207,13 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     border-radius: 16px !important;
   }
 
-  /* Навигация (оставляем как было) */
-  .reviews-nav-container {
-    gap: 30px !important;
-  }
-  .reviews-nav-btn {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 16px !important;
-  }
-  .reviews-dot {
-    width: 8px !important;
-    height: 8px !important;
-  }
-  .reviews-dot.active {
-    transform: scale(1.4) !important;
-  }
-
   /* Сдвиг всего содержимого отзывов внутри маски */
   #reviews-phone .phone-slides{
     transform: translateY(var(--rv-slides-y)) !important;
     -webkit-transform: translateY(var(--rv-slides-y)) !important;
   }
 
-  /* Масштаб/сдвиг именно картинки отзыва (ЕДИНСТВЕННЫЙ transform!) */
+  /* Масштаб/сдвиг именно картинки отзыва */
   #reviews-phone .phone-slide img{
     width: 100% !important;
     height: 100% !important;
@@ -2243,10 +2226,10 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     transform-origin: center center !important;
     -webkit-transform-origin: center center !important;
 
-    max-height: none !important; /* важно: убираем max-height чтобы не плясало */
+    max-height: none !important;
   }
 
-  /* ---- Маленькие экраны: НЕ меняем твой scale, только чуть компактнее навигация ---- */
+  /* Маленькие экраны */
   @media (max-width: 480px) {
     .reviews-nav-container { gap: 20px !important; }
     .reviews-nav-btn { width: 30px !important; height: 30px !important; }
@@ -2257,9 +2240,9 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) {
     #reviews-phone{
-      --rv-img-scale: 0.93;  /* твое (iPhone 11) */
-      --rv-img-y: 25px;       /* твое */
-      --rv-slides-y: 55px;   /* твое (iPhone 11) */
+      --rv-img-scale: 0.93;   /* iPhone 11 */
+      --rv-img-y: 25px;
+      --rv-slides-y: 55px;    /* iPhone 11 */
     }
 
     #reviews-phone .phone-slide img{
@@ -2270,20 +2253,13 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   }
 }
 
-/* (Опционально) Поднятие телефона на мобилке — оставил твоё значение */
+/* Поднятие телефона на мобилке — твое */
 @media (max-width: 768px) {
   #reviews-phone .phone-frame {
     margin-top: -75px !important;
   }
 }
 
-/* Если хочешь разное поднятие для iOS — включи, но сейчас не трогаю:
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) {
-    #reviews-phone .phone-frame { margin-top: -80px !important; }
-  }
-}
-*/
 /* ============================
    REVIEWS — ANDROID FIX ONLY
    (не трогает iOS)
@@ -2291,132 +2267,73 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
 @media (max-width: 768px){
   @supports not (-webkit-touch-callout: none){
     #reviews-phone{
-      --rv-slides-y: 15px; /* было 49px → поднимаем вверх */
-      --rv-img-y: 0px;     /* можно оставить 0 */
-      --rv-img-scale: 0.85;/* оставляем твой андроидный масштаб */
+      --rv-slides-y: 15px;
+      --rv-img-y: 0px;
+      --rv-img-scale: 0.85;
     }
   }
 }
+
 /* ============================
-   iOS LARGE (iPhone 13–15) FIX
+   iOS LARGE (iPhone 13–15) FIX (твой)
    ============================ */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) and (min-width: 390px) {
     #reviews-phone{
-      --rv-slides-y: 10px; /* было 45px → подняли выше */
+      --rv-slides-y: 10px;
     }
   }
 }
+
 /* ============================
-   FIX: Android Yandex Browser
+   FIX: Android Yandex Browser (твой)
    ============================ */
 html{
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
-
 body{
   overflow-x: hidden;
 }
-
-/* именно отзывы: фиксируем рендер transforms в Яндекс/Chromium */
 #reviews-phone .phone-slides,
 #reviews-phone .phone-slide img{
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   will-change: transform;
 }
-/* ============================
-   REVIEWS NAV — FINAL POSITION
-   ============================ */
+
+/* ======================================================
+   NAVIGATION — используем phone-nav (реальная навигация)
+   Условия:
+   - iPhone 11 не трогаем
+   - Android не трогаем
+   - меняем только новые айфоны (390px: 12–15 и дальше)
+   ====================================================== */
+
+/* БАЗА: чтобы bottom работал (не меняем положение на Android/11 если оно уже правильное) */
 @media (max-width: 768px){
-  #reviews-phone .reviews-phone-navigation{
+  #reviews-phone .phone-nav{
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-
-    bottom: 45px !important; /* ← ВОТ ЭТО ДВИГАЕТ ВЕРТИКАЛЬНО */
-    /* хочешь выше: 115px / 125px
-       хочешь ниже: 95px / 85px */
-  }
-}
-/* ============================
-   NAVIGATION — ANDROID ONLY FIX
-   ============================ */
-@media (max-width: 768px){
-  @supports not (-webkit-touch-callout: none){
-
-    #reviews-phone .reviews-phone-navigation{
-      bottom: 100px !important; /* ↑ поднимаем выше Android */
-    }
-
-  }
-}/* ==========================================
-   NAV POSITION — iOS per iPhone
-   ========================================== */
-
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px){
-
-    /* база iOS (iPhone 11) */
-    #reviews-phone .phone-nav{
-      bottom: 45px !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      width: 80% !important;
-      max-width: 320px !important;
-    }
-  }
-
-  /* iPhone 12–15 / Pro (390px) */
-  @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
-    #reviews-phone .phone-nav{
-      bottom: 60px !important; /* ниже чем 11 */
-    }
-  }
-
-  /* Pro Max */
-  @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
-    #reviews-phone .phone-nav{
-      bottom: 38px !important;
-    }
-  }
-
-  /* mini */
-  @media (max-width: 768px) and (max-width: 375px){
-    #reviews-phone .phone-nav{
-      bottom: 32px !important;
-    }
-  }
-}
-/* ============================
-   MOBILE NAV (phone-nav) — FORCE POSITION
-   ============================ */
-@media (max-width: 768px){
-  #reviews-phone .phone-nav{
-    position: absolute !important;   /* ВОТ ЧЕГО ТЕБЕ НЕ ХВАТАЛО */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    bottom: 45px !important;         /* это теперь начнет работать */
-    display: flex !important;
-    width: 80% !important;
-    max-width: 320px !important;
+    bottom: 45px !important;   /* базово как на 11 */
     z-index: 9999 !important;
     pointer-events: auto !important;
   }
 }
+
+/* ТОЛЬКО iOS и ТОЛЬКО новые айфоны (группа 390px: 12/13/14/15/и новее) */
 @supports (-webkit-touch-callout: none) {
-  /* iPhone 12–15 / Pro (включая iPhone 15) */
   @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
     #reviews-phone .phone-nav{
-      bottom: 60px !important; /* ↑ выше чем 11 */
+      bottom: 60px !important; /* ↑ ВОТ ТУТ ДВИГАЕШЬ ТОЛЬКО НОВЫЕ АЙФОНЫ */
     }
   }
 
-  /* iPhone 11 / XR */
+  /* ЯВНО: iPhone 11/XR (~414px) — оставляем как было */
   @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
     #reviews-phone .phone-nav{
-      bottom: 45px !important; /* iPhone 11 как было */
+      bottom: 45px !important;
     }
   }
 }
