@@ -2409,7 +2409,7 @@ body{
     /* iPhone 12/13/14/15 (390-ish) */
     @media (min-width: 376px) and (max-width: 399px){
       #reviews-phone .reviews-phone-navigation{
-        bottom: 75px !important;
+        bottom: 85px !important;
       }
     }
 
