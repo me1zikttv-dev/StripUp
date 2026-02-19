@@ -2371,7 +2371,7 @@ body{
   /* iPhone 12–15 / Pro (390px) */
   @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
     #reviews-phone .phone-nav{
-      bottom: 35px !important; /* ниже чем 11 */
+      bottom: 60px !important; /* ниже чем 11 */
     }
   }
 
