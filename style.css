@@ -2427,7 +2427,7 @@ body{
   /* iPhone 12/13/14/15 (390px ширина) */
   @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
     #reviews-phone{
-      --rv-slides-y: 20px !important;  /* МЕНЬШЕ = ВЫШЕ (попробуй 20 -> 10 -> 0) */
+      --rv-slides-y: 0px !important;  /* МЕНЬШЕ = ВЫШЕ (попробуй 20 -> 10 -> 0) */
       --rv-img-y: 10px !important;     /* если картинка тоже низко: 10 -> 5 -> 0 */
     }
   }
