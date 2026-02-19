@@ -2302,8 +2302,32 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
    ============================ */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) and (min-width: 390px) {
+    /* Поднимаем слайды выше */
     #reviews-phone{
       --rv-slides-y: 10px; /* было 45px → подняли выше */
+    }
+    
+    /* Поднимаем навигацию (стрелки и точки) */
+    #reviews-phone .reviews-phone-navigation {
+      bottom: 95px !important; /* Меньше значение = выше навигация */
+      /* Если нужно ещё выше: bottom: 120px !important; */
+    }
+    
+    /* Если используете старую навигацию */
+    #reviews-phone .phone-nav {
+      bottom: 260px !important; /* Поднимаем старую навигацию */
+    }
+    
+    /* Можно также поднять сами точки/стрелки внутри навигации */
+    .reviews-nav-container {
+      margin-top: -20px !important; /* Отрицательный отступ поднимает вверх */
+    }
+  }
+  
+  /* Для очень больших iPhone (Pro Max) */
+  @media (max-width: 768px) and (min-width: 428px) {
+    #reviews-phone .reviews-phone-navigation {
+      bottom: 110px !important; /* Ещё выше для Pro Max */
     }
   }
 }
