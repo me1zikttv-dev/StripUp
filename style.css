@@ -2346,3 +2346,6 @@ body{
     z-index: 999999 !important;
   }
 }
+@media (max-width: 768px){
+  body{ outline: 10px solid red !important; }
+}
