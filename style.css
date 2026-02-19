@@ -2293,7 +2293,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     #reviews-phone{
       --rv-slides-y: 15px; /* было 49px → поднимаем вверх */
       --rv-img-y: 0px;     /* можно оставить 0 */
-      --rv-img-scale: 0.85;/* оставляем твой андроидный масштаб */
+      --rv-img-scale: 0.86;/* оставляем твой андроидный масштаб */
     }
   }
 }
