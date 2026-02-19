@@ -2297,6 +2297,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
+
 /* ============================
    iOS LARGE (iPhone 13–15) FIX
    ============================ */
@@ -2307,27 +2308,36 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
       --rv-slides-y: 10px; /* было 45px → подняли выше */
     }
     
-    /* Поднимаем навигацию (стрелки и точки) */
+    /* ПОДНИМАЕМ НАВИГАЦИЮ ВЫШЕ (СТРЕЛКИ И ТОЧКИ) */
     #reviews-phone .reviews-phone-navigation {
-      bottom: 95px !important; /* Меньше значение = выше навигация */
-      /* Если нужно ещё выше: bottom: 120px !important; */
+      bottom: 130px !important; /* УВЕЛИЧИЛ с 95px до 130px = ещё выше */
+      position: absolute !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 80% !important;
+      z-index: 9999 !important;
+    }
+    
+    /* Поднимаем контейнер с кнопками */
+    .reviews-nav-container {
+      margin-top: -30px !important; /* Увеличил с -20px до -30px = выше */
+      gap: 40px !important; /* Чуть увеличил расстояние между стрелками */
     }
     
     /* Если используете старую навигацию */
     #reviews-phone .phone-nav {
-      bottom: 260px !important; /* Поднимаем старую навигацию */
-    }
-    
-    /* Можно также поднять сами точки/стрелки внутри навигации */
-    .reviews-nav-container {
-      margin-top: -20px !important; /* Отрицательный отступ поднимает вверх */
+      bottom: 280px !important; /* Поднял с 260px до 280px */
     }
   }
   
   /* Для очень больших iPhone (Pro Max) */
   @media (max-width: 768px) and (min-width: 428px) {
     #reviews-phone .reviews-phone-navigation {
-      bottom: 110px !important; /* Ещё выше для Pro Max */
+      bottom: 150px !important; /* Увеличил с 110px до 150px */
+    }
+    
+    .reviews-nav-container {
+      margin-top: -35px !important;
     }
   }
 }
