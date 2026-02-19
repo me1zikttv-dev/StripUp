@@ -2307,15 +2307,6 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     }
   }
 }
-
-/* ===== ВОТ СЮДА ВСТАВЬТЕ НОВЫЙ КОД ===== */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 768px) and (min-width: 390px) {
-    #reviews-phone .reviews-phone-navigation {
-      bottom: 140px !important;
-    }
-  }
-}
 /* ============================
    FIX: Android Yandex Browser
    ============================ */
