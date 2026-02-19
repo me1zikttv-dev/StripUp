@@ -2258,7 +2258,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   @media (max-width: 768px) {
     #reviews-phone{
       --rv-img-scale: 0.93;  /* твое (iPhone 11) */
-      --rv-img-y: 10px;       /* твое */
+      --rv-img-y: 20px;       /* твое */
       --rv-slides-y: 55px;   /* твое (iPhone 11) */
     }
 
