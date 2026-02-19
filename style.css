@@ -2116,7 +2116,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
   /* Возвращаем навигацию на место */
   #reviews-phone .phone-nav {
     position: absolute !important;
-    bottom: 240px !important; /* ← ЭТО ВЫСОТА СНИЗУ */
+    bottom: 200px !important; /* ← ЭТО ВЫСОТА СНИЗУ */
     left: 200px !important;   /* ← ОТСТУП СЛЕВА */
     right: 200px !important;  /* ← ОТСТУП СПРАВА */
     display: flex !important;
