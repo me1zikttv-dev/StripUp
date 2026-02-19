@@ -2259,7 +2259,7 @@ button, .cta-button, .plan-btn, .phone-nav-btn {
     #reviews-phone{
       --rv-img-scale: 0.93;  /* твое (iPhone 11) */
       --rv-img-y: 0px;       /* твое */
-      --rv-slides-y: 45px;   /* твое (iPhone 11) */
+      --rv-slides-y: 55px;   /* твое (iPhone 11) */
     }
 
     #reviews-phone .phone-slide img{
