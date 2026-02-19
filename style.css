@@ -2337,3 +2337,57 @@ body{
     }
   }
 }
+/* ======================================================
+   REVIEWS NAV — FINAL FIX (ONLY iPhone 12–15)
+   НЕ ТРОГАЕТ Android / iPhone 11 / ПК
+   ====================================================== */
+
+/* БАЗА — как сейчас (для всех мобилок) */
+@media (max-width: 768px){
+
+  /* Скрываем старую навигацию */
+  #reviews-phone .phone-screen-content .phone-nav{
+    display: none !important;
+  }
+
+  /* Новая навигация */
+  #reviews-phone .reviews-phone-navigation{
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 105px !important; /* ← БАЗА (как сейчас стоит) */
+    width: 72% !important;
+    max-width: 230px !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+}
+
+/* ======================================================
+   iPhone 11 / XR — НЕ ТРОГАЕМ
+   (фиксируем чтобы не съезжал)
+   ====================================================== */
+@supports (-webkit-touch-callout: none){
+  @media (max-width: 768px) and (min-width: 400px) and (max-width: 430px){
+
+    #reviews-phone .reviews-phone-navigation{
+      bottom: 105px !important; /* ← ОСТАВЛЯЕМ КАК БЫЛО */
+    }
+
+  }
+}
+
+/* ======================================================
+   iPhone 12–15 (390px) — МЕНЯЕШЬ ТОЛЬКО ТУТ
+   ====================================================== */
+@supports (-webkit-touch-callout: none){
+  @media (max-width: 768px) and (min-width: 376px) and (max-width: 399px){
+
+    #reviews-phone .reviews-phone-navigation{
+      bottom: 125px !important; /* ← ХОЧЕШЬ ВЫШЕ — СТАВЬ БОЛЬШЕ */
+    }
+
+  }
+}
