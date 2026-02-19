@@ -2423,3 +2423,18 @@ body{
 @media (max-width: 768px){
   .phone-nav{ outline: 4px solid lime !important; }
 }
+@media (max-width: 768px){
+  /* подсветим ВСЕ возможные варианты навигации */
+  .phone-nav,
+  .reviews-phone-navigation,
+  #reviews-phone .phone-nav,
+  #reviews-phone .reviews-phone-navigation{
+    outline: 6px solid lime !important;
+    background: rgba(0,255,0,.12) !important;
+    position: fixed !important;      /* чтобы точно сработал bottom */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 200px !important;        /* ДОЛЖНО заметно улететь вверх */
+    z-index: 999999 !important;
+  }
+}
